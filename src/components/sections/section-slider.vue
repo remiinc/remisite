@@ -231,7 +231,7 @@ const getSlideFrameClass = (gradientClass) =>
 </script>
 
 <template>
-  <section class="mx-auto max-w-7xl px-6 py-24" data-section-slider>
+  <section class="mx-auto max-w-[1400px] px-6 py-24" data-section-slider>
     <div class="grid gap-8 md:grid-cols-2 md:items-start">
       <h2 class="max-w-xl text-4xl font-normal tracking-tight text-balance text-foreground">
         {{ headline }}

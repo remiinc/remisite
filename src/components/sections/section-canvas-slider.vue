@@ -148,7 +148,7 @@ const getTabIcon = (icon) => tabIcons[icon]
 </script>
 
 <template>
-  <section class="mx-auto max-w-7xl px-6 py-24 flex flex-col gap-12" data-canvas-slider>
+  <section class="mx-auto max-w-[1400px] px-6 py-24 flex flex-col gap-12" data-canvas-slider>
     <div class="space-y-4">
       <h2 class="max-w-xl text-4xl font-normal tracking-tight text-balance text-foreground">
         <template v-for="(part, index) in headlineParts" :key="`${part}-${index}`">

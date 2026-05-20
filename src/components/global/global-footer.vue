@@ -9,7 +9,7 @@ const footerLinks = [
 
 <template>
   <footer class="border-t border-border bg-background text-foreground" data-global-footer>
-    <div class="mx-auto flex max-w-7xl flex-col gap-10 px-6 py-10">
+    <div class="mx-auto flex max-w-[1400px] flex-col gap-10 px-6 py-10">
       <nav class="flex flex-wrap items-center gap-x-6 gap-y-3" aria-label="Footer navigation">
         <a
           v-for="link in footerLinks"

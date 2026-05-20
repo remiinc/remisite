@@ -45,7 +45,7 @@ const features = [
 </script>
 
 <template>
-  <section class="mx-auto max-w-7xl px-6 py-24" data-product-overview>
+  <section class="mx-auto max-w-[1400px] px-6 py-24" data-product-overview>
     <div class="space-y-0 text-3xl font-normal leading-none tracking-tight text-balance">
       <h2 class="text-foreground">
         Get to know Remi.

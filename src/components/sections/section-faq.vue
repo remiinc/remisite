@@ -66,7 +66,7 @@ const toggleFaq = (index) => {
 </script>
 
 <template>
-  <section class="mx-auto max-w-7xl px-6 py-24" data-faq-section>
+  <section class="mx-auto max-w-[1400px] px-6 py-24" data-faq-section>
     <h2 class="text-4xl font-normal tracking-tight text-foreground">FAQ</h2>
 
     <div class="mt-8 border-t border-border">

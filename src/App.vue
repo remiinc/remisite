@@ -21,10 +21,9 @@ const isDemoModalOpen = ref(false)
 </script>
 
 <template>
-  <AnnouncementBar />
   <div>
     <GlobalHeader @book-demo="isDemoModalOpen = true" />
-    <main class="min-h-svh bg-background text-foreground">
+    <main class="min-h-svh bg-background text-foreground overscroll-none">
       <HomeHero @book-demo="isDemoModalOpen = true" />
       <SectionFeatureBento @book-demo="isDemoModalOpen = true" />
       <SectionSlider>

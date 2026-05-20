@@ -41,7 +41,7 @@ const getLogoUrl = (slug) => `https://logos.composio.dev/api/${slug}`
 </script>
 
 <template>
-  <section id="integrations" class="mx-auto max-w-7xl px-6 py-24" data-integrations-marquee>
+  <section id="integrations" class="mx-auto max-w-[1400px] px-6 py-24" data-integrations-marquee>
     <div class="grid gap-10 md:grid-cols-2">
       <div class="min-w-0">
         <div class="space-y-0 text-3xl font-normal leading-none tracking-tight text-balance">
