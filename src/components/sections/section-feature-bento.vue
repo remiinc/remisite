@@ -1,9 +1,18 @@
 <script setup>
 import { FilmGrain, Shader, Swirl } from 'shaders/vue'
-import { PhPlus } from '@phosphor-icons/vue'
+import {
+  PhCloudArrowDown,
+  PhDotsThreeVertical,
+  PhInfo,
+  PhPlus,
+  PhShareFat,
+} from '@phosphor-icons/vue'
 import { computed, defineComponent, h, ref } from 'vue'
 import GlobalModal from '../global/global-modal.vue'
+import { BentoMessageRow } from '../global/visuals-library.vue'
+import IconAcrobatPdf from '../misc/icon-acrobat-pdf.vue'
 
+import BentoDialogArtifactsDocuments from './components/bento-dialog-artifacts-documents.vue'
 import BentoDialogSharedMemory from './components/bento-dialog-shared-memory.vue'
 import BentoDialogSlackAgent from './components/bento-dialog-slack-agent.vue'
 import BentoDialogToolSync from './components/bento-dialog-tool-sync.vue'
@@ -41,6 +50,10 @@ const bentoDialogs = {
     title: 'Shared memory system organized automatically',
     component: BentoDialogSharedMemory,
   },
+  'feature-bento-5': {
+    title: "Remi doesn't just answer. She delivers.",
+    component: BentoDialogArtifactsDocuments,
+  },
 }
 
 const activeBentoDialogId = ref('')
@@ -71,74 +84,6 @@ const openBookDemo = () => {
   activeBentoDialogId.value = ''
   emit('book-demo')
 }
-
-const BentoMessageRow = defineComponent({
-  props: {
-    author: {
-      type: String,
-      default: 'Anna',
-    },
-    time: {
-      type: String,
-      default: '4:20 PM',
-    },
-    avatarSrc: {
-      type: String,
-      default: '',
-    },
-    avatarAlt: {
-      type: String,
-      default: '',
-    },
-    avatarEnabled: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  setup(props, { slots }) {
-    const getInitials = () =>
-      props.author
-        .split(' ')
-        .filter(Boolean)
-        .map((part) => part[0])
-        .join('')
-        .slice(0, 2)
-        .toUpperCase()
-
-    return () =>
-      h('div', { class: 'flex items-start gap-[1em]' }, [
-        props.avatarSrc
-          ? h('img', {
-            class: 'size-[2.5em] shrink-0 rounded-[0.5em] object-cover',
-            src: props.avatarSrc,
-            alt: props.avatarAlt || `${props.author} avatar`,
-            loading: 'lazy',
-            decoding: 'async',
-          })
-          : props.avatarEnabled
-            ? h(
-              'span',
-              {
-                class:
-                  'flex size-[2.5em] shrink-0 items-center justify-center rounded-[0.5em] bg-foreground/8 font-medium text-foreground',
-                'aria-hidden': 'true',
-              },
-              getInitials()
-            )
-            : null,
-        h('div', { class: 'flex min-w-0 flex-col gap-[0.3em]' }, [
-          h('span', { class: 'text-[0.875em] text-foreground leading-none' }, [
-            props.author,
-            ' ',
-            h('span', { class: 'text-foreground/40' }, props.time),
-          ]),
-          h('div', { class: 'flex items-center gap-[1em] text-[1em]' }, [
-            h('span', null, slots.default?.()),
-          ]),
-        ]),
-      ])
-  },
-})
 
 const BentoExpandIcon = defineComponent({
   setup() {
@@ -228,7 +173,40 @@ const BentoExpandIcon = defineComponent({
               Make it a PDF please!
             </BentoMessageRow>
             <BentoMessageRow author="Remi" time="4:21 PM" avatar-enabled avatar-src="/images/avatars/remi-black.jpg">
-              You got it!
+              <div class="flex flex-col gap-[0.25em]">
+                <span>You got it!</span>
+                <span
+                  class="relative p-[0.25em] rounded-[0.625em] border border-foreground/10 flex items-center justify-center gap-[0.25em]">
+                  <IconAcrobatPdf class-name="size-[2.25em] shrink-0" />
+                  <span class="flex flex-col gap-[0.35em] pl-[0.25em] pr-[1em]">
+                    <span class="text-[0.825em] text-foreground leading-none">competitive-analysis.pdf</span>
+                    <span class="text-[0.625em] text-foreground/50 leading-none">View <span
+                        class="font-medium">PDF</span> in Slack</span>
+                  </span>
+                  <span class="flex items-center justify-center h-full pr-[0.2em]">
+                    <span
+                      :class="cn(
+                        'flex gap-[0.125em] p-[0.125em] rounded-[0.375em] border border-foreground/10 shadow-[0_1px_1px_0_color-mix(in_oklch,var(--color-foreground)_5%,transparent)]', 
+                        '[&_div]:p-[0.25em] [&_div]:rounded-[0.25em] [&_div]:bg-foreground/0 [&_div]:hover:bg-foreground/5 [&_div]:transition-all'
+                        )">
+                      <div>
+                        <PhCloudArrowDown />
+                      </div>
+                      <div>
+                        <PhShareFat />
+                      </div>
+                      <div>
+                        <PhInfo />
+                      </div>
+                      <div>
+                        <PhDotsThreeVertical />
+                      </div>
+
+                    </span>
+                  </span>
+
+                </span>
+              </div>
             </BentoMessageRow>
           </div>
         </div>
@@ -260,7 +238,17 @@ const BentoExpandIcon = defineComponent({
           <h3>Shared memory system organized automatically</h3>
         </div>
       </div>
-      <div id="feature-bento-5" :class="cn('min-h-160 col-span-4')"></div>
+      <div id="feature-bento-5"
+        :class="cn('group/bento-cell min-h-160 col-span-4', isBentoDialogClickable('feature-bento-5') && 'cursor-pointer hover:scale-99')"
+        :role="isBentoDialogClickable('feature-bento-5') ? 'button' : undefined"
+        :tabindex="isBentoDialogClickable('feature-bento-5') ? 0 : undefined"
+        @click="openBentoDialog('feature-bento-5')" @keydown.enter="openBentoDialog('feature-bento-5')"
+        @keydown.space.prevent="openBentoDialog('feature-bento-5')">
+        <BentoExpandIcon v-if="isBentoDialogClickable('feature-bento-5')" />
+        <div :class="cn(containerClasses, 'relative z-1')">
+          <h3>Artifacts and documents that live beyond chat</h3>
+        </div>
+      </div>
       <div id="feature-bento-6" :class="cn('min-h-160 col-span-4')"></div>
     </div>
 

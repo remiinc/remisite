@@ -9,13 +9,13 @@ const emit = defineEmits(['book-demo'])
   <div class="dialog-container flex flex-col gap-8 w-full">
     <div class="dialog-header flex flex-col gap-8">
       <h2 class="pr-10 text-3xl font-normal leading-[1.125em] tracking-tight text-foreground text-balance max-w-[32ch]">
-        Shared memory system organized automatically
+        Remi doesn't just answer. She delivers.
       </h2>
       <div class="grid md:grid-cols-2 gap-8">
         <div class="flex flex-col gap-8 items-start">
           <p class="text-base font-normal leading-normal text-foreground/50 max-w-[40ch]">
-            Remi does not keep one big pile of information. She organizes what happens across Slack, email, docs, and
-            project tools into connected memory layers that stay useful over time.
+            Remi turns work into artifacts: structured, shareable, reusable documents that live in your workspace and
+            stay connected to the work that created them.
           </p>
           <div class="flex items-center justify-start gap-2">
             <Button @click="emit('book-demo')">Book a Demo</Button>
@@ -26,19 +26,19 @@ const emit = defineEmits(['book-demo'])
           class="list-none flex flex-col gap-2 [&>li]:flex [&>li]:items-start [&>li]:gap-2 [&>li]:text-sm [&_svg]:size-[1lh] [&_svg]:scale-80">
           <li>
             <PhCheck />
-            Today's active context, decisions, and commitments
+            Proposals, SOWs, briefs, and kickoff packets
           </li>
           <li>
             <PhCheck />
-            Topic, project, relationship, and org memory layers
+            Status reports, stakeholder updates, and meeting summaries
           </li>
           <li>
             <PhCheck />
-            Automatic classification, routing, and cross-reference
+            Playbooks, operating checklists, and review artifacts
           </li>
           <li>
             <PhCheck />
-            Context that carries forward instead of resetting
+            Documents that stay connected to the project they came from
           </li>
         </ul>
       </div>
@@ -47,47 +47,44 @@ const emit = defineEmits(['book-demo'])
   <div class="dialog-content mt-12">
     <div class="flex flex-col gap-8">
       <h3 class="text-2xl font-normal leading-[1.125em] tracking-tight text-foreground text-balance max-w-[32ch]">
-        Not storage. Organization.
+        When output matters beyond chat, Remi builds it properly.
       </h3>
       <ul
         class="grid grid-cols-2 gap-8 text-base text-foreground/80 list-none [&>li]:flex [&>li]:flex-col [&>li]:gap-6 [&>li>p]:max-w-[40ch]">
         <li>
           <div class="rounded-2xl bg-foreground/5 aspect-video"></div>
           <p>
-            <span class="font-medium text-foreground">Layered memory keeps the right context findable.</span>
+            <span class="font-medium text-foreground">Work that lives beyond chat.</span>
             <span class="text-foreground/50">
-              Remi maintains today's layer, topic memory, project records, relationship context, and stable org facts so
-              each kind of knowledge has a useful place to live.
+              Remi turns important outputs into proper documents: structured, formatted, and stored in your workspace.
             </span>
           </p>
         </li>
         <li>
           <div class="rounded-2xl bg-foreground/5 aspect-video"></div>
           <p>
-            <span class="font-medium text-foreground">Automatic cross-reference turns facts into context.</span>
+            <span class="font-medium text-foreground">Built in real time.</span>
             <span class="text-foreground/50">
-              When client feedback arrives, Remi connects it to the project record, the owner, and the open loop it was
-              meant to close.
+              When Remi creates a document, you watch it take shape so you can course-correct before the final handoff.
             </span>
           </p>
         </li>
         <li>
           <div class="rounded-2xl bg-foreground/5 aspect-video"></div>
           <p>
-            <span class="font-medium text-foreground">Always organized, never manual.</span>
+            <span class="font-medium text-foreground">Connected to the work that created it.</span>
             <span class="text-foreground/50">
-              As information comes in, Remi classifies it, routes it to the right layer, links it to existing records,
-              and knows when it should surface again.
+              Every artifact is linked to the project, client, or topic it belongs to, so it becomes part of what Remi
+              remembers.
             </span>
           </p>
         </li>
         <li>
           <div class="rounded-2xl bg-foreground/5 aspect-video"></div>
           <p>
-            <span class="font-medium text-foreground">Context carries forward across time.</span>
+            <span class="font-medium text-foreground">Ready to hand off.</span>
             <span class="text-foreground/50">
-              What was discussed last week shapes how Remi understands this week, so projects reopen with status,
-              blockers, and history already intact.
+              Formatted, readable, and shareable, whether it is a client proposal, internal brief, or review artifact.
             </span>
           </p>
         </li>
