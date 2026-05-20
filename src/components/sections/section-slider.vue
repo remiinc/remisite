@@ -2,12 +2,38 @@
 import { computed, onBeforeUnmount, ref, watch } from 'vue'
 import useEmblaCarousel from 'embla-carousel-vue'
 import Fade from 'embla-carousel-fade'
+import { FilmGrain, Shader, Swirl } from 'shaders/vue'
 import { cn } from '../../lib/cn'
 
-const defaultSlideBackgrounds = [
-  '/images/home-slider/slider-bg-001.webp',
-  '/images/home-slider/slider-bg-002.webp',
-  '/images/home-slider/slider-bg-003.webp',
+const defaultSlideShaders = [
+  {
+    colorA: 'oklch(0.995 0.05 85)',
+    colorB: 'oklch(0.925 0.2 100)',
+    speed: 1,
+    detail: 1.5,
+    blend: 30,
+  },
+  {
+    colorA: 'oklch(0.98 0.024 259.597)',
+    colorB: 'oklch(0.858 0.07 259.597)',
+    speed: 0.5,
+    detail: 1.35,
+    blend: 50,
+  },
+  {
+    colorA: 'oklch(0.96 0.08 170)',
+    colorB: 'oklch(0.9 0.05 215)',
+    speed: 0.55,
+    detail: 1.45,
+    blend: 44,
+  },
+  {
+    colorA: 'oklch(0.97 0.05 292.24)',
+    colorB: 'oklch(0.95 0.2 457)',
+    speed: 0.5,
+    detail: 1.35,
+    blend: 50,
+  },
 ]
 
 const props = defineProps({
@@ -74,7 +100,10 @@ const normalizedTabs = computed(() =>
       label,
       caption: tab.caption || '',
       slot: tab.slot || id,
-      backgroundImage: tab.backgroundImage || defaultSlideBackgrounds[index % defaultSlideBackgrounds.length],
+      shader: {
+        ...defaultSlideShaders[index % defaultSlideShaders.length],
+        ...(tab.shader || {}),
+      },
     }
   }),
 )
@@ -271,16 +300,18 @@ const getSlideFrameClass = (gradientClass) =>
             :class="getSlideFrameClass(tab.gradientClass)"
             data-section-slider-frame
           >
-            <img
-              v-if="tab.backgroundImage"
-              :src="tab.backgroundImage"
-              alt=""
-              class="absolute inset-0 h-full w-full object-cover"
-              aria-hidden="true"
-              :loading="index === 0 ? 'eager' : 'lazy'"
-              decoding="async"
-              data-section-slider-background
-            >
+            <Shader class="absolute inset-0 h-full w-full" disable-telemetry>
+              <FilmGrain :strength="0.5" :bias="0.4" :animated="true">
+                <Swirl
+                  :color-a="tab.shader.colorA"
+                  :color-b="tab.shader.colorB"
+                  color-space="oklch"
+                  :speed="tab.shader.speed"
+                  :detail="tab.shader.detail"
+                  :blend="tab.shader.blend"
+                />
+              </FilmGrain>
+            </Shader>
             <div class="relative z-10 flex h-full w-full items-center justify-center">
               <slot :name="tab.slot" :tab="tab" :index="index">
                 <slot :tab="tab" :index="index">

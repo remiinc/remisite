@@ -135,8 +135,11 @@ const BentoExpandIcon = defineComponent({
 <template>
   <section :class="cn('relative mx-auto max-w-[1400px] px-6 py-24 z-1')" data-feature-bento>
     <div :class="cn('mb-12 max-w-3xl')">
-      <h2 :class="cn('text-4xl font-normal leading-tight tracking-tight text-balance text-foreground')">
+      <h2 :class="cn('text-4xl font-normal leading-none tracking-tight text-balance text-foreground')">
+        The last operations hire you'll ever need<br />
+        <span :class="cn('text-foreground/50')">
         Everything you need to run your service business
+        </span>
       </h2>
     </div>
     <div :class="gridClasses">
@@ -154,7 +157,7 @@ const BentoExpandIcon = defineComponent({
           </FilmGrain>
         </Shader>
         <div :class="cn(containerClasses, 'relative z-1')">
-          <h3>Powerful Slack agent that works for anyone on your team</h3>
+          <h3>Powerful Slack agent</h3>
         </div>
         <div
           :class="cn('absolute inset-0 size-full z-1 flex flex-col justify-end items-end text-foreground text-base font-normal leading-normal text-pretty pl-[2em]')">
@@ -235,7 +238,7 @@ const BentoExpandIcon = defineComponent({
         @keydown.space.prevent="openBentoDialog('feature-bento-4')">
         <BentoExpandIcon v-if="isBentoDialogClickable('feature-bento-4')" />
         <div :class="cn(containerClasses, 'relative z-1')">
-          <h3>Shared memory system organized automatically</h3>
+          <h3>Shared memory system</h3>
         </div>
       </div>
       <div id="feature-bento-5"
@@ -252,7 +255,7 @@ const BentoExpandIcon = defineComponent({
         </Shader>
         <BentoExpandIcon v-if="isBentoDialogClickable('feature-bento-5')" />
         <div :class="cn(containerClasses, 'relative z-1')">
-          <h3>Artifacts and documents that live beyond chat</h3>
+          <h3>Collaborative documents</h3>
         </div>
         <div class="absolute w-full aspect-square top-1/2 -translate-y-1/3 flex items-center justify-center z-1">
           <div class="absolute grid grid-cols-[1fr] grid-rows-[1fr] place-items-stretch w-[300%]! top-0">
