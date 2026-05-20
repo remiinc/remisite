@@ -4,9 +4,10 @@ import HeaderLink from './components/header-link.vue'
 import HeaderLogo from './components/header-logo.vue'
 
 const navigationLinks = [
-  { label: 'About', href: '#about' },
   { label: 'Features', href: '#features' },
-  { label: 'What you get', href: '#what-you-get' },
+  { label: 'Documentation', href: '#documentation' },
+  { label: 'Integrations', href: '#integrations' },
+  { label: 'Roadmap', href: '#roadmap' },
   { label: 'Pricing', href: '#pricing' },
 ]
 

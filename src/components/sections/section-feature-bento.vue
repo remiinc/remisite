@@ -10,6 +10,8 @@ import BentoDialogToolSync from './components/bento-dialog-tool-sync.vue'
 import RadialNetworkCanvas from './components/radial-network-canvas.vue'
 import { cn } from '../../lib/cn'
 
+const emit = defineEmits(['book-demo'])
+
 const gridClasses = cn(
   'bento-grid',
   'grid grid-cols-1 gap-4 md:grid-cols-6 lg:grid-cols-12',
@@ -63,6 +65,11 @@ const openBentoDialog = (id) => {
   }
 
   activeBentoDialogId.value = id
+}
+
+const openBookDemo = () => {
+  activeBentoDialogId.value = ''
+  emit('book-demo')
 }
 
 const BentoMessageRow = defineComponent({
@@ -258,7 +265,7 @@ const BentoExpandIcon = defineComponent({
     </div>
 
     <GlobalModal v-model="isBentoDialogOpen" :label="activeBentoDialog?.title || 'Feature details'" size="large">
-      <component :is="activeBentoDialogComponent" v-if="activeBentoDialogComponent" />
+      <component :is="activeBentoDialogComponent" v-if="activeBentoDialogComponent" @book-demo="openBookDemo" />
     </GlobalModal>
   </section>
 </template>

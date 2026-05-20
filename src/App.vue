@@ -26,7 +26,7 @@ const isDemoModalOpen = ref(false)
     <GlobalHeader @book-demo="isDemoModalOpen = true" />
     <main class="min-h-svh bg-background text-foreground">
       <HomeHero @book-demo="isDemoModalOpen = true" />
-      <SectionFeatureBento />
+      <SectionFeatureBento @book-demo="isDemoModalOpen = true" />
       <SectionSlider>
         <template #tasks>
           <HomeSliderUiChat />

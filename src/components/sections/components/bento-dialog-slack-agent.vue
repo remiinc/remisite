@@ -1,6 +1,8 @@
 <script setup>
 import { PhCheck } from '@phosphor-icons/vue'
 import Button from '../../global/button.vue'
+
+const emit = defineEmits(['book-demo'])
 </script>
 
 <template>
@@ -16,7 +18,7 @@ import Button from '../../global/button.vue'
             without pulling anyone into another dashboard.
           </p>
           <div class="flex items-center justify-start gap-2">
-            <Button>Book a Demo</Button>
+            <Button @click="emit('book-demo')">Book a Demo</Button>
             <Button variant="secondary">Pricing</Button>
           </div>
         </div>
