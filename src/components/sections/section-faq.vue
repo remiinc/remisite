@@ -69,11 +69,11 @@ const toggleFaq = (index) => {
   <section class="mx-auto max-w-[1400px] px-6 py-24" data-faq-section>
     <h2 class="text-4xl font-normal tracking-tight text-foreground">FAQ</h2>
 
-    <div class="mt-8 border-t border-border">
-      <div v-for="(faq, index) in faqs" :key="faq.question" class="border-b border-border last:border-b-0">
+    <div class="mt-8 border-t border-border/50">
+      <div v-for="(faq, index) in faqs" :key="faq.question" class="border-b border-border/50 last:border-b-0">
         <button
           type="button"
-          class="flex w-full cursor-pointer items-center justify-between gap-6 py-4 text-left text-lg font-normal tracking-tight text-foreground transition-colors hover:text-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+          class="flex w-full cursor-pointer items-center justify-between gap-6 py-4 text-left text-xl font-medium tracking-tight text-foreground transition-colors hover:text-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
           :aria-expanded="isFaqOpen(index)"
           :aria-controls="`faq-answer-${index}`"
           @click="toggleFaq(index)"
@@ -96,7 +96,7 @@ const toggleFaq = (index) => {
           data-faq-answer
         >
           <div class="faq-answer-inner overflow-hidden">
-            <div class="flex max-w-3xl flex-col gap-4 pb-8 text-sm leading-normal text-muted-foreground">
+            <div class="flex max-w-3xl flex-col gap-4 pb-8 text-base leading-normal text-muted-foreground">
               <p v-for="answer in faq.answers" :key="answer">
                 {{ answer }}
               </p>

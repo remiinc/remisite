@@ -10,7 +10,7 @@ const attrs = useAttrs()
 
 const logoClass = computed(() =>
   cn(
-    'size-10 shrink-0 rotate-[0.5deg] text-foreground',
+    'size-8 shrink-0 text-foreground',
     attrs.class,
   ),
 )

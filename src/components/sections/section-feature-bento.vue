@@ -1,21 +1,18 @@
 <script setup>
 import { Dither, FilmGrain, Shader, Swirl } from 'shaders/vue'
 import {
-  PhCloudArrowDown,
-  PhDotsThreeVertical,
-  PhInfo,
   PhPlus,
-  PhShareFat,
 } from '@phosphor-icons/vue'
 import { computed, defineComponent, h, ref } from 'vue'
 import GlobalModal from '../global/global-modal.vue'
-import { BentoMessageRow, FloatingCursor } from '../global/visuals-library.vue'
-import IconAcrobatPdf from '../misc/icon-acrobat-pdf.vue'
+import { FloatingCursor } from '../global/visuals-library.vue'
 
 import BentoDialogArtifactsDocuments from './components/bento-dialog-artifacts-documents.vue'
 import BentoDialogSharedMemory from './components/bento-dialog-shared-memory.vue'
 import BentoDialogSlackAgent from './components/bento-dialog-slack-agent.vue'
 import BentoDialogToolSync from './components/bento-dialog-tool-sync.vue'
+import BentoVisualSlackAgent from './components/bento-visual-slack-agent.vue'
+import MemoryNetworkCanvas from './components/memory-network-canvas.vue'
 import RadialNetworkCanvas from './components/radial-network-canvas.vue'
 import ArtifactsWheel from './components/artifacts-wheel.vue'
 import { cn } from '../../lib/cn'
@@ -24,10 +21,10 @@ const emit = defineEmits(['book-demo'])
 
 const gridClasses = cn(
   'bento-grid',
-  'grid grid-cols-1 gap-4 md:grid-cols-6 lg:grid-cols-12',
-  '[&>div]:relative [&>div]:overflow-hidden [&>div]:rounded-4xl [&>div]:bg-background [&>div]:overflow-hidden',
+  'grid grid-cols-1 gap-2 md:gap-4 lg:gap-6 grid-cols-1 xs:grid-cols-2 lg:grid-cols-3',
+  '[&>div]:relative [&>div]:overflow-hidden [&>div]:rounded-3xl md:[&>div]:rounded-4xl [&>div]:bg-background [&>div]:overflow-hidden',
   '[&>div]:after:content-[\'\'] [&>div]:after:absolute [&>div]:after:inset-0 [&>div]:after:pointer-events-none [&>div]:after:rounded-[inherit] [&>div]:after:shadow-[0_0_0_1px_color-mix(in_oklch,var(--color-foreground)_5%,transparent)_inset] [&>div]:after:mix-blend-plus-darker [&>div]:after:z-10',
-  '[&_h3]:text-3xl [&_h3]:select-none [&_h3]:font-normal [&_h3]:tracking-tight [&_h3]:leading-tight [&_h3]:text-balance [&_h3]:max-w-[32ch]',
+  '[&_h3]:text-[clamp(1.25rem,2.25vw,1.75rem)] [&_h3]:select-none [&_h3]:font-normal [&_h3]:tracking-tight [&_h3]:leading-tight [&_h3]:text-balance [&_h3]:max-w-[32ch]',
   '[&_h4]:text-2xl [&_h4]:select-none [&_h4]:font-normal [&_h4]:tracking-tight [&_h4]:leading-tight [&_h4]:text-balance [&_h4]:max-w-[32ch]',
   '[&>div]:transition-transform [&>div]:duration-300 [&>div]:ease-in-out [&>div]:will-change-transform',
   'text-foreground [&>.light]:text-background'
@@ -35,7 +32,7 @@ const gridClasses = cn(
 
 const containerClasses = cn(
   'bento-container',
-  'w-full h-full p-8 items-start',
+  'w-full h-full p-4 md:p-8 items-start',
 )
 
 const bentoDialogs = {
@@ -144,7 +141,7 @@ const BentoExpandIcon = defineComponent({
     </div>
     <div :class="gridClasses">
       <div id="feature-bento-1"
-        :class="cn('group/bento-cell min-h-160 col-span-8', isBentoDialogClickable('feature-bento-1') && 'cursor-pointer hover:scale-99')"
+        :class="cn('group/bento-cell min-h-104 xs:col-span-2', isBentoDialogClickable('feature-bento-1') && 'cursor-pointer hover:scale-99')"
         :role="isBentoDialogClickable('feature-bento-1') ? 'button' : undefined"
         :tabindex="isBentoDialogClickable('feature-bento-1') ? 0 : undefined"
         @click="openBentoDialog('feature-bento-1')" @keydown.enter="openBentoDialog('feature-bento-1')"
@@ -152,70 +149,20 @@ const BentoExpandIcon = defineComponent({
         <BentoExpandIcon v-if="isBentoDialogClickable('feature-bento-1')" />
         <Shader class="absolute inset-0 h-full w-full" disable-telemetry>
           <FilmGrain :strength="0.5" :bias="0.4" :displacement="0.3" :animated="true">
-            <Swirl color-a="oklch(0.995 0.05 85)" color-b="oklch(0.925 0.2 100)" color-space="oklch"
-              :speed="1" :detail="1.5" :blend="30" />
+            <Swirl color-a="oklch(0.995 0.05 85)" color-b="oklch(0.925 0.2 100)" color-space="oklch" :speed="1"
+              :detail="1.5" :blend="30" />
           </FilmGrain>
         </Shader>
         <div :class="cn(containerClasses, 'relative z-1')">
           <h3>Powerful Slack agent</h3>
         </div>
         <div
-          :class="cn('absolute inset-0 size-full z-1 flex flex-col justify-end items-end text-foreground text-base font-normal leading-normal text-pretty pl-[2em]')">
-          <div class="text-[1.25rem] max-w-[36em] flex flex-col gap-[1.5em] p-[3em] bg-background rounded-tl-3xl">
-            <BentoMessageRow author="Lisa" time="4:21 PM" avatar-enabled>
-              Thanks
-              <span :class="cn(
-                'relative px-1 font-medium text-blue-400',
-                'before:content-[\'\'] before:absolute before:left-[0.05em] before:right-1 before:top-[-0.1em] before:bottom-[-0.2em]',
-                'before:z-0 before:rounded-sm before:bg-blue-400 before:opacity-20'
-              )">
-                Remi
-              </span>
-              can you turn that into a shareable brief too?
-            </BentoMessageRow>
-            <BentoMessageRow author="Lisa" time="4:21 PM" avatar-enabled>
-              Make it a PDF please!
-            </BentoMessageRow>
-            <BentoMessageRow author="Remi" time="4:21 PM" avatar-enabled avatar-src="/images/avatars/remi-black.jpg">
-              <div class="flex flex-col gap-[0.25em]">
-                <span>You got it!</span>
-                <span
-                  class="relative p-[0.25em] rounded-[0.625em] border border-foreground/10 flex items-center justify-center gap-[0.25em]">
-                  <IconAcrobatPdf class-name="size-[2.25em] shrink-0" />
-                  <span class="flex flex-col gap-[0.35em] pl-[0.25em] pr-[1em]">
-                    <span class="text-[0.825em] text-foreground leading-none">competitive-analysis.pdf</span>
-                    <span class="text-[0.625em] text-foreground/50 leading-none">View <span
-                        class="font-medium">PDF</span> in Slack</span>
-                  </span>
-                  <span class="flex items-center justify-center h-full pr-[0.2em]">
-                    <span :class="cn(
-                      'flex gap-[0.125em] p-[0.125em] rounded-[0.375em] border border-foreground/10 shadow-[0_1px_1px_0_color-mix(in_oklch,var(--color-foreground)_5%,transparent)]',
-                      '[&_div]:p-[0.25em] [&_div]:rounded-[0.25em] [&_div]:bg-foreground/0 [&_div]:hover:bg-foreground/5 [&_div]:transition-all'
-                    )">
-                      <div>
-                        <PhCloudArrowDown />
-                      </div>
-                      <div>
-                        <PhShareFat />
-                      </div>
-                      <div>
-                        <PhInfo />
-                      </div>
-                      <div>
-                        <PhDotsThreeVertical />
-                      </div>
-
-                    </span>
-                  </span>
-
-                </span>
-              </div>
-            </BentoMessageRow>
-          </div>
+          :class="cn('text-[clamp(0.875rem,1.55vw,2rem)] xl:text-[1.25rem] absolute inset-0 size-full z-1 flex flex-col justify-end items-end text-foreground font-normal leading-normal text-pretty pl-[1em] md:pl-[2em]')">
+          <BentoVisualSlackAgent />
         </div>
       </div>
       <div id="feature-bento-2"
-        :class="cn('group/bento-cell min-h-160 overflow-hidden col-span-4', isBentoDialogClickable('feature-bento-2') && 'cursor-pointer hover:scale-99')"
+        :class="cn('group/bento-cell w-full aspect-2/3 md:aspect-3/4 overflow-hidden col-span-1', isBentoDialogClickable('feature-bento-2') && 'cursor-pointer hover:scale-99')"
         data-radial-network-clip :role="isBentoDialogClickable('feature-bento-2') ? 'button' : undefined"
         :tabindex="isBentoDialogClickable('feature-bento-2') ? 0 : undefined"
         @click="openBentoDialog('feature-bento-2')" @keydown.enter="openBentoDialog('feature-bento-2')"
@@ -231,7 +178,7 @@ const BentoExpandIcon = defineComponent({
         </div>
       </div>
       <div id="feature-bento-4"
-        :class="cn('group/bento-cell min-h-160 col-span-4', isBentoDialogClickable('feature-bento-4') && 'cursor-pointer hover:scale-99')"
+        :class="cn('group/bento-cell aspect-2/3 md:aspect-3/4 overflow-hidden col-span-1', isBentoDialogClickable('feature-bento-4') && 'cursor-pointer hover:scale-99')"
         :role="isBentoDialogClickable('feature-bento-4') ? 'button' : undefined"
         :tabindex="isBentoDialogClickable('feature-bento-4') ? 0 : undefined"
         @click="openBentoDialog('feature-bento-4')" @keydown.enter="openBentoDialog('feature-bento-4')"
@@ -240,9 +187,14 @@ const BentoExpandIcon = defineComponent({
         <div :class="cn(containerClasses, 'relative z-1')">
           <h3>Shared memory system</h3>
         </div>
+        <div :class="cn('absolute inset-0 h-full w-full mask-t-from-60% mask-t-to-90%')">
+          <div :class="cn('absolute w-[200%] h-full top-0 left-1/2 -translate-x-1/2 flex items-center justify-center')">
+            <MemoryNetworkCanvas />
+          </div>
+        </div>
       </div>
       <div id="feature-bento-5"
-        :class="cn('group/bento-cell min-h-160 col-span-4', isBentoDialogClickable('feature-bento-5') && 'cursor-pointer hover:scale-99')"
+        :class="cn('group/bento-cell aspect-2/3 md:aspect-3/4 overflow-hidden col-span-1', isBentoDialogClickable('feature-bento-5') && 'cursor-pointer hover:scale-99')"
         :role="isBentoDialogClickable('feature-bento-5') ? 'button' : undefined"
         :tabindex="isBentoDialogClickable('feature-bento-5') ? 0 : undefined"
         @click="openBentoDialog('feature-bento-5')" @keydown.enter="openBentoDialog('feature-bento-5')"
@@ -258,7 +210,8 @@ const BentoExpandIcon = defineComponent({
           <h3>Collaborative documents</h3>
         </div>
         <div class="absolute w-full aspect-square top-1/2 -translate-y-1/3 flex items-center justify-center z-1">
-          <div class="absolute grid grid-cols-[1fr] grid-rows-[1fr] place-items-stretch w-[300%]! top-0">
+          <div
+            class="text-[clamp(0.5rem,1.5vw,1rem)] xl:text-[1rem] absolute grid grid-cols-[1fr] grid-rows-[1fr] place-items-stretch w-[300%]! top-0">
             <ArtifactsWheel />
           </div>
         </div>
@@ -267,7 +220,14 @@ const BentoExpandIcon = defineComponent({
           <FloatingCursor class="absolute right-[14%] top-[48%] text-foreground" />
         </div>
       </div>
-      <div id="feature-bento-6" :class="cn('min-h-160 col-span-4')"></div>
+      <div id="feature-bento-6" :class="cn('aspect-2/3 md:aspect-3/4 overflow-hidden col-span-1')">
+        <Shader class="absolute inset-0 h-full w-full" disable-telemetry>
+          <FilmGrain :strength="0.65" :bias="0.5" :displacement="0.25" :animated="true">
+            <Swirl color-a="oklch(0.96 0.08 170)" color-b="oklch(0.9 0.05 215)" color-space="oklch" :speed="0.75"
+              :detail="1.65" :blend="40" />
+          </FilmGrain>
+        </Shader>
+      </div>
     </div>
 
     <GlobalModal v-model="isBentoDialogOpen" :label="activeBentoDialog?.title || 'Feature details'" size="large">

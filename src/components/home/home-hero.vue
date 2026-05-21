@@ -1,41 +1,35 @@
 <script setup>
 import Button from '../global/button.vue'
-import { Shader, VideoTexture, FilmGrain, Swirl } from 'shaders/vue'
+import { Shader, Godrays, Fog, Swirl, ChromaticAberration } from 'shaders/vue'
 
 const emit = defineEmits(['book-demo'])
 </script>
 
 <template>
-  <section class="relative w-full md:min-h-[calc(80svh-(--spacing(18)))] grid grid-rows-1 grid-cols-1 md:py-4">
-    <div class="w-full max-w-[1400px] px-6 mx-auto grid grid-cols-1 md:grid-cols-5 gap-4">
-      <div
-        class="bg-background w-full min-h-160 p-8 rounded-4xl relative isolate flex flex-col items-start justify-between gap-2 overflow-hidden text-left select-none md:col-span-3">
-        <Shader class="absolute inset-0 h-full w-full" disable-telemetry>
-          <FilmGrain :strength="0.5" :bias="0.4" :animated="true">
-            <Swirl
-              color-a="oklch(0.98 0.024 259.597)"
-              color-b="oklch(0.858 0.07 259.597)"
-              color-space="oklch"
-              :speed="0.5"
-              :detail="1.35"
-              :blend="50"
-            />
-          </FilmGrain>
-        </Shader>
-        <h1 class="relative z-1 max-w-[20ch] text-5xl lg:text-6xl font-normal tracking-tight text-balance text-foreground">
-          The last operations hire you'll ever need
-        </h1>
-        <div class="relative z-1 flex items-center justify-start gap-2">
-          <Button>Book a Demo</Button>
-          <Button variant="secondary">Pricing</Button>
-        </div>
-      </div>
-      <div class="bg-cyan-100 w-full min-h-80 rounded-4xl relative isolate overflow-hidden select-none md:col-span-2">
-        <Shader class="absolute inset-0 h-full w-full" disable-telemetry>
-          <VideoTexture url="/videos/remi-imessage-animation-1.mp4" loop />
-          <FilmGrain :strength="0.2" :bias="0.5" :animated="true" />
-        </Shader>
-
+  <section class="relative w-full min-h-[clamp(800px,100svh,100svh)] grid grid-rows-1 grid-cols-1 md:py-4">
+    <div class="absolute inset-0 h-full w-full mask-b-from-0% mask-b-to-100%">
+      <Shader class="absolute inset-0 h-full w-full" disable-telemetry>
+        <ChromaticAberration :strength="1">
+          <Swirl color-a="oklch(0.99 0.2 259.597)" color-b="oklch(0.8 0.2 259.597)" color-space="oklch" :speed="1"
+            :detail="1.5" :blend="50" />
+          <Fog :animated="true" :speed="0.5" :color-a="'oklch(1 0 0)'"
+            :color-b="'oklch(1 0 0/0)'" :mouse-influence="0.5" />
+          <Godrays :animated="true" :center="{ x: 0.5, y: -1 }" :density="0.25" :intensity="1" :spotty="0.1" :speed="2"
+            rayColor="oklch(0.95 0.3 259.597)" />
+        </ChromaticAberration>
+      </Shader>
+    </div>
+    <div class="w-full max-w-[1400px] px-6 pb-24 mx-auto flex flex-col items-center justify-end text-center gap-8">
+      <h1
+        class="relative z-1 max-w-[20ch] text-[clamp(3.5rem,8vw,5.5rem)] leading-[1em] font-normal tracking-[-0.03em] text-balance text-foreground select-none">
+        The last operations hire you'll ever need
+      </h1>
+      <p class="relative z-1 max-w-[48ch] text-base leading-normal tracking-tight text-muted-foreground">
+        AI-powered operations assistant that learns how your business runs and gets work done for you.
+      </p>
+      <div class="relative z-1 flex items-center justify-start gap-2">
+        <Button>Book a Demo</Button>
+        <Button variant="secondary">Pricing</Button>
       </div>
     </div>
   </section>
