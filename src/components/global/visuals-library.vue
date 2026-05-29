@@ -56,7 +56,7 @@ export const BentoMessageRow = defineComponent({
             )
             : null,
         h('div', { class: 'flex min-w-0 flex-col gap-[0.3em]' }, [
-          h('span', { class: 'text-[0.875em] text-foreground leading-none' }, [
+          h('span', { class: 'text-[0.875em] font-medium text-foreground leading-none' }, [
             props.author,
             ' ',
             h('span', { class: 'text-foreground/40' }, props.time),
