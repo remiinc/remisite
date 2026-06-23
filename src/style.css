@@ -12,10 +12,26 @@
   --breakpoint-xl: 1280px;
   --breakpoint-2xl: 1536px;
 
+  /* Colors */
+  --color-theme-orange: oklch(0.6713 0.2032 32.89);
+  --color-theme-blue: oklch(0.6541 0.1098 205.8);
+  --color-theme-green: oklch(0.3477 0.0984 142.58);
+
+  /* Layout */
+  --content-width: 1440px;
+  --header-height: 80px;
+  --header-bar-height: 56px;
+  --header-bar-radius: calc(var(--header-bar-height) / 2);
+  --scroll-progress-line: 2px;
+  --header-bg-inset: 4px;
+  --topbar-height: 3em;
+  --hero-height: clamp(800px,100svh,100svh);
+  --hero-padding: 0.5em 0.5em 0.5em 0.5em;
+
   --tracking-tight: -0.0125em;
 
-  --color-background: oklch(0.998 0.005 85);
-  --color-foreground: var(--color-neutral-900);
+  --color-background: oklch(98.2% 0.002576 81.4);
+  --color-foreground: oklch(16.7% 0.006437 81.4);
   --color-card: var(--color-neutral-50);
   --color-card-foreground: var(--color-neutral-950);
   --color-popover: var(--color-neutral-50);
@@ -24,8 +40,8 @@
   --color-primary-foreground: var(--color-neutral-50);
   --color-secondary: var(--color-neutral-100);
   --color-secondary-foreground: var(--color-neutral-950);
-  --color-muted: var(--color-neutral-100);
-  --color-muted-foreground: var(--color-neutral-600);
+  --color-muted: oklch(95.9% 0.008336 81.4);
+  --color-muted-foreground: oklch(43.4% 0.008139 81.4);
   --color-accent: var(--color-neutral-100);
   --color-accent-foreground: var(--color-neutral-950);
   --color-destructive: var(--color-neutral-900);
@@ -33,39 +49,84 @@
   --color-border: var(--color-neutral-200);
   --color-input: var(--color-neutral-200);
   --color-ring: var(--color-neutral-950);
-}
 
-@layer base {
-  * {
-    @apply border-border;
+  --gradient-fade-top: linear-gradient(to bottom,
+      color-mix(in srgb, var(--color-background) 100%, transparent) 0%,
+      color-mix(in srgb, var(--color-background) 98.7%, transparent) 8.1%,
+      color-mix(in srgb, var(--color-background) 95.1%, transparent) 15.5%,
+      color-mix(in srgb, var(--color-background) 89.6%, transparent) 22.5%,
+      color-mix(in srgb, var(--color-background) 82.5%, transparent) 29%,
+      color-mix(in srgb, var(--color-background) 74.1%, transparent) 35.3%,
+      color-mix(in srgb, var(--color-background) 64.8%, transparent) 41.2%,
+      color-mix(in srgb, var(--color-background) 55%, transparent) 47.1%,
+      color-mix(in srgb, var(--color-background) 45%, transparent) 52.9%,
+      color-mix(in srgb, var(--color-background) 35.2%, transparent) 58.8%,
+      color-mix(in srgb, var(--color-background) 25.9%, transparent) 64.7%,
+      color-mix(in srgb, var(--color-background) 17.5%, transparent) 71%,
+      color-mix(in srgb, var(--color-background) 10.4%, transparent) 77.5%,
+      color-mix(in srgb, var(--color-background) 4.9%, transparent) 84.5%,
+      color-mix(in srgb, var(--color-background) 1.3%, transparent) 91.9%,
+      color-mix(in srgb, var(--color-background) 0%, transparent) 100%);
+
+  --gradient-fade-bottom: linear-gradient(to top,
+      color-mix(in srgb, var(--color-background) 100%, transparent) 0%,
+      color-mix(in srgb, var(--color-background) 98.7%, transparent) 8.1%,
+      color-mix(in srgb, var(--color-background) 95.1%, transparent) 15.5%,
+      color-mix(in srgb, var(--color-background) 89.6%, transparent) 22.5%,
+      color-mix(in srgb, var(--color-background) 82.5%, transparent) 29%,
+      color-mix(in srgb, var(--color-background) 74.1%, transparent) 35.3%,
+      color-mix(in srgb, var(--color-background) 64.8%, transparent) 41.2%,
+      color-mix(in srgb, var(--color-background) 55%, transparent) 47.1%,
+      color-mix(in srgb, var(--color-background) 45%, transparent) 52.9%,
+      color-mix(in srgb, var(--color-background) 35.2%, transparent) 58.8%,
+      color-mix(in srgb, var(--color-background) 25.9%, transparent) 64.7%,
+      color-mix(in srgb, var(--color-background) 17.5%, transparent) 71%,
+      color-mix(in srgb, var(--color-background) 10.4%, transparent) 77.5%,
+      color-mix(in srgb, var(--color-background) 4.9%, transparent) 84.5%,
+      color-mix(in srgb, var(--color-background) 1.3%, transparent) 91.9%,
+      color-mix(in srgb, var(--color-background) 0%, transparent) 100%);
   }
 
-  html {
-    @apply bg-background text-foreground;
+  @layer base {
+    * {
+      @apply border-border;
+    }
+
+    html {
+      @apply bg-background text-foreground;
+    }
+
+    body {
+      @apply m-0 min-h-svh bg-background font-sans text-foreground antialiased;
+    }
+
+    .debug {
+      @apply border border-red-400 border-dashed;
+    }
+
+    body:has(.announcement-bar) {
+      --hero-height: calc(clamp(800px,100svh,100svh) - var(--topbar-height)) !important;
+      --hero-padding: 0em 0.5em 0.5em 0.5em !important;
+    }
+
+    #app {
+      @apply min-h-svh bg-background;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
   }
 
-  body {
-    @apply m-0 min-h-svh bg-background font-sans text-foreground antialiased;
-  }
+  @keyframes section-slider-timer {
+    from {
+      translate: -100% 0;
+    }
 
-  #app {
-    @apply min-h-svh bg-background;
+    to {
+      translate: 0 0;
+    }
   }
-
-  button,
-  input,
-  textarea,
-  select {
-    font: inherit;
-  }
-}
-
-@keyframes section-slider-timer {
-  from {
-    translate: -100% 0;
-  }
-
-  to {
-    translate: 0 0;
-  }
-}

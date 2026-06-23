@@ -31,7 +31,7 @@ const integrations = [
 
 <template>
   <footer class="bg-background text-foreground" data-global-footer>
-    <div class="mx-auto max-w-[1400px] grid grid-cols-6 gap-x-10 gap-y-16 px-6 pt-10 pb-20">
+    <div class="mx-auto max-w-(--content-width) grid grid-cols-6 gap-x-10 gap-y-16 px-6 pt-10 pb-20">
       <div class="col-span-full lg:col-span-3 flex flex-col items-start gap-12 justify-between">
         <div class="flex flex-col items-start gap-4 max-w-md text-balance">
         <SiteLogo />

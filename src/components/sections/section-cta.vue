@@ -1,60 +1,40 @@
 <script setup>
-import { Shader, Godrays, Fog, Swirl, ChromaticAberration, LinearGradient } from 'shaders/vue'
 import Button from '../global/button.vue'
-
-const emit = defineEmits(['book-demo'])
+import RemiMetricsMarquee from './section-remi-metrics-marquee.vue'
 </script>
 
 <template>
-  <section id="demo" class="mx-auto max-w-[1400px] scroll-mt-24 px-6 py-24" data-section-cta>
-    <div class="relative overflow-hidden rounded-[2rem] bg-background px-6 py-20 text-center sm:px-10 lg:px-16">
-      <div class="absolute inset-0 h-full w-full" aria-hidden="true">
-        <Shader class="absolute inset-0 h-full w-full" disable-telemetry>
-          <ChromaticAberration :strength="1">
-            <Swirl
-              color-a="oklch(0.99 0.2 259.597)"
-              color-b="oklch(0.8 0.2 259.597)"
-              color-space="oklch"
-              :speed="1"
-              :detail="1.5"
-              :blend="50"
-            />
-            <LinearGradient
-              :color-a="'oklch(1 0 0/0)'"
-              :color-b="'oklch(1 0 0)'"
-              :angle="0"
-              :blend-mode="overlay"
-              :start="{ x: 0.5, y: 0 }"
-              :end="{ x: 0.5, y: 1 }"
-            />
-            <Fog
-              :animated="true"
-              :speed="0.5"
-              :color-a="'oklch(1 0 0)'"
-              :color-b="'oklch(1 0 0/0)'"
-              :mouse-influence="1"
-              :blend-mode="plusLighter"
-            />
-            <Godrays
-              :animated="true"
-              :center="{ x: 0.5, y: -1 }"
-              :density="0.25"
-              :intensity="1"
-              :spotty="0.1"
-              :speed="2"
-              rayColor="oklch(0.95 0.3 259.597)"
-            />
-          </ChromaticAberration>
-        </Shader>
-      </div>
+  <section id="demo" class="mx-auto max-w-(--content-width) scroll-mt-24 px-6 py-24" data-section-cta>
+    <div class="relative grid min-h-120 grid-cols-1 grid-rows-1 overflow-hidden rounded-[2em] bg-muted p-8 md:p-12">
 
-      <div class="relative z-1 mx-auto flex max-w-3xl flex-col items-center justify-center gap-8 min-h-120">
+      <div class="relative z-1 flex h-full w-full flex-col items-start justify-between gap-16">
 
-        <div class="flex flex-col items-center justify-center gap-16">
-          <span class="text-5xl font-normal">Ready when your team is</span>
-          <button class="relative select-none cursor-pointer rounded-full px-3 py-2 text-2xl font-normal text-background transition-colors tracking-[-0.02em] before:content-[''] before:absolute before:-inset-3 before:rounded-full before:z-0 before:bg-foreground before:transition-all before:duration-200 before:ease-in-out hover:before:-inset-4" @click="emit('book-demo')"><span class="relative z-10">Book a Demo</span></button>
+        <div class="flex w-full max-w-3xl flex-col items-start gap-8">
+          <h2 class="text-4xl font-normal tracking-tight text-balance">
+            <span class="block text-foreground/50">Ready to hand off the busywork?</span>
+            Let Remi keep the day moving.
+          </h2>
+          <form action="/qualify/contact" method="GET"
+            class="cta-email-form relative z-1 w-full max-w-sm rounded-full p-1 items-center before:content-[''] before:absolute before:inset-0 before:rounded-full before:shadow-[0_0_0_1px_rgba(0,0,0,0.02),0_3px_4px_-4px_rgba(0,0,0,0.1),0_4px_12px_-6px_rgba(0,0,0,0.02)] after:content-[''] after:absolute after:inset-0 after:bg-background/70 after:rounded-full after:shadow-[0_0_4px_0_rgba(255,255,255,0.5)_inset,0_0_10px_-10px_rgba(255,255,255,1)_inset]">
+            <div class="relative z-1 flex w-full items-center gap-1">
+              <label for="cta-email" class="sr-only">Your email</label>
+              <input id="cta-email" name="email" type="email" autocomplete="email" required placeholder="Your email"
+                class="h-10 min-w-0 flex-1 bg-transparent px-3 text-base text-foreground placeholder:text-foreground/45 outline-none">
+              <Button type="submit">Get Started</Button>
+            </div>
+          </form>
         </div>
+
+        <RemiMetricsMarquee />
       </div>
     </div>
   </section>
 </template>
+
+<style scoped>
+.cta-email-form:focus-within {
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklch, var(--color-foreground) 18%, transparent),
+    0 0 0 4px color-mix(in oklch, var(--color-foreground) 8%, transparent);
+}
+</style>

@@ -1,59 +1,69 @@
 <script setup>
-import { ref } from 'vue'
+import { computed } from 'vue'
 import AnnouncementBar from './components/global/announcement-bar.vue'
-import BookDemoForm from './components/global/book-demo-form.vue'
+import BlogPostPage from './components/blog/blog-post-page.vue'
+import CaseStudyPage from './components/case-studies/case-study-page.vue'
 import GlobalFooter from './components/global/global-footer.vue'
 import GlobalHeader from './components/header/global-header.vue'
-import GlobalModal from './components/global/global-modal.vue'
-import HomeHero from './components/home/home-hero.vue'
-import HomeSliderUiChat from './components/home/slider-ui/home-slider-ui-chat.vue'
-import HomeSliderUiFiles from './components/home/slider-ui/home-slider-ui-files.vue'
-import HomeSliderUiIntegrations from './components/home/slider-ui/home-slider-ui-integrations.vue'
-import HomeSliderUiIntelligence from './components/home/slider-ui/home-slider-ui-intelligence.vue'
-import SectionSurfaces from './components/sections/section-surfaces.vue'
+import HomeHeroVideo from './components/home/home-hero-video.vue'
+import QualifyContact from './components/qualify/qualify-contact.vue'
 import SectionCta from './components/sections/section-cta.vue'
 import SectionFaq from './components/sections/section-faq.vue'
-import SectionFeatureBento from './components/sections/section-feature-bento.vue'
+import SectionPinnedHeadline from './components/sections/section-pinned-headline.vue'
 import SectionHow from './components/sections/section-how.vue'
-import SectionIntegrationsMarquee from './components/sections/section-integrations-marquee.vue'
-import SectionProductOverview from './components/sections/section-product-overview.vue'
-import SectionRemiVsTools from './components/sections/section-remi-vs-tools.vue'
-import SectionSlider from './components/sections/section-slider.vue'
+import SectionNews from './components/sections/section-news.vue'
+import SectionSurfaces from './components/sections/section-surfaces.vue'
+import SectionSolutions from './components/sections/section-solutions.vue'
+import SectionWhyRemi from './components/sections/section-why-remi.vue'
+import SolutionPage from './components/solutions/solution-page.vue'
 
-const isDemoModalOpen = ref(false)
+const pathname = typeof window !== 'undefined' ? window.location.pathname : '/'
+const searchString = typeof window !== 'undefined' ? window.location.search : ''
+
+const normalizedPath = computed(() => pathname.replace(/\/+$/, '') || '/')
+const isQualifyPage = computed(() =>
+  normalizedPath.value === '/qualify' || normalizedPath.value === '/qualify/contact',
+)
+
+const solutionPagePaths = [
+  '/solutions/startups',
+  '/solutions/small-businesses',
+  '/solutions/mid-market',
+]
+
+const isSolutionPage = computed(() => solutionPagePaths.includes(normalizedPath.value))
+const isBlogPage = computed(() =>
+  normalizedPath.value === '/blog' || normalizedPath.value.startsWith('/blog/'),
+)
+const isCaseStudyPage = computed(() =>
+  normalizedPath.value === '/case-studies' || normalizedPath.value.startsWith('/case-studies/'),
+)
+
+const qualifyContactEmail = computed(() => {
+  const params = new URLSearchParams(searchString)
+  return params.get('email') || ''
+})
 </script>
 
 <template>
-  <div>
-    <GlobalHeader @book-demo="isDemoModalOpen = true" />
+  <QualifyContact v-if="isQualifyPage" :email="qualifyContactEmail" />
+  <SolutionPage v-else-if="isSolutionPage" />
+  <BlogPostPage v-else-if="isBlogPage" />
+  <CaseStudyPage v-else-if="isCaseStudyPage" />
+  <div v-else>
     <main class="min-h-svh bg-background text-foreground overscroll-none">
-      <HomeHero @book-demo="isDemoModalOpen = true" />
+      <AnnouncementBar />
+      <GlobalHeader />
+      <HomeHeroVideo />
+      <SectionPinnedHeadline />
       <SectionHow />
-      <SectionFeatureBento @book-demo="isDemoModalOpen = true" />
-      <SectionRemiVsTools />
-      <SectionSlider>
-        <template #tasks>
-          <HomeSliderUiChat />
-        </template>
-        <template #integrations>
-          <HomeSliderUiIntegrations />
-        </template>
-        <template #files>
-          <HomeSliderUiFiles />
-        </template>
-        <template #intelligence>
-          <HomeSliderUiIntelligence />
-        </template>
-      </SectionSlider>
-      <SectionProductOverview />
       <SectionSurfaces />
-      <SectionIntegrationsMarquee />
+      <SectionWhyRemi />
+      <SectionSolutions />
+      <SectionNews />
       <SectionFaq />
-      <SectionCta @book-demo="isDemoModalOpen = true" />
+      <SectionCta />
     </main>
     <GlobalFooter />
   </div>
-  <GlobalModal v-model="isDemoModalOpen" label="Book a Demo">
-    <BookDemoForm />
-  </GlobalModal>
 </template>

@@ -54,19 +54,17 @@ const faqs = [
   },
 ]
 
-const openFaqs = ref([])
+const openFaqIndex = ref(null)
 
-const isFaqOpen = (index) => openFaqs.value.includes(index)
+const isFaqOpen = (index) => openFaqIndex.value === index
 
 const toggleFaq = (index) => {
-  openFaqs.value = isFaqOpen(index)
-    ? openFaqs.value.filter((openIndex) => openIndex !== index)
-    : [...openFaqs.value, index]
+  openFaqIndex.value = isFaqOpen(index) ? null : index
 }
 </script>
 
 <template>
-  <section id="faq" class="mx-auto max-w-[1400px] scroll-mt-24 px-6 py-24" data-faq-section>
+  <section id="faq" class="mx-auto max-w-(--content-width) scroll-mt-24 px-6 py-24" data-faq-section>
     <h2 class="text-4xl font-normal tracking-tight text-foreground">FAQ</h2>
 
     <div class="mt-8 border-t border-border/50">

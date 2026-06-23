@@ -7,13 +7,13 @@ const activeSidebarItem = ref('new-task')
 </script>
 
 <template>
-    <div class="p-[0.5em] rounded-[1em] bg-foreground/3 flex flex-col justify-between">
+    <div class="p-[0.5em] rounded-[1em] bg-foreground/3 flex flex-col justify-between gap-[2em] h-full">
         <div class="flex flex-col gap-[0.5em]">
             <div class="flex items-center justify-center self-start p-[0.25em]">
                 <SiteLogo class="size-[1.5em]" />
             </div>
             <ul
-                class="flex flex-col list-none [&>li]:relative [&>li]:isolate [&>li]:text-[0.75em] [&>li]:leading-normal [&>li]:tracking-tight [&>li]:font-normal [&>li]:text-foreground/50 [&>li]:py-[0.35em] [&>li]:px-[0.8em] [&>li]:rounded-full [&>li]:cursor-pointer [&>li]:flex [&>li]:items-center [&>li]:gap-[0.5em] [&>li]:transition-colors [&>li]:duration-200 [&>li]:before:absolute [&>li]:before:-inset-[0.25em] [&>li]:before:z-[-1] [&>li]:before:rounded-full [&>li]:before:bg-foreground/5 [&>li]:before:opacity-0 [&>li]:before:transition-[inset,opacity] [&>li]:before:duration-200 [&>li]:before:ease-out [&>li]:before:content-[''] [&>li[data-active=true]]:text-foreground! [&>li[data-active=true]]:before:inset-0 [&>li[data-active=true]]:before:opacity-100 [&>li>svg]:size-[1em] [&>li>svg]:text-foreground [&>li>svg]:opacity-30 [&>li[data-active=true]>svg]:opacity-100! min-w-[10em] gap-[0.125em]">
+                class="flex flex-col list-none [&>li]:relative [&>li]:isolate [&>li]:text-[0.75em] [&>li]:leading-normal [&>li]:tracking-tight [&>li]:font-normal [&>li]:text-foreground/50 [&>li]:py-[0.35em] [&>li]:px-[0.8em] [&>li]:rounded-full [&>li]:cursor-pointer [&>li]:flex [&>li]:items-center [&>li]:gap-[0.5em] [&>li]:transition-colors [&>li]:duration-200 [&>li]:before:absolute [&>li]:before:inset-[-0.25em] [&>li]:before:z-[-1] [&>li]:before:rounded-full [&>li]:before:bg-foreground/5 [&>li]:before:opacity-0 [&>li]:before:transition-[inset,opacity] [&>li]:before:duration-200 [&>li]:before:ease-out [&>li]:before:content-[''] [&>li[data-active=true]]:text-foreground! [&>li[data-active=true]]:before:inset-0 [&>li[data-active=true]]:before:opacity-100 [&>li>svg]:size-[1em] [&>li>svg]:text-foreground [&>li>svg]:opacity-30 [&>li[data-active=true]>svg]:opacity-100! min-w-[10em] gap-[0.125em]">
                 <li
                     class="relative"
                     :data-active="activeSidebarItem === 'new-task'"

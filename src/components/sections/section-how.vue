@@ -1,61 +1,67 @@
 <script setup>
-import { cn } from '../../lib/cn'
-import HowVisualScan from './components/how-visual-scan.vue'
-import HowVisualReady from './components/how-visual-ready.vue'
-
-const steps = [
-  {
-    title: 'Install Remi',
-    body: 'Add Remi to Slack, then connect the tools your business already runs on.',
-  },
-  {
-    title: 'Remi learns the business',
-    body: 'She scans all your tools and context to build her knowledge base.',
-    visual: HowVisualScan,
-  },
-  {
-    title: 'Remi is ready to go',
-    body: 'Ask questions, create documents, route follow-ups, and automate work.',
-    visual: HowVisualReady,
-  },
-]
+import { cn } from '../../lib/cn.js'
+import SectionVisualLearn from '../home/visuals/visual-learn.vue'
+import SectionVisualWorks from '../home/visuals/visual-works.vue'
+import SectionVisualMemory from '../home/visuals/visual-memory.vue'
 </script>
 
 <template>
-  <section id="how" :class="cn('relative mx-auto max-w-[1400px] scroll-mt-24 px-6 py-12 md:py-16')" data-section-how>
-    <div :class="cn('mb-12 max-w-3xl')">
-      <h2 :class="cn('text-4xl font-normal leading-none tracking-tight text-balance text-foreground')">
-        Add Remi once.<br />
-        <span :class="cn('text-foreground/50')">
-          She learns how your business runs.
-        </span>
-      </h2>
-    </div>
-
-    <div
-      :class="cn(
-        'grid grid-cols-1 gap-4 md:grid-cols-3',
-        '[&>article]:relative [&>article]:overflow-hidden [&>article]:rounded-4xl [&>article]:bg-background',
-        '[&>article]:after:content-[\'\'] [&>article]:after:absolute [&>article]:after:inset-0 [&>article]:after:pointer-events-none [&>article]:after:rounded-[inherit]',
-        '[&>article]:after:shadow-[0_0_0_1px_color-mix(in_oklch,var(--color-foreground)_5%,transparent)_inset] [&>article]:after:mix-blend-plus-darker',
-      )"
-    >
-      <article v-for="(step, index) in steps" :key="step.title">
-        <div :class="cn('relative flex min-h-120 h-full flex-col justify-between gap-3 p-4')">
-          <span :class="cn('absolute top-4 left-4 text-lg size-10 rounded-full bg-foreground text-background flex items-center justify-center font-normal leading-none')">
-            {{ String(index + 1).padStart(2, '') }}
-          </span>
-          <component :is="step.visual" v-if="step.visual" />
-          <div :class="cn('flex flex-col gap-0 p-4')">
-            <h3 :class="cn('text-xl font-normal leading-tight tracking-tight text-balance text-foreground')">
-              {{ step.title }}
-            </h3>
-            <p :class="cn('text-lg leading-tight text-foreground/40')">
-              {{ step.body }}
-            </p>
+  <section id="how" :class="cn('relative z-1 mx-auto max-w-(--content-width) px-6 py-12 md:py-16')" data-section-how>
+    <!-- Segment #1 - Learn -->
+    <div class="flex flex-col gap-16 md:gap-0">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-x-24 py-16">
+        <div class="flex items-center">
+          <div class="relative w-full">
+            <SectionVisualLearn />
           </div>
         </div>
-      </article>
+        <div class="flex flex-col justify-center gap-6 max-w-md">
+          <h2
+            class="text-2xl md:text-4xl lg:text-5xl font-normal leading-none tracking-tight text-balance text-foreground">
+            Remi learns everything about your business.
+          </h2>
+          <p class="text-base leading-normal tracking-tight text-foreground/50">
+            She scans every tool, thread, and document you connect, building a living knowledge base that captures how
+            your business actually runs—so every answer reflects the way your team already works.
+          </p>
+        </div>
+      </div>
+      <!-- Segment #2 - Builds -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-x-24 py-16">
+        <div class="flex items-center">
+          <div class="relative w-full">
+            <SectionVisualMemory />
+          </div>
+        </div>
+        <div class="flex flex-col justify-center gap-6 max-w-md">
+          <h2
+            class="text-2xl md:text-4xl lg:text-5xl font-normal leading-none tracking-tight text-balance text-foreground">
+            Creates a living knowledge base of your business.
+          </h2>
+          <p class="text-base leading-normal tracking-tight text-foreground/50">
+            Remi does not keep one big pile of information. She organizes what happens across Slack, email, docs, and
+            project tools into connected memory layers that stay useful over time.
+          </p>
+        </div>
+      </div>
+      <!-- Segment #3 - Works -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-x-24 py-16">
+        <div class="flex items-center">
+          <div class="relative w-full">
+            <SectionVisualWorks />
+          </div>
+        </div>
+        <div class="flex flex-col justify-center gap-6 max-w-md">
+          <h2
+            class="text-2xl md:text-4xl lg:text-5xl font-normal leading-none tracking-tight text-balance text-foreground">
+            Remi works alongside your team.
+          </h2>
+          <p class="text-base leading-normal tracking-tight text-foreground/50">
+            Ask questions, draft documents, route follow-ups, and automate the busywork—Remi shows up where your team
+            already works, handles the operational chasing, and keeps everyone moving forward.
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 </template>
