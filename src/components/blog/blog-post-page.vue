@@ -187,13 +187,13 @@ onBeforeUnmount(() => {
             <img
               :src="heroImage"
               :alt="post.metadata.heroImageAlt || post.title"
-              class="aspect-2/1 w-full object-cover"
+              class="aspect-3/2 w-full object-cover"
             >
           </figure>
         </div>
       </section>
 
-      <section class="w-full px-6 py-20" data-blog-contents>
+      <section class="w-full px-6 py-20 md:py-24 lg:py-32" data-blog-contents>
         <div class="w-full mx-auto grid max-w-(--content-width) gap-x-24 gap-y-12 lg:grid-cols-[1fr_3fr_1fr]">
           <aside class="w-full flex flex-col gap-12 lg:sticky lg:top-[calc(var(--header-height)+2em)] lg:self-start lg:max-w-sm" aria-label="Article sidebar">
             <nav class="w-full flex items-center gap-5" aria-label="Share this article">

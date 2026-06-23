@@ -4,8 +4,8 @@ import RemiMetricsMarquee from './section-remi-metrics-marquee.vue'
 </script>
 
 <template>
-  <section id="demo" class="mx-auto max-w-(--content-width) scroll-mt-24 px-6 py-24" data-section-cta>
-    <div class="relative grid min-h-120 grid-cols-1 grid-rows-1 overflow-hidden rounded-[2em] bg-muted p-8 md:p-12">
+  <section id="demo" class="scroll-mt-24 px-6 py-24" data-section-cta>
+    <div class="relative w-full mx-auto max-w-(--content-width) grid min-h-120 grid-cols-1 grid-rows-1 overflow-hidden rounded-[2em] bg-muted p-8 md:p-12">
 
       <div class="relative z-1 flex h-full w-full flex-col items-start justify-between gap-16">
 

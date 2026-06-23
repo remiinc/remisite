@@ -64,40 +64,32 @@ const toggleFaq = (index) => {
 </script>
 
 <template>
-  <section id="faq" class="mx-auto max-w-(--content-width) scroll-mt-24 px-6 py-24" data-faq-section>
-    <h2 class="text-4xl font-normal tracking-tight text-foreground">FAQ</h2>
+  <section id="faq" class="mx-auto scroll-mt-24 px-6 py-24" data-faq-section>
+    <div class="w-full mx-auto max-w-(--content-width)">
+      <h2 class="text-4xl font-normal tracking-tight text-foreground">FAQ</h2>
 
-    <div class="mt-8 border-t border-border/50">
-      <div v-for="(faq, index) in faqs" :key="faq.question" class="border-b border-border/50 last:border-b-0">
-        <button
-          type="button"
-          class="flex w-full cursor-pointer items-center justify-between gap-6 py-4 text-left text-xl font-medium tracking-tight text-foreground transition-colors hover:text-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-          :aria-expanded="isFaqOpen(index)"
-          :aria-controls="`faq-answer-${index}`"
-          @click="toggleFaq(index)"
-        >
-          <span>{{ faq.question }}</span>
-          <span
-            class="faq-icon flex size-8 shrink-0 items-center justify-center rounded-full bg-foreground text-background transition-transform duration-300 ease-out"
-            :class="{ 'is-open': isFaqOpen(index) }"
-            aria-hidden="true"
-          >
-            <PhPlus class="size-4" weight="bold" />
-          </span>
-        </button>
+      <div class="mt-8 border-t border-border/50">
+        <div v-for="(faq, index) in faqs" :key="faq.question" class="border-b border-border/50 last:border-b-0">
+          <button type="button"
+            class="flex w-full cursor-pointer items-center justify-between gap-6 py-4 text-left text-xl font-medium tracking-tight text-foreground transition-colors hover:text-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+            :aria-expanded="isFaqOpen(index)" :aria-controls="`faq-answer-${index}`" @click="toggleFaq(index)">
+            <span>{{ faq.question }}</span>
+            <span
+              class="faq-icon flex size-8 shrink-0 items-center justify-center rounded-full bg-foreground text-background transition-transform duration-300 ease-out"
+              :class="{ 'is-open': isFaqOpen(index) }" aria-hidden="true">
+              <PhPlus class="size-4" weight="bold" />
+            </span>
+          </button>
 
-        <div
-          :id="`faq-answer-${index}`"
-          class="faq-answer grid overflow-hidden transition-[grid-template-rows] duration-300 ease-out"
-          :class="{ 'is-open': isFaqOpen(index) }"
-          :aria-hidden="!isFaqOpen(index)"
-          data-faq-answer
-        >
-          <div class="faq-answer-inner overflow-hidden">
-            <div class="flex max-w-3xl flex-col gap-4 pb-8 text-base leading-normal text-muted-foreground">
-              <p v-for="answer in faq.answers" :key="answer">
-                {{ answer }}
-              </p>
+          <div :id="`faq-answer-${index}`"
+            class="faq-answer grid overflow-hidden transition-[grid-template-rows] duration-300 ease-out"
+            :class="{ 'is-open': isFaqOpen(index) }" :aria-hidden="!isFaqOpen(index)" data-faq-answer>
+            <div class="faq-answer-inner overflow-hidden">
+              <div class="flex max-w-3xl flex-col gap-4 pb-8 text-base leading-normal text-muted-foreground">
+                <p v-for="answer in faq.answers" :key="answer">
+                  {{ answer }}
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -128,6 +120,7 @@ const toggleFaq = (index) => {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   [data-faq-answer],
   .faq-icon {
     transition: none;

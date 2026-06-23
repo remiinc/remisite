@@ -12,6 +12,17 @@ const escapeHtml = (value = '') =>
 const normalizeFrontmatterValue = (value) => {
   const trimmed = value.trim()
 
+  if (
+    (trimmed.startsWith('{') && trimmed.endsWith('}')) ||
+    (trimmed.startsWith('[') && trimmed.endsWith(']'))
+  ) {
+    try {
+      return JSON.parse(trimmed)
+    } catch {
+      // Fall back to the lightweight parsing below for non-JSON frontmatter.
+    }
+  }
+
   if (trimmed.startsWith('[') && trimmed.endsWith(']')) {
     return trimmed
       .slice(1, -1)
@@ -21,6 +32,64 @@ const normalizeFrontmatterValue = (value) => {
   }
 
   return trimmed.replace(/^["']|["']$/g, '')
+}
+
+const parseNestedFrontmatterList = (lines) => {
+  const items = []
+  let currentItem = null
+
+  const pushCurrentItem = () => {
+    if (currentItem === null) {
+      return
+    }
+
+    items.push(currentItem)
+    currentItem = null
+  }
+
+  lines.forEach((line) => {
+    const trimmed = line.trim()
+
+    if (!trimmed || trimmed.startsWith('#')) {
+      return
+    }
+
+    if (trimmed.startsWith('- ')) {
+      pushCurrentItem()
+
+      const itemValue = trimmed.slice(2).trim()
+      const separatorIndex = itemValue.indexOf(':')
+
+      if (separatorIndex === -1) {
+        currentItem = normalizeFrontmatterValue(itemValue)
+        return
+      }
+
+      currentItem = {}
+      const key = itemValue.slice(0, separatorIndex).trim()
+      const value = itemValue.slice(separatorIndex + 1)
+
+      currentItem[key] = normalizeFrontmatterValue(value)
+      return
+    }
+
+    if (currentItem && typeof currentItem === 'object' && !Array.isArray(currentItem)) {
+      const separatorIndex = trimmed.indexOf(':')
+
+      if (separatorIndex === -1) {
+        return
+      }
+
+      const key = trimmed.slice(0, separatorIndex).trim()
+      const value = trimmed.slice(separatorIndex + 1)
+
+      currentItem[key] = normalizeFrontmatterValue(value)
+    }
+  })
+
+  pushCurrentItem()
+
+  return items
 }
 
 export const parseFrontmatter = (source) => {
@@ -33,24 +102,41 @@ export const parseFrontmatter = (source) => {
     }
   }
 
-  const metadata = frontmatterMatch[1]
-    .split('\n')
-    .reduce((fields, line) => {
-      const trimmed = line.trim()
-      const separatorIndex = trimmed.indexOf(':')
+  const lines = frontmatterMatch[1].split('\n')
+  const metadata = {}
 
-      if (!trimmed || trimmed.startsWith('#') || separatorIndex === -1) {
-        return fields
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = lines[index]
+    const trimmed = line.trim()
+    const separatorIndex = trimmed.indexOf(':')
+
+    if (!trimmed || trimmed.startsWith('#') || separatorIndex === -1) {
+      continue
+    }
+
+    const key = trimmed.slice(0, separatorIndex).trim()
+    const value = trimmed.slice(separatorIndex + 1)
+
+    if (value.trim()) {
+      metadata[key] = normalizeFrontmatterValue(value)
+      continue
+    }
+
+    const nestedLines = []
+
+    while (index + 1 < lines.length) {
+      const nextLine = lines[index + 1]
+
+      if (nextLine.trim() && !/^\s/.test(nextLine)) {
+        break
       }
 
-      const key = trimmed.slice(0, separatorIndex).trim()
-      const value = trimmed.slice(separatorIndex + 1)
+      index += 1
+      nestedLines.push(nextLine)
+    }
 
-      return {
-        ...fields,
-        [key]: normalizeFrontmatterValue(value),
-      }
-    }, {})
+    metadata[key] = parseNestedFrontmatterList(nestedLines)
+  }
 
   return {
     metadata,

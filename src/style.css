@@ -18,7 +18,7 @@
   --color-theme-green: oklch(0.3477 0.0984 142.58);
 
   /* Layout */
-  --content-width: 1440px;
+  --content-width: var(--breakpoint-xl);
   --header-height: 80px;
   --header-bar-height: 56px;
   --header-bar-radius: calc(var(--header-bar-height) / 2);

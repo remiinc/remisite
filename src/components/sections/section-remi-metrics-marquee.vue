@@ -5,43 +5,43 @@ import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 
 const metrics = [
   {
-    id: 'emails-triaged',
-    label: 'Emails triaged',
+    id: 'client-promises-visible',
+    label: 'Client promises kept visible',
     value: 2432,
     increment: [2, 7],
     frequency: [800, 240],
   },
   {
-    id: 'replies-drafted',
-    label: 'Customer replies drafted',
+    id: 'owners-clarified',
+    label: 'Owners clarified before work stalled',
     value: 384,
     increment: [1, 3],
     frequency: [1000, 3000],
   },
   {
-    id: 'follow-ups-created',
-    label: 'Follow-ups created',
+    id: 'revenue-followups-protected',
+    label: 'Revenue follow-ups protected',
     value: 216,
     increment: [1, 4],
     frequency: [1200, 2000],
   },
   {
-    id: 'documents-summarized',
-    label: 'Documents summarized',
+    id: 'source-backed-decisions',
+    label: 'Decisions tied back to source',
     value: 528,
     increment: [1, 3],
     frequency: [800, 1000],
   },
   {
-    id: 'tasks-created',
-    label: 'Tasks created',
+    id: 'approval-blockers-surfaced',
+    label: 'Approval blockers surfaced before delay',
     value: 941,
     increment: [2, 5],
     frequency: [1200, 900],
   },
   {
-    id: 'calendar-events-checked',
-    label: 'Calendar events checked',
+    id: 'client-updates-ready',
+    label: 'Client updates ready for review',
     value: 1986,
     increment: [2, 6],
     frequency: [1200, 400],
@@ -122,7 +122,7 @@ onBeforeUnmount(() => {
       <div class="relative z-10 shrink-0 self-center bg-transparent px-4 lg:self-auto">
         <span
           class="flex items-center gap-2 text-xs font-medium leading-none tracking-tight text-foreground">
-          Tracked by Remi today:
+          Kept visible by Remi today:
         </span>
       </div>
 

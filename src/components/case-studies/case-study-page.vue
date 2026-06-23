@@ -1,5 +1,4 @@
 <script setup>
-import { PhEnvelopeSimple, PhFacebookLogo, PhLinkedinLogo, PhXLogo } from '@phosphor-icons/vue'
 import { computed, onBeforeUnmount, watchEffect } from 'vue'
 import { caseStudies } from '../../lib/case-studies'
 import cn from '../../lib/cn'
@@ -25,76 +24,18 @@ const caseStudy = computed(() =>
 const fallbackCaseStudy = computed(() => caseStudies[0] || null)
 
 const heroImage = computed(() =>
-  caseStudy.value?.metadata.heroImage || caseStudy.value?.metadata.ogImage || ''
+  caseStudy.value?.coverImageUrl || caseStudy.value?.metadata.ogImage || ''
 )
-const tableOfContents = computed(() => caseStudy.value?.toc || [])
-const shareUrl = computed(() => {
-  if (!caseStudy.value) {
-    return ''
-  }
-
-  if (typeof window === 'undefined') {
-    return caseStudy.value.path
-  }
-
-  return new URL(caseStudy.value.path, window.location.origin).href
-})
-const socialShareLinks = computed(() => {
-  if (!caseStudy.value || !shareUrl.value) {
-    return []
-  }
-
-  const encodedTitle = encodeURIComponent(caseStudy.value.title)
-  const encodedUrl = encodeURIComponent(shareUrl.value)
-
-  return [
-    {
-      label: 'Share on X',
-      href: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
-      icon: PhXLogo,
-      external: true,
-    },
-    {
-      label: 'Share on LinkedIn',
-      href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
-      icon: PhLinkedinLogo,
-      external: true,
-    },
-    {
-      label: 'Share on Facebook',
-      href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
-      icon: PhFacebookLogo,
-      external: true,
-    },
-    {
-      label: 'Share by email',
-      href: `mailto:?subject=${encodedTitle}&body=${encodedUrl}`,
-      icon: PhEnvelopeSimple,
-      external: false,
-    },
-  ]
-})
+const caseStudyStats = computed(() => caseStudy.value?.stats || [])
+const hasPexelsCredit = computed(() =>
+  Boolean(
+    caseStudy.value?.metadata.pexelsPhotographer &&
+    caseStudy.value?.metadata.pexelsPhotographerUrl &&
+    caseStudy.value?.metadata.pexelsPhotoUrl
+  )
+)
 const originalTitle = typeof document !== 'undefined' ? document.title : ''
 const changedMeta = new Map()
-
-const scrollToHeading = (event, headingId) => {
-  if (typeof document === 'undefined') {
-    return
-  }
-
-  const target = document.getElementById(headingId)
-
-  if (!target) {
-    return
-  }
-
-  event.preventDefault()
-  target.scrollIntoView({
-    behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
-    block: 'start',
-  })
-  window.history.pushState(null, '', `#${headingId}`)
-}
 
 const setMetaTag = (attribute, key, content) => {
   if (typeof document === 'undefined' || !content) {
@@ -136,7 +77,7 @@ watchEffect(() => {
   setMetaTag('property', 'og:description', ogDescription)
   setMetaTag('property', 'og:type', 'article')
   setMetaTag('property', 'og:url', window.location.href)
-  setMetaTag('property', 'og:image', caseStudy.value.metadata.ogImage)
+  setMetaTag('property', 'og:image', caseStudy.value.metadata.ogImage || caseStudy.value.coverImageUrl)
   setMetaTag('property', 'article:published_time', caseStudy.value.date)
 })
 
@@ -169,79 +110,40 @@ onBeforeUnmount(() => {
     <GlobalHeader theme="light" />
 
     <main v-if="caseStudy">
-      <section class="s-full bg-muted px-6 pb-20 pt-[calc(var(--header-height)+2em)]" data-case-study-hero>
-        <div class="mx-auto grid w-full max-w-(--content-width) items-stretch gap-10 lg:grid-cols-2">
-          <div class="flex max-w-xl flex-col items-stretch justify-between gap-6">
-            <div class="flex flex-wrap items-center gap-x-1 gap-y-2 text-sm font-medium text-muted-foreground">
-              <span>{{ caseStudy.metadata.category || 'Case Study' }}</span>
-              <span v-if="caseStudy.formattedDate" aria-hidden="true">&#183;</span>
-              <time v-if="caseStudy.formattedDate" :datetime="caseStudy.date">
-                {{ caseStudy.formattedDate }}
-              </time>
+      <section class="relative w-full px-6 pb-6 pt-[calc(var(--header-height)+4em)] text-foreground"
+        data-case-study-hero>
+        <div class="relative mx-auto max-w-3xl">
+          <div class="flex w-full flex-col items-stretch justify-between gap-12">
+            <div class="flex w-full flex-col items-stretch justify-between gap-4">
+              <div class="text-sm opacity-75">
+                <span>{{ caseStudy.metadata.category || 'Case Study' }}</span>
+              </div>
+
+              <h1 class="text-balance text-4xl font-normal leading-none tracking-tight md:text-5xl">
+                {{ caseStudy.title }}
+              </h1>
             </div>
-
-            <h1 class="text-balance text-4xl font-normal leading-none tracking-tight text-foreground md:text-5xl">
-              {{ caseStudy.title }}
-            </h1>
-
-            <p v-if="caseStudy.description" class="max-w-xl text-pretty text-base leading-normal text-muted-foreground">
-              {{ caseStudy.description }}
-            </p>
+            <figure v-if="heroImage" class="relative w-full aspect-3/2 overflow-hidden rounded-2xl bg-muted flex flex-col justify-end p-2">
+              <img :src="heroImage" :alt="caseStudy.metadata.coverImageAlt || caseStudy.title"
+                class="absolute inset-0 size-full object-cover">
+              <dl v-if="caseStudyStats.length" class="flex gap-2 relative z-2" data-case-study-stats>
+                <div v-for="stat in caseStudyStats" :key="`${stat.metric}-${stat.label}`"
+                  class="min-w-0 flex-1 bg-foreground backdrop-blur-sm rounded-2xl p-4 flex flex-col justify-between gap-8 text-background">
+                  <dt class="text-sm leading-snug text-pretty opacity-75">
+                    {{ stat.label }}
+                  </dt>
+                  <dd class="mt-2 text-2xl font-normal leading-none tracking-tight tabular-nums">
+                    {{ stat.metric }}
+                  </dd>
+                </div>
+              </dl>
+            </figure>
           </div>
-
-          <figure v-if="heroImage" class="overflow-hidden rounded-lg bg-muted">
-            <img
-              :src="heroImage"
-              :alt="caseStudy.metadata.heroImageAlt || caseStudy.title"
-              class="aspect-2/1 w-full object-cover"
-            >
-          </figure>
         </div>
       </section>
 
-      <section class="w-full px-6 py-20" data-case-study-contents>
-        <div class="mx-auto grid w-full max-w-(--content-width) gap-x-24 gap-y-12 lg:grid-cols-[1fr_3fr_1fr]">
-          <aside
-            class="flex w-full flex-col gap-12 lg:sticky lg:top-[calc(var(--header-height)+2em)] lg:max-w-sm lg:self-start"
-            aria-label="Case study sidebar"
-          >
-            <nav class="flex w-full items-center gap-5" aria-label="Share this case study">
-              <a
-                v-for="link in socialShareLinks"
-                :key="link.label"
-                :href="link.href"
-                :target="link.external ? '_blank' : undefined"
-                :rel="link.external ? 'noopener noreferrer' : undefined"
-                :aria-label="link.label"
-                class="inline-flex size-7 items-center justify-center text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-              >
-                <component :is="link.icon" class="size-5" weight="fill" aria-hidden="true" />
-              </a>
-            </nav>
-
-            <nav v-if="tableOfContents.length" class="flex flex-col" aria-label="Table of contents">
-              <h2 class="w-full text-sm font-semibold leading-tight tracking-tight text-foreground">
-                In this case study
-              </h2>
-              <div class="mt-2 border-t border-border pt-6">
-                <ol class="flex flex-col gap-2">
-                  <li v-for="heading in tableOfContents" :key="heading.id">
-                    <a
-                      :href="`#${heading.id}`"
-                      @click="scrollToHeading($event, heading.id)"
-                      :class="cn(
-                        'block text-sm leading-snug text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring',
-                        heading.level === 3 && 'pl-4'
-                      )"
-                    >
-                      {{ heading.title }}
-                    </a>
-                  </li>
-                </ol>
-              </div>
-            </nav>
-          </aside>
-
+      <section class="w-full px-6 pt-12 pb-20" data-case-study-contents>
+        <div class="mx-auto w-full max-w-3xl">
           <article class="case-study-content" v-html="caseStudy.html" :class="cn('*:first:mt-0!')" />
         </div>
       </section>
