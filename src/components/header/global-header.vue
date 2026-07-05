@@ -338,7 +338,7 @@ onBeforeUnmount(() => {
                 class="h-12 w-full"
                 @click="closeMobileMenu"
               >
-                Book a Demo
+                Try for free
               </Button>
             </div>
           </div>
@@ -346,7 +346,7 @@ onBeforeUnmount(() => {
 
         <div class="hidden flex-1 items-center justify-end gap-1 md:flex">
           <HeaderLink href="https://remi.new/login" target="_blank">Login</HeaderLink>
-          <Button href="/qualify" :variant="headerButtonVariant" size="sm">Book a Demo</Button>
+          <Button href="/qualify" :variant="headerButtonVariant" size="sm">Try for free</Button>
         </div>
 
         <div class="flex flex-1 items-center justify-end md:hidden">

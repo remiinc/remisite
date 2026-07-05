@@ -10,8 +10,8 @@ import SurfaceVisualWeb from './components/surface-visual-web.vue'
     <div class="w-full mx-auto max-w-(--content-width)">
       <div class="mb-12 max-w-3xl">
         <h2 class="text-4xl font-normal leading-none tracking-tight text-balance text-foreground">
-          Wherever the day starts to pile up,<br />
-          <span class="text-foreground/50">Remi keeps it moving.</span>
+          Whatever the day throws at you,<br />
+          <span class="text-foreground/50">Remi helps you tackle it all.</span>
         </h2>
       </div>
 
@@ -22,7 +22,7 @@ import SurfaceVisualWeb from './components/surface-visual-web.vue'
           <SurfaceVisualImessageThread />
           <div class="flex flex-col gap-1 justify-start md:justify-between lg:justify-start">
             <h3 class="text-base md:text-2xl lg:text-base font-normal leading-tight tracking-tight text-balance">
-              iMessage
+              Texts & iMessage
             </h3>
             <p class="text-base text-muted-foreground/80 leading-tight">
               Text Remi when something pops up. She can remember the detail, turn it into a next step, and bring it back

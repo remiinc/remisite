@@ -1,3 +1,21 @@
+<script setup>
+import {
+  PhBookOpen,
+  PhChatsCircle,
+  PhInvoice,
+  PhListChecks,
+  PhUserCirclePlus,
+} from '@phosphor-icons/vue'
+
+const tasks = [
+  { label: 'Meeting follow-ups', icon: PhChatsCircle },
+  { label: 'Chases late invoices', icon: PhInvoice },
+  { label: 'Keeps the books up-to-date', icon: PhBookOpen },
+  { label: 'Follows up with leads', icon: PhUserCirclePlus },
+  { label: 'Tracks your commitments', icon: PhListChecks },
+]
+</script>
+
 <template>
   <section class="pinned-headline-wrapper relative w-full bg-background overflow-clip">
     <div aria-hidden="true" class="[background-image:var(--gradient-fade-top)] w-full h-1/8 absolute top-0 left-0 z-1 pointer-events-none" />
@@ -48,12 +66,11 @@
               class="relative z-1 block max-w-[20ch] text-center text-4xl md:text-[clamp(3.5rem,8vw,5rem)] leading-[1em] font-normal tracking-[-0.03em] text-balance text-foreground select-none mb-4">
               Remi takes care of the work that follows you home.
             </h2>
-            <ul class="relative z-1 tasks-list text-base tracking-tight text-foreground/50 select-none">
-              <li class="task-item">Meeting follow-ups</li>
-              <li class="task-item">Client status updates</li>
-              <li class="task-item">CRM cleanup</li>
-              <li class="task-item">Proposal drafts</li>
-              <li class="task-item">Support triage</li>
+            <ul class="relative z-1 tasks-list text-[1.3rem] tracking-tight text-foreground/50 select-none">
+              <li v-for="task in tasks" :key="task.label" class="task-item">
+                <component :is="task.icon" class="size-[1.3rem] shrink-0" weight="regular" aria-hidden="true" />
+                <span>{{ task.label }}</span>
+              </li>
             </ul>
           </div>
         </div>
@@ -229,6 +246,9 @@
 
 .task-item {
   grid-area: stack;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
   text-align: center;
   white-space: nowrap;
 }
@@ -274,7 +294,7 @@
   .tasks-list {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.375rem;
   }
 
   .task-item {
@@ -339,7 +359,7 @@
   .tasks-list {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.375rem;
     height: auto;
     overflow: visible;
   }
