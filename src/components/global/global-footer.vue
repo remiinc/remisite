@@ -38,7 +38,7 @@ const integrations = [
         <h3 class="text-2xl font-medium text-foreground my-2">AI tools answer questions. Operations need follow-through.</h3>
         <Button>Book a Demo</Button>
       </div>
-      <span class="text-sm font-normal text-foreground/60">With love from Chicago, USA.</span>
+      <span class="text-sm font-normal text-foreground/60 inline-flex items-center gap-1.5">🇺🇸 Made with love in the USA</span>
       </div>
       <nav class="flex flex-col items-start gap-1 col-span-full xs:col-span-2 lg:col-span-1" aria-label="Footer navigation">
         <span class="text-base font-medium text-foreground mb-4">Company</span>

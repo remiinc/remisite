@@ -10,8 +10,8 @@ import SurfaceVisualWeb from './components/surface-visual-web.vue'
     <div class="w-full mx-auto max-w-(--content-width)">
       <div class="mb-12 max-w-3xl">
         <h2 class="text-4xl font-normal leading-none tracking-tight text-balance text-foreground">
-          Whatever the day throws at you,<br />
-          <span class="text-foreground/50">Remi helps you tackle it all.</span>
+          Wherever the day starts to pile up,<br />
+          <span class="text-foreground/50">Remi keeps it moving</span>
         </h2>
       </div>
 

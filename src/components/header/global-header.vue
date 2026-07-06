@@ -31,13 +31,20 @@ const solutionColumns = [
 ]
 
 const menuLinks = [
-  { label: 'How', href: '#how' },
-  { label: 'Solutions', href: '#solutions', panel: 'solutions', columns: solutionColumns },
   { label: 'Features', href: '#features' },
-  { label: 'Compare', href: '#compare' },
-  { label: 'Integrations', href: '#integrations' },
-  { label: 'FAQ', href: '#faq' },
+  { label: 'About', href: '#about' },
+  { label: 'Pricing', href: '#pricing' },
+  { label: 'Security', href: '#security' },
+  {
+    label: 'Solutions',
+    href: '#solutions',
+    panel: 'solutions',
+    columns: solutionColumns,
+    hidden: true,
+  },
 ]
+
+const visibleMenuLinks = computed(() => menuLinks.filter((link) => !link.hidden))
 
 const props = defineProps({
   theme: {
@@ -250,7 +257,7 @@ onBeforeUnmount(() => {
               aria-label="Site navigation"
             >
               <div class="h-full divide-y divide-foreground/5 overflow-y-auto px-6 md:flex md:h-auto md:items-center md:gap-0 md:divide-y-0 md:overflow-visible md:border-y-0 md:p-0">
-                <template v-for="link in menuLinks" :key="link.label">
+                <template v-for="link in visibleMenuLinks" :key="link.label">
                   <a
                     v-if="!link.columns"
                     :href="link.href"
