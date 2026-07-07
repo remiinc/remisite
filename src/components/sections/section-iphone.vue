@@ -17,6 +17,36 @@ const IphoneShell = defineComponent({
       },
       [
         h('div', {
+          class: 'w-full h-full absolute top-0 left-0 *:bg-linear-[180deg,var(--color-neutral-400)_0%,var(--color-neutral-100)_20%,var(--color-neutral-400)_70%,var(--color-neutral-200)_90%,var(--color-neutral-400)_100%] *:shadow-[0.125em_0_0.15em_-0.05em_inset_rgba(255,255,255,0.75),-0.05em_0_0.1em_-0.05em_inset_rgba(0,0,0,05)]',
+        },
+          [
+            h(
+              'div',
+              {
+                class: 'absolute top-[20%] left-0 -translate-x-full w-[0.25em] h-[4%]',
+              },
+            ),
+            h(
+              'div',
+              {
+                class: 'absolute top-[calc(30%)] left-0 -translate-x-full w-[0.25em] h-[8%]',
+              },
+            ),
+            h(
+              'div',
+              {
+                class: 'absolute top-[calc(40%)] left-0 -translate-x-full w-[0.25em] h-[8%]',
+              },
+            ),
+            h(
+              'div',
+              {
+                class: 'absolute top-[calc(32%)] right-0 translate-x-full rotate-180 w-[0.25em] h-[12%]',
+              },
+            ),
+          ],
+        ),
+        h('div', {
           class: 'w-full z-0 h-[calc(var(--frame-inset)*1.5)] absolute top-(--frame-radius) left-0 bg-linear-to-b from-neutral-900/20 to-neutral-900/10',
         }),
         h('div', {
@@ -109,12 +139,12 @@ const IosMessageHeader = defineComponent({
               },
               props.contactImage
                 ? [
-                    h('img', {
-                      src: props.contactImage,
-                      alt: props.contactImageAlt || props.contactName,
-                      class: 'size-full object-cover',
-                    }),
-                  ]
+                  h('img', {
+                    src: props.contactImage,
+                    alt: props.contactImageAlt || props.contactName,
+                    class: 'size-full object-cover',
+                  }),
+                ]
                 : undefined,
             ),
             h(
@@ -166,6 +196,57 @@ const IosMessageDate = defineComponent({
   },
 });
 
+const IosMessageBubble = defineComponent({
+  name: 'IosMessageBubble',
+  props: {
+    variant: {
+      type: String,
+      default: 'incoming',
+      validator: (value) => ['incoming', 'outgoing'].includes(value),
+    },
+    text: {
+      type: String,
+      default: '',
+    },
+    last: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  setup(props, { slots }) {
+    return () => h(
+      'div',
+      {
+        'data-message-bubble': props.variant,
+        class: cn(
+          'w-full flex px-[1em] mt-[0.35em]',
+          props.variant === 'incoming' ? 'justify-start' : 'justify-end',
+        ),
+      },
+      [
+        h(
+          'div',
+          {
+            class: cn(
+              'relative inline-block max-w-[78%] rounded-[1.25em] px-[0.875em] text-[0.9em] leading-tight tracking-tight',
+              props.variant === 'incoming'
+                ? 'mr-[25%] bg-neutral-200 py-[0.75em] text-neutral-900'
+                : 'ml-[25%] bg-blue-400 bg-fixed py-[0.5em] text-white',
+              props.last && "before:content-[''] before:absolute before:bottom-0 before:z-0 before:h-[1.25em] before:w-[1.25em] after:content-[''] after:absolute after:bottom-0 after:z-1 after:h-[1.25em] after:w-[0.7em] after:bg-white",
+              props.last && (
+                props.variant === 'incoming'
+                  ? 'before:left-[-0.45em] before:rounded-br-[0.95em] before:bg-neutral-200 after:left-[-0.7em] after:rounded-br-[0.7em]'
+                  : 'before:right-[-0.5em] before:rounded-bl-[0.95em] before:bg-blue-400 before:bg-fixed after:right-[-0.7em] after:rounded-bl-[0.7em]'
+              ),
+            ),
+          },
+          slots.default?.() || props.text,
+        ),
+      ],
+    );
+  },
+});
+
 const IosIncomingMessageBubble = defineComponent({
   name: 'IosIncomingMessageBubble',
   props: {
@@ -180,25 +261,13 @@ const IosIncomingMessageBubble = defineComponent({
   },
   setup(props, { slots }) {
     return () => h(
-      'div',
+      IosMessageBubble,
       {
-        'data-message-bubble': 'incoming',
-        class: 'w-full flex justify-start px-[1em] mt-[0.35em]',
+        variant: 'incoming',
+        text: props.text,
+        last: props.last,
       },
-      [
-        h(
-          'div',
-          {
-            class: [
-              'relative inline-block max-w-[78%] rounded-[1.25em] px-[0.875em] py-[0.75em] text-[0.9em] leading-tight tracking-tight',
-              'mr-[25%] bg-[#e9e9eb] text-neutral-900',
-              props.last && "before:content-[''] before:absolute before:bottom-0 before:z-0 before:h-[1.25em] before:w-[1.25em] after:content-[''] after:absolute after:bottom-0 after:z-1 after:h-[1.25em] after:w-[0.7em] after:bg-white",
-              props.last && 'before:left-[-0.45em] before:rounded-br-[0.95em] before:bg-[#e9e9eb] after:left-[-0.7em] after:rounded-br-[0.7em]',
-            ],
-          },
-          slots.default?.() || props.text,
-        ),
-      ],
+      slots,
     );
   },
 });
@@ -217,25 +286,13 @@ const IosUserMessageBubble = defineComponent({
   },
   setup(props, { slots }) {
     return () => h(
-      'div',
+      IosMessageBubble,
       {
-        'data-message-bubble': 'outgoing',
-        class: 'w-full flex justify-end px-[1em] mt-[0.35em]',
+        variant: 'outgoing',
+        text: props.text,
+        last: props.last,
       },
-      [
-        h(
-          'div',
-          {
-            class: [
-              'relative inline-block max-w-[78%] rounded-[1.25em] px-[0.875em] py-[0.5em] text-[0.9em] leading-tight tracking-tight',
-              'ml-[25%] bg-linear-to-b from-[#00d0ea] to-[#0085d1] bg-fixed text-white',
-              props.last && "before:content-[''] before:absolute before:bottom-0 before:z-0 before:h-[1.25em] before:w-[1.25em] after:content-[''] after:absolute after:bottom-0 after:z-1 after:h-[1.25em] after:w-[0.7em] after:bg-white",
-              props.last && 'before:right-[-0.5em] before:rounded-bl-[0.95em] before:bg-linear-to-b before:from-[#00d0ea] before:to-[#0085d1] before:bg-fixed after:right-[-0.7em] after:rounded-bl-[0.7em]',
-            ],
-          },
-          slots.default?.() || props.text,
-        ),
-      ],
+      slots,
     );
   },
 });
