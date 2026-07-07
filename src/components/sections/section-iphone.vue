@@ -190,8 +190,10 @@ const IosIncomingMessageBubble = defineComponent({
           'div',
           {
             class: [
-              'ios-message-bubble ios-message-bubble--incoming',
-              props.last && 'ios-message-bubble--last',
+              'relative inline-block max-w-[78%] rounded-[1.25em] px-[0.85em] py-[0.45em] text-[0.78em] leading-[1.18] tracking-[-0.01em]',
+              'mr-[25%] bg-[#e9e9eb] text-neutral-900',
+              props.last && "before:content-[''] before:absolute before:bottom-0 before:z-0 before:h-[1.25em] before:w-[1.25em] after:content-[''] after:absolute after:bottom-0 after:z-1 after:h-[1.25em] after:w-[0.7em] after:bg-white",
+              props.last && 'before:left-[-0.45em] before:rounded-br-[0.95em] before:bg-[#e9e9eb] after:left-[-0.7em] after:rounded-br-[0.7em]',
             ],
           },
           slots.default?.() || props.text,
@@ -225,8 +227,10 @@ const IosUserMessageBubble = defineComponent({
           'div',
           {
             class: [
-              'ios-message-bubble ios-message-bubble--outgoing',
-              props.last && 'ios-message-bubble--last',
+              'relative inline-block max-w-[78%] rounded-[1.25em] px-[0.85em] py-[0.45em] text-[0.78em] leading-[1.18] tracking-[-0.01em]',
+              'ml-[25%] bg-linear-to-b from-[#00d0ea] to-[#0085d1] bg-fixed text-white',
+              props.last && "before:content-[''] before:absolute before:bottom-0 before:z-0 before:h-[1.25em] before:w-[1.25em] after:content-[''] after:absolute after:bottom-0 after:z-1 after:h-[1.25em] after:w-[0.7em] after:bg-white",
+              props.last && 'before:right-[-0.5em] before:rounded-bl-[0.95em] before:bg-linear-to-b before:from-[#00d0ea] before:to-[#0085d1] before:bg-fixed after:right-[-0.7em] after:rounded-bl-[0.7em]',
             ],
           },
           slots.default?.() || props.text,
@@ -323,70 +327,3 @@ const IosInputBar = defineComponent({
     </div>
   </section>
 </template>
-
-<style scoped>
-:deep(.ios-message-bubble) {
-  position: relative;
-  display: inline-block;
-  max-width: 78%;
-  border-radius: 1.25em;
-  padding: 0.45em 0.85em;
-  font-size: 0.78em;
-  line-height: 1.18;
-  letter-spacing: -0.01em;
-}
-
-:deep(.ios-message-bubble--incoming) {
-  margin-right: 25%;
-  color: var(--color-neutral-900);
-  background: #e9e9eb;
-}
-
-:deep(.ios-message-bubble--outgoing) {
-  margin-left: 25%;
-  color: white;
-  background: linear-gradient(to bottom, #00d0ea 0%, #0085d1 100%);
-  background-attachment: fixed;
-}
-
-:deep(.ios-message-bubble--last)::before,
-:deep(.ios-message-bubble--last)::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  height: 1.25em;
-}
-
-:deep(.ios-message-bubble--incoming.ios-message-bubble--last)::before {
-  z-index: 0;
-  left: -0.45em;
-  width: 1.25em;
-  background: #e9e9eb;
-  border-bottom-right-radius: 0.95em;
-}
-
-:deep(.ios-message-bubble--incoming.ios-message-bubble--last)::after {
-  z-index: 1;
-  left: -0.7em;
-  width: 0.7em;
-  background: white;
-  border-bottom-right-radius: 0.7em;
-}
-
-:deep(.ios-message-bubble--outgoing.ios-message-bubble--last)::before {
-  z-index: 0;
-  right: -0.5em;
-  width: 1.25em;
-  background: linear-gradient(to bottom, #00d0ea 0%, #0085d1 100%);
-  background-attachment: fixed;
-  border-bottom-left-radius: 0.95em;
-}
-
-:deep(.ios-message-bubble--outgoing.ios-message-bubble--last)::after {
-  z-index: 1;
-  right: -0.7em;
-  width: 0.7em;
-  background: white;
-  border-bottom-left-radius: 0.7em;
-}
-</style>
