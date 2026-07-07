@@ -124,8 +124,6 @@ const activeScenarioId = ref(scenarios[0].id)
 const activeScenario = computed(
   () => scenarios.find((scenario) => scenario.id === activeScenarioId.value) || scenarios[0],
 )
-const leftScenarios = computed(() => scenarios.slice(0, 2))
-const rightScenarios = computed(() => scenarios.slice(2))
 
 const tabClass = (scenario) =>
   cn(
@@ -139,40 +137,32 @@ const tabClass = (scenario) =>
 </script>
 
 <template>
-  <section class="min-h-screen w-full px-6 py-20" data-section-iphone>
+  <section class="w-full px-6 py-20" data-section-iphone>
     <div
-      class="mx-auto grid min-h-screen w-full max-w-(--content-width) grid-cols-1 items-center gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,24rem)_minmax(0,1fr)]">
-      <div
-        class="order-2 flex flex-col gap-2 lg:order-1 lg:items-end lg:gap-4 lg:*:first:[--rotation:5deg] lg:*:last:[--rotation:-5deg]">
-        <button v-for="scenario in leftScenarios" :key="scenario.id" type="button" :class="tabClass(scenario)"
-          @click="activeScenarioId = scenario.id">
-          <span class="text-xl leading-tight tracking-tight text-(--primary-text)">
-            {{ scenario.title }}
-          </span>
-          <span class="grid grid-cols-1 grid-rows-(--reveal) transition-[grid-template-rows] duration-300">
-            <span class="overflow-hidden text-xl leading-tight text-(--secondary-text)">
-              {{ scenario.description }}
+      class="mx-auto grid w-full max-w-(--content-width) grid-cols-1 items-center gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,24rem)_minmax(0,1fr)]">
+      <div class="min-h-full order-2 flex flex-col gap-2 lg:order-1 justify-between lg:py-8">
+        <h2 class="mx-auto mb-8 w-full max-w-sm text-left text-4xl lg:text-5xl leading-none tracking-tight text-foreground">
+          The follow-through that keeps work moving.
+        </h2>
+        <div class="flex flex-col gap-2">
+          <button v-for="scenario in scenarios" :key="scenario.id" type="button" :class="tabClass(scenario)"
+            @click="activeScenarioId = scenario.id">
+            <span class="text-xl leading-tight tracking-tight text-(--primary-text)">
+              {{ scenario.title }}
             </span>
-          </span>
-        </button>
+            <span class="grid grid-cols-1 grid-rows-(--reveal) transition-[grid-template-rows] duration-300">
+              <span class="overflow-hidden text-xl leading-tight text-(--secondary-text)">
+                {{ scenario.description }}
+              </span>
+            </span>
+          </button>
+        </div>
       </div>
 
       <ComponentIphone class="order-1 mx-auto w-full lg:order-2" :messages="activeScenario.messages"
         :draft-widget="activeScenario.draftWidget" contact-name="Remi" input-placeholder="Message Remi" />
 
-      <div class="order-3 flex flex-col gap-2 lg:gap-4 lg:*:first:[--rotation:-5deg] lg:*:last:[--rotation:5deg]">
-        <button v-for="scenario in rightScenarios" :key="scenario.id" type="button" :class="tabClass(scenario)"
-          @click="activeScenarioId = scenario.id">
-          <span class="text-xl leading-tight tracking-tight text-(--primary-text)">
-            {{ scenario.title }}
-          </span>
-          <span class="grid grid-cols-1 grid-rows-(--reveal) transition-[grid-template-rows] duration-300">
-            <span class="overflow-hidden text-base leading-tight text-(--secondary-text)">
-              {{ scenario.description }}
-            </span>
-          </span>
-        </button>
-      </div>
+      <div class="hidden lg:order-3 lg:block" aria-hidden="true"></div>
     </div>
   </section>
 </template>

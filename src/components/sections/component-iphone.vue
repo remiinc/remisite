@@ -475,44 +475,16 @@ const IosDraftWidget = defineComponent({
         h(
           'div',
           {
-            class: 'mr-[18%] w-[82%] overflow-hidden rounded-[1em] border border-neutral-200/80 bg-neutral-50 text-neutral-900 shadow-[0_0.75em_2em_-1.5em_rgba(0,0,0,0.35)]',
+            class: 'mr-[18%] w-[85%] overflow-hidden rounded-[1em] shadow-[0_0_1px_0_rgba(0,0,0,0.15),0_0_2em_-1.5em_rgba(0,0,0,0.5)]',
           },
           [
             h(
               'div',
               {
-                class: 'flex items-center gap-[0.45em] border-b border-neutral-200/70 bg-white/80 px-[0.6em] py-[0.4em]',
+                class: 'p-[1em]',
               },
               [
-                h(
-                  'div',
-                  {
-                    class: 'relative flex size-[1.35em] shrink-0 items-center justify-center rounded-[0.38em] bg-neutral-900 shadow-[0_0.1em_0.2em_0_rgba(0,0,0,0.12)]',
-                  },
-                  [
-                    h(SiteLogo, {
-                      class: 'size-[0.8em] text-white',
-                    }),
-                  ],
-                ),
-                h(
-                  'div',
-                  { class: 'min-w-0 flex-1 leading-none' },
-                  [
-                    h('div', { class: 'truncate text-[0.62em] font-semibold tracking-tight' }, props.widget.title || 'Draft ready'),
-                    h('div', { class: 'mt-[0.15em] truncate text-[0.5em] font-medium text-neutral-900/45' }, props.widget.subtitle || 'Message preview'),
-                  ],
-                ),
-                h('div', { class: 'rounded-full bg-blue-500/10 px-[0.45em] py-[0.2em] text-[0.48em] font-semibold leading-none text-blue-500' }, props.widget.badge || 'Draft'),
-              ],
-            ),
-            h(
-              'div',
-              {
-                class: 'px-[0.6em] pb-[0.55em] pt-[0.4em]',
-              },
-              [
-                h('p', { class: 'line-clamp-2 text-[0.56em] leading-tight tracking-tight text-neutral-900/80' }, props.widget.preview || ''),
+                h('p', { class: 'line-clamp-4 text-[0.75em] leading-tight tracking-tight text-muted-foreground' }, props.widget.preview || ''),
               ],
             ),
           ],
@@ -600,13 +572,9 @@ const IosInputBar = defineComponent({
         <!-- Main Content -->
         <div ref="messageThreadRef" data-message-thread class="w-full flex-1 flex flex-col py-[1em]">
           <IosMessageDate :label="dateLabel" :time="currentTime" />
-          <component
-            :is="message.variant === 'outgoing' ? IosUserMessageBubble : IosIncomingMessageBubble"
-            v-for="(message, index) in messages"
-            :key="`${message.variant || 'incoming'}-${index}-${message.text}`"
-            :text="message.text"
-            :last="message.last ?? true"
-          />
+          <component :is="message.variant === 'outgoing' ? IosUserMessageBubble : IosIncomingMessageBubble"
+            v-for="(message, index) in messages" :key="`${message.variant || 'incoming'}-${index}-${message.text}`"
+            :text="message.text" :last="message.last ?? true" />
           <IosDraftWidget v-if="draftWidget" :widget="draftWidget" />
         </div>
 
