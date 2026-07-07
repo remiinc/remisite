@@ -190,7 +190,7 @@ const IosIncomingMessageBubble = defineComponent({
           'div',
           {
             class: [
-              'relative inline-block max-w-[78%] rounded-[1.25em] px-[0.85em] py-[0.45em] text-[0.78em] leading-[1.18] tracking-[-0.01em]',
+              'relative inline-block max-w-[78%] rounded-[1.25em] px-[0.875em] py-[0.75em] text-[0.9em] leading-tight tracking-tight',
               'mr-[25%] bg-[#e9e9eb] text-neutral-900',
               props.last && "before:content-[''] before:absolute before:bottom-0 before:z-0 before:h-[1.25em] before:w-[1.25em] after:content-[''] after:absolute after:bottom-0 after:z-1 after:h-[1.25em] after:w-[0.7em] after:bg-white",
               props.last && 'before:left-[-0.45em] before:rounded-br-[0.95em] before:bg-[#e9e9eb] after:left-[-0.7em] after:rounded-br-[0.7em]',
@@ -227,7 +227,7 @@ const IosUserMessageBubble = defineComponent({
           'div',
           {
             class: [
-              'relative inline-block max-w-[78%] rounded-[1.25em] px-[0.85em] py-[0.45em] text-[0.78em] leading-[1.18] tracking-[-0.01em]',
+              'relative inline-block max-w-[78%] rounded-[1.25em] px-[0.875em] py-[0.5em] text-[0.9em] leading-tight tracking-tight',
               'ml-[25%] bg-linear-to-b from-[#00d0ea] to-[#0085d1] bg-fixed text-white',
               props.last && "before:content-[''] before:absolute before:bottom-0 before:z-0 before:h-[1.25em] before:w-[1.25em] after:content-[''] after:absolute after:bottom-0 after:z-1 after:h-[1.25em] after:w-[0.7em] after:bg-white",
               props.last && 'before:right-[-0.5em] before:rounded-bl-[0.95em] before:bg-linear-to-b before:from-[#00d0ea] before:to-[#0085d1] before:bg-fixed after:right-[-0.7em] after:rounded-bl-[0.7em]',
