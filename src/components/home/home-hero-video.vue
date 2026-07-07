@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger)
 defineProps({
   videoSrc: {
     type: String,
-    default: '/videos/hero-video-final.mp4',
+    default: '/videos/hero-video.mp4',
   },
   videoPoster: {
     type: String,
