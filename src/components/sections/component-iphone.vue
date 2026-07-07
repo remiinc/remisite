@@ -179,7 +179,7 @@ const IphoneShell = defineComponent({
       'div',
       {
         'data-iphone-frame': '',
-        class: 'w-full relative p-(--frame-inset) rounded-(--frame-radius) bg-neutral-100 shadow-[0_0_var(--frame-inset)_0_inset_rgba(0,0,0,0.8)]',
+        class: 'w-full relative text-[clamp(0.75em,3.5vw,0.875em)] sm:text-[clamp(0.875em,2vw,0.925em)] md:text-[clamp(0.925em,1.925vw,1em)] p-(--frame-inset) rounded-(--frame-radius) bg-neutral-100 shadow-[0_0_var(--frame-inset)_0_inset_rgba(0,0,0,0.8)]',
       },
       [
         h('div', {
@@ -481,10 +481,34 @@ const IosDraftWidget = defineComponent({
             h(
               'div',
               {
-                class: 'p-[1em]',
+                class: 'px-[0.9em] py-[0.75em]',
               },
               [
                 h('p', { class: 'line-clamp-4 text-[0.75em] leading-tight tracking-tight text-muted-foreground' }, props.widget.preview || ''),
+                h(
+                  'div',
+                  {
+                    class: 'mt-[0.6em] flex items-center gap-[0.25em]',
+                  },
+                  [
+                    h(
+                      'button',
+                      {
+                        type: 'button',
+                        class: 'rounded-full bg-neutral-900 px-[1em] py-[0.5em] text-[0.875em] font-medium leading-none tracking-tight text-white',
+                      },
+                      'Approve',
+                    ),
+                    h(
+                      'button',
+                      {
+                        type: 'button',
+                        class: 'rounded-full bg-neutral-500/10 px-[1em] py-[0.5em] text-[0.875em] font-medium leading-none tracking-tight text-muted-foreground',
+                      },
+                      'Dismiss',
+                    ),
+                  ],
+                ),
               ],
             ),
           ],
@@ -507,7 +531,7 @@ const IosInputBar = defineComponent({
       'div',
       {
         'data-input-bar': '',
-        class: 'w-full flex px-[1.5em] py-[2em] items-stretch gap-[0.5em]',
+        class: 'w-full flex px-[1.5em] pb-[2em] items-stretch gap-[0.5em]',
       },
       [
         h(
@@ -570,7 +594,7 @@ const IosInputBar = defineComponent({
         <IosMessageHeader :contact-name="contactName" />
 
         <!-- Main Content -->
-        <div ref="messageThreadRef" data-message-thread class="w-full flex-1 flex flex-col py-[1em]">
+        <div ref="messageThreadRef" data-message-thread class="w-full flex-1 flex flex-col py-[1em] overflow-y-auto scrollbar-none">
           <IosMessageDate :label="dateLabel" :time="currentTime" />
           <component :is="message.variant === 'outgoing' ? IosUserMessageBubble : IosIncomingMessageBubble"
             v-for="(message, index) in messages" :key="`${message.variant || 'incoming'}-${index}-${message.text}`"

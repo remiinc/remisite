@@ -36,9 +36,6 @@ const scenarios = [
     title: 'Respond first',
     description: 'Catch missed requests before they go cold.',
     draftWidget: {
-      title: 'Remi draft',
-      subtitle: 'Estimate follow-up',
-      badge: 'Ready',
       preview: 'Hi Wilson, I can come by tomorrow at 2:30. Send a photo and I will confirm the scope before I head over.',
     },
     messages: [
@@ -68,6 +65,9 @@ const scenarios = [
     id: 'proof',
     title: 'Remember agreements',
     description: 'Keep approvals and receipts tied to the work.',
+    draftWidget: {
+      preview: 'Hi Dana, I found your June 18 approval for the better fixtures and attached the Lowe’s receipt for the materials.',
+    },
     messages: [
       {
         variant: 'incoming',
@@ -127,7 +127,7 @@ const activeScenario = computed(
 
 const tabClass = (scenario) =>
   cn(
-    'group flex w-full flex-col items-start gap-0 py-2 border-t border-(--border-color) text-left text-pretty transition-all duration-300 max-w-sm mx-auto cursor-pointer',
+    'group flex w-full flex-col items-start gap-0! py-4 border-t border-(--border-color) text-left text-pretty transition-all duration-300 max-w-sm mx-auto cursor-pointer',
     'focus-visible:outline-none focus-visible:outline-offset-none',
     'focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
     activeScenarioId.value === scenario.id
@@ -139,20 +139,20 @@ const tabClass = (scenario) =>
 <template>
   <section class="w-full px-6 py-20" data-section-iphone>
     <div
-      class="mx-auto grid w-full max-w-(--content-width) grid-cols-1 items-center gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,24rem)_minmax(0,1fr)]">
+      class="mx-auto grid w-full max-w-(--content-width) grid-cols-1 items-center gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,24rem)_minmax(0,24rem)] justify-center">
       <div class="min-h-full order-2 flex flex-col gap-2 lg:order-1 justify-between lg:py-8">
         <h2 class="mx-auto mb-8 w-full max-w-sm text-left text-4xl lg:text-5xl leading-none tracking-tight text-foreground">
           The follow-through that keeps work moving.
         </h2>
-        <div class="flex flex-col gap-2">
+        <div class="flex flex-col gap-0">
           <button v-for="scenario in scenarios" :key="scenario.id" type="button" :class="tabClass(scenario)"
             @click="activeScenarioId = scenario.id">
-            <span class="text-xl leading-tight tracking-tight text-(--primary-text)">
+            <span class="text-2xl leading-tight tracking-tight text-(--primary-text)">
               {{ scenario.title }}
             </span>
             <span class="grid grid-cols-1 grid-rows-(--reveal) transition-[grid-template-rows] duration-300">
               <span class="overflow-hidden text-xl leading-tight text-(--secondary-text)">
-                {{ scenario.description }}
+                <span class="block pt-2">{{ scenario.description }}</span>
               </span>
             </span>
           </button>
