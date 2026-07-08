@@ -37,9 +37,93 @@ const fallbackTime = new Date().toLocaleTimeString([], timeFormatterOptions);
 const currentTime = computed(() => props.time || fallbackTime);
 const phoneRef = ref(null);
 const messageThreadRef = ref(null);
+const approvalMessages = ref([]);
 
 let messageTimeline = null;
 let phoneTimeline = null;
+let approvalTimeline = null;
+
+const motion = {
+  messageHidden: {
+    autoAlpha: 0,
+    filter: 'blur(0.35em)',
+    scale: 0.98,
+    y: 8,
+    willChange: 'opacity, transform, filter',
+  },
+  messageVisible: {
+    autoAlpha: 1,
+    filter: 'blur(0em)',
+    y: 0,
+    scale: 1,
+    duration: 0.38,
+    ease: 'power2.out',
+    clearProps: 'opacity,transform,filter,visibility,willChange',
+  },
+  messageImmediate: {
+    autoAlpha: 1,
+    filter: 'blur(0em)',
+    y: 0,
+    scale: 1,
+  },
+  scrollToItem: {
+    duration: 0.36,
+    ease: 'power2.out',
+  },
+  pauses: {
+    sameSideMessage: 0.42,
+    sideChangeMessage: 0.72,
+    approvalMessage: 0.72,
+    beforeSheetOpen: 0.55,
+  },
+  sheetBackdropHidden: {
+    autoAlpha: 0,
+    filter: 'blur(0.25em)',
+    willChange: 'opacity, filter',
+  },
+  sheetBackdropVisible: {
+    autoAlpha: 1,
+    filter: 'blur(0em)',
+    duration: 0.28,
+    ease: 'power2.out',
+    clearProps: 'opacity,filter,visibility,willChange',
+  },
+  sheetBackdropClosed: {
+    autoAlpha: 0,
+    filter: 'blur(0.25em)',
+    duration: 0.2,
+    ease: 'power2.out',
+  },
+  sheetHidden: {
+    autoAlpha: 0,
+    filter: 'blur(0.35em)',
+    scale: 0.98,
+    y: '100%',
+    willChange: 'opacity, transform, filter',
+  },
+  sheetVisible: {
+    autoAlpha: 1,
+    filter: 'blur(0em)',
+    y: 0,
+    scale: 1,
+    duration: 0.44,
+    ease: 'power3.out',
+    clearProps: 'opacity,transform,filter,visibility,willChange',
+  },
+  sheetClosed: {
+    autoAlpha: 0,
+    filter: 'blur(0.35em)',
+    scale: 0.98,
+    y: '100%',
+    duration: 0.28,
+    ease: 'power2.in',
+  },
+  phoneWiggle: {
+    rotation: -1.25,
+    y: -3,
+    duration: 0.375,
+  },
+};
 
 const phoneWiggleEasePoints = [
   [0, 0],
@@ -92,50 +176,194 @@ const getMessageItemScrollTop = (thread, messageItem) => {
   return Math.min(Math.max(targetScrollTop, 0), maxScrollTop);
 };
 
+const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const getDraftSheetElements = () => {
+  const phone = phoneRef.value;
+  const backdrop = phone?.querySelector('[data-draft-sheet-backdrop]');
+  const sheet = phone?.querySelector('[data-draft-sheet]');
+
+  return {
+    backdrop,
+    sheet,
+    elements: [backdrop, sheet].filter(Boolean),
+  };
+};
+
+const getMessageItems = () => Array.from(messageThreadRef.value?.querySelectorAll('[data-message-item]') || []);
+const getApprovalMessageItems = () => Array.from(messageThreadRef.value?.querySelectorAll('[data-approval-message]') || []);
+
+const killTimeline = (timeline) => {
+  if (timeline) {
+    timeline.kill();
+  }
+};
+
+const killTweens = (...targets) => {
+  targets.flat().filter(Boolean).forEach((target) => gsap.killTweensOf(target));
+};
+
+const setDraftSheetHidden = ({ backdrop, sheet }) => {
+  if (backdrop) {
+    gsap.set(backdrop, motion.sheetBackdropHidden);
+  }
+  if (sheet) {
+    gsap.set(sheet, motion.sheetHidden);
+  }
+};
+
+const setDraftSheetVisible = ({ backdrop, sheet }) => {
+  if (backdrop) {
+    gsap.set(backdrop, { autoAlpha: 1, filter: 'blur(0em)' });
+  }
+  if (sheet) {
+    gsap.set(sheet, { autoAlpha: 1, filter: 'blur(0em)', y: 0, scale: 1 });
+  }
+};
+
+const setMessagesVisible = (messageItems, thread) => {
+  gsap.set(messageItems, motion.messageImmediate);
+
+  if (thread) {
+    thread.scrollTop = 0;
+    thread.scrollTop = getMessageItemScrollTop(thread, messageItems[messageItems.length - 1]);
+  }
+};
+
+const addMessageRevealSequence = (timeline, messageItems, thread, getPauseAfter) => {
+  messageItems.forEach((messageItem, index) => {
+    const nextMessageItem = messageItems[index + 1];
+    const isLastMessageItem = index === messageItems.length - 1;
+
+    timeline.to(messageItem, motion.messageVisible);
+
+    if (thread) {
+      timeline.to(thread, {
+        scrollTop: () => getMessageItemScrollTop(thread, messageItem),
+        ...motion.scrollToItem,
+      }, '<');
+    }
+
+    if (!isLastMessageItem) {
+      timeline.to({}, { duration: getPauseAfter(messageItem, nextMessageItem) });
+    }
+  });
+};
+
+const getThreadMessagePause = (messageItem, nextMessageItem) =>
+  nextMessageItem?.dataset.messageSide === messageItem.dataset.messageSide
+    ? motion.pauses.sameSideMessage
+    : motion.pauses.sideChangeMessage;
+
+const addDraftSheetOpenSequence = (timeline, { backdrop, sheet }) => {
+  if (!backdrop || !sheet) {
+    return;
+  }
+
+  timeline.to({}, { duration: motion.pauses.beforeSheetOpen });
+  timeline.to(backdrop, motion.sheetBackdropVisible);
+  timeline.to(sheet, motion.sheetVisible, '<0.06');
+};
+
+const closeDraftSheet = () => {
+  const draftSheetElements = getDraftSheetElements();
+
+  if (!draftSheetElements.elements.length) {
+    return;
+  }
+
+  killTimeline(messageTimeline);
+  killTweens(draftSheetElements.elements);
+
+  if (prefersReducedMotion()) {
+    setDraftSheetHidden(draftSheetElements);
+    return;
+  }
+
+  if (draftSheetElements.backdrop) {
+    gsap.to(draftSheetElements.backdrop, motion.sheetBackdropClosed);
+  }
+
+  if (draftSheetElements.sheet) {
+    gsap.to(draftSheetElements.sheet, motion.sheetClosed);
+  }
+};
+
+const animateApprovalMessages = async () => {
+  await nextTick();
+
+  const thread = messageThreadRef.value;
+  const approvalMessageItems = getApprovalMessageItems();
+
+  if (!approvalMessageItems.length) {
+    return;
+  }
+
+  killTimeline(approvalTimeline);
+  killTweens(approvalMessageItems, thread);
+
+  if (prefersReducedMotion()) {
+    setMessagesVisible(approvalMessageItems, thread);
+    return;
+  }
+
+  gsap.set(approvalMessageItems, motion.messageHidden);
+
+  approvalTimeline = gsap.timeline();
+  addMessageRevealSequence(
+    approvalTimeline,
+    approvalMessageItems,
+    thread,
+    () => motion.pauses.approvalMessage,
+  );
+};
+
+const handleDismissDraft = () => {
+  closeDraftSheet();
+};
+
+const handleApproveDraft = async () => {
+  closeDraftSheet();
+
+  if (approvalMessages.value.length) {
+    return;
+  }
+
+  approvalMessages.value = [
+    {
+      variant: 'outgoing',
+      text: 'Approved',
+      approval: true,
+    },
+    {
+      variant: 'incoming',
+      text: props.draftWidget?.approvedReply || 'Approved. I’ll send it now and keep this thread updated.',
+      approval: true,
+    },
+  ];
+
+  await animateApprovalMessages();
+};
+
 const animateMessages = async () => {
   await nextTick();
 
   const thread = messageThreadRef.value;
-  const messageItems = Array.from(messageThreadRef.value?.querySelectorAll('[data-message-item]') || []);
+  const messageItems = getMessageItems();
   const phone = phoneRef.value;
-  const draftSheetBackdrop = phone?.querySelector('[data-draft-sheet-backdrop]');
-  const draftSheet = phone?.querySelector('[data-draft-sheet]');
-  const draftSheetElements = [draftSheetBackdrop, draftSheet].filter(Boolean);
+  const draftSheetElements = getDraftSheetElements();
 
   if (!messageItems.length) {
     return;
   }
 
-  if (messageTimeline) {
-    messageTimeline.kill();
-  }
-  if (phoneTimeline) {
-    phoneTimeline.kill();
-  }
+  killTimeline(messageTimeline);
+  killTimeline(phoneTimeline);
+  killTweens(messageItems, thread, draftSheetElements.elements, phone);
 
-  gsap.killTweensOf(messageItems);
-  if (thread) {
-    gsap.killTweensOf(thread);
-  }
-  if (draftSheetElements.length) {
-    gsap.killTweensOf(draftSheetElements);
-  }
-  if (phone) {
-    gsap.killTweensOf(phone);
-  }
-
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    gsap.set(messageItems, { autoAlpha: 1, filter: 'blur(0em)', y: 0, scale: 1 });
-    if (thread) {
-      thread.scrollTop = 0;
-      thread.scrollTop = getMessageItemScrollTop(thread, messageItems[messageItems.length - 1]);
-    }
-    if (draftSheetBackdrop) {
-      gsap.set(draftSheetBackdrop, { autoAlpha: 1, filter: 'blur(0em)' });
-    }
-    if (draftSheet) {
-      gsap.set(draftSheet, { autoAlpha: 1, filter: 'blur(0em)', y: 0, scale: 1 });
-    }
+  if (prefersReducedMotion()) {
+    setMessagesVisible(messageItems, thread);
+    setDraftSheetVisible(draftSheetElements);
     if (phone) {
       gsap.set(phone, { rotation: 0, y: 0 });
     }
@@ -150,9 +378,7 @@ const animateMessages = async () => {
       },
     });
     phoneTimeline.to(phone, {
-      rotation: -1.25,
-      y: -3,
-      duration: 0.375,
+      ...motion.phoneWiggle,
       ease: phoneWiggleEase,
     });
   }
@@ -161,96 +387,29 @@ const animateMessages = async () => {
     thread.scrollTop = 0;
   }
 
-  gsap.set(messageItems, {
-    autoAlpha: 0,
-    filter: 'blur(0.35em)',
-    scale: 0.98,
-    y: 8,
-    willChange: 'opacity, transform, filter',
-  });
-  if (draftSheetBackdrop) {
-    gsap.set(draftSheetBackdrop, {
-      autoAlpha: 0,
-      filter: 'blur(0.25em)',
-      willChange: 'opacity, filter',
-    });
-  }
-  if (draftSheet) {
-    gsap.set(draftSheet, {
-      autoAlpha: 0,
-      filter: 'blur(0.35em)',
-      scale: 0.98,
-      y: '100%',
-      willChange: 'opacity, transform, filter',
-    });
-  }
+  gsap.set(messageItems, motion.messageHidden);
+  setDraftSheetHidden(draftSheetElements);
 
   messageTimeline = gsap.timeline();
-
-  messageItems.forEach((messageItem, index) => {
-    const nextMessageItem = messageItems[index + 1];
-    const isLastMessageItem = index === messageItems.length - 1;
-    const pauseAfter = nextMessageItem?.dataset.messageSide === messageItem.dataset.messageSide ? 0.42 : 0.72;
-
-    messageTimeline.to(messageItem, {
-      autoAlpha: 1,
-      filter: 'blur(0em)',
-      y: 0,
-      scale: 1,
-      duration: 0.38,
-      ease: 'power2.out',
-      clearProps: 'opacity,transform,filter,visibility,willChange',
-    });
-
-    if (thread) {
-      messageTimeline.to(thread, {
-        scrollTop: () => getMessageItemScrollTop(thread, messageItem),
-        duration: 0.36,
-        ease: 'power2.out',
-      }, '<');
-    }
-
-    if (!isLastMessageItem) {
-      messageTimeline.to({}, { duration: pauseAfter });
-    }
-  });
-
-  if (draftSheetBackdrop && draftSheet) {
-    messageTimeline.to({}, { duration: 0.55 });
-    messageTimeline.to(draftSheetBackdrop, {
-      autoAlpha: 1,
-      filter: 'blur(0em)',
-      duration: 0.28,
-      ease: 'power2.out',
-      clearProps: 'opacity,filter,visibility,willChange',
-    });
-    messageTimeline.to(draftSheet, {
-      autoAlpha: 1,
-      filter: 'blur(0em)',
-      y: 0,
-      scale: 1,
-      duration: 0.44,
-      ease: 'power3.out',
-      clearProps: 'opacity,transform,filter,visibility,willChange',
-    }, '<0.06');
-  }
+  addMessageRevealSequence(messageTimeline, messageItems, thread, getThreadMessagePause);
+  addDraftSheetOpenSequence(messageTimeline, draftSheetElements);
 };
 
 watch(
   () => [props.messages, props.messages.length, props.draftWidget],
-  animateMessages,
+  () => {
+    approvalMessages.value = [];
+    animateMessages();
+  },
   { flush: 'post' },
 );
 
 onMounted(animateMessages);
 
 onBeforeUnmount(() => {
-  if (messageTimeline) {
-    messageTimeline.kill();
-  }
-  if (phoneTimeline) {
-    phoneTimeline.kill();
-  }
+  killTimeline(messageTimeline);
+  killTimeline(phoneTimeline);
+  killTimeline(approvalTimeline);
 });
 
 const IphoneShell = defineComponent({
@@ -448,6 +607,10 @@ const IosMessageBubble = defineComponent({
       type: Boolean,
       default: true,
     },
+    approval: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, { slots }) {
     return () => h(
@@ -456,6 +619,7 @@ const IosMessageBubble = defineComponent({
         'data-message-bubble': props.variant,
         'data-message-item': '',
         'data-message-side': props.variant,
+        ...(props.approval ? { 'data-approval-message': '' } : {}),
         class: cn(
           'w-full flex px-[1em] mt-[0.65em] will-change-[opacity,transform,filter]',
           props.variant === 'incoming' ? 'justify-start' : 'justify-end',
@@ -496,6 +660,10 @@ const IosIncomingMessageBubble = defineComponent({
       type: Boolean,
       default: true,
     },
+    approval: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, { slots }) {
     return () => h(
@@ -504,6 +672,7 @@ const IosIncomingMessageBubble = defineComponent({
         variant: 'incoming',
         text: props.text,
         last: props.last,
+        approval: props.approval,
       },
       slots,
     );
@@ -521,6 +690,10 @@ const IosUserMessageBubble = defineComponent({
       type: Boolean,
       default: true,
     },
+    approval: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, { slots }) {
     return () => h(
@@ -529,6 +702,7 @@ const IosUserMessageBubble = defineComponent({
         variant: 'outgoing',
         text: props.text,
         last: props.last,
+        approval: props.approval,
       },
       slots,
     );
@@ -537,13 +711,14 @@ const IosUserMessageBubble = defineComponent({
 
 const IosDraftWidget = defineComponent({
   name: 'IosDraftWidget',
+  emits: ['approve', 'dismiss'],
   props: {
     widget: {
       type: Object,
       default: null,
     },
   },
-  setup(props) {
+  setup(props, { emit }) {
     return () => props.widget && h(
       'div',
       {
@@ -576,6 +751,7 @@ const IosDraftWidget = defineComponent({
                       'button',
                       {
                         type: 'button',
+                        onClick: () => emit('approve'),
                         class: 'rounded-full bg-neutral-900 px-[1em] py-[0.5em] text-[0.875em] font-medium leading-none tracking-tight text-white',
                       },
                       'Approve',
@@ -584,6 +760,7 @@ const IosDraftWidget = defineComponent({
                       'button',
                       {
                         type: 'button',
+                        onClick: () => emit('dismiss'),
                         class: 'rounded-full bg-neutral-500/10 px-[1em] py-[0.5em] text-[0.875em] font-medium leading-none tracking-tight text-muted-foreground',
                       },
                       'Dismiss',
@@ -601,13 +778,14 @@ const IosDraftWidget = defineComponent({
 
 const IosDraftSheet = defineComponent({
   name: 'IosDraftSheet',
+  emits: ['approve', 'dismiss'],
   props: {
     widget: {
       type: Object,
       default: null,
     },
   },
-  setup(props) {
+  setup(props, { emit }) {
     return () => props.widget && [
       h('div', {
         'data-draft-sheet-backdrop': '',
@@ -660,7 +838,7 @@ const IosDraftSheet = defineComponent({
                       class: 'min-w-0 flex-1',
                     },
                     [
-                      h('div', { class: 'text-[0.875em] font-medium leading-tight tracking-tight text-foregorund' }, 'Review draft'),
+                      h('div', { class: 'text-[0.875em] font-medium leading-tight tracking-tight text-foreground' }, 'Review draft'),
                     ],
                   ),
                 ],
@@ -684,6 +862,7 @@ const IosDraftSheet = defineComponent({
                     'button',
                     {
                       type: 'button',
+                      onClick: () => emit('approve'),
                       class: 'flex-1 rounded-full bg-neutral-900 px-[1.5em] py-[1em] text-[0.925em] font-medium leading-none tracking-tight text-white',
                     },
                     'Approve',
@@ -692,6 +871,7 @@ const IosDraftSheet = defineComponent({
                     'button',
                     {
                       type: 'button',
+                      onClick: () => emit('dismiss'),
                       class: 'flex-1 rounded-full bg-neutral-500/10 px-[1.5em] py-[1em] text-[0.925em] font-medium leading-none tracking-tight text-foreground',
                     },
                     'Dismiss',
@@ -786,12 +966,25 @@ const IosInputBar = defineComponent({
           <IosMessageDate :label="dateLabel" :time="currentTime" />
           <component :is="message.variant === 'outgoing' ? IosUserMessageBubble : IosIncomingMessageBubble"
             v-for="(message, index) in messages" :key="`${message.variant || 'incoming'}-${index}-${message.text}`"
-            :text="message.text" :last="message.last ?? true" />
-          <IosDraftWidget v-if="draftWidget" :widget="draftWidget" />
+            :text="message.text" :last="message.last ?? true" :approval="message.approval ?? false" />
+          <IosDraftWidget
+            v-if="draftWidget"
+            :widget="draftWidget"
+            @approve="handleApproveDraft"
+            @dismiss="handleDismissDraft"
+          />
+          <component :is="message.variant === 'outgoing' ? IosUserMessageBubble : IosIncomingMessageBubble"
+            v-for="(message, index) in approvalMessages" :key="`approval-${message.variant || 'incoming'}-${index}-${message.text}`"
+            :text="message.text" :last="message.last ?? true" :approval="message.approval ?? false" />
         </div>
 
         <IosInputBar :placeholder="inputPlaceholder" />
-        <IosDraftSheet v-if="draftWidget" :widget="draftWidget" />
+        <IosDraftSheet
+          v-if="draftWidget"
+          :widget="draftWidget"
+          @approve="handleApproveDraft"
+          @dismiss="handleDismissDraft"
+        />
       </IphoneShell>
     </div>
   </div>

@@ -3,92 +3,53 @@ import { computed, ref } from 'vue'
 import cn from '../../lib/cn'
 import ComponentIphone from './component-iphone.vue'
 
+const incoming = (text) => ({ variant: 'incoming', text })
+const outgoing = (text) => ({ variant: 'outgoing', text })
+const draft = (preview, approvedReply) => ({ preview, approvedReply })
+
 const scenarios = [
   {
     id: 'money',
     title: 'Get paid',
     description: 'Find overdue invoices and draft the follow-up.',
     messages: [
-      {
-        variant: 'incoming',
-        text: 'Henderson is 9 days late on the final invoice. They approved the extra work by text on Friday.',
-      },
-      {
-        variant: 'outgoing',
-        text: 'Is the job marked complete?',
-      },
-      {
-        variant: 'incoming',
-        text: 'Yes. I found the completion photo and your “all wrapped up” message from 4:12pm.',
-      },
-      {
-        variant: 'outgoing',
-        text: 'Draft a firm reminder.',
-      },
-      {
-        variant: 'incoming',
-        text: 'Ready for review. It asks for payment this week and includes the invoice, approval, and completion note.',
-      },
+      incoming('Henderson is 9 days late on the final invoice. They approved the extra work by text on Friday.'),
+      outgoing('Is the job marked complete?'),
+      incoming('Yes. I found the completion photo and your “all wrapped up” message from 4:12pm.'),
+      outgoing('Draft a firm reminder.'),
+      incoming('Ready for review. It asks for payment this week and includes the invoice, approval, and completion note.'),
     ],
   },
   {
     id: 'follow-up',
     title: 'Respond first',
     description: 'Catch missed requests before they go cold.',
-    draftWidget: {
-      preview: 'Hi Wilson, I can come by tomorrow at 2:30. Send a photo and I will confirm the scope before I head over.',
-    },
+    draftWidget: draft(
+      'Hi Wilson, I can come by tomorrow at 2:30. Send a photo and I will confirm the scope before I head over.',
+      'Approved. I’ll send this to Wilson and keep the estimate thread attached.',
+    ),
     messages: [
-      {
-        variant: 'incoming',
-        text: 'Wilson asked for an estimate at 10:14am. You missed it while you were on the McKay job.',
-      },
-      {
-        variant: 'outgoing',
-        text: 'Do we have room tomorrow?',
-      },
-      {
-        variant: 'incoming',
-        text: 'You have 2:30 open. The address is 12 minutes from your last stop.',
-      },
-      {
-        variant: 'outgoing',
-        text: 'Reply with that.',
-      },
-      {
-        variant: 'incoming',
-        text: 'Drafted. I offered 2:30 and asked for a photo so you can confirm the scope first.',
-      },
+      incoming('Wilson asked for an estimate at 10:14am. You missed it while you were on the McKay job.'),
+      outgoing('Do we have room tomorrow?'),
+      incoming('You have 2:30 open. The address is 12 minutes from your last stop.'),
+      outgoing('Reply with that.'),
+      incoming('Drafted. I offered 2:30 and asked for a photo so you can confirm the scope first.'),
     ],
   },
   {
     id: 'proof',
     title: 'Remember agreements',
     description: 'Keep approvals and receipts tied to the work.',
-    draftWidget: {
-      preview: 'Hi Dana, I found your June 18 approval for the better fixtures and attached the Lowe’s receipt for the materials.',
-    },
+    draftWidget: draft(
+      'Hi Dana, I found your June 18 approval for the better fixtures and attached the Lowe’s receipt for the materials.',
+      'Approved. I’ll send it with the approval text and receipt attached.',
+    ),
     messages: [
-      {
-        variant: 'incoming',
-        text: 'Before you reply to Dana, they did approve the extra materials.',
-      },
-      {
-        variant: 'outgoing',
-        text: 'Where?',
-      },
-      {
-        variant: 'incoming',
-        text: 'June 18, 7:41pm. Their text says “go ahead with the better fixtures.” Receipt is from Lowe’s the next morning.',
-      },
-      {
-        variant: 'outgoing',
-        text: 'Put that in the reply.',
-      },
-      {
-        variant: 'incoming',
-        text: 'Drafted with the exact line and receipt attached, so it does not sound like memory.',
-      },
+      incoming('Before you reply to Dana, they did approve the extra materials.'),
+      outgoing('Where?'),
+      incoming('June 18, 7:41pm. Their text says “go ahead with the better fixtures.” Receipt is from Lowe’s the next morning.'),
+      outgoing('Put that in the reply.'),
+      incoming('Drafted with the exact line and receipt attached, so it does not sound like memory.'),
     ],
   },
   {
@@ -96,26 +57,11 @@ const scenarios = [
     title: 'Approve the next step',
     description: 'Review what Remi found before anything goes out.',
     messages: [
-      {
-        variant: 'incoming',
-        text: 'Three open loops are waiting: one overdue invoice, one unanswered quote, and one client approval.',
-      },
-      {
-        variant: 'outgoing',
-        text: 'Show me the money first.',
-      },
-      {
-        variant: 'incoming',
-        text: 'The overdue invoice is $1,460. The work was approved and delivered last week.',
-      },
-      {
-        variant: 'outgoing',
-        text: 'Prepare it, but do not send.',
-      },
-      {
-        variant: 'incoming',
-        text: 'Prepared. I will wait for your approval before anything goes out.',
-      },
+      incoming('Three open loops are waiting: one overdue invoice, one unanswered quote, and one client approval.'),
+      outgoing('Show me the money first.'),
+      incoming('The overdue invoice is $1,460. The work was approved and delivered last week.'),
+      outgoing('Prepare it, but do not send.'),
+      incoming('Prepared. I will wait for your approval before anything goes out.'),
     ],
   },
 ]
