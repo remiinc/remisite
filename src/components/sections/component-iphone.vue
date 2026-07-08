@@ -79,11 +79,28 @@ const phoneWiggleEase = (progress) => {
   return 0;
 };
 
+const getMessageItemScrollTop = (thread, messageItem) => {
+  if (!thread || !messageItem || thread.scrollHeight <= thread.clientHeight) {
+    return thread?.scrollTop || 0;
+  }
+
+  const threadRect = thread.getBoundingClientRect();
+  const messageItemRect = messageItem.getBoundingClientRect();
+  const maxScrollTop = thread.scrollHeight - thread.clientHeight;
+  const targetScrollTop = thread.scrollTop + messageItemRect.bottom - threadRect.bottom + 8;
+
+  return Math.min(Math.max(targetScrollTop, 0), maxScrollTop);
+};
+
 const animateMessages = async () => {
   await nextTick();
 
+  const thread = messageThreadRef.value;
   const messageItems = Array.from(messageThreadRef.value?.querySelectorAll('[data-message-item]') || []);
   const phone = phoneRef.value;
+  const draftSheetBackdrop = phone?.querySelector('[data-draft-sheet-backdrop]');
+  const draftSheet = phone?.querySelector('[data-draft-sheet]');
+  const draftSheetElements = [draftSheetBackdrop, draftSheet].filter(Boolean);
 
   if (!messageItems.length) {
     return;
@@ -97,12 +114,28 @@ const animateMessages = async () => {
   }
 
   gsap.killTweensOf(messageItems);
+  if (thread) {
+    gsap.killTweensOf(thread);
+  }
+  if (draftSheetElements.length) {
+    gsap.killTweensOf(draftSheetElements);
+  }
   if (phone) {
     gsap.killTweensOf(phone);
   }
 
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     gsap.set(messageItems, { autoAlpha: 1, filter: 'blur(0em)', y: 0, scale: 1 });
+    if (thread) {
+      thread.scrollTop = 0;
+      thread.scrollTop = getMessageItemScrollTop(thread, messageItems[messageItems.length - 1]);
+    }
+    if (draftSheetBackdrop) {
+      gsap.set(draftSheetBackdrop, { autoAlpha: 1, filter: 'blur(0em)' });
+    }
+    if (draftSheet) {
+      gsap.set(draftSheet, { autoAlpha: 1, filter: 'blur(0em)', y: 0, scale: 1 });
+    }
     if (phone) {
       gsap.set(phone, { rotation: 0, y: 0 });
     }
@@ -124,6 +157,10 @@ const animateMessages = async () => {
     });
   }
 
+  if (thread) {
+    thread.scrollTop = 0;
+  }
+
   gsap.set(messageItems, {
     autoAlpha: 0,
     filter: 'blur(0.35em)',
@@ -131,6 +168,22 @@ const animateMessages = async () => {
     y: 8,
     willChange: 'opacity, transform, filter',
   });
+  if (draftSheetBackdrop) {
+    gsap.set(draftSheetBackdrop, {
+      autoAlpha: 0,
+      filter: 'blur(0.25em)',
+      willChange: 'opacity, filter',
+    });
+  }
+  if (draftSheet) {
+    gsap.set(draftSheet, {
+      autoAlpha: 0,
+      filter: 'blur(0.35em)',
+      scale: 0.98,
+      y: '100%',
+      willChange: 'opacity, transform, filter',
+    });
+  }
 
   messageTimeline = gsap.timeline();
 
@@ -149,14 +202,42 @@ const animateMessages = async () => {
       clearProps: 'opacity,transform,filter,visibility,willChange',
     });
 
+    if (thread) {
+      messageTimeline.to(thread, {
+        scrollTop: () => getMessageItemScrollTop(thread, messageItem),
+        duration: 0.36,
+        ease: 'power2.out',
+      }, '<');
+    }
+
     if (!isLastMessageItem) {
       messageTimeline.to({}, { duration: pauseAfter });
     }
   });
+
+  if (draftSheetBackdrop && draftSheet) {
+    messageTimeline.to({}, { duration: 0.55 });
+    messageTimeline.to(draftSheetBackdrop, {
+      autoAlpha: 1,
+      filter: 'blur(0em)',
+      duration: 0.28,
+      ease: 'power2.out',
+      clearProps: 'opacity,filter,visibility,willChange',
+    });
+    messageTimeline.to(draftSheet, {
+      autoAlpha: 1,
+      filter: 'blur(0em)',
+      y: 0,
+      scale: 1,
+      duration: 0.44,
+      ease: 'power3.out',
+      clearProps: 'opacity,transform,filter,visibility,willChange',
+    }, '<0.06');
+  }
 };
 
 watch(
-  () => [props.messages, props.draftWidget],
+  () => [props.messages, props.messages.length, props.draftWidget],
   animateMessages,
   { flush: 'post' },
 );
@@ -237,7 +318,7 @@ const IphoneShell = defineComponent({
                   'div',
                   {
                     'data-iphone-screen': '',
-                    class: 'w-full h-full flex flex-col',
+                    class: 'relative w-full h-full flex flex-col',
                   },
                   slots.default?.(),
                 ),
@@ -518,6 +599,113 @@ const IosDraftWidget = defineComponent({
   },
 });
 
+const IosDraftSheet = defineComponent({
+  name: 'IosDraftSheet',
+  props: {
+    widget: {
+      type: Object,
+      default: null,
+    },
+  },
+  setup(props) {
+    return () => props.widget && [
+      h('div', {
+        'data-draft-sheet-backdrop': '',
+        class: 'absolute inset-0 z-20 bg-white/35 backdrop-blur-[0.45em] will-change-[opacity,filter]',
+        style: 'opacity: 0; visibility: hidden; filter: blur(0.25em);',
+      }),
+      h(
+        'div',
+        {
+          'data-draft-sheet': '',
+          class: 'absolute inset-x-[0.25em] bottom-[0.25em] z-30 overflow-hidden rounded-t-[2em] rounded-b-[calc(var(--screen-radius)-0.25em)] bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.06),0_1.5em_4em_-1em_rgba(0,0,0,0.35)] will-change-[opacity,transform,filter]',
+          style: 'opacity: 0; visibility: hidden; transform: translateY(100%); filter: blur(0.35em);',
+        },
+        [
+          h(
+            'div',
+            {
+              class: 'flex justify-center px-[1em] pt-[0.65em]',
+            },
+            [
+              h('div', { class: 'h-[0.25em] w-[2.5em] rounded-full bg-neutral-900/15' }),
+            ],
+          ),
+          h(
+            'div',
+            {
+              class: 'px-[1em] pb-[2em] pt-[0.7em]',
+            },
+            [
+              h(
+                'div',
+                {
+                  class: 'mb-[0.75em] px-[0.75em] flex items-center gap-[0.75em]',
+                },
+                [
+                  h(
+                    'div',
+                    {
+                      class: 'relative flex items-center justify-center shrink-0',
+                    },
+                    [
+                      h(SiteLogo, {
+                        class: 'size-[1.5em] text-foreground',
+                      }),
+                    ],
+                  ),
+                  h(
+                    'div',
+                    {
+                      class: 'min-w-0 flex-1',
+                    },
+                    [
+                      h('div', { class: 'text-[0.875em] font-medium leading-tight tracking-tight text-foregorund' }, 'Review draft'),
+                    ],
+                  ),
+                ],
+              ),
+              h(
+                'div',
+                {
+                  class: 'rounded-[1.5em] bg-neutral-100 p-[1.5em]',
+                },
+                [
+                  h('p', { class: 'text-[0.875em] leading-snug tracking-tight text-muted-foreground' }, props.widget.preview || ''),
+                ],
+              ),
+              h(
+                'div',
+                {
+                  class: 'mt-[0.75em] flex items-center gap-[0.4em]',
+                },
+                [
+                  h(
+                    'button',
+                    {
+                      type: 'button',
+                      class: 'flex-1 rounded-full bg-neutral-900 px-[1.5em] py-[1em] text-[0.925em] font-medium leading-none tracking-tight text-white',
+                    },
+                    'Approve',
+                  ),
+                  h(
+                    'button',
+                    {
+                      type: 'button',
+                      class: 'flex-1 rounded-full bg-neutral-500/10 px-[1.5em] py-[1em] text-[0.925em] font-medium leading-none tracking-tight text-foreground',
+                    },
+                    'Dismiss',
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
+    ];
+  },
+});
+
 const IosInputBar = defineComponent({
   name: 'IosInputBar',
   props: {
@@ -603,6 +791,7 @@ const IosInputBar = defineComponent({
         </div>
 
         <IosInputBar :placeholder="inputPlaceholder" />
+        <IosDraftSheet v-if="draftWidget" :widget="draftWidget" />
       </IphoneShell>
     </div>
   </div>
