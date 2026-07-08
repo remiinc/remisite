@@ -1,6 +1,6 @@
 <script setup>
 import cn from '../../lib/cn';
-import { PhCaretRight, PhCaretLeft, PhPlus, PhMicrophone } from '@phosphor-icons/vue';
+import { PhCaretRight, PhCaretLeft, PhCheckCircle, PhPlus, PhMicrophone } from '@phosphor-icons/vue';
 import { gsap } from 'gsap';
 import SiteLogo from '../global/site-logo.vue';
 import { computed, defineComponent, h, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
@@ -591,6 +591,42 @@ const IosMessageDate = defineComponent({
   },
 });
 
+const IosQuickActionButtons = defineComponent({
+  name: 'IosQuickActionButtons',
+  props: {
+    actions: {
+      type: Array,
+      default: () => [],
+    },
+  },
+  setup(props) {
+    return () => props.actions.length ? h(
+      'div',
+      {
+        class: 'mt-[0.5em] flex flex-wrap items-center gap-[0.35em] pl-[0.25em]',
+      },
+      props.actions.map((action) => h(
+        'button',
+        {
+          key: action.label,
+          type: 'button',
+          class: 'inline-flex max-w-full cursor-pointer items-center gap-[0.35em] rounded-full bg-neutral-200 py-[0.35em] pl-[0.45em] pr-[0.75em] text-[0.75em] font-medium leading-none tracking-tight text-neutral-800 transition-opacity duration-300 hover:opacity-80',
+          'aria-label': action.label,
+        },
+        [
+          h('img', {
+            src: action.iconSrc,
+            alt: '',
+            draggable: false,
+            class: 'size-[1.25em] shrink-0 rounded-[0.25em]',
+          }),
+          h('span', { class: 'truncate' }, action.label),
+        ],
+      )),
+    ) : null;
+  },
+});
+
 const IosMessageBubble = defineComponent({
   name: 'IosMessageBubble',
   props: {
@@ -611,6 +647,10 @@ const IosMessageBubble = defineComponent({
       type: Boolean,
       default: false,
     },
+    quickActions: {
+      type: Array,
+      default: () => [],
+    },
   },
   setup(props, { slots }) {
     return () => h(
@@ -621,29 +661,39 @@ const IosMessageBubble = defineComponent({
         'data-message-side': props.variant,
         ...(props.approval ? { 'data-approval-message': '' } : {}),
         class: cn(
-          'w-full flex px-[1em] mt-[0.65em] will-change-[opacity,transform,filter]',
-          props.variant === 'incoming' ? 'justify-start' : 'justify-end',
+          'w-full flex flex-col px-[1em] mt-[0.65em] will-change-[opacity,transform,filter]',
         ),
       },
       [
         h(
           'div',
           {
-            class: cn(
-              'relative inline-block max-w-[78%] rounded-[1.25em] px-[0.875em] text-[0.9em] leading-tight tracking-tight',
-              props.variant === 'incoming'
-                ? 'mr-[25%] bg-neutral-200 py-[0.75em] text-neutral-900'
-                : 'ml-[25%] bg-blue-400 bg-fixed py-[0.5em] text-white',
-              props.last && "before:content-[''] before:absolute before:bottom-0 before:z-0 before:h-[1.25em] before:w-[1.25em] after:content-[''] after:absolute after:bottom-0 after:z-1 after:h-[1.25em] after:w-[0.7em] after:bg-white",
-              props.last && (
-                props.variant === 'incoming'
-                  ? 'before:left-[-0.45em] before:rounded-br-[0.95em] before:bg-neutral-200 after:left-[-0.7em] after:rounded-br-[0.7em]'
-                  : 'before:right-[-0.5em] before:rounded-bl-[0.95em] before:bg-blue-400 before:bg-fixed after:right-[-0.7em] after:rounded-bl-[0.7em]'
-              ),
-            ),
+            class: cn('flex w-full', props.variant === 'incoming' ? 'justify-start' : 'justify-end'),
           },
-          slots.default?.() || props.text,
+          [
+            h(
+              'div',
+              {
+                class: cn(
+                  'relative inline-block max-w-[78%] rounded-[1.25em] px-[0.875em] text-[0.9em] leading-tight tracking-tight',
+                  props.variant === 'incoming'
+                    ? 'mr-[25%] bg-neutral-200 py-[0.75em] text-neutral-900'
+                    : 'ml-[25%] bg-blue-400 bg-fixed py-[0.5em] text-white',
+                  props.last && "before:content-[''] before:absolute before:bottom-0 before:z-0 before:h-[1.25em] before:w-[1.25em] after:content-[''] after:absolute after:bottom-0 after:z-1 after:h-[1.25em] after:w-[0.7em] after:bg-white",
+                  props.last && (
+                    props.variant === 'incoming'
+                      ? 'before:left-[-0.45em] before:rounded-br-[0.95em] before:bg-neutral-200 after:left-[-0.7em] after:rounded-br-[0.7em]'
+                      : 'before:right-[-0.5em] before:rounded-bl-[0.95em] before:bg-blue-400 before:bg-fixed after:right-[-0.7em] after:rounded-bl-[0.7em]'
+                  ),
+                ),
+              },
+              slots.default?.() || props.text,
+            ),
+          ],
         ),
+        props.variant === 'incoming' && props.quickActions.length
+          ? h(IosQuickActionButtons, { actions: props.quickActions })
+          : null,
       ],
     );
   },
@@ -664,6 +714,10 @@ const IosIncomingMessageBubble = defineComponent({
       type: Boolean,
       default: false,
     },
+    quickActions: {
+      type: Array,
+      default: () => [],
+    },
   },
   setup(props, { slots }) {
     return () => h(
@@ -673,6 +727,7 @@ const IosIncomingMessageBubble = defineComponent({
         text: props.text,
         last: props.last,
         approval: props.approval,
+        quickActions: props.quickActions,
       },
       slots,
     );
@@ -694,6 +749,10 @@ const IosUserMessageBubble = defineComponent({
       type: Boolean,
       default: false,
     },
+    quickActions: {
+      type: Array,
+      default: () => [],
+    },
   },
   setup(props, { slots }) {
     return () => h(
@@ -703,6 +762,7 @@ const IosUserMessageBubble = defineComponent({
         text: props.text,
         last: props.last,
         approval: props.approval,
+        quickActions: props.quickActions,
       },
       slots,
     );
@@ -755,9 +815,12 @@ const IosDraftWidget = defineComponent({
                         h(
                           'span',
                           {
-                            class: 'rounded-full bg-neutral-900 px-[1em] py-[0.5em] text-[0.875em] font-medium leading-none tracking-tight text-white',
+                            class: 'inline-flex items-center gap-[0.3em] text-[0.75em] font-medium leading-none tracking-tight text-green-600',
                           },
-                          'Approved',
+                          [
+                            h(PhCheckCircle, { class: 'size-[1em]', weight: 'fill', 'aria-hidden': 'true' }),
+                            'Approved',
+                          ],
                         ),
                       ]
                     : [
@@ -980,7 +1043,8 @@ const IosInputBar = defineComponent({
           <IosMessageDate :label="dateLabel" :time="currentTime" />
           <component :is="message.variant === 'outgoing' ? IosUserMessageBubble : IosIncomingMessageBubble"
             v-for="(message, index) in messages" :key="`${message.variant || 'incoming'}-${index}-${message.text}`"
-            :text="message.text" :last="message.last ?? true" :approval="message.approval ?? false" />
+            :text="message.text" :last="message.last ?? true" :approval="message.approval ?? false"
+            :quick-actions="message.quickActions || []" />
           <IosDraftWidget
             v-if="draftWidget"
             :approved="approvalMessages.length > 0"
@@ -990,7 +1054,8 @@ const IosInputBar = defineComponent({
           />
           <component :is="message.variant === 'outgoing' ? IosUserMessageBubble : IosIncomingMessageBubble"
             v-for="(message, index) in approvalMessages" :key="`approval-${message.variant || 'incoming'}-${index}-${message.text}`"
-            :text="message.text" :last="message.last ?? true" :approval="message.approval ?? false" />
+            :text="message.text" :last="message.last ?? true" :approval="message.approval ?? false"
+            :quick-actions="message.quickActions || []" />
         </div>
 
         <IosInputBar :placeholder="inputPlaceholder" />

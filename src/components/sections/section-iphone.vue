@@ -4,8 +4,19 @@ import { computed, ref } from 'vue'
 import cn from '../../lib/cn'
 import ComponentIphone from './component-iphone.vue'
 
-const incoming = (text) => ({ variant: 'incoming', text })
-const outgoing = (text) => ({ variant: 'outgoing', text })
+const quickActions = {
+  notes: {
+    label: 'Add to Notes',
+    iconSrc: '/images/app-logos/ios-notes-icon.png',
+  },
+  reminders: {
+    label: 'Add to Reminders',
+    iconSrc: '/images/app-logos/ios-reminders-icon.png',
+  },
+}
+
+const incoming = (text, options = {}) => ({ variant: 'incoming', text, ...options })
+const outgoing = (text, options = {}) => ({ variant: 'outgoing', text, ...options })
 const draft = (preview, approvedReply) => ({ preview, approvedReply })
 
 const scenarios = [
@@ -19,7 +30,9 @@ const scenarios = [
       outgoing('Is the job marked complete?'),
       incoming('Yes. I found the completion photo and your “all wrapped up” message from 4:12pm. ✅'),
       outgoing('Draft a firm reminder.'),
-      incoming('Ready for review. It asks for payment this week and includes the invoice, approval, and completion note. 📎'),
+      incoming('Ready for review. It asks for payment this week and includes the invoice, approval, and completion note. 📎', {
+        quickActions: [quickActions.reminders, quickActions.notes],
+      }),
     ],
   },
   {
@@ -34,7 +47,9 @@ const scenarios = [
     messages: [
       incoming('Wilson asked for an estimate at 10:14am. You missed it while you were on the McKay job. 👀'),
       outgoing('Do we have room tomorrow?'),
-      incoming('You have 2:30 open. The address is 12 minutes from your last stop. 📍'),
+      incoming('You have 2:30 open. The address is 12 minutes from your last stop. 📍', {
+        quickActions: [quickActions.reminders],
+      }),
       outgoing('Reply with that.'),
       incoming('Drafted. I offered 2:30 and asked for a photo so you can confirm the scope first. ✍️'),
     ],
@@ -51,7 +66,9 @@ const scenarios = [
     messages: [
       incoming('Before you reply to Dana, they did approve the extra materials. 🧠'),
       outgoing('Where?'),
-      incoming('June 18, 7:41pm. Their text says “go ahead with the better fixtures.” Receipt is from Lowe’s the next morning. 🧾'),
+      incoming('June 18, 7:41pm. Their text says “go ahead with the better fixtures.” Receipt is from Lowe’s the next morning. 🧾', {
+        quickActions: [quickActions.notes],
+      }),
       outgoing('Put that in the reply.'),
       incoming('Drafted with the exact line and receipt attached, so it does not sound like memory. 📌'),
     ],
@@ -66,7 +83,9 @@ const scenarios = [
       outgoing('Show me the money first.'),
       incoming('The overdue invoice is $1,460. The work was approved and delivered last week. 💰'),
       outgoing('Prepare it, but do not send.'),
-      incoming('Prepared. I will wait for your approval before anything goes out. 👍'),
+      incoming('Prepared. I will wait for your approval before anything goes out. 👍', {
+        quickActions: [quickActions.reminders],
+      }),
     ],
   },
 ]
