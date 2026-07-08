@@ -1,6 +1,6 @@
 <script setup>
 import cn from '../../lib/cn';
-import { PhCaretRight, PhCaretLeft, PhCheckCircle, PhPlus, PhMicrophone } from '@phosphor-icons/vue';
+import { PhCaretRight, PhCaretLeft, PhCheckCircle, PhMagnifyingGlass, PhPlus, PhMicrophone } from '@phosphor-icons/vue';
 import { gsap } from 'gsap';
 import SiteLogo from '../global/site-logo.vue';
 import { computed, defineComponent, h, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
@@ -627,6 +627,70 @@ const IosQuickActionButtons = defineComponent({
   },
 });
 
+const IosDocumentPreviewWidget = defineComponent({
+  name: 'IosDocumentPreviewWidget',
+  props: {
+    document: {
+      type: Object,
+      default: null,
+    },
+    variant: {
+      type: String,
+      default: 'incoming',
+      validator: (value) => ['incoming', 'outgoing'].includes(value),
+    },
+  },
+  setup(props) {
+    return () => props.document && h(
+      'div',
+      {
+        'data-document-preview': '',
+        role: 'img',
+        'aria-label': props.document.label || 'PDF document preview',
+        class: cn(
+          'mt-[0.75em] flex w-full',
+          props.variant === 'incoming' ? 'justify-start' : 'justify-end',
+        ),
+      },
+      [
+        h(
+          'div',
+          {
+            class: 'flex aspect-[3/4] w-[5em] items-start justify-start rounded-[0.625em] bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.08),0_0.75em_1.8em_-1.4em_rgba(0,0,0,0.45)] relative p-[0.5em]',
+          },
+          [
+            h('div', {
+              class: 'w-full flex flex-col items-start justify-start gap-[0.125em]',
+            }, [
+              h('div', {
+                class: 'w-1/2 h-[0.2em] rounded-full bg-foreground/15',
+              },
+              ),
+              h('div', {
+                class: 'w-full h-[0.2em] rounded-full bg-foreground/10',
+              },
+              ),
+              h('div', {
+                class: 'w-full h-[0.2em] rounded-full bg-foreground/10',
+              },
+              ),
+              h('div', {
+                class: 'w-3/4 h-[0.2em] rounded-full bg-foreground/10',
+              },
+              ),
+            ]),
+            h(PhMagnifyingGlass, {
+              class: 'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[2em] text-background bg-foreground/40 p-[0.5em] rounded-full',
+              weight: 'bold',
+              'aria-hidden': 'true',
+            }),
+          ],
+        ),
+      ],
+    );
+  },
+});
+
 const IosMessageBubble = defineComponent({
   name: 'IosMessageBubble',
   props: {
@@ -650,6 +714,10 @@ const IosMessageBubble = defineComponent({
     quickActions: {
       type: Array,
       default: () => [],
+    },
+    documentPreview: {
+      type: Object,
+      default: null,
     },
   },
   setup(props, { slots }) {
@@ -694,6 +762,9 @@ const IosMessageBubble = defineComponent({
         props.variant === 'incoming' && props.quickActions.length
           ? h(IosQuickActionButtons, { actions: props.quickActions })
           : null,
+        props.documentPreview
+          ? h(IosDocumentPreviewWidget, { document: props.documentPreview, variant: props.variant })
+          : null,
       ],
     );
   },
@@ -718,6 +789,10 @@ const IosIncomingMessageBubble = defineComponent({
       type: Array,
       default: () => [],
     },
+    documentPreview: {
+      type: Object,
+      default: null,
+    },
   },
   setup(props, { slots }) {
     return () => h(
@@ -728,6 +803,7 @@ const IosIncomingMessageBubble = defineComponent({
         last: props.last,
         approval: props.approval,
         quickActions: props.quickActions,
+        documentPreview: props.documentPreview,
       },
       slots,
     );
@@ -753,6 +829,10 @@ const IosUserMessageBubble = defineComponent({
       type: Array,
       default: () => [],
     },
+    documentPreview: {
+      type: Object,
+      default: null,
+    },
   },
   setup(props, { slots }) {
     return () => h(
@@ -763,6 +843,7 @@ const IosUserMessageBubble = defineComponent({
         last: props.last,
         approval: props.approval,
         quickActions: props.quickActions,
+        documentPreview: props.documentPreview,
       },
       slots,
     );
@@ -812,37 +893,37 @@ const IosDraftWidget = defineComponent({
                   },
                   props.approved
                     ? [
-                        h(
-                          'span',
-                          {
-                            class: 'inline-flex items-center gap-[0.3em] text-[0.75em] font-medium leading-none tracking-tight text-green-600',
-                          },
-                          [
-                            h(PhCheckCircle, { class: 'size-[1em]', weight: 'fill', 'aria-hidden': 'true' }),
-                            'Approved',
-                          ],
-                        ),
-                      ]
+                      h(
+                        'span',
+                        {
+                          class: 'inline-flex items-center gap-[0.3em] text-[0.75em] font-medium leading-none tracking-tight text-green-600',
+                        },
+                        [
+                          h(PhCheckCircle, { class: 'size-[1em]', weight: 'fill', 'aria-hidden': 'true' }),
+                          'Approved',
+                        ],
+                      ),
+                    ]
                     : [
-                        h(
-                          'button',
-                          {
-                            type: 'button',
-                            onClick: () => emit('approve'),
-                            class: 'rounded-full bg-neutral-900 px-[1em] py-[0.5em] text-[0.875em] font-medium leading-none tracking-tight text-white hover:opacity-80 transition-opacity duration-300 cursor-pointer',
-                          },
-                          'Approve',
-                        ),
-                        h(
-                          'button',
-                          {
-                            type: 'button',
-                            onClick: () => emit('dismiss'),
-                            class: 'rounded-full bg-neutral-500/10 px-[1em] py-[0.5em] text-[0.875em] font-medium leading-none tracking-tight text-muted-foreground hover:opacity-80 transition-opacity duration-300 cursor-pointer',
-                          },
-                          'Dismiss',
-                        ),
-                      ],
+                      h(
+                        'button',
+                        {
+                          type: 'button',
+                          onClick: () => emit('approve'),
+                          class: 'rounded-full bg-neutral-900 px-[1em] py-[0.5em] text-[0.875em] font-medium leading-none tracking-tight text-white hover:opacity-80 transition-opacity duration-300 cursor-pointer',
+                        },
+                        'Approve',
+                      ),
+                      h(
+                        'button',
+                        {
+                          type: 'button',
+                          onClick: () => emit('dismiss'),
+                          class: 'rounded-full bg-neutral-500/10 px-[1em] py-[0.5em] text-[0.875em] font-medium leading-none tracking-tight text-muted-foreground hover:opacity-80 transition-opacity duration-300 cursor-pointer',
+                        },
+                        'Dismiss',
+                      ),
+                    ],
                 ),
               ],
             ),
@@ -1039,32 +1120,25 @@ const IosInputBar = defineComponent({
         <IosMessageHeader :contact-name="contactName" />
 
         <!-- Main Content -->
-        <div ref="messageThreadRef" data-message-thread class="w-full flex-1 flex flex-col py-[1em] overflow-y-auto scrollbar-none">
+        <div ref="messageThreadRef" data-message-thread
+          class="w-full flex-1 flex flex-col py-[1em] overflow-y-auto scrollbar-none mask-y-from-[calc(100%-1em)] mask-y-to-100%">
           <IosMessageDate :label="dateLabel" :time="currentTime" />
           <component :is="message.variant === 'outgoing' ? IosUserMessageBubble : IosIncomingMessageBubble"
             v-for="(message, index) in messages" :key="`${message.variant || 'incoming'}-${index}-${message.text}`"
             :text="message.text" :last="message.last ?? true" :approval="message.approval ?? false"
-            :quick-actions="message.quickActions || []" />
-          <IosDraftWidget
-            v-if="draftWidget"
-            :approved="approvalMessages.length > 0"
-            :widget="draftWidget"
-            @approve="handleApproveDraft"
-            @dismiss="handleDismissDraft"
-          />
+            :quick-actions="message.quickActions || []" :document-preview="message.documentPreview || null" />
+          <IosDraftWidget v-if="draftWidget" :approved="approvalMessages.length > 0" :widget="draftWidget"
+            @approve="handleApproveDraft" @dismiss="handleDismissDraft" />
           <component :is="message.variant === 'outgoing' ? IosUserMessageBubble : IosIncomingMessageBubble"
-            v-for="(message, index) in approvalMessages" :key="`approval-${message.variant || 'incoming'}-${index}-${message.text}`"
-            :text="message.text" :last="message.last ?? true" :approval="message.approval ?? false"
-            :quick-actions="message.quickActions || []" />
+            v-for="(message, index) in approvalMessages"
+            :key="`approval-${message.variant || 'incoming'}-${index}-${message.text}`" :text="message.text"
+            :last="message.last ?? true" :approval="message.approval ?? false"
+            :quick-actions="message.quickActions || []" :document-preview="message.documentPreview || null" />
         </div>
 
         <IosInputBar :placeholder="inputPlaceholder" />
-        <IosDraftSheet
-          v-if="draftWidget"
-          :widget="draftWidget"
-          @approve="handleApproveDraft"
-          @dismiss="handleDismissDraft"
-        />
+        <IosDraftSheet v-if="draftWidget" :widget="draftWidget" @approve="handleApproveDraft"
+          @dismiss="handleDismissDraft" />
       </IphoneShell>
     </div>
   </div>

@@ -58,8 +58,8 @@ const qualifyContactEmail = computed(() => {
       <HomeHeroVideo />
       <SectionPinnedHeadline />
       <SectionIphone />
-      <SectionHow />
       <SectionCaseStudies />
+      <SectionHow />
       <SectionWhyRemi />
       <SectionNews />
       <SectionFaq />

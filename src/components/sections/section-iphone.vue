@@ -1,5 +1,5 @@
 <script setup>
-import { PhBrain, PhChatsCircle, PhInvoice, PhListChecks } from '@phosphor-icons/vue'
+import { PhBrain, PhCaretLeft, PhCaretRight, PhChatsCircle, PhInvoice, PhListChecks } from '@phosphor-icons/vue'
 import { computed, ref } from 'vue'
 import cn from '../../lib/cn'
 import ComponentIphone from './component-iphone.vue'
@@ -81,7 +81,11 @@ const scenarios = [
     messages: [
       incoming('Three open loops are waiting: one overdue invoice, one unanswered quote, and one client approval. 🔎'),
       outgoing('Show me the money first.'),
-      incoming('The overdue invoice is $1,460. The work was approved and delivered last week. 💰'),
+      incoming('The overdue invoice is $1,460. The work was approved and delivered last week. 💰', {
+        documentPreview: {
+          label: 'Invoice PDF',
+        },
+      }),
       outgoing('Prepare it, but do not send.'),
       incoming('Prepared. I will wait for your approval before anything goes out. 👍', {
         quickActions: [quickActions.reminders],
@@ -94,9 +98,20 @@ const activeScenarioId = ref(scenarios[0].id)
 const activeScenario = computed(
   () => scenarios.find((scenario) => scenario.id === activeScenarioId.value) || scenarios[0],
 )
+const activeScenarioIndex = computed(() => {
+  const index = scenarios.findIndex((scenario) => scenario.id === activeScenarioId.value)
+
+  return index === -1 ? 0 : index
+})
 const scenarioMidpoint = Math.ceil(scenarios.length / 2)
 const leftScenarios = computed(() => scenarios.slice(0, scenarioMidpoint))
 const rightScenarios = computed(() => scenarios.slice(scenarioMidpoint))
+
+const setScenarioByOffset = (offset) => {
+  const nextIndex = (activeScenarioIndex.value + offset + scenarios.length) % scenarios.length
+
+  activeScenarioId.value = scenarios[nextIndex].id
+}
 
 const tabClass = (scenario) =>
   cn(
@@ -112,12 +127,12 @@ const tabClass = (scenario) =>
 
 <template>
   <section class="iphone-scroll-section w-full px-6 py-20 lg:py-0" data-section-iphone>
-    <div class="iphone-scroll-sticky lg:sticky lg:top-0 lg:grid lg:min-h-screen lg:place-items-center">
+    <div class="iphone-scroll-sticky lg:sticky lg:grid lg:place-items-center">
       <div
-        class="mx-auto grid w-full max-w-(--content-width) grid-cols-1 items-center justify-center gap-x-12 gap-y-2 md:grid-cols-2 lg:grid-cols-[minmax(0,1fr)_minmax(0,24rem)_minmax(0,1fr)]">
+        class="mx-auto grid w-full max-w-(--content-width) grid-cols-1 items-center justify-center sm:gap-x-8 md:gap-x-10 lg:gap-x-12 gap-y-2 sm:grid-cols-[minmax(0,1fr)_minmax(50vw,1fr)] lg:grid-cols-[minmax(0,1fr)_minmax(0,24rem)_minmax(0,1fr)]">
 
         <div
-          class="relative z-0 md:h-full md:pt-12 lg:py-12 order-3 flex flex-col gap-2 lg:gap-12 lg:order-0  md:col-start-1 md:row-start-1 lg:col-start-1 lg:row-start-2 lg:self-center lg:*:first:rotate-5 lg:*:last:-rotate-5">
+          class="relative z-0 sm:h-full sm:pt-12 lg:py-12 order-3 hidden flex-col gap-2 lg:gap-12 lg:order-0 sm:flex sm:col-start-1 sm:row-start-1 lg:col-start-1 lg:row-start-2 lg:self-center lg:*:first:rotate-5 lg:*:last:-rotate-5">
           <button v-for="scenario in leftScenarios" :key="scenario.id" type="button"
             class="iphone-tab iphone-tab-left" data-iphone-tab-left :class="tabClass(scenario)"
             @click="activeScenarioId = scenario.id">
@@ -134,13 +149,41 @@ const tabClass = (scenario) =>
         </div>
 
         <div
-          class="relative z-10 order-2 mx-auto w-full lg:order-0 md:col-start-2 md:row-start-1 md:row-end-3 lg:col-start-2 lg:row-start-2">
+          class="relative shrink-0 z-10 order-2 mx-auto w-full lg:order-0 sm:col-start-2 sm:row-start-1 sm:row-end-3 lg:col-start-2 lg:row-start-2">
           <ComponentIphone class="mx-auto w-full" :messages="activeScenario.messages"
             :draft-widget="activeScenario.draftWidget" contact-name="Remi" input-placeholder="iMessage" />
+          <div class="mx-auto mt-5 flex w-full max-w-sm flex-col items-center gap-3 sm:hidden">
+            <div
+              data-mobile-scenario-card
+              class="flex min-h-40 w-full flex-col items-start justify-between rounded-2xl bg-foreground p-5 text-left text-background"
+              aria-live="polite">
+              <span class="flex flex-col items-start gap-3">
+                <component :is="activeScenario.icon" class="size-7" weight="regular" aria-hidden="true" />
+                <span class="text-xl leading-tight tracking-tight">
+                  {{ activeScenario.title }}
+                </span>
+              </span>
+              <span class="text-sm leading-tight opacity-60">
+                {{ activeScenario.description }}
+              </span>
+            </div>
+            <div data-mobile-scenario-controls class="flex items-center justify-center gap-3">
+              <button type="button"
+                class="flex size-12 items-center justify-center rounded-full bg-foreground/50 text-background backdrop-blur-sm transition active:scale-95"
+                aria-label="Previous message scenario" @click="setScenarioByOffset(-1)">
+                <PhCaretLeft class="size-5" weight="bold" aria-hidden="true" />
+              </button>
+              <button type="button"
+                class="flex size-12 items-center justify-center rounded-full bg-foreground/50 text-background backdrop-blur-sm transition active:scale-95"
+                aria-label="Next message scenario" @click="setScenarioByOffset(1)">
+                <PhCaretRight class="size-5" weight="bold" aria-hidden="true" />
+              </button>
+            </div>
+          </div>
         </div>
 
         <div
-          class="relative z-0 md:h-full md:pb-12 lg:py-12 order-4 flex flex-col gap-2 lg:gap-12 lg:order-0 md:col-start-1 md:row-start-2 lg:col-start-3 lg:row-start-2 lg:self-center lg:*:first:-rotate-5 lg:*:last:rotate-5">
+          class="relative z-0 sm:h-full sm:pb-12 lg:py-12 order-4 hidden flex-col gap-2 lg:gap-12 lg:order-0 sm:flex sm:col-start-1 sm:row-start-2 lg:col-start-3 lg:row-start-2 lg:self-center lg:*:first:-rotate-5 lg:*:last:rotate-5">
           <button v-for="scenario in rightScenarios" :key="scenario.id" type="button"
             class="iphone-tab iphone-tab-right" data-iphone-tab-right :class="tabClass(scenario)"
             @click="activeScenarioId = scenario.id">
@@ -169,7 +212,9 @@ const tabClass = (scenario) =>
   }
 
   .iphone-scroll-sticky {
-    height: 100vh;
+    top: calc(var(--header-height) - 2em);
+    height: calc(100svh - var(--header-height) + 2em);
+    min-height: calc(100svh - var(--header-height) + 2em);
   }
 
   .iphone-tab {
