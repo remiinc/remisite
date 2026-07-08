@@ -713,6 +713,10 @@ const IosDraftWidget = defineComponent({
   name: 'IosDraftWidget',
   emits: ['approve', 'dismiss'],
   props: {
+    approved: {
+      type: Boolean,
+      default: false,
+    },
     widget: {
       type: Object,
       default: null,
@@ -746,26 +750,36 @@ const IosDraftWidget = defineComponent({
                   {
                     class: 'mt-[0.6em] flex items-center gap-[0.25em]',
                   },
-                  [
-                    h(
-                      'button',
-                      {
-                        type: 'button',
-                        onClick: () => emit('approve'),
-                        class: 'rounded-full bg-neutral-900 px-[1em] py-[0.5em] text-[0.875em] font-medium leading-none tracking-tight text-white',
-                      },
-                      'Approve',
-                    ),
-                    h(
-                      'button',
-                      {
-                        type: 'button',
-                        onClick: () => emit('dismiss'),
-                        class: 'rounded-full bg-neutral-500/10 px-[1em] py-[0.5em] text-[0.875em] font-medium leading-none tracking-tight text-muted-foreground',
-                      },
-                      'Dismiss',
-                    ),
-                  ],
+                  props.approved
+                    ? [
+                        h(
+                          'span',
+                          {
+                            class: 'rounded-full bg-neutral-900 px-[1em] py-[0.5em] text-[0.875em] font-medium leading-none tracking-tight text-white',
+                          },
+                          'Approved',
+                        ),
+                      ]
+                    : [
+                        h(
+                          'button',
+                          {
+                            type: 'button',
+                            onClick: () => emit('approve'),
+                            class: 'rounded-full bg-neutral-900 px-[1em] py-[0.5em] text-[0.875em] font-medium leading-none tracking-tight text-white hover:opacity-80 transition-opacity duration-300 cursor-pointer',
+                          },
+                          'Approve',
+                        ),
+                        h(
+                          'button',
+                          {
+                            type: 'button',
+                            onClick: () => emit('dismiss'),
+                            class: 'rounded-full bg-neutral-500/10 px-[1em] py-[0.5em] text-[0.875em] font-medium leading-none tracking-tight text-muted-foreground hover:opacity-80 transition-opacity duration-300 cursor-pointer',
+                          },
+                          'Dismiss',
+                        ),
+                      ],
                 ),
               ],
             ),
@@ -863,7 +877,7 @@ const IosDraftSheet = defineComponent({
                     {
                       type: 'button',
                       onClick: () => emit('approve'),
-                      class: 'flex-1 rounded-full bg-neutral-900 px-[1.5em] py-[1em] text-[0.925em] font-medium leading-none tracking-tight text-white',
+                      class: 'flex-1 rounded-full bg-neutral-900 px-[1.5em] py-[1em] text-[0.925em] font-medium leading-none tracking-tight text-white hover:opacity-80 transition-opacity duration-300 cursor-pointer',
                     },
                     'Approve',
                   ),
@@ -872,7 +886,7 @@ const IosDraftSheet = defineComponent({
                     {
                       type: 'button',
                       onClick: () => emit('dismiss'),
-                      class: 'flex-1 rounded-full bg-neutral-500/10 px-[1.5em] py-[1em] text-[0.925em] font-medium leading-none tracking-tight text-foreground',
+                      class: 'flex-1 rounded-full bg-neutral-500/10 px-[1.5em] py-[1em] text-[0.925em] font-medium leading-none tracking-tight text-foreground hover:opacity-80 transition-opacity duration-300 cursor-pointer',
                     },
                     'Dismiss',
                   ),
@@ -969,6 +983,7 @@ const IosInputBar = defineComponent({
             :text="message.text" :last="message.last ?? true" :approval="message.approval ?? false" />
           <IosDraftWidget
             v-if="draftWidget"
+            :approved="approvalMessages.length > 0"
             :widget="draftWidget"
             @approve="handleApproveDraft"
             @dismiss="handleDismissDraft"
