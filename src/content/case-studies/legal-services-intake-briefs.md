@@ -1,49 +1,49 @@
 ---
-title: "How a legal services team shortened intake review by one day with Remi"
-description: "Intake moved faster without loosening review. Remi gathered the matter context, approvals, and source links the team needed before the next decision."
+title: "How a small legal office kept retainers and client promises from slipping with Remi"
+description: "Intake questions, unpaid retainers, and client-safe replies came back with proof before anyone had to search old threads."
 datePublished: "2026-06-12"
 author: "Remi Team"
 category: "Case Study"
-company: "Anonymized legal services team"
+company: "Anonymized legal office"
 industryLabel: "Legal services"
-useCase: "Intake and matter review"
-companySize: "11-50"
+useCase: "Retainer follow-up and intake review"
+companySize: "4"
 region: "Europe"
 coverImageUrl: "/images/case-studies/legal-cover.jpg"
 coverImageAlt: "Two professionals reviewing legal documents in an office"
 thumbnailImageUrl: "/images/case-studies/legal-cover.jpg"
 thumbnailImageAlt: "Professionals discussing legal documents at a table"
 stats:
-  - metric: "1 day"
-    label: "intake-to-review handoff shortened by"
-  - metric: "100%"
-    label: "matter briefs reviewed with source links"
+  - metric: "$6.8k"
+    label: "retainers ready for owner review"
+  - metric: "4"
+    label: "intake replies drafted with proof"
   - metric: "0"
-    label: "client-visible actions without approval"
-ogTitle: "How a legal services team shortened intake review by one day with Remi"
-ogDescription: "Matter context, intake questions, and approvals came together before client-visible work moved forward."
+    label: "client-visible replies without approval"
+ogTitle: "How a small legal office kept retainers and client promises from slipping with Remi"
+ogDescription: "Intake questions, unpaid retainers, and client-safe replies came back with proof before anyone had to search old threads."
 ogImage: "https://images.pexels.com/photos/7841459/pexels-photo-7841459.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200"
 ---
 
-A legal services team needed intake and matter review to move faster without loosening control. Remi helped gather the right context before review, so the team could see missing information, stale approvals, and source evidence before deciding the next step.
+A small legal office needed the business side to move without loosening control. Remi helped the owner see unpaid retainers, intake questions, and client promises with the source attached before deciding the next step.
 
 ## The challenge
 
-The team coordinated intake, matter updates, document requests, and approvals across email, notes, calendars, and internal chat. The work was sensitive, and client-visible action needed to stay conservative.
+The owner handled sensitive client work, but the same owner still had to chase retainers, answer intake questions, and remember what had been promised in earlier messages.
 
-The firm did not want a tool acting loudly in shared spaces or treating flagged work as finished. It needed a controlled way to assemble matter context, route intake questions, and make waiting approvals visible before they became client-facing delays.
+The office did not want anything speaking loudly to clients or treating a draft like a decision. It needed the business side to surface what mattered, show where it came from, and wait for approval.
 
 ## The solution
 
-Remi watched for operational signals that shaped matter readiness: intake questions that needed routing, matter notes with missing documents or dates, email threads waiting on approval, calendar events that changed preparation timing, and internal decisions that needed to stay connected to the source.
+Remi watched email, calendar context, intake notes, and payment status for signals that needed the owner's attention.
 
-Remi assembled matter briefs with source links, routed intake questions for review, and flagged stale approvals that might slow the next step. It prepared the context so a person could decide what should happen next.
+When a retainer was unpaid, Remi brought the amount, the client thread, and a careful follow-up draft. When an intake reply needed a human decision, Remi assembled the relevant context and waited for the owner to approve the next move.
 
 ## The results
 
-The team could review matter context without searching across every thread first. Intake-to-review handoff time shortened by a day, and every matter brief stayed tied to source links for review.
+Remi surfaced $6,800 in retainers for review and drafted four intake replies with proof attached. No client-visible reply went out without approval.
 
-For legal services, the useful outcome was not more activity. It was faster review, clearer evidence, and tighter control before anything reached a client.
+For the owner, the useful outcome was not more activity. It was fewer money and intake threads depending on memory, and tighter control before anything reached a client.
 
-> "The useful part is that Remi does not skip our review. It brings the matter notes, missing approvals, and source links into one brief so we can decide with the context in front of us."
-> - Operations manager, legal services team
+> "Remi gives me the draft, the source, and the reason she thinks it matters. I still decide what leaves the office."
+> - Owner, legal services office

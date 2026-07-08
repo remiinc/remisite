@@ -58,7 +58,7 @@ watch(
     <div class="mx-auto flex w-full max-w-(--content-width) flex-col gap-12">
       <div class="flex max-w-3xl flex-col items-start gap-4">
         <h2 class="text-5xl font-normal leading-none tracking-tight text-balance text-foreground">
-          Small business owners just like you are saving thousands with Remi.
+          See how Remi chases money, follows up, and keeps proof close.
         </h2>
       </div>
 

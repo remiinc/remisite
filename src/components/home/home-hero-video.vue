@@ -2,7 +2,6 @@
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
-import Button from '../global/button.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -87,15 +86,18 @@ onBeforeUnmount(() => {
           <span class="text-background/50">Beta launching late 2026</span>
         </p>
       </div>
-      <form action="/qualify/contact" method="GET"
-        class="hero-email-form relative z-1 w-full max-w-sm rounded-full backdrop-blur-sm p-1 items-center before:content-[''] before:absolute before:inset-0 before:rounded-full before:shadow-[0_0_0_1px_rgba(0,0,0,0.02),0_3px_4px_-4px_rgba(0,0,0,0.1),0_4px_12px_-6px_rgba(0,0,0,0.02)] after:content-[''] after:absolute after:inset-0 after:bg-background/20 after:backdrop-blur-sm after:rounded-full after:shadow-[0_0_4px_0_rgba(255,255,255,0.5)_inset,0_0_10px_-10px_rgba(255,255,255,1)_inset]">
-        <div class="relative z-1 flex w-full items-center gap-1">
-          <label for="hero-email" class="sr-only">Your email</label>
-          <input id="hero-email" name="email" type="email" autocomplete="email" required placeholder="Your email"
-            class="hero-email-input h-10 min-w-0 flex-1 bg-transparent px-3 text-base text-background placeholder:text-background/60 outline-none">
-          <Button type="submit">Get started</Button>
-        </div>
-      </form>
+      <div class="relative z-1 flex w-full max-w-sm flex-col items-center justify-center gap-3 sm:max-w-none sm:flex-row">
+        <a href="#"
+          class="inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-full bg-background px-5 text-sm font-medium leading-none text-foreground transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background/60 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground sm:w-auto">
+          <img src="/images/app-logos/ios-messages-icon.svg" alt="" class="size-5 shrink-0" aria-hidden="true">
+          <span>Text Remi</span>
+        </a>
+        <a href="#"
+          class="inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-full bg-background/20 px-5 text-sm font-medium leading-none text-background shadow-[0_0_0_1px_rgba(255,255,255,0.18)_inset] backdrop-blur-sm transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background/60 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground sm:w-auto">
+          <img src="/images/app-logos/gmail.svg" alt="" class="size-5 shrink-0" aria-hidden="true">
+          <span>Sign up with Gmail</span>
+        </a>
+      </div>
     </div>
   </section>
 </template>
@@ -111,11 +113,5 @@ onBeforeUnmount(() => {
 .hero-video video {
   will-change: opacity;
   background-color: var(--color-background);
-}
-
-.hero-email-form:focus-within {
-  box-shadow:
-    inset 0 0 0 1px color-mix(in oklch, var(--color-background) 28%, transparent),
-    0 0 0 4px color-mix(in oklch, var(--color-background) 12%, transparent);
 }
 </style>

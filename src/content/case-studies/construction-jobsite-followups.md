@@ -1,49 +1,49 @@
 ---
-title: "How a construction team got jobsite follow-ups ready in under 24 hours with Remi"
-description: "Field notes, vendor shifts, and tracker gaps made it back to morning review with the source still attached."
+title: "How a remodeling contractor got $18,400 in open invoices back in motion with Remi"
+description: "Client texts, overdue invoices, and change-order promises stopped sitting in the owner's head after hours."
 datePublished: "2026-06-21"
 author: "Remi Team"
 category: "Case Study"
-company: "Anonymized construction team"
-industryLabel: "Contracting"
-useCase: "Jobsite follow-up review"
-companySize: "51-200"
+company: "Anonymized remodeling contractor"
+industryLabel: "Remodeling"
+useCase: "Invoice chase and job follow-up"
+companySize: "6"
 region: "North America"
 coverImageUrl: "/images/case-studies/construction-cover.jpg"
 coverImageAlt: "An engineer in a hard hat using a tablet at an outdoor construction site"
 thumbnailImageUrl: "/images/case-studies/construction-cover.jpg"
 thumbnailImageAlt: "An engineer in a hard hat reviewing jobsite details on a tablet"
 stats:
-  - metric: "<24 hrs"
-    label: "field asks ready for office review"
-  - metric: "100%"
-    label: "follow-ups reviewed with source"
-  - metric: "9"
-    label: "tracker gaps caught before client follow-up"
-ogTitle: "How a construction team got jobsite follow-ups ready in under 24 hours with Remi"
-ogDescription: "Jobsite asks reached morning coordination with sources, owners, and tracker gaps in view."
+  - metric: "$18.4k"
+    label: "open invoices surfaced with proof"
+  - metric: "6"
+    label: "client chases drafted for approval"
+  - metric: "0"
+    label: "messages sent without owner approval"
+ogTitle: "How a remodeling contractor got $18,400 in open invoices back in motion with Remi"
+ogDescription: "Client texts, overdue invoices, and change-order promises came back with proof before the owner had to chase them."
 ogImage: "https://images.pexels.com/photos/8961008/pexels-photo-8961008.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200"
 ---
 
-A construction team was coordinating active jobs across site texts, Slack threads, email, weekly client calls, and a project tracker. Remi helped jobsite asks make it back to office review with the source, owner, and proposed next step still attached.
+A remodeling contractor was running two active jobs, pricing a third, and trying to keep invoices moving at night. Remi helped the owner see which clients owed money, what had already been agreed to, and which follow-up was ready to approve.
 
 ## The challenge
 
-The right people were involved, but the handoffs were easy to miss. A superintendent would flag a client ask from the site. An office lead would mention a change in a meeting. A vendor date would shift in email.
+The owner was not short on work. He was short on quiet time to remember every loose end after the day was done.
 
-Each signal made sense on its own, but the full picture depended on someone remembering where it happened. By the time the next client call arrived, the team needed to know what was waiting, who owned it, and whether the tracker still matched reality.
+A client approved a change by text. A draw invoice sat unpaid in email. A vendor delay changed the next jobsite date. Each detail made sense when it happened, but by 9 p.m. it was another thing the owner had to chase himself.
 
 ## The solution
 
-Remi watched the surfaces where jobsite work was already moving: site and office threads, email replies, meeting notes, inspection timing, and project tracker references.
+Remi watched the places the business side was already happening: texts, email, calendar events, invoice notes, and job details.
 
-For each open loop, Remi assembled the client ask, the likely owner, the relevant source, and a proposed next step. When a reply was useful, Remi drafted it for review. When the tracker looked stale, Remi proposed the change instead of treating it as completed.
+When an invoice looked ready to chase, Remi brought the amount, the last client reply, and a plain-English draft back to the owner. When a change-order promise came up later, Remi tied it to the original message instead of asking him to remember the exact words.
 
 ## The results
 
-The team could see jobsite asks within 24 hours, with each follow-up packet tied back to the source. Tracker gaps were caught before the client had to ask again.
+Remi surfaced $18,400 in open invoices and drafted six client chases for approval. Nothing went out without the owner saying yes.
 
-The practical win was shorter handoff lag: fewer follow-ups disappeared between the field, the office, and the tracker before the next client conversation.
+The practical win was not another place to manage work. It was the business side speaking up before the owner had to sit down at night and rebuild the whole week from memory.
 
-> "Site notes used to disappear between the field and the tracker. Remi gives us the ask, the source, and the likely owner before the morning coordination call."
-> - Project coordinator, construction team
+> "The best part is that Remi does not make me be the bad guy. She shows me who owes what, shows the message it came from, and lets me approve the follow-up."
+> - Owner, remodeling contractor

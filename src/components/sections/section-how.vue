@@ -7,18 +7,18 @@ import SectionVisualMemory from '../home/visuals/visual-memory.vue'
 const segments = [
   {
     visual: SectionVisualMemory,
-    title: 'Remi makes sure you get paid on-time',
-    body: 'Remi does not keep one big pile of information. She organizes what happens across Slack, email, docs, and project tools into connected memory layers that stay useful over time.',
+    title: 'Remi connects the context',
+    body: 'She links people, projects, files, tasks, decisions, and risks so every request starts with the business context attached.',
   },
   {
     visual: SectionVisualWorks,
-    title: 'Handles the busy work for you',
-    body: 'Ask questions, draft documents, route follow-ups, and automate the busywork—Remi shows up where your team already works, handles the operational chasing, and keeps everyone moving forward.',
+    title: 'Ask once. Get a draft.',
+    body: 'Ask for a brief, update, document, or reminder. Remi pulls the context and turns it into a draft to review.',
   },
   {
     visual: SectionVisualLearn,
-    title: 'Learns how to be more helpful each day',
-    body: 'Remi learns from all of your connected apps and documents to build a living knowledge base that captures how your business actually runs.',
+    title: 'She learns how you work',
+    body: 'She reads connected tools, documents, messages, meetings, and recurring decisions, then learns when to speak up next.',
   },
 ]
 </script>
@@ -26,20 +26,25 @@ const segments = [
 <template>
   <section id="how" :class="cn('relative w-full z-1 px-6 py-12 md:py-16')" data-section-how>
     <div class="w-full mx-auto max-w-(--content-width)">
-      <div class="flex flex-col gap-16 md:gap-0">
+      <div class="grid lg:grid-cols-3 gap-8 gap-y-12">
+        <div class="col-span-full flex max-w-3xl flex-col items-start gap-4 mb-8">
+        <h2 class="text-5xl font-normal leading-none tracking-tight text-balance text-foreground">
+          How it works
+        </h2>
+      </div>
         <div
           v-for="segment in segments"
           :key="segment.title"
-          class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-x-24 py-16"
+          class="flex flex-col items-stretch justify-start gap-8"
         >
-          <div class="flex items-center">
+          <div class="w-full flex items-center">
             <div class="relative w-full">
               <component :is="segment.visual" />
             </div>
           </div>
-          <div class="flex flex-col justify-center gap-6 max-w-md">
+          <div class="w-full flex flex-col items-start justify-start gap-6">
             <h2
-              class="text-2xl md:text-4xl lg:text-5xl font-normal leading-none tracking-tight text-balance text-foreground"
+              class="text-2xl font-normal leading-tight tracking-tight text-balance text-foreground"
             >
               {{ segment.title }}
             </h2>
