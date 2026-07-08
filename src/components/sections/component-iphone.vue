@@ -337,7 +337,7 @@ const handleApproveDraft = async () => {
     },
     {
       variant: 'incoming',
-      text: props.draftWidget?.approvedReply || 'Approved. I’ll send it now and keep this thread updated.',
+      text: props.draftWidget?.approvedReply || 'Approved. I’ll send it now and keep this thread updated. ✅',
       approval: true,
     },
   ];
@@ -914,11 +914,11 @@ const IosInputBar = defineComponent({
         h(
           'div',
           {
-            class: 'flex-1 rounded-full bg-neutral-500/10 backdrop-blur-md shadow-[0_0_2em_0_rgba(0,0,0,0.1),1px_1px_1px_0_inset_rgba(255,255,255,0.8),-1px_-1px_1px_0_inset_rgba(255,255,255,0.8)] text-[0.8em] tracking-tight font-normal text-neutral-900/40 pl-[1.25em] pr-[1em] py-[0.5em] flex items-center justify-center',
+            class: 'flex-1 rounded-full bg-neutral-500/10 backdrop-blur-md shadow-[0_0_2em_0_rgba(0,0,0,0.1),1px_1px_1px_0_inset_rgba(255,255,255,0.8),-1px_-1px_1px_0_inset_rgba(255,255,255,0.8)] text-[0.875em] tracking-tight font-normal text-neutral-900/40 pl-[1.25em] pr-[1em] py-[0.5em] flex items-center justify-center',
           },
           [
             h('span', { class: 'flex-1' }, props.placeholder),
-            h(PhMicrophone, { class: 'size-[1.4em] text-neutral-900/40', weight: 'regular' }),
+            h(PhMicrophone, { class: 'size-[1.25em] text-neutral-900/40', weight: 'regular' }),
           ],
         ),
       ],
