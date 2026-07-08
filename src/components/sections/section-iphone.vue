@@ -70,45 +70,57 @@ const activeScenarioId = ref(scenarios[0].id)
 const activeScenario = computed(
   () => scenarios.find((scenario) => scenario.id === activeScenarioId.value) || scenarios[0],
 )
+const scenarioMidpoint = Math.ceil(scenarios.length / 2)
+const leftScenarios = computed(() => scenarios.slice(0, scenarioMidpoint))
+const rightScenarios = computed(() => scenarios.slice(scenarioMidpoint))
 
 const tabClass = (scenario) =>
   cn(
-    'group flex w-full flex-col items-start gap-0! py-4 border-t border-(--border-color) text-left text-pretty transition-all duration-300 max-w-sm mx-auto cursor-pointer',
+    'group flex w-full flex-col items-start text-left justify-between p-5 md:p-6 lg:p-8 rounded-2xl lg:rounded-3xl text-pretty transition-all duration-300 cursor-pointer',
     'focus-visible:outline-none focus-visible:outline-offset-none',
-    'focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+    'focus-visible:ring-0 focus-visible:ring-offset-0',
+    'text-xl flex-1',
     activeScenarioId.value === scenario.id
-      ? '[--primary-text:var(--color-foreground)] [--secondary-text:color-mix(in_srgb,_var(--color-foreground)_40%,_transparent)] [--reveal:1fr] [--border-color:var(--color-foreground)]'
-      : 'opacity-50 [--primary-text:var(--color-muted-foreground)] hover:[--primary-text:var(--color-foreground)] [--secondary-text:var(--color-muted-foreground)] hover:opacity-100 [--reveal:0fr] [--border-color:color-mix(in_srgb,_var(--color-foreground)_20%,_transparent)]',
+      ? 'bg-foreground text-background'
+      : 'bg-transparent shadow-[0_0_0_1px_var(--color-border)] text-muted-foreground',
   )
 </script>
 
 <template>
   <section class="w-full px-6 py-20" data-section-iphone>
     <div
-      class="mx-auto grid w-full max-w-(--content-width) grid-cols-1 items-center gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,24rem)_minmax(0,24rem)] justify-center">
-      <div class="min-h-full order-2 flex flex-col gap-2 lg:order-1 justify-between lg:py-8">
-        <h2 class="mx-auto mb-8 w-full max-w-sm text-left text-4xl lg:text-5xl leading-none tracking-tight text-foreground">
-          The follow-through that keeps work moving.
-        </h2>
-        <div class="flex flex-col gap-0">
-          <button v-for="scenario in scenarios" :key="scenario.id" type="button" :class="tabClass(scenario)"
-            @click="activeScenarioId = scenario.id">
-            <span class="text-2xl leading-tight tracking-tight text-(--primary-text)">
-              {{ scenario.title }}
-            </span>
-            <span class="grid grid-cols-1 grid-rows-(--reveal) transition-[grid-template-rows] duration-300">
-              <span class="overflow-hidden text-xl leading-tight text-(--secondary-text)">
-                <span class="block pt-2">{{ scenario.description }}</span>
-              </span>
-            </span>
-          </button>
-        </div>
+      class="mx-auto grid w-full max-w-(--content-width) grid-cols-1 items-center justify-center gap-x-12 gap-y-2 md:grid-cols-2 lg:grid-cols-[minmax(0,1fr)_minmax(0,24rem)_minmax(0,1fr)]">
+
+      <div
+        class="md:h-full md:pt-12 lg:py-12 order-3 flex flex-col gap-2 lg:gap-12 lg:order-0  md:col-start-1 md:row-start-1 lg:col-start-1 lg:row-start-2 lg:self-center lg:*:first:rotate-5 lg:*:last:-rotate-5">
+        <button v-for="scenario in leftScenarios" :key="scenario.id" type="button" :class="tabClass(scenario)"
+          @click="activeScenarioId = scenario.id">
+          <span class="leading-tight tracking-tight text-(--primary-text)">
+            {{ scenario.title }}
+          </span>
+          <span class="text-sm leading-tight opacity-60">
+            {{ scenario.description }}
+          </span>
+        </button>
       </div>
 
-      <ComponentIphone class="order-1 mx-auto w-full lg:order-2" :messages="activeScenario.messages"
-        :draft-widget="activeScenario.draftWidget" contact-name="Remi" input-placeholder="Message Remi" />
+      <ComponentIphone
+        class="order-2 mx-auto w-full lg:order-0 md:col-start-2 md:row-start-1 md:row-end-3 lg:col-start-2 lg:row-start-2"
+        :messages="activeScenario.messages" :draft-widget="activeScenario.draftWidget" contact-name="Remi"
+        input-placeholder="Message Remi" />
 
-      <div class="hidden lg:order-3 lg:block" aria-hidden="true"></div>
+      <div
+        class="md:h-full md:pb-12 lg:py-12 order-4 flex flex-col gap-2 lg:gap-12 lg:order-0 md:col-start-1 md:row-start-2 lg:col-start-3 lg:row-start-2 lg:self-center lg:*:first:-rotate-5 lg:*:last:rotate-5">
+        <button v-for="scenario in rightScenarios" :key="scenario.id" type="button" :class="tabClass(scenario)"
+          @click="activeScenarioId = scenario.id">
+          <span class="leading-tight tracking-tight text-(--primary-text)">
+            {{ scenario.title }}
+          </span>
+          <span class="text-sm leading-tight opacity-60">
+            {{ scenario.description }}
+          </span>
+        </button>
+      </div>
     </div>
   </section>
 </template>

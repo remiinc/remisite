@@ -15,7 +15,6 @@ import SectionIphone from './components/sections/section-iphone.vue'
 import SectionPinnedHeadline from './components/sections/section-pinned-headline.vue'
 import SectionHow from './components/sections/section-how.vue'
 import SectionNews from './components/sections/section-news.vue'
-import SectionSurfaces from './components/sections/section-surfaces.vue'
 import SectionWhyRemi from './components/sections/section-why-remi.vue'
 import SolutionPage from './components/solutions/solution-page.vue'
 
@@ -61,7 +60,6 @@ const qualifyContactEmail = computed(() => {
       <SectionIphone />
       <SectionHow />
       <SectionCaseStudies />
-      <SectionSurfaces />
       <SectionWhyRemi />
       <SectionNews />
       <SectionFaq />
