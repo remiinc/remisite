@@ -4,22 +4,14 @@ import { gsap } from 'gsap'
 import { nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 
 const lines = [
-  {
-    text: 'Scanning your connected tools...',
-    icons: [
-      '/images/app-logos/slack.svg',
-      '/images/app-logos/gmail.svg',
-      '/images/app-logos/linear.svg',
-    ],
-    meta: { value: 12, prefix: '+' },
-  },
-  { text: 'Reading shared documents...', meta: { value: 124, label: 'files' } },
-  { text: 'Indexing customer conversations...', meta: { value: 375, label: 'threads' } },
-  { text: 'Reviewing email threads...', meta: { value: 1842, label: 'messages' } },
-  { text: 'Linking calendar events...', meta: { value: 64, label: 'meetings' } },
-  { text: 'Capturing recurring decisions...' },
-  { text: 'Mapping internal workflows...' },
-  { text: 'Learning how your team works...' },
+  { text: 'Checking connected work surfaces...' },
+  { text: 'Reading invoice and estimate history...' },
+  { text: 'Finding customer promises...' },
+  { text: 'Reviewing email and text replies...' },
+  { text: 'Linking calendar and job dates...' },
+  { text: 'Catching quotes that went quiet...' },
+  { text: 'Checking who still owes money...' },
+  { text: 'Learning when to ask for approval...' },
 ]
 
 const REVEAL_GAP_SECONDS = 1.7
@@ -28,7 +20,6 @@ const PREFILL_COUNT = 5
 
 const listRef = ref(null)
 const visibleItems = ref([])
-const counters = ref({})
 const ready = ref(false)
 
 let sequenceIndex = 0
@@ -48,7 +39,6 @@ async function revealNext() {
   sequenceIndex++
 
   visibleItems.value.push({ id, line })
-  if (line.meta) counters.value[id] = 0
 
   while (visibleItems.value.length > MAX_BUFFERED_ITEMS) {
     visibleItems.value.shift()
@@ -70,14 +60,6 @@ async function revealNext() {
   })
 
   gsap.set(item, { gridTemplateRows: '0fr', autoAlpha: 0, filter: 'blur(0.25em)' })
-  const trailingIcons = item.querySelectorAll('img[data-trailing]')
-  const trailingTexts = item.querySelectorAll('span[data-trailing]')
-  if (trailingIcons.length) {
-    gsap.set(trailingIcons, { autoAlpha: 0, scale: 0.5, filter: 'blur(0.25em)' })
-  }
-  if (trailingTexts.length) {
-    gsap.set(trailingTexts, { autoAlpha: 0, filter: 'blur(0.25em)' })
-  }
 
   item.setAttribute('data-animation', 'focused transitioning')
 
@@ -95,34 +77,6 @@ async function revealNext() {
     duration: 0.5,
     ease: 'power2.out',
   })
-
-  const allTrailing = item.querySelectorAll('[data-trailing]')
-  if (allTrailing.length) {
-    tl.to(
-      allTrailing,
-      {
-        autoAlpha: 1,
-        scale: 1,
-        filter: 'blur(0em)',
-        duration: 0.35,
-        ease: 'power2.out',
-        stagger: 0.12,
-      },
-      '<0.2',
-    )
-  }
-
-  if (line.meta) {
-    tl.to(
-      counters.value,
-      {
-        [id]: line.meta.value,
-        duration: 0.9,
-        ease: 'power2.out',
-      },
-      '<',
-    )
-  }
 }
 
 onMounted(async () => {
@@ -130,7 +84,6 @@ onMounted(async () => {
   for (let i = 0; i < prefill; i++) {
     const line = lines[i]
     visibleItems.value.push({ id: i, line })
-    if (line.meta) counters.value[i] = line.meta.value
   }
   sequenceIndex = prefill
 
@@ -140,15 +93,6 @@ onMounted(async () => {
   items.forEach((item) => {
     gsap.set(item, { gridTemplateRows: '1fr', autoAlpha: 1, filter: 'blur(0em)' })
     item.setAttribute('data-animation', 'finished')
-
-    const trailingIcons = item.querySelectorAll('img[data-trailing]')
-    const trailingTexts = item.querySelectorAll('span[data-trailing]')
-    if (trailingIcons.length) {
-      gsap.set(trailingIcons, { autoAlpha: 1, scale: 1, filter: 'blur(0em)' })
-    }
-    if (trailingTexts.length) {
-      gsap.set(trailingTexts, { autoAlpha: 1, filter: 'blur(0em)' })
-    }
   })
 
   ready.value = true
@@ -190,8 +134,8 @@ onBeforeUnmount(() => {
 
 <template>
   <div
-    class="relative w-full aspect-6/5 rounded-[2em] overflow-hidden bg-muted flex flex-col items-center justify-center text-sm">
-    <div class="w-full max-w-3/4 bg-background rounded-[1em] p-[1em]">
+    class="relative w-full aspect-square lg:aspect-5/4 rounded-[2em] overflow-hidden bg-muted flex flex-col items-center justify-center text-sm">
+    <div class="w-full max-w-3/4 md:max-w-9/10 bg-background rounded-[1em] p-[1em]">
       <div class="w-full overflow-hidden h-[9.75em] flex flex-col justify-end transition-opacity duration-200 mask-t-from-50% mask-t-to-100%" :class="ready ? 'opacity-100' : 'opacity-0'">
         <ul ref="listRef" class="w-full flex flex-col items-stretch justify-end">
           <li v-for="item in visibleItems" :key="item.id" :data-id="item.id" data-line data-animation="idle"
@@ -203,15 +147,6 @@ onBeforeUnmount(() => {
                   <PhCheck class="icon icon-check absolute inset-0 w-full h-full" />
                 </span>
                 <span>{{ item.line.text }}</span>
-                <span v-if="item.line.icons?.length" class="inline-flex items-center gap-[0.25em]">
-                  <img v-for="(icon, j) in item.line.icons" :key="j" :src="icon" data-trailing
-                    alt="" class="trailing-icon w-[1em] h-[1em] shrink-0 p-[0.05em]" />
-                </span>
-                <span v-if="item.line.meta" data-trailing
-                  class="text-foreground/40 tabular-nums"
-                  :class="item.line.meta.prefix ? 'text-[0.75em]' : 'text-[0.875em]'">
-                  {{ (item.line.meta.prefix ?? '') + Math.round(counters[item.id] ?? 0) + (item.line.meta.label ? ' ' + item.line.meta.label : '') }}
-                </span>
               </span>
             </span>
           </li>

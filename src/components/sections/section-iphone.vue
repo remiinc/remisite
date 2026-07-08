@@ -132,10 +132,9 @@ const tabClass = (scenario) =>
         class="mx-auto grid w-full max-w-(--content-width) grid-cols-1 items-center justify-center sm:gap-x-8 md:gap-x-10 lg:gap-x-12 gap-y-2 sm:grid-cols-[minmax(0,1fr)_minmax(50vw,1fr)] lg:grid-cols-[minmax(0,1fr)_minmax(0,24rem)_minmax(0,1fr)]">
 
         <div
-          class="relative z-0 sm:h-full sm:pt-12 lg:py-12 order-3 hidden flex-col gap-2 lg:gap-12 lg:order-0 sm:flex sm:col-start-1 sm:row-start-1 lg:col-start-1 lg:row-start-2 lg:self-center lg:*:first:rotate-5 lg:*:last:-rotate-5">
-          <button v-for="scenario in leftScenarios" :key="scenario.id" type="button"
-            class="iphone-tab iphone-tab-left" data-iphone-tab-left :class="tabClass(scenario)"
-            @click="activeScenarioId = scenario.id">
+          class="relative z-0 sm:h-full sm:pt-12 lg:pl-12 lg:py-12 order-3 hidden flex-col gap-2 lg:gap-12 lg:order-0 sm:flex sm:col-start-1 sm:row-start-1 lg:col-start-1 lg:row-start-2 lg:self-center lg:*:first:rotate-5 lg:*:last:-rotate-5">
+          <button v-for="scenario in leftScenarios" :key="scenario.id" type="button" class="iphone-tab iphone-tab-left"
+            data-iphone-tab-left :class="tabClass(scenario)" @click="activeScenarioId = scenario.id">
             <span class="flex flex-col items-start gap-3">
               <component :is="scenario.icon" class="size-7" weight="regular" aria-hidden="true" />
               <span class="leading-tight tracking-tight text-(--primary-text)">
@@ -149,32 +148,31 @@ const tabClass = (scenario) =>
         </div>
 
         <div
-          class="relative shrink-0 z-10 order-2 mx-auto w-full lg:order-0 sm:col-start-2 sm:row-start-1 sm:row-end-3 lg:col-start-2 lg:row-start-2">
+          class="iphone-mockup relative shrink-0 z-10 order-2 mx-auto w-full lg:order-0 sm:col-start-2 sm:row-start-1 sm:row-end-3 lg:col-start-2 lg:row-start-2">
           <ComponentIphone class="mx-auto w-full" :messages="activeScenario.messages"
             :draft-widget="activeScenario.draftWidget" contact-name="Remi" input-placeholder="iMessage" />
-          <div class="mx-auto mt-5 flex w-full max-w-sm flex-col items-center gap-3 sm:hidden">
-            <div
-              data-mobile-scenario-card
-              class="flex min-h-40 w-full flex-col items-start justify-between rounded-2xl bg-foreground p-5 text-left text-background"
+          <div class="mx-auto mt-16 flex w-full max-w-sm flex-col items-center gap-8 sm:hidden">
+            <div data-mobile-scenario-card
+              class="flex sm:min-h-40 w-full flex-col items-center sm:items-start sm:justify-between rounded-2xl sm:bg-foreground sm:p-5 text-center sm:text-left text-foreground sm:text-background"
               aria-live="polite">
-              <span class="flex flex-col items-start gap-3">
+              <span class="flex flex-col items-center sm:items-start gap-3">
                 <component :is="activeScenario.icon" class="size-7" weight="regular" aria-hidden="true" />
                 <span class="text-xl leading-tight tracking-tight">
                   {{ activeScenario.title }}
                 </span>
               </span>
-              <span class="text-sm leading-tight opacity-60">
+              <span class="text-lg sm:text-sm leading-tight opacity-60">
                 {{ activeScenario.description }}
               </span>
             </div>
             <div data-mobile-scenario-controls class="flex items-center justify-center gap-3">
               <button type="button"
-                class="flex size-12 items-center justify-center rounded-full bg-foreground/50 text-background backdrop-blur-sm transition active:scale-95"
+                class="flex px-3 py-2 items-center justify-center rounded-full bg-foreground/30 hover:bg-foreground/50 text-background backdrop-blur-sm transition active:scale-95"
                 aria-label="Previous message scenario" @click="setScenarioByOffset(-1)">
                 <PhCaretLeft class="size-5" weight="bold" aria-hidden="true" />
               </button>
               <button type="button"
-                class="flex size-12 items-center justify-center rounded-full bg-foreground/50 text-background backdrop-blur-sm transition active:scale-95"
+                class="flex px-3 py-2 items-center justify-center rounded-full bg-foreground/30 hover:bg-foreground/50 text-background backdrop-blur-sm transition active:scale-95"
                 aria-label="Next message scenario" @click="setScenarioByOffset(1)">
                 <PhCaretRight class="size-5" weight="bold" aria-hidden="true" />
               </button>
@@ -183,7 +181,7 @@ const tabClass = (scenario) =>
         </div>
 
         <div
-          class="relative z-0 sm:h-full sm:pb-12 lg:py-12 order-4 hidden flex-col gap-2 lg:gap-12 lg:order-0 sm:flex sm:col-start-1 sm:row-start-2 lg:col-start-3 lg:row-start-2 lg:self-center lg:*:first:-rotate-5 lg:*:last:rotate-5">
+          class="relative z-0 sm:h-full sm:pb-12 lg:pr-12 lg:py-12 order-4 hidden flex-col gap-2 lg:gap-12 lg:order-0 sm:flex sm:col-start-1 sm:row-start-2 lg:col-start-3 lg:row-start-2 lg:self-center lg:*:first:-rotate-5 lg:*:last:rotate-5">
           <button v-for="scenario in rightScenarios" :key="scenario.id" type="button"
             class="iphone-tab iphone-tab-right" data-iphone-tab-right :class="tabClass(scenario)"
             @click="activeScenarioId = scenario.id">
@@ -247,9 +245,9 @@ const tabClass = (scenario) =>
     .iphone-tab {
       animation-duration: 1ms;
       animation-fill-mode: both;
-      animation-timing-function: linear(0, 0.029 1.3%, 0.119 2.8%, 0.659 8.7%, 0.871 11.6%, 1.009 14.6%, 1.052 16.2%, 1.078 17.9%, 1.088 19.7%, 1.085 21.7%, 1.014 31.4%, 0.993 38%, 1.001 57.6%, 1);
+      animation-timing-function: linear(0, 0.024 1%, 0.099 2.2%, 0.591 7.4%, 0.796 10.2%, 0.935 13.3%, 0.981 15.1%, 1.009 17%, 1.022 18.9%, 1.025 21.1%, 1 37.4%, 1);
       animation-timeline: --iphone-section-scroll;
-      animation-range: cover 20% cover 70%;
+      animation-range: cover 20% cover 75%;
     }
 
     .iphone-tab-left {
@@ -259,6 +257,23 @@ const tabClass = (scenario) =>
     .iphone-tab-right {
       animation-name: iphone-tab-right-radiate;
     }
+
+    .iphone-mockup {
+      animation-name: iphone-mockup-pushup;
+      animation-timeline: --iphone-section-scroll;
+      animation-range: cover 0% cover 100%;
+      animation-timing-function: linear;
+    }
+  }
+}
+
+@keyframes iphone-mockup-pushup {
+  0% {
+    transform: translateY(4cqw);
+  }
+
+  100% {
+    transform: translateY(-4cqw);
   }
 }
 

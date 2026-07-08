@@ -1,10 +1,4 @@
 <script setup>
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { onBeforeUnmount, onMounted, ref } from 'vue'
-
-gsap.registerPlugin(ScrollTrigger)
-
 defineProps({
   videoSrc: {
     type: String,
@@ -15,58 +9,12 @@ defineProps({
     default: '',
   },
 })
-
-const heroSectionRef = ref(null)
-const heroVideoRef = ref(null)
-
-let heroIntroContext = null
-
-onMounted(() => {
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
-  if (prefersReducedMotion) {
-    gsap.set(heroVideoRef.value, { autoAlpha: 1 })
-    return
-  }
-
-  heroIntroContext = gsap.context(() => {
-    gsap.fromTo(heroVideoRef.value, {
-      autoAlpha: 0,
-    }, {
-      autoAlpha: 1,
-      duration: 0.9,
-    })
-
-    gsap.fromTo(
-      heroVideoRef.value,
-      { '--video-inset': '0em', '--video-radius': '0.875em' },
-      {
-        '--video-inset': '2em',
-        '--video-radius': '2em',
-        ease: 'none',
-        scrollTrigger: {
-          trigger: heroSectionRef.value,
-          start: 'top top',
-          end: '+=160',
-          scrub: 0.75,
-          invalidateOnRefresh: true,
-        },
-      },
-    )
-  }, heroSectionRef.value)
-})
-
-onBeforeUnmount(() => {
-  if (heroIntroContext) {
-    heroIntroContext.revert()
-  }
-})
 </script>
 
 <template>
-  <section ref="heroSectionRef" class="w-full min-h-[640px] h-(--hero-height) p-(--hero-padding) grid grid-rows-1 grid-cols-1">
-    <div ref="heroVideoRef"
-      class="hero-video relative col-start-1 col-end-1 row-start-1 row-end-1 overflow-hidden opacity-0 w-full h-full"
+  <section class="hero-video-section w-full min-h-[640px] h-(--hero-height) p-(--hero-padding) grid grid-rows-1 grid-cols-1">
+    <div
+      class="hero-video relative col-start-1 col-end-1 row-start-1 row-end-1 overflow-hidden w-full h-full"
       aria-hidden="true">
       <video v-if="videoSrc" class="absolute inset-0 h-full w-full object-cover" :src="videoSrc"
         :poster="videoPoster || undefined" autoplay muted loop playsinline preload="auto" />
@@ -104,10 +52,52 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .hero-video {
-  --video-inset: 0em;
-  --video-radius: 0.875em;
-  clip-path: inset(var(--video-inset) round var(--video-radius));
+  --video-inset-end: 1em;
+  --video-radius-end: 2em;
+  opacity: 0;
+  animation: hero-video-appear 0.9s ease both;
+  clip-path: inset(0em round 0.875em);
   will-change: clip-path, opacity;
+}
+
+@media (min-width: 640px) {
+  .hero-video {
+    --video-inset-end: 2em;
+  }
+}
+
+@supports (animation-timeline: scroll()) {
+  .hero-video {
+    animation:
+      hero-video-appear 0.9s ease both,
+      hero-video-frame linear both;
+    animation-timeline: auto, scroll(root block);
+    animation-range: normal, 0px 160px;
+  }
+}
+
+@keyframes hero-video-appear {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hero-video-frame {
+  from {
+    clip-path: inset(0em round 0.875em);
+  }
+
+  to {
+    clip-path: inset(var(--video-inset-end) round var(--video-radius-end));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-video {
+    clip-path: inset(var(--video-inset-end) round var(--video-radius-end));
+    opacity: 1;
+    animation: none;
+  }
 }
 
 .hero-video video {

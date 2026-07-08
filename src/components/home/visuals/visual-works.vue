@@ -4,13 +4,13 @@ import { gsap } from 'gsap'
 import { nextTick, onBeforeUnmount, onMounted, reactive, ref } from 'vue'
 
 const examples = [
-  'Schedule a follow-up with the design team for Friday',
-  'Summarize the Q3 sales pipeline',
-  'Draft a kickoff doc for the new mobile project',
-  'Find the latest contract from Acme Corp',
-  'Remind me about the planning meeting tomorrow',
-  "Pull together the metrics from last week's launch",
-  'Send a status update to the leadership channel',
+  'Draft a payment reminder for Henderson',
+  'Follow up on the Wilson estimate',
+  'Find the text where Dana approved the fixtures',
+  'Remind me to send the final invoice tonight',
+  'Pull the receipt for the extra materials',
+  'Prepare the quote reply, but do not send',
+  'Check which clients still owe money',
 ]
 
 const ITEM_H_EM = 3.5
@@ -132,8 +132,8 @@ onBeforeUnmount(() => {
 
 <template>
   <div
-    class="relative w-full aspect-6/5 rounded-[2em] overflow-hidden bg-muted flex flex-col items-center justify-center text-sm">
-    <div class="relative w-full max-w-3/4 h-[10.5em] overflow-hidden px-[0.25em]"
+    class="relative w-full aspect-square lg:aspect-5/4 rounded-[2em] overflow-hidden bg-muted flex flex-col items-center justify-center text-sm">
+    <div class="relative w-full max-w-3/4 md:max-w-9/10 h-[10.5em] overflow-hidden px-[0.25em]"
       style="mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);">
       <ul ref="listRef" class="absolute inset-x-[0.25em] top-0">
         <li v-for="item in visibleItems" :key="item.id"
@@ -141,9 +141,9 @@ onBeforeUnmount(() => {
           class="h-[3.5em] flex items-center transition-opacity duration-300"
           :class="item.id === activeId ? 'opacity-100' : 'opacity-40'">
           <div
-            class="w-full bg-background rounded-full p-[0.25em] flex items-stretch justify-start shadow-[0_0_0_1px_color-mix(in_oklch,var(--color-foreground)_5%,transparent)]">
-            <div class="flex-1 overflow-hidden flex items-stretch justify-start px-[1em]">
-              <div class="flex items-center justify-start whitespace-nowrap shrink-0 will-change-transform"
+            class="w-full min-w-0 bg-background rounded-full p-[0.25em] flex items-stretch justify-start overflow-hidden shadow-[0_0_0_1px_color-mix(in_oklch,var(--color-foreground)_5%,transparent)]">
+            <div class="min-w-0 flex-1 overflow-hidden flex items-stretch justify-start px-[1em]">
+              <div class="inline-flex w-max max-w-none items-center justify-start whitespace-nowrap will-change-transform"
                 :data-text-id="item.id">
                 <span>{{ item.text.slice(0, Math.round(counts[item.id] ?? 0)) }}</span>
                 <span v-if="item.id === activeId"
@@ -151,7 +151,7 @@ onBeforeUnmount(() => {
               </div>
             </div>
             <button type="button"
-              class="w-[2.5em] h-[2.5em] rounded-full bg-foreground/5 text-foreground/50 flex items-center justify-center shrink-0">
+              class="w-[2.5em] h-[2.5em] rounded-full bg-blue-400 text-blue-50 flex items-center justify-center shrink-0">
               <PhArrowUp weight="bold" />
             </button>
           </div>

@@ -19,42 +19,42 @@ const imageTiles = [
   {
     src: '/images/intro-canvas/img-0001.webp',
     alt: 'Remi AI for construction businesses',
-    task: tasks[1],
+    task: { label: 'Chases overdue invoices', icon: PhInvoice },
   },
   {
     src: '/images/intro-canvas/img-0003.webp',
     alt: 'Remi AI for meeting prep',
-    task: tasks[0],
+    task: { label: 'Writes meeting follow-ups', icon: PhChatsCircle },
   },
   {
     src: '/images/intro-canvas/img-0005.webp',
     alt: 'Remi AI for marketing research',
-    task: tasks[3],
+    task: { label: 'Finds warm leads', icon: PhUserCirclePlus },
   },
   {
     src: '/images/intro-canvas/img-0004.webp',
     alt: 'Remi AI for presentation research',
-    task: tasks[0],
+    task: { label: 'Preps project briefs', icon: PhBookOpen },
   },
   {
     src: '/images/intro-canvas/img-0002.webp',
     alt: 'Remi AI for fashion designers',
-    task: tasks[4],
+    task: { label: 'Remembers approvals', icon: PhListChecks },
   },
   {
     src: '/images/intro-canvas/img-0006.webp',
     alt: 'Remi AI for sales teams',
-    task: tasks[3],
+    task: { label: 'Drafts sales replies', icon: PhChatsCircle },
   },
   {
     src: '/images/intro-canvas/img-0007.webp',
     alt: 'Remi AI for small businesses',
-    task: tasks[4],
+    task: { label: 'Tracks open loops', icon: PhListChecks },
   },
   {
     src: '/images/intro-canvas/img-0008.webp',
     alt: 'Remi AI for accounting teams',
-    task: tasks[2],
+    task: { label: 'Files receipts', icon: PhBookOpen },
   },
 ]
 </script>
@@ -64,7 +64,7 @@ const imageTiles = [
     <div aria-hidden="true"
       class="[background-image:var(--gradient-fade-top)] w-full h-1/8 absolute top-0 left-0 z-1 pointer-events-none" />
     <div aria-hidden="true"
-      class="[background-image:var(--gradient-fade-bottom)] w-full h-1/8 absolute bottom-0 left-0 z-1 pointer-events-none" />
+      class="[background-image:var(--gradient-fade-bottom)] w-full h-1/24 absolute bottom-0 left-0 z-1 pointer-events-none" />
     <div class="pinned-headline-spacer" aria-hidden="true" />
 
     <div class="grid grid-cols-1 grid-rows-1 h-[350vh]">
@@ -213,7 +213,7 @@ const imageTiles = [
 @property --tile-index {
   syntax: '<integer>';
   initial-value: 0;
-  inherits: false;
+  inherits: true;
 }
 
 .image-tile {
@@ -223,15 +223,14 @@ const imageTiles = [
   --label-translate: -50% 0.7rem;
   --tile-origin-x: 0cqw;
   --tile-origin-y: 0cqw;
+  --tile-collapse-x: 0cqw;
+  --tile-collapse-y: 0cqw;
   top: 50%;
   left: 50%;
   translate: calc(-50% + var(--tile-origin-x)) calc(-50% + var(--tile-origin-y));
   transform-origin: center center;
-  will-change: rotate, translate;
-}
-
-.image-tile-visual {
-  will-change: translate;
+  transform: translateZ(0);
+  will-change: rotate, translate, transform;
 }
 
 .image-tile-card {
@@ -247,6 +246,8 @@ const imageTiles = [
   --label-translate: -50% 0.7rem;
   --tile-origin-x: 0cqw;
   --tile-origin-y: -50cqw;
+  --tile-collapse-x: 0cqw;
+  --tile-collapse-y: 0cqw;
 }
 
 .image-grid> :nth-child(2) {
@@ -256,6 +257,8 @@ const imageTiles = [
   --label-translate: -85% 0.7rem;
   --tile-origin-x: 40cqw;
   --tile-origin-y: -42.5cqw;
+  --tile-collapse-x: 2cqw;
+  --tile-collapse-y: -2.125cqw;
 }
 
 .image-grid> :nth-child(3) {
@@ -265,6 +268,8 @@ const imageTiles = [
   --label-translate: 0.7rem -50%;
   --tile-origin-x: 50cqw;
   --tile-origin-y: 0cqw;
+  --tile-collapse-x: 2.5cqw;
+  --tile-collapse-y: 0cqw;
 }
 
 .image-grid> :nth-child(4) {
@@ -274,38 +279,52 @@ const imageTiles = [
   --label-translate: -85% -2.4rem;
   --tile-origin-x: 40cqw;
   --tile-origin-y: 42.5cqw;
+  --tile-collapse-x: 2cqw;
+  --tile-collapse-y: 2.125cqw;
 }
 
 .image-grid> :nth-child(5) {
+  --tile-index: 4;
   --label-left: 50%;
   --label-top: 0%;
   --label-translate: -50% -2.4rem;
   --tile-origin-x: 0cqw;
   --tile-origin-y: 50cqw;
+  --tile-collapse-x: 0cqw;
+  --tile-collapse-y: 2.5cqw;
 }
 
 .image-grid> :nth-child(6) {
+  --tile-index: 5;
   --label-left: 0%;
   --label-top: 0%;
   --label-translate: -15% -2.4rem;
   --tile-origin-x: -40cqw;
   --tile-origin-y: 42.5cqw;
+  --tile-collapse-x: -2cqw;
+  --tile-collapse-y: 2.125cqw;
 }
 
 .image-grid> :nth-child(7) {
+  --tile-index: 6;
   --label-left: 0%;
   --label-top: 50%;
   --label-translate: calc(-100% - 0.7rem) -50%;
   --tile-origin-x: -50cqw;
   --tile-origin-y: 0cqw;
+  --tile-collapse-x: -2.5cqw;
+  --tile-collapse-y: 0cqw;
 }
 
 .image-grid> :nth-child(8) {
+  --tile-index: 7;
   --label-left: 0%;
   --label-top: 100%;
   --label-translate: -15% 0.7rem;
   --tile-origin-x: -40cqw;
   --tile-origin-y: -42.5cqw;
+  --tile-collapse-x: -2cqw;
+  --tile-collapse-y: -2.125cqw;
 }
 
 @supports (animation-timeline: view()) {
@@ -318,43 +337,42 @@ const imageTiles = [
   .image-tile {
     animation:
       image-tile-counter-rotate linear both,
-      image-tile-collapse linear both;
-    animation-timeline: --pinned-headline-scroll, --pinned-headline-scroll;
+      image-tile-collapse linear both,
+      image-tile-pushdown linear both;
+    animation-timeline: --pinned-headline-scroll, --pinned-headline-scroll, --pinned-headline-scroll;
     animation-range:
       cover 0% cover 100%,
-      cover 0% cover 100%;
-  }
-
-  .image-tile-visual {
-    animation: image-tile-settle-y linear both;
-    animation-timeline: --pinned-headline-scroll;
-    animation-range: cover 78% cover 100%;
+      cover 0% cover 100%,
+      cover 78% cover 100%;
+    animation-composition: replace, replace, add;
   }
 
   .image-tile-card {
     animation: image-tile-stagger linear both;
     animation-timeline: --pinned-headline-scroll;
-    animation-range: cover calc(var(--tile-index) * 10%) cover calc(var(--tile-index) * 10% + 70%);
+    animation-range: cover var(--tile-index) cover calc(var(--tile-index) * 10% + 70%);
   }
 }
 
 @keyframes image-grid-rotate {
-  from {
+  0% {
     rotate: 0deg;
   }
 
-  to {
-    rotate: -360deg;
+  78%,
+  100% {
+    rotate: -280.8deg;
   }
 }
 
 @keyframes image-tile-counter-rotate {
-  from {
+  0% {
     rotate: 0deg;
   }
 
-  to {
-    rotate: 360deg;
+  78%,
+  100% {
+    rotate: 280.8deg;
   }
 }
 
@@ -384,17 +402,17 @@ const imageTiles = [
 
   78%,
   100% {
-    translate: -50% -50%;
+    translate: calc(-50% + var(--tile-collapse-x)) calc(-50% + var(--tile-collapse-y));
   }
 }
 
-@keyframes image-tile-settle-y {
+@keyframes image-tile-pushdown {
   from {
-    translate: 0 0;
+    transform: translateY(0) scale(1);
   }
 
   to {
-    translate: 0 10vh;
+    transform: translateY(calc(calc(var(--tile-index) + 1 * 1.5) * 20cqw)) scale(calc(calc(var(--tile-index) + 1 * 1.5) * 0.1));
   }
 }
 
@@ -535,7 +553,6 @@ const imageTiles = [
 
   .image-grid,
   .image-tile,
-  .image-tile-visual,
   .image-tile-label,
   .image-tile-card {
     animation: none;
