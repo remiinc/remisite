@@ -16,7 +16,7 @@ const examples = [
 const ITEM_H_EM = 3.5
 const HOLD_SEC = 1.2
 const TYPE_PER_CHAR_SEC = 0.03
-const SCROLL_DURATION = 0.6
+const SCROLL_DURATION = 0.9
 const PREFILL_COUNT = 2
 const MAX_BUFFER = 8
 
@@ -31,15 +31,6 @@ let scheduleTimer = null
 let cancelled = false
 
 const targetYForId = (id) => (1 - id) * ITEM_H_EM
-
-const keepEndVisible = (id) => {
-  const el = listRef.value?.querySelector(`[data-text-id="${id}"]`)
-  if (!el) return
-  const parent = el.parentElement
-  if (!parent) return
-  const overflow = el.scrollWidth - parent.clientWidth
-  el.style.transform = overflow > 0 ? `translateX(${-overflow}px)` : 'translateX(0)'
-}
 
 async function revealNext() {
   if (cancelled || !listRef.value) return
@@ -78,7 +69,6 @@ async function revealNext() {
       [id]: text.length,
       duration: Math.max(0.6, text.length * TYPE_PER_CHAR_SEC),
       ease: 'none',
-      onUpdate: () => keepEndVisible(id),
       onComplete: resolve,
     })
   })
@@ -142,9 +132,8 @@ onBeforeUnmount(() => {
           :class="item.id === activeId ? 'opacity-100' : 'opacity-40'">
           <div
             class="w-full min-w-0 bg-background rounded-full p-[0.25em] flex items-stretch justify-start overflow-hidden shadow-[0_0_0_1px_color-mix(in_oklch,var(--color-foreground)_5%,transparent)]">
-            <div class="min-w-0 flex-1 overflow-hidden flex items-stretch justify-start px-[1em]">
-              <div class="inline-flex w-max max-w-none items-center justify-start whitespace-nowrap will-change-transform"
-                :data-text-id="item.id">
+            <div class="min-w-0 flex-1 overflow-hidden flex items-stretch justify-end pl-[1em] pr-[0.75em]">
+              <div class="inline-flex min-w-full w-max max-w-none shrink-0 items-center justify-start whitespace-nowrap">
                 <span>{{ item.text.slice(0, Math.round(counts[item.id] ?? 0)) }}</span>
                 <span v-if="item.id === activeId"
                   class="cursor inline-block w-[0.1em] h-[1em] bg-blue-500 ml-[0.15em]"></span>
