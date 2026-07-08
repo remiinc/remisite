@@ -52,18 +52,10 @@ defineProps({
 
 <style scoped>
 .hero-video {
-  --video-inset-end: 1em;
-  --video-radius-end: 2em;
   opacity: 0;
   animation: hero-video-appear 0.9s ease both;
   clip-path: inset(0em round 0.875em);
   will-change: clip-path, opacity;
-}
-
-@media (min-width: 640px) {
-  .hero-video {
-    --video-inset-end: 2em;
-  }
 }
 
 @supports (animation-timeline: scroll()) {
@@ -88,15 +80,33 @@ defineProps({
   }
 
   to {
-    clip-path: inset(var(--video-inset-end) round var(--video-radius-end));
+    clip-path: inset(1em round 2em);
+  }
+}
+
+@media (min-width: 640px) {
+  @keyframes hero-video-frame {
+    from {
+      clip-path: inset(0em round 0.875em);
+    }
+
+    to {
+      clip-path: inset(2em round 2em);
+    }
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .hero-video {
-    clip-path: inset(var(--video-inset-end) round var(--video-radius-end));
+    clip-path: inset(1em round 2em);
     opacity: 1;
     animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) and (min-width: 640px) {
+  .hero-video {
+    clip-path: inset(2em round 2em);
   }
 }
 
