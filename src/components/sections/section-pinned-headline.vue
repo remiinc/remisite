@@ -14,51 +14,89 @@ const tasks = [
   { label: 'Follows up with leads', icon: PhUserCirclePlus },
   { label: 'Tracks your commitments', icon: PhListChecks },
 ]
+
+const imageTiles = [
+  {
+    src: '/images/intro-canvas/img-0001.webp',
+    alt: 'Remi AI for construction businesses',
+    task: tasks[1],
+  },
+  {
+    src: '/images/intro-canvas/img-0003.webp',
+    alt: 'Remi AI for meeting prep',
+    task: tasks[0],
+  },
+  {
+    src: '/images/intro-canvas/img-0005.webp',
+    alt: 'Remi AI for marketing research',
+    task: tasks[3],
+  },
+  {
+    src: '/images/intro-canvas/img-0004.webp',
+    alt: 'Remi AI for presentation research',
+    task: tasks[0],
+  },
+  {
+    src: '/images/intro-canvas/img-0002.webp',
+    alt: 'Remi AI for fashion designers',
+    task: tasks[4],
+  },
+  {
+    src: '/images/intro-canvas/img-0006.webp',
+    alt: 'Remi AI for sales teams',
+    task: tasks[3],
+  },
+  {
+    src: '/images/intro-canvas/img-0007.webp',
+    alt: 'Remi AI for small businesses',
+    task: tasks[4],
+  },
+  {
+    src: '/images/intro-canvas/img-0008.webp',
+    alt: 'Remi AI for accounting teams',
+    task: tasks[2],
+  },
+]
 </script>
 
 <template>
   <section class="pinned-headline-wrapper relative w-full bg-background overflow-clip">
-    <div aria-hidden="true" class="[background-image:var(--gradient-fade-top)] w-full h-1/8 absolute top-0 left-0 z-1 pointer-events-none" />
-    <div aria-hidden="true" class="[background-image:var(--gradient-fade-bottom)] w-full h-1/8 absolute bottom-0 left-0 z-1 pointer-events-none" />
+    <div aria-hidden="true"
+      class="[background-image:var(--gradient-fade-top)] w-full h-1/8 absolute top-0 left-0 z-1 pointer-events-none" />
+    <div aria-hidden="true"
+      class="[background-image:var(--gradient-fade-bottom)] w-full h-1/8 absolute bottom-0 left-0 z-1 pointer-events-none" />
     <div class="pinned-headline-spacer" aria-hidden="true" />
 
-    <div class="grid grid-cols-1 grid-rows-1 h-[275vh]">
+    <div class="grid grid-cols-1 grid-rows-1 h-[350vh]">
       <!-- Images sticky (z-0, below the gradient) -->
-      <div class="pinned-headline-sticky sticky top-1/2 -translate-y-1/2 z-0 col-start-1 row-start-1 self-start flex items-center justify-center px-6 py-20">
-        <div class="pinned-headline relative w-full mx-auto min-h-[clamp(32rem,60vh,42rem)] grid grid-cols-1 grid-rows-1">
-          <ul aria-hidden="true" class="image-grid absolute col-start-1 row-start-1 col-end-1 row-end-1 w-full max-w-7xl min-w-xl justify-self-center self-center h-auto aspect-square list-none m-0 p-0 *:bg-foreground/6">
-            <li class="image-tile absolute block w-1/5 aspect-3/4 top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
-              <img src="/images/intro-canvas/img-0001.webp" alt="Remi AI for construction businesses" class="w-full h-full object-cover" />
-            </li>
-            <li class="image-tile absolute block w-1/5 aspect-4/3 top-0 right-0">
-              <img src="/images/intro-canvas/img-0003.webp" alt="Remi AI for meeting prep" class="w-full h-full object-cover" />
-            </li>
-            <li class="image-tile absolute block w-1/5 aspect-3/4 top-1/2 right-0 translate-x-1/2 -translate-y-1/2">
-              <img src="/images/intro-canvas/img-0005.webp" alt="Remi AI for marketing research" class="w-full h-full object-cover" />
-            </li>
-            <li class="image-tile absolute block w-1/5 aspect-4/3 bottom-0 right-0">
-              <img src="/images/intro-canvas/img-0004.webp" alt="Remi AI for presentation research" class="w-full h-full object-cover" />
-            </li>
-            <li class="image-tile absolute block w-1/5 aspect-3/4 bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2">
-              <img src="/images/intro-canvas/img-0002.webp" alt="Remi AI for fashion designers" class="w-full h-full object-cover" />
-            </li>
-            <li class="image-tile absolute block w-1/5 aspect-4/3 bottom-0 left-0">
-              <img src="/images/intro-canvas/img-0006.webp" alt="Remi AI for sales teams" class="w-full h-full object-cover" />
-            </li>
-            <li class="image-tile absolute block w-1/5 aspect-3/4 top-1/2 left-0 -translate-y-1/2 -translate-x-1/2">
-              <img src="/images/intro-canvas/img-0007.webp" alt="Remi AI for small businesses" class="w-full h-full object-cover" />
-            </li>
-            <li class="image-tile absolute block w-1/5 aspect-4/3 top-0 left-0">
-              <img src="/images/intro-canvas/img-0008.webp" alt="Remi AI for accounting teams" class="w-full h-full object-cover" />
+      <div
+        class="pinned-headline-sticky pinned-headline-images-sticky sticky top-1/2 -translate-y-1/2 z-0 col-start-1 row-start-1 self-start flex items-center justify-center px-6 py-20">
+        <div
+          class="pinned-headline relative w-full mx-auto min-h-[clamp(32rem,60vh,42rem)] grid grid-cols-1 grid-rows-1">
+          <ul aria-hidden="true"
+            class="image-grid absolute col-start-1 row-start-1 col-end-1 row-end-1 w-full max-w-7xl min-w-xl justify-self-center self-center h-auto aspect-square list-none m-0 p-0">
+            <li v-for="(tile, index) in imageTiles" :key="tile.src" class="image-tile absolute w-1/5 block"
+              :class="index % 2 === 0 ? 'aspect-3/4' : 'aspect-4/3'">
+              <div class="image-tile-card absolute w-full h-full bg-foreground/6">
+                <img :src="tile.src" :alt="tile.alt" class="w-full h-full object-cover" />
+              </div>
+              <div
+                class="image-tile-label absolute top-1/2 -translate-y-1/2 right-1/2 translate-x-1/2 px-2 py-1 bg-foreground/40 backdrop-blur-sm text-background flex items-center gap-2 text-sm rounded-full font-medium">
+                <component :is="tile.task.icon" class="size-[0.925em] shrink-0" weight="regular" aria-hidden="true" />
+                <span class="whitespace-nowrap">{{ tile.task.label }}</span>
+              </div>
             </li>
           </ul>
         </div>
       </div>
 
       <!-- Text sticky (z-10, above the gradient) -->
-      <div class="pinned-headline-sticky sticky top-1/2 -translate-y-1/2 z-10 col-start-1 row-start-1 self-start flex items-center justify-center px-6 py-20">
-        <div class="pinned-headline relative w-full mx-auto min-h-[clamp(34rem,60vh,42rem)] grid grid-cols-1 grid-rows-1">
-          <div class="pinned-headline-content relative z-1 w-full max-w-6xl mx-auto flex flex-col items-center justify-center text-center gap-4 col-start-1 row-start-1 col-end-1 row-end-1">
+      <div
+        class="pinned-headline-sticky pinned-headline-text-sticky sticky top-1/2 -translate-y-1/2 z-10 col-start-1 row-start-1 self-start flex items-center justify-center px-6 py-20">
+        <div
+          class="pinned-headline relative w-full mx-auto min-h-[clamp(34rem,60vh,42rem)] grid grid-cols-1 grid-rows-1">
+          <div
+            class="pinned-headline-content relative z-1 w-full max-w-6xl mx-auto flex flex-col items-center justify-center text-center gap-4 col-start-1 row-start-1 col-end-1 row-end-1">
             <p class="relative z-1 block text-base">
               Meet Remi
             </p>
@@ -94,64 +132,80 @@ const tasks = [
 
 .pinned-headline-content {
   transform-origin: center center;
-  will-change: transform, scale, translate;
+  will-change: opacity, transform;
   backface-visibility: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
 @supports (animation-timeline: view()) {
   .pinned-headline-content {
-    animation: pinned-headline-scale linear both;
+    animation: pinned-headline-content-motion linear both;
     animation-timeline: --pinned-headline-scroll;
     animation-range: cover 0% cover 100%;
   }
 }
 
 @supports (animation-timeline: view()) {
-  .pinned-headline-sticky {
+  .pinned-headline-text-sticky {
     animation: pin-tail linear both;
     animation-timeline: --pinned-headline-scroll;
     animation-range: cover 0% cover 100%;
   }
+
 }
 
 @keyframes pin-tail {
-  0%, 70% {
+
+  0%,
+  70% {
     translate: 0 -50%;
   }
+
   100% {
     translate: 0 0%;
   }
 }
 
-@keyframes pinned-headline-scale {
+@keyframes pinned-headline-content-motion {
   0% {
+    opacity: 1;
     scale: 0.92;
     translate: 0 1rem;
   }
 
   25% {
+    opacity: 1;
     scale: 0.92;
     translate: 0 1rem;
   }
 
   40% {
+    opacity: 1;
     scale: 1;
     translate: 0 0;
   }
 
-  70% {
+  64% {
+    opacity: 1;
     scale: 1.045;
     translate: 0 0;
   }
 
+  70% {
+    opacity: 0;
+    scale: 0.92;
+    translate: 0 -0.35rem;
+  }
+
   100% {
-    scale: 1.07;
+    opacity: 0;
+    scale: 0.92;
     translate: 0 -0.75rem;
   }
 }
 
 .image-grid {
+  container-type: inline-size;
   transform-origin: center center;
   will-change: rotate;
 }
@@ -164,22 +218,94 @@ const tasks = [
 
 .image-tile {
   --tile-index: 0;
+  --label-left: 50%;
+  --label-top: 100%;
+  --label-translate: -50% 0.7rem;
+  --tile-origin-x: 0cqw;
+  --tile-origin-y: 0cqw;
+  top: 50%;
+  left: 50%;
+  translate: calc(-50% + var(--tile-origin-x)) calc(-50% + var(--tile-origin-y));
   transform-origin: center center;
-  will-change: rotate, clip-path, opacity;
-  clip-path: inset(0% round 1em);
+  will-change: rotate, translate;
 }
 
-.image-grid > :nth-child(1) {
+.image-tile-visual {
+  will-change: translate;
+}
+
+.image-tile-card {
+  clip-path: inset(0% round 1em);
+  overflow: hidden;
+  will-change: clip-path, opacity;
+}
+
+.image-grid> :nth-child(1) {
   --tile-index: 0;
+  --label-left: 50%;
+  --label-top: 100%;
+  --label-translate: -50% 0.7rem;
+  --tile-origin-x: 0cqw;
+  --tile-origin-y: -50cqw;
 }
-.image-grid > :nth-child(2) {
+
+.image-grid> :nth-child(2) {
   --tile-index: 1;
+  --label-left: 100%;
+  --label-top: 100%;
+  --label-translate: -85% 0.7rem;
+  --tile-origin-x: 40cqw;
+  --tile-origin-y: -42.5cqw;
 }
-.image-grid > :nth-child(3) {
+
+.image-grid> :nth-child(3) {
   --tile-index: 2;
+  --label-left: 100%;
+  --label-top: 50%;
+  --label-translate: 0.7rem -50%;
+  --tile-origin-x: 50cqw;
+  --tile-origin-y: 0cqw;
 }
-.image-grid > :nth-child(4) {
+
+.image-grid> :nth-child(4) {
   --tile-index: 3;
+  --label-left: 100%;
+  --label-top: 0%;
+  --label-translate: -85% -2.4rem;
+  --tile-origin-x: 40cqw;
+  --tile-origin-y: 42.5cqw;
+}
+
+.image-grid> :nth-child(5) {
+  --label-left: 50%;
+  --label-top: 0%;
+  --label-translate: -50% -2.4rem;
+  --tile-origin-x: 0cqw;
+  --tile-origin-y: 50cqw;
+}
+
+.image-grid> :nth-child(6) {
+  --label-left: 0%;
+  --label-top: 0%;
+  --label-translate: -15% -2.4rem;
+  --tile-origin-x: -40cqw;
+  --tile-origin-y: 42.5cqw;
+}
+
+.image-grid> :nth-child(7) {
+  --label-left: 0%;
+  --label-top: 50%;
+  --label-translate: calc(-100% - 0.7rem) -50%;
+  --tile-origin-x: -50cqw;
+  --tile-origin-y: 0cqw;
+}
+
+.image-grid> :nth-child(8) {
+  --label-left: 0%;
+  --label-top: 100%;
+  --label-translate: -15% 0.7rem;
+  --tile-origin-x: -40cqw;
+  --tile-origin-y: -42.5cqw;
 }
 
 @supports (animation-timeline: view()) {
@@ -192,11 +318,23 @@ const tasks = [
   .image-tile {
     animation:
       image-tile-counter-rotate linear both,
-      image-tile-stagger linear both;
+      image-tile-collapse linear both;
     animation-timeline: --pinned-headline-scroll, --pinned-headline-scroll;
     animation-range:
       cover 0% cover 100%,
-      cover calc(var(--tile-index) * 10%) cover calc(var(--tile-index) * 10% + 70%);
+      cover 0% cover 100%;
+  }
+
+  .image-tile-visual {
+    animation: image-tile-settle-y linear both;
+    animation-timeline: --pinned-headline-scroll;
+    animation-range: cover 78% cover 100%;
+  }
+
+  .image-tile-card {
+    animation: image-tile-stagger linear both;
+    animation-timeline: --pinned-headline-scroll;
+    animation-range: cover calc(var(--tile-index) * 10%) cover calc(var(--tile-index) * 10% + 70%);
   }
 }
 
@@ -204,6 +342,7 @@ const tasks = [
   from {
     rotate: 0deg;
   }
+
   to {
     rotate: -360deg;
   }
@@ -213,6 +352,7 @@ const tasks = [
   from {
     rotate: 0deg;
   }
+
   to {
     rotate: 360deg;
   }
@@ -223,13 +363,59 @@ const tasks = [
     opacity: 0;
     clip-path: inset(20% round 0.5em);
   }
+
   29% {
     opacity: 1;
     clip-path: inset(0em round 1em);
   }
+
   100% {
     opacity: 1;
     clip-path: inset(0em round 1em);
+  }
+}
+
+@keyframes image-tile-collapse {
+
+  0%,
+  68% {
+    translate: calc(-50% + var(--tile-origin-x)) calc(-50% + var(--tile-origin-y));
+  }
+
+  78%,
+  100% {
+    translate: -50% -50%;
+  }
+}
+
+@keyframes image-tile-settle-y {
+  from {
+    translate: 0 0;
+  }
+
+  to {
+    translate: 0 10vh;
+  }
+}
+
+@keyframes image-label-middle {
+
+  0%,
+  34% {
+    opacity: 0;
+    scale: 0.96;
+  }
+
+  42%,
+  62% {
+    opacity: 1;
+    scale: 1;
+  }
+
+  68%,
+  100% {
+    opacity: 0;
+    scale: 0.98;
   }
 }
 
@@ -325,7 +511,9 @@ const tasks = [
 }
 
 @keyframes task-roll-first {
-  0%, 60% {
+
+  0%,
+  60% {
     opacity: 1;
     translate: 0 0;
   }
@@ -346,14 +534,23 @@ const tasks = [
   }
 
   .image-grid,
-  .image-tile {
+  .image-tile,
+  .image-tile-visual,
+  .image-tile-label,
+  .image-tile-card {
     animation: none;
     rotate: 0deg;
   }
 
-  .image-tile {
+  .image-tile-card {
     clip-path: inset(0 round 1em);
     opacity: 1;
+    translate: 0 0;
+  }
+
+  .image-tile-label {
+    opacity: 1;
+    scale: 1;
   }
 
   .tasks-list {

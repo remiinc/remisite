@@ -126,7 +126,7 @@ const tabClass = (scenario) =>
 </script>
 
 <template>
-  <section class="iphone-scroll-section w-full px-6 py-20 lg:py-0" data-section-iphone>
+  <section class="iphone-scroll-section w-full px-6 py-20 lg:py-0 mt-[-10vh]" data-section-iphone>
     <div class="iphone-scroll-sticky lg:sticky lg:grid lg:place-items-center">
       <div
         class="mx-auto grid w-full max-w-(--content-width) grid-cols-1 items-center justify-center sm:gap-x-8 md:gap-x-10 lg:gap-x-12 gap-y-2 sm:grid-cols-[minmax(0,1fr)_minmax(50vw,1fr)] lg:grid-cols-[minmax(0,1fr)_minmax(0,24rem)_minmax(0,1fr)]">
