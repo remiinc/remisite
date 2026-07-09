@@ -357,6 +357,31 @@ onBeforeUnmount(() => {
   background: var(--color-muted);
 }
 
+.blog-content :deep(.table-wrap) {
+  margin: 1.5rem 0;
+  overflow-x: auto;
+}
+
+.blog-content :deep(table) {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95em;
+  line-height: 1.5;
+}
+
+.blog-content :deep(th),
+.blog-content :deep(td) {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.6rem 0.85rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.blog-content :deep(th) {
+  color: var(--color-foreground);
+  font-weight: 600;
+}
+
 .blog-content :deep(code) {
   border-radius: 0.25rem;
   background: var(--color-muted);

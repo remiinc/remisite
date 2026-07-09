@@ -1,2 +1,40 @@
+# remi.new crawler policy (2026-07-09)
+# Default: allow everything, including AI search, user-fetch, and training
+# bots. Policy per docs/remi-seo-approach.md Workstream 0.
+
 User-agent: *
 Allow: /
+
+# AI answer-engine search and user-fetch agents, explicitly welcome
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+# Training bots, allowed by default for long-term model-memory presence
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://remi.new/sitemap.xml

@@ -201,6 +201,7 @@ export const renderMarkdown = (markdown) => {
   let unorderedItems = []
   let orderedItems = []
   let quoteLines = []
+  let tableLines = []
 
   const flushParagraph = () => {
     if (!paragraphLines.length) {
@@ -221,6 +222,36 @@ export const renderMarkdown = (markdown) => {
       html.push(`<ol>${orderedItems.map((item) => `<li>${item}</li>`).join('')}</ol>`)
       orderedItems = []
     }
+  }
+
+  const flushTable = () => {
+    if (!tableLines.length) {
+      return
+    }
+
+    const parseRow = (line) =>
+      line
+        .replace(/^\|/, '')
+        .replace(/\|$/, '')
+        .split('|')
+        .map((cell) => cell.trim())
+
+    const isSeparatorRow = (cells) => cells.every((cell) => /^:?-{3,}:?$/.test(cell))
+
+    const rows = tableLines.map(parseRow)
+    const hasHeader = rows.length > 1 && isSeparatorRow(rows[1])
+    const headerCells = hasHeader ? rows[0] : []
+    const bodyRows = hasHeader ? rows.slice(2) : rows
+
+    const head = hasHeader
+      ? `<thead><tr>${headerCells.map((cell) => `<th>${parseInlineMarkdown(cell)}</th>`).join('')}</tr></thead>`
+      : ''
+    const body = `<tbody>${bodyRows
+      .map((row) => `<tr>${row.map((cell) => `<td>${parseInlineMarkdown(cell)}</td>`).join('')}</tr>`)
+      .join('')}</tbody>`
+
+    html.push(`<div class="table-wrap"><table>${head}${body}</table></div>`)
+    tableLines = []
   }
 
   const flushQuotes = () => {
@@ -249,8 +280,21 @@ export const renderMarkdown = (markdown) => {
       flushParagraph()
       flushLists()
       flushQuotes()
+      flushTable()
       return
     }
+
+    const isTableLine = trimmed.startsWith('|') && trimmed.endsWith('|') && trimmed.length > 2
+
+    if (isTableLine) {
+      flushParagraph()
+      flushLists()
+      flushQuotes()
+      tableLines.push(trimmed)
+      return
+    }
+
+    flushTable()
 
     const headingMatch = trimmed.match(/^(#{1,3})\s+(.+)$/)
     const unorderedMatch = trimmed.match(/^[-*]\s+(.+)$/)
@@ -314,6 +358,7 @@ export const renderMarkdown = (markdown) => {
   flushParagraph()
   flushLists()
   flushQuotes()
+  flushTable()
 
   return {
     html: html.join('\n'),
