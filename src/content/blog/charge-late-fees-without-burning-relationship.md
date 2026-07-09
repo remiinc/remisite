@@ -1,7 +1,7 @@
 ---
 title: "How to Charge Late Fees Without Burning the Relationship"
 description: "How to charge late fees as a small business without losing the customer: policy, legal caps, grace periods, the first enforcement script, and when to waive."
-datePublished: "DRAFT"
+datePublished: "2026-07-09"
 author: "Hunter Hammonds"
 category: "Getting Paid"
 readingTime: "8 min read"
@@ -25,7 +25,6 @@ faq:
     a: "Yes, strategically. Waive it for a good long-term customer with a one-time slip, a genuine billing error on your side, or a client who pays the full balance the moment you follow up. Charge it when lateness is a pattern or when silence, not circumstance, is the problem."
 ---
 
-# How to Charge Late Fees Without Burning the Relationship
 
 A late fee works best when it is a policy, not a punishment. The move is to decide the number before the job starts, put it in the contract and on every invoice, and enforce it calmly the first time it triggers. The common range is 1 to 1.5 percent per month on the unpaid balance, which has to stay under your state's legal cap, and most owners pair it with a short grace period of 5 to 10 days. When a payment goes past due, you point to the terms the customer already agreed to instead of making it personal. That is what keeps the relationship intact: the fee was the deal, not a surprise.
 
