@@ -41,7 +41,7 @@ const rowBaseClasses = cn(
     <div :class="cn('mx-auto flex w-full max-w-(--content-width) flex-col items-center gap-12')">
       <div :class="cn('flex w-full max-w-3xl flex-col items-start gap-4 self-start text-left')">
         <h2 :class="cn('w-full text-4xl font-normal leading-none tracking-tight text-balance text-foreground')">
-          Why Remi?
+          It's "Run your business from your phone" simple.
         </h2>
         <p :class="cn('w-full max-w-2xl text-base leading-normal text-pretty text-foreground/50')">
           Because running a small business comes with a second job: remembering, chasing, sorting, and cleaning up

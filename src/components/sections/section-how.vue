@@ -7,12 +7,12 @@ import SectionVisualWorks from '../home/visuals/visual-works.vue'
 const segments = [
   {
     visual: SectionVisualIntegrationsMarquee,
-    title: 'Connect your work',
+    title: 'Connects to all your tools',
     body: 'Connect email, calendar, texts, invoices, and job notes. Remi reads the trail so you do not have to paste it into chat.',
   },
   {
     visual: SectionVisualLearn,
-    title: 'Remi checks what needs doing',
+    title: 'Keeps things moving 24/7',
     body: 'She looks for unpaid invoices, quotes that went quiet, missed requests, and promises clients made.',
   },
   {

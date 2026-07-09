@@ -58,7 +58,7 @@ watch(
     <div class="mx-auto flex w-full max-w-(--content-width) flex-col gap-12">
       <div class="flex max-w-3xl flex-col items-start gap-4">
         <h2 class="text-5xl font-normal leading-none tracking-tight text-balance text-foreground">
-          See how Remi chases money, follows up, and keeps proof close.
+          Business owners just like you are automating their backoffice with Remi
         </h2>
       </div>
 

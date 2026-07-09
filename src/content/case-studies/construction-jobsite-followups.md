@@ -1,11 +1,11 @@
 ---
-title: "How a remodeling contractor got $18,400 in open invoices back in motion with Remi"
+title: "How a General Contractor recovered $37,000+ in open invoices with Remi"
 description: "Client texts, overdue invoices, and change-order promises stopped sitting in the owner's head after hours."
 datePublished: "2026-06-21"
 author: "Remi Team"
 category: "Case Study"
 company: "Anonymized remodeling contractor"
-industryLabel: "Remodeling"
+industryLabel: "Contractors"
 useCase: "Invoice chase and job follow-up"
 companySize: "6"
 region: "North America"
@@ -14,7 +14,7 @@ coverImageAlt: "An engineer in a hard hat using a tablet at an outdoor construct
 thumbnailImageUrl: "/images/case-studies/construction-cover.jpg"
 thumbnailImageAlt: "An engineer in a hard hat reviewing jobsite details on a tablet"
 stats:
-  - metric: "$18.4k"
+  - metric: "$37k"
     label: "open invoices surfaced with proof"
   - metric: "6"
     label: "client chases drafted for approval"
