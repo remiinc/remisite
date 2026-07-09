@@ -1,7 +1,7 @@
 ---
 title: "Jobber Follow-Ups: Automating Estimate and Invoice Chasing (and Where It Stops)"
 description: "How Jobber's automatic follow-ups chase unanswered quotes and past-due invoices, the exact setup steps, where they stop, and copy-paste reminder templates."
-datePublished: "DRAFT"
+datePublished: "2026-07-09"
 author: "Hunter Hammonds"
 category: "Guides"
 readingTime: "8 min read"
@@ -25,7 +25,6 @@ faq:
     a: "The automation triggers on status, not on the conversation. It stops when a quote leaves awaiting-response status or an invoice is marked paid, but it will not read a client texting back will pay Friday and pause on its own."
 ---
 
-# Jobber Follow-Ups: Automating Estimate and Invoice Chasing (and Where It Stops)
 
 Yes, Jobber can automatically chase your unanswered quotes and past-due invoices. On the Connect plan and up, Jobber's quote follow-ups send up to two email or text reminders when a client has not responded to an estimate, and its invoice follow-ups send up to two reminders after an invoice goes past due, with a one-click pay link attached ([Jobber Help Center](https://help.getjobber.com/hc/en-us/articles/24244124296471-Automations)). You set the wording and the schedule once, and Jobber runs it.
 
