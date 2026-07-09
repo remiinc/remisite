@@ -1,7 +1,7 @@
 ---
 title: "How to Keep Change Orders in Writing (Text, Email, and What Holds Up in a Dispute)"
 description: "How to keep change orders in writing by text, email, or signed form, what holds up in a dispute, and a one-message template to confirm scope, price, and schedule."
-datePublished: "DRAFT"
+datePublished: "2026-07-09"
 author: "Hunter Hammonds"
 category: "Guides"
 readingTime: "7 min read"
@@ -25,7 +25,6 @@ faq:
     a: "The quote covers the agreed scope at the agreed price. A change order documents anything that changes after that: added scope, a price adjustment, or a new timeline. It should reference the original job and stand as its own written agreement."
 ---
 
-# How to Keep Change Orders in Writing (Text, Email, and What Holds Up in a Dispute)
 
 A change order is any change to the agreed scope, price, or schedule after work starts, and to keep it in writing you confirm three things in one message before you touch the new work: what is changing, what it costs, and how it moves the timeline. Then you get a clear yes back that you can point to later. A signed change order form is the strongest. An email confirmation with a written yes is strong and hard to deny. A text thread where the customer agrees is usually enough to prove there was a deal, as long as you keep it. A verbal, handshake, or "we'll sort it out later" change order is where contractor money quietly dies.
 
