@@ -222,7 +222,9 @@ onBeforeUnmount(() => {
                       @click="scrollToHeading($event, heading.id)"
                       :class="cn(
                         'block text-sm leading-snug text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring',
-                        heading.level === 3 && 'pl-4'
+                        heading.level === 3 && 'pl-4',
+                        heading.level === 4 && 'pl-8 text-[0.8125rem]',
+                        heading.level >= 5 && 'pl-12 text-[0.8125rem]'
                       )"
                     >
                       {{ heading.title }}
@@ -268,7 +270,10 @@ onBeforeUnmount(() => {
 
 .blog-content :deep(h1),
 .blog-content :deep(h2),
-.blog-content :deep(h3) {
+.blog-content :deep(h3),
+.blog-content :deep(h4),
+.blog-content :deep(h5),
+.blog-content :deep(h6) {
   color: var(--color-foreground);
   font-weight: 400;
   letter-spacing: var(--tracking-tight);
@@ -292,6 +297,13 @@ onBeforeUnmount(() => {
   font-size: 1.2rem;
 }
 
+.blog-content :deep(h4),
+.blog-content :deep(h5),
+.blog-content :deep(h6) {
+  margin: 1.5rem 0 0.5rem;
+  font-size: 1.05rem;
+}
+
 @media (min-width: 768px) {
   .blog-content :deep(h1) {
     font-size: 2.5rem;
@@ -303,6 +315,12 @@ onBeforeUnmount(() => {
 
   .blog-content :deep(h3) {
     font-size: 1.35rem;
+  }
+
+  .blog-content :deep(h4),
+  .blog-content :deep(h5),
+  .blog-content :deep(h6) {
+    font-size: 1.15rem;
   }
 }
 

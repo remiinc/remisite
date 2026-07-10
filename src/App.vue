@@ -7,6 +7,7 @@ import CaseStudyPage from './components/case-studies/case-study-page.vue'
 import GlobalFooter from './components/global/global-footer.vue'
 import GlobalHeader from './components/header/global-header.vue'
 import HomeHeroVideo from './components/home/home-hero-video.vue'
+import PricingPage from './components/pricing/pricing-page.vue'
 import QualifyContact from './components/qualify/qualify-contact.vue'
 import SectionCta from './components/sections/section-cta.vue'
 import SectionCaseStudies from './components/sections/section-case-studies.vue'
@@ -35,6 +36,7 @@ const solutionPagePaths = [
 const isSolutionPage = computed(() => solutionPagePaths.includes(normalizedPath.value))
 const isBlogIndexPage = computed(() => normalizedPath.value === '/blog')
 const isBlogPostPage = computed(() => normalizedPath.value.startsWith('/blog/'))
+const isPricingPage = computed(() => normalizedPath.value === '/pricing')
 const isCaseStudyPage = computed(() =>
   normalizedPath.value === '/case-studies' || normalizedPath.value.startsWith('/case-studies/'),
 )
@@ -48,6 +50,7 @@ const qualifyContactEmail = computed(() => {
 <template>
   <QualifyContact v-if="isQualifyPage" :email="qualifyContactEmail" />
   <SolutionPage v-else-if="isSolutionPage" />
+  <PricingPage v-else-if="isPricingPage" />
   <BlogIndexPage v-else-if="isBlogIndexPage" />
   <BlogPostPage v-else-if="isBlogPostPage" />
   <CaseStudyPage v-else-if="isCaseStudyPage" />

@@ -202,6 +202,7 @@ export const renderMarkdown = (markdown) => {
   let orderedItems = []
   let quoteLines = []
   let tableLines = []
+  let faqSectionLevel = null
 
   const flushParagraph = () => {
     if (!paragraphLines.length) {
@@ -296,7 +297,7 @@ export const renderMarkdown = (markdown) => {
 
     flushTable()
 
-    const headingMatch = trimmed.match(/^(#{1,3})\s+(.+)$/)
+    const headingMatch = trimmed.match(/^(#{1,6})\s+(.+)$/)
     const unorderedMatch = trimmed.match(/^[-*]\s+(.+)$/)
     const orderedMatch = trimmed.match(/^\d+\.\s+(.+)$/)
     const imageMatch = trimmed.match(/^!\[[^\]]*\]\([^)]+\)$/)
@@ -310,8 +311,21 @@ export const renderMarkdown = (markdown) => {
       const level = headingMatch[1].length
       const title = stripMarkdown(headingMatch[2])
       const id = uniqueHeadingId(headingMatch[2], headingCounts)
+      const isFaqHeading = /^(faqs?|frequently asked questions)$/i.test(title)
 
-      toc.push({ id, level, title })
+      if (faqSectionLevel != null && level <= faqSectionLevel) {
+        faqSectionLevel = null
+      }
+
+      const isNestedFaqHeading = faqSectionLevel != null && level > faqSectionLevel
+
+      if (isFaqHeading) {
+        faqSectionLevel = level
+      }
+
+      if (!isNestedFaqHeading) {
+        toc.push({ id, level, title })
+      }
       html.push(`<h${level} id="${id}">${parseInlineMarkdown(headingMatch[2])}</h${level}>`)
       return
     }

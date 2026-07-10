@@ -1,5 +1,4 @@
 <script setup>
-import Button from '../global/button.vue'
 import RemiMetricsMarquee from './section-remi-metrics-marquee.vue'
 </script>
 
@@ -14,15 +13,18 @@ import RemiMetricsMarquee from './section-remi-metrics-marquee.vue'
             <span class="block text-foreground/50">Ready to hand off the busywork?</span>
             Let Remi keep the day moving.
           </h2>
-          <form action="/qualify/contact" method="GET"
-            class="cta-email-form relative z-1 w-full max-w-sm rounded-full p-1 items-center before:content-[''] before:absolute before:inset-0 before:rounded-full before:shadow-[0_0_0_1px_rgba(0,0,0,0.02),0_3px_4px_-4px_rgba(0,0,0,0.1),0_4px_12px_-6px_rgba(0,0,0,0.02)] after:content-[''] after:absolute after:inset-0 after:bg-background/70 after:rounded-full after:shadow-[0_0_4px_0_rgba(255,255,255,0.5)_inset,0_0_10px_-10px_rgba(255,255,255,1)_inset]">
-            <div class="relative z-1 flex w-full items-center gap-1">
-              <label for="cta-email" class="sr-only">Your email</label>
-              <input id="cta-email" name="email" type="email" autocomplete="email" required placeholder="Your email"
-                class="h-10 min-w-0 flex-1 bg-transparent px-3 text-base text-foreground placeholder:text-foreground/45 outline-none">
-              <Button type="submit">Get Started</Button>
-            </div>
-          </form>
+          <div class="relative z-1 flex w-full max-w-sm flex-col items-start justify-center gap-3 sm:max-w-none sm:flex-row sm:justify-start">
+            <a href="#"
+              class="inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-full bg-background px-5 text-sm font-medium leading-none text-foreground transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 focus-visible:ring-offset-2 focus-visible:ring-offset-muted sm:w-auto">
+              <img src="/images/app-logos/ios-messages-icon.svg" alt="" class="size-5 shrink-0" aria-hidden="true">
+              <span>Text Remi</span>
+            </a>
+            <a href="#"
+              class="inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-full bg-background/60 px-5 text-sm font-medium leading-none text-foreground shadow-[0_0_0_1px_rgba(0,0,0,0.06)_inset] backdrop-blur-sm transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 focus-visible:ring-offset-2 focus-visible:ring-offset-muted sm:w-auto">
+              <img src="/images/app-logos/gmail.svg" alt="" class="size-5 shrink-0" aria-hidden="true">
+              <span>Sign up with Gmail</span>
+            </a>
+          </div>
         </div>
 
         <RemiMetricsMarquee />
@@ -30,11 +32,3 @@ import RemiMetricsMarquee from './section-remi-metrics-marquee.vue'
     </div>
   </section>
 </template>
-
-<style scoped>
-.cta-email-form:focus-within {
-  box-shadow:
-    inset 0 0 0 1px color-mix(in oklch, var(--color-foreground) 18%, transparent),
-    0 0 0 4px color-mix(in oklch, var(--color-foreground) 8%, transparent);
-}
-</style>

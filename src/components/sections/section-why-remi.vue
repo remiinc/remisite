@@ -4,29 +4,29 @@ import Button from '../global/button.vue'
 
 const comparisonRows = [
   {
-    label: 'Follow-ups',
-    usual: 'You remember who needs a reply after the job, the call, or the rush.',
-    remi: 'Remi catches the open loops and helps move the next step before it piles up.',
+    label: 'Late invoices',
+    usual: 'You become the bad guy when a customer still owes money and the day has already moved on.',
+    remi: 'Remi finds the stale invoice, drafts the chase, and shows the invoice and thread behind it.',
   },
   {
-    label: 'Customer details',
-    usual: 'You dig through texts, emails, notes, and docs to remember what was promised.',
-    remi: 'Remi keeps the context together, so every customer picks up where you left off.',
+    label: 'Quiet quotes',
+    usual: 'The estimate sits in a text thread while the customer hires whoever answers first.',
+    remi: 'Remi brings the quote back, writes the follow-up, and waits for your yes before it goes out.',
   },
   {
-    label: 'Paperwork',
-    usual: 'Quotes, invoices, summaries, and checklists wait until after hours.',
-    remi: 'Remi turns scattered notes into the useful stuff your day needs next.',
+    label: 'Client promises',
+    usual: 'Approvals, photos, receipts, and scope changes live across apps and your memory.',
+    remi: 'Remi remembers what was agreed and ties the next step back to the source.',
   },
   {
-    label: 'Daily visibility',
-    usual: 'You check every app yourself to see what changed, what is due, and who is waiting.',
-    remi: 'Remi gives you the moving pieces in one place, without the morning scavenger hunt.',
+    label: 'What needs doing',
+    usual: 'You open every app to figure out what changed, what is due, and who is waiting.',
+    remi: 'Remi watches the business side and speaks first when there is useful work to move.',
   },
   {
-    label: 'Mental load',
-    usual: 'The business runs on your memory, your reminders, and your late-night cleanup.',
-    remi: 'Remi keeps track in the background, so fewer things have to live in your head.',
+    label: 'Control',
+    usual: 'Handing work off feels risky because the details are scattered and the stakes are yours.',
+    remi: 'Remi prepares the work with proof. You approve what customers see.',
   },
 ]
 
@@ -41,11 +41,11 @@ const rowBaseClasses = cn(
     <div :class="cn('mx-auto flex w-full max-w-(--content-width) flex-col items-center gap-12')">
       <div :class="cn('flex w-full max-w-3xl flex-col items-start gap-4 self-start text-left')">
         <h2 :class="cn('w-full text-4xl font-normal leading-none tracking-tight text-balance text-foreground')">
-          It's "Run your business from your phone" simple.
+         Run your business from your phone
         </h2>
         <p :class="cn('w-full max-w-2xl text-base leading-normal text-pretty text-foreground/50')">
-          Because running a small business comes with a second job: remembering, chasing, sorting, and cleaning up
-          everything that piles up behind the real work.
+          Running a small business comes with a second job: remembering, chasing, sorting, and cleaning up
+          everything that piles up behind the real work. Remi does it for you.
         </p>
       </div>
 
@@ -54,7 +54,7 @@ const rowBaseClasses = cn(
           <div :class="cn('px-6 py-5')" />
           <div :class="cn('flex min-w-0 items-start px-6 py-5')">
             <span :class="cn('text-base font-medium leading-tight text-foreground')">
-              The usual way
+              Without Remi
             </span>
           </div>
           <div :class="cn('flex min-w-0 items-start px-6 py-5')">
@@ -93,7 +93,7 @@ const rowBaseClasses = cn(
         <div :class="cn('grid grid-cols-2 border-b border-border')">
           <div :class="cn('flex min-w-0 items-start px-5 py-4')">
             <span :class="cn('text-sm font-medium leading-tight text-foreground')">
-              Usual way
+              Without Remi
             </span>
           </div>
           <div :class="cn('flex min-w-0 items-start px-5 py-4')">
