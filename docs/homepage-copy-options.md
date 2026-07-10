@@ -7,6 +7,31 @@ Craft sources mimicked: Lassie's identity-affirmation and show-the-work plainnes
 
 Register rules enforced throughout: money before minutes, no "AI" in headlines, no "assistant", claim-discipline verbs, no em dashes, every line written to survive the contractors' Facebook group.
 
+UPDATE 2026-07-09 (evening strategy session; source: remi repo
+`docs/product/company-strategy.md` and the YC F26 application work):
+new options below are tagged [NEW 07-09]. Five deltas this doc now
+carries:
+
+1. **One scream, not a pain order.** Proposed canon change: the apex
+   pain is "he earned money he doesn't have, and going to get it makes
+   him the bad guy" (enemy: being his customers' bank). Pains 2-5 are
+   scenes, not co-headliners. Recognition options re-ranked
+   accordingly.
+2. **Grammar is ontology (authoring rule for every headline).** The
+   sentence's subject determines what Remi is. "AI that X" or "Remi
+   automates X" = software grammar. Customer-as-subject with labor
+   verbs (hire, text, fire) = labor grammar. You cannot hire, text, or
+   fire software; use those verbs to carry the thesis without ever
+   arguing it.
+3. **The two-jobs brand idea** (retention/close altitude, never the
+   hook): you've been doing two jobs; keep the one you love.
+4. **"Keep money moving"** is the live candidate for the permanent
+   one-liner (money + proof + initiative in three words); test it at
+   capstone/meta/footer altitude, not as the hero.
+5. **Ring pages replace generic solutions routes**: one money story,
+   many trade doors (remodelers, painters, roofers, deck builders);
+   Ring 0/1 from the strategy doc is the sitemap for it.
+
 ---
 
 ## Chapter 0: Hero subhead
@@ -33,6 +58,14 @@ Sits under the fixed H1: "Your business should run. It shouldn't run you."
    "Remi is a new hire for the business side. She chases invoices, follows up on quiet quotes, remembers what you told every customer, and texts you before you had to ask."
    *Move: Rosie plainness; ends on "she texts first" as the differentiator.*
 
+6. **[NEW 07-09] The labor grammar, pure**
+   "Small service businesses hire Remi over text. She chases what you're owed, follows up on quotes that went quiet, and keeps every agreement in writing. Nothing goes out without your yes."
+   *Move: customer-as-subject + hire verb; the YC application's opening sentence, which survived five adversarial passes. The subject grammar does the labor-not-software work silently.*
+
+7. **[NEW 07-09] The vacancy**
+   "She's the office help you keep not hiring. Remi chases the money, nudges the quotes, and remembers what got agreed, from the texts you already send. You approve every move."
+   *Move: names the $45k empty chair without the salary math; the counterfactual in his head made explicit.*
+
 CTA pair options (primary / secondary):
 - "Text Remi" / "See what's slipping"
 - "See what's slipping" / "Watch her work" (anchor scroll to Chapter 2)
@@ -58,6 +91,16 @@ Replaces "Remi takes care of the work that follows you home." The "Meet Remi" ki
 
 5. "Remi handles the part of the business that keeps you up: who owes you, who's waiting on you, and what you promised."
    *Move: mood line rebuilt with the three concrete objects it was missing; closest evolution of the current line.*
+
+6. **[NEW 07-09] The bad guy**
+   "You've rewritten that payment reminder three times. Remi sends it, politely, so you don't have to be the bad guy."
+   *Move: the apex scream, straight on. The third-person buffer is the one job where she beats a human hire, and this line is the only one in the set that says it.*
+
+7. **[NEW 07-09] The bank**
+   "You built their kitchen. You're not their bank. Remi goes and gets what you're owed, with your say-so on every send."
+   *Move: the enemy line; the angriest option on the page, test carefully against the friendly-firm register.*
+
+*Re-rank per the one-scream delta: option 1 or 6 leads (money apex); option 4 (three pains in order) demotes to A/B, since the scream doctrine says one apex, scenes elsewhere.*
 
 ---
 
@@ -114,6 +157,8 @@ Replaces the "usual way vs with Remi" table framing. Header plus column labels.
 3. "You do the work. Remi does the business side."
 4. "What stays yours. What's hers now."
 5. "One business. Two jobs. You just stopped working both."
+6. **[NEW 07-09]** "You've been doing two jobs. Keep the one you love."
+   *Move: the two-jobs brand idea at its natural altitude; the job-split table IS this sentence as furniture. Also a capstone candidate (chapter 6).*
 
 Column label options: "Yours" / "Remi's" (recommended), or "Still yours" / "Hers now".
 
@@ -146,6 +191,10 @@ Content is gated on real receipts (section is a design stub for now); the header
    *Move: the only place on the page where the time pain is allowed to cash out, as the after-picture.*
 5. "Everything you just read happens in your texts."
    *Move: self-aware close that ties the story together; most conversational.*
+6. **[NEW 07-09]** "Around here, money doesn't sit still."
+   *Move: "keep money moving" at capstone altitude; the permanent-one-liner candidate getting its live test. Initiative + money + a shop-floor voice.*
+7. **[NEW 07-09]** "You've been doing two jobs. Keep the one you love."
+   *Move: the two-jobs after-picture; strongest if chapter 4 did NOT already use it.*
 
 ### The straight-talk block (fallibility + reversibility)
 
@@ -166,6 +215,8 @@ AI disclosure (canon, verbatim, placed at the end of this block):
 2. "$99 a month. Compare that to the office manager you keep not hiring."
    *Move: the adapted Bond anchor; flagged as an open decision in the story map, test before committing.*
 3. "One price, everything she does: $99 a month. Need more capacity? Scale is $199."
+4. **[NEW 07-09]** "The office help you couldn't justify at $45,000 a year: $99 a month."
+   *Move: the vacancy anchor with both numbers on the table; the strongest version of the office-manager comparison because it prices the empty chair, not a competitor.*
 
 ### The audit-frame offer (headline + body)
 
@@ -204,6 +255,38 @@ Heading options; the paragraph itself is yours and should be.
 
 ---
 
+## Meta title / tab title options [NEW 07-09]
+
+The audit flagged the current tab title ("Remi — AI Operations
+Assistant for Teams") as three forbidden-list hits; it is the first
+line every search result and share card shows. Candidates, same
+grammar rules as the hero:
+
+1. "Remi | Office manager for contractors, hired by text"
+2. "Remi | Small service businesses hire her over text"
+3. "Remi | She gets you paid"
+4. "Remi | The business side, handled over text"
+
+Meta description candidate: "Remi chases overdue invoices, follows up
+on quotes, and keeps every agreement in writing, over text. Nothing
+goes out without your approval. See what's slipping through your
+inbox in 60 seconds."
+
+---
+
 ## Editor's shortlist
 
-If you asked me to assemble one page from this doc today: hero subhead 1, recognition line 4 (with 1 as the A/B), iPhone framing 1, how-it-works set C, job-split header 2 with "Yours / Remi's", proof header 1, capstone 1, straight-talk 2 plus the reversibility rider and the canon disclosure, price line 1, audit offer 1 with button "See what's slipping", and the founder note as "A note from Hunter". That page tells the ratified story start to finish with no line I'd be afraid to read aloud in the Facebook group.
+Pre-07-09 shortlist: hero subhead 1, recognition line 4 (with 1 as the A/B), iPhone framing 1, how-it-works set C, job-split header 2 with "Yours / Remi's", proof header 1, capstone 1, straight-talk 2 plus the reversibility rider and the canon disclosure, price line 1, audit offer 1 with button "See what's slipping", and the founder note as "A note from Hunter".
+
+**Revised shortlist after the 07-09 strategy session:** hero subhead 6
+(labor grammar; option 1 as the A/B), recognition line 6 (the bad guy;
+option 1 as the A/B, option 4 demoted per the one-scream delta),
+iPhone framing 1, how-it-works set D (money-first now that the scream
+leads the page), job-split header 2 with "Yours / Remi's", proof
+header 1, capstone 6 (the one-liner candidate earning its keep; 1 as
+the A/B), straight-talk 2 plus the reversibility rider and the canon
+disclosure, price line 4 (the vacancy anchor; still flagged as an
+open decision, test it), audit offer 1 with button "See what's
+slipping", founder note as "Why I built her" (the brother story now
+has a home and deserves the more personal header), and meta title 1.
+That page tells one scream, in labor grammar, start to finish.
