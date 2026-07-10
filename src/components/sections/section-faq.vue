@@ -66,7 +66,7 @@ const toggleFaq = (index) => {
 <template>
   <section id="faq" class="mx-auto scroll-mt-24 px-6 py-24" data-faq-section>
     <div class="w-full mx-auto max-w-(--content-width)">
-      <h2 class="text-4xl font-normal tracking-tight text-foreground">FAQ</h2>
+      <h2 class="text-4xl font-normal tracking-tight text-foreground">Questions we hear a lot.</h2>
 
       <div class="mt-8 border-t border-border">
         <div v-for="(faq, index) in faqs" :key="faq.question" class="border-b border-border last:border-b-0">

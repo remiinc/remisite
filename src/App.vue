@@ -11,12 +11,10 @@ import PricingPage from './components/pricing/pricing-page.vue'
 import QualifyContact from './components/qualify/qualify-contact.vue'
 import SectionCta from './components/sections/section-cta.vue'
 import SectionCaseStudies from './components/sections/section-case-studies.vue'
-import SectionFaq from './components/sections/section-faq.vue'
 import SectionIphone from './components/sections/section-iphone.vue'
 import SectionPinnedHeadline from './components/sections/section-pinned-headline.vue'
 import SectionHow from './components/sections/section-how.vue'
 import SectionNews from './components/sections/section-news.vue'
-import SectionWhyRemi from './components/sections/section-why-remi.vue'
 import SolutionPage from './components/solutions/solution-page.vue'
 
 const pathname = typeof window !== 'undefined' ? window.location.pathname : '/'
@@ -63,9 +61,7 @@ const qualifyContactEmail = computed(() => {
       <SectionIphone />
       <SectionHow />
       <SectionCaseStudies />
-      <SectionWhyRemi />
       <SectionNews />
-      <SectionFaq />
       <SectionCta />
     </main>
     <GlobalFooter />

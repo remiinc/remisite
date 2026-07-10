@@ -5,6 +5,7 @@ import Button from '../global/button.vue'
 import GlobalFooter from '../global/global-footer.vue'
 import GlobalHeader from '../header/global-header.vue'
 import SectionCta from '../sections/section-cta.vue'
+import SectionFaq from '../sections/section-faq.vue'
 import SectionWhyRemi from '../sections/section-why-remi.vue'
 import SiteLogo from '../global/site-logo.vue'
 
@@ -18,12 +19,24 @@ if (typeof document !== 'undefined') {
     <GlobalHeader theme="light" />
 
     <main>
-      <section class="px-6 pb-16 pt-[calc(var(--header-height)+5rem)] md:pb-20 md:pt-[calc(var(--header-height)+7rem)]"
+      <section class="px-6 pb-16 pt-[calc(var(--header-height)+5rem)] md:pb-12 md:pt-[calc(var(--header-height)+7rem)]"
         data-pricing-hero>
-        <div class="mx-auto flex w-full max-w-(--content-width) justify-center text-center">
-          <h1 class="max-w-3xl text-6xl font-normal leading-none tracking-tight text-balance">
+        <div class="mx-auto flex w-full max-w-(--content-width) flex-col items-center justify-center gap-8 text-center">
+          <h1 class="max-w-[25ch] text-6xl lg:text-7xl font-normal leading-none tracking-tight text-balance">
             One missed follow-up can cost more than a month of Remi.
           </h1>
+          <div class="relative z-1 flex w-full max-w-sm flex-col items-center justify-center gap-3 sm:max-w-none sm:flex-row">
+            <a href="#"
+              class="inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-full bg-foreground px-5 text-sm font-medium leading-none text-background transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:w-auto">
+              <img src="/images/app-logos/ios-messages-icon.svg" alt="" class="size-5 shrink-0" aria-hidden="true">
+              <span>Text Remi</span>
+            </a>
+            <a href="#"
+              class="inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-full bg-muted px-5 text-sm font-medium leading-none text-foreground shadow-[0_0_0_1px_rgba(0,0,0,0.06)_inset] transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:w-auto">
+              <img src="/images/app-logos/gmail.svg" alt="" class="size-5 shrink-0" aria-hidden="true">
+              <span>Sign up with Gmail</span>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -32,12 +45,12 @@ if (typeof document !== 'undefined') {
           <fieldset class="mb-5 flex justify-end" aria-label="Billing cycle">
             <legend class="sr-only">Billing cycle</legend>
             <div class="inline-flex rounded-full bg-muted p-0.5 text-xs font-medium leading-none text-muted-foreground">
-              <input id="pricing-monthly" class="peer/monthly sr-only" type="radio" name="pricing-billing" checked>
+              <input id="pricing-monthly" class="peer/monthly sr-only" type="radio" name="pricing-billing">
               <label for="pricing-monthly"
                 class="shrink-0 cursor-pointer rounded-full flex items-center gap-2 px-3 py-1.5 transition-colors peer-checked/monthly:bg-background peer-checked/monthly:text-foreground peer-checked/monthly:shadow-[0_0_0_1px_var(--color-border)]">
                 Monthly
               </label>
-              <input id="pricing-annually" class="peer/annually sr-only" type="radio" name="pricing-billing">
+              <input id="pricing-annually" class="peer/annually sr-only" type="radio" name="pricing-billing" checked>
               <label for="pricing-annually"
                 class="shrink-0 cursor-pointer rounded-full pl-3 pr-1.5 flex items-center gap-2 py-1.5 transition-colors peer-checked/annually:bg-background peer-checked/annually:text-foreground peer-checked/annually:shadow-[0_0_0_1px_var(--color-border)]">
                 <span>Annually</span><span class="text-xs text-background bg-foreground px-2 rounded-full py-1">Save
@@ -241,6 +254,8 @@ if (typeof document !== 'undefined') {
       </section>
 
       <SectionWhyRemi />
+
+      <SectionFaq />
 
       <SectionCta />
     </main>
