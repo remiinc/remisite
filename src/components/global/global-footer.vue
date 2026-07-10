@@ -10,11 +10,11 @@ const footerLinks = [
 ]
 
 const usecases = [
-  { label: 'Send a quote from the truck', href: '/#features' },
-  { label: 'Chase the final payment', href: '/blog/follow-up-unpaid-invoice-without-losing-client' },
+  { label: 'Send quotes from the truck', href: '/#features' },
+  { label: 'Chase late payments', href: '/blog/follow-up-unpaid-invoice-without-losing-client' },
   { label: 'Nudge a late invoice', href: '/blog/late-payment-reminder-templates' },
   { label: "Snap a receipt, it's filed", href: '/#features' },
-  { label: 'What did the client agree to?', href: '/blog/keep-change-orders-in-writing' },
+  { label: 'Track client agreements', href: '/blog/keep-change-orders-in-writing' },
   { label: 'Answer the lead first', href: '/blog/respond-first-win-the-job' },
 ]
 
@@ -63,7 +63,10 @@ const integrations = [
       <div
         class="col-span-full flex flex-col gap-4 pt-6 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
         <div class="flex items-center gap-2">
-          <span class="size-2 rounded-full bg-emerald-500" aria-hidden="true" />
+          <span class="relative flex size-2" aria-hidden="true">
+            <span class="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+            <span class="relative inline-flex size-2 rounded-full bg-emerald-500" />
+          </span>
           <span>All Systems Healthy</span>
         </div>
 

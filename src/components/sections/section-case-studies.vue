@@ -63,7 +63,7 @@ watch(
       <div class="flex flex-col gap-8">
         <div class="flex max-w-3xl flex-col items-start gap-4">
           <h2 class="text-5xl font-normal leading-none tracking-tight text-balance text-foreground">
-            Business owners just like you are automating their backoffice with Remi
+            Helping small business owners do more of what they love.
           </h2>
         </div>
 

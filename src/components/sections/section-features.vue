@@ -13,7 +13,7 @@ import { PhShield, PhLockSimple, PhHouseSimple, PhCheck, PhNumberCircleOne, PhNu
         <div class="section-content w-full py-4 flex flex-col justify-center order-2 lg:order-1">
           <div class="flex flex-col flex-1">
             <h2 class="text-3xl lg:text-4xl font-normal tracking-tight text-balance mb-6">
-              Text Remi to hire a teammate that onboards itself and works 24/7.
+              Text Remi and hire a teammate that onboards herself and works 24/7.
             </h2>
             <p class="max-w-lg text-sm lg:text-base font-normal leading-normal text-pretty text-muted-foreground mb-8">
               Remi connects to and learns from your email, calendar, and all the tools you already use. Remi finds tasks to work on and starts tackling them with your approval.
@@ -68,7 +68,7 @@ import { PhShield, PhLockSimple, PhHouseSimple, PhCheck, PhNumberCircleOne, PhNu
         <div class="section-content w-full py-4 flex flex-col justify-center">
           <div class="flex flex-col flex-1">
             <h2 class="text-3xl lg:text-4xl font-normal tracking-tight text-balance mb-6">
-              Focus on the work you love while Remi tackles the to-do list.
+              Do the jobs you love. Remi does the ones you dont.
             </h2>
             <p class="max-w-lg text-sm lg:text-base font-normal leading-normal text-pretty text-muted-foreground mb-8">
               Remi watches your email, calendar, messages, and tools to chase overdue invoices,
