@@ -35,9 +35,9 @@ An estimate needed a nudge. A customer asked whether one line item could wait. A
 
 ## The solution
 
-Remi watched the surfaces where jobs moved from call to quote to approval. She found estimates that had gone quiet, pulled in the last customer message, and drafted follow-ups the owner could approve over text.
+Remi watched the surfaces where jobs moved from call to quote to approval, found estimates that had gone quiet, pulled in the last customer message, and drafted follow-ups the owner could approve over text.
 
-When a reply needed a decision, Remi did not guess. She showed the job detail, the customer question, and the suggested answer so the owner could say yes, edit it, or leave it alone.
+When a reply needed a decision, Remi did not guess. Remi showed the job detail, the customer question, and the suggested answer so the owner could say yes, edit it, or leave it alone.
 
 ## The results
 

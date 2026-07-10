@@ -25,7 +25,7 @@ import SurfaceVisualWeb from './components/surface-visual-web.vue'
               Texts & iMessage
             </h3>
             <p class="text-base text-muted-foreground/80 leading-tight">
-              Text Remi when something pops up. She can remember the detail, turn it into a next step, and bring it back
+              Text Remi when something pops up. Remi can remember the detail, turn it into a next step, and bring it back
               when it matters.
             </p>
           </div>
@@ -38,7 +38,7 @@ import SurfaceVisualWeb from './components/surface-visual-web.vue'
               Slack
             </h3>
             <p class="text-base text-muted-foreground/80 leading-tight">
-              Tag Remi in a thread and she pulls out what needs doing, who is waiting, and what should happen next.
+              Tag Remi in a thread and Remi pulls out what needs doing, who is waiting, and what should happen next.
             </p>
           </div>
         </div>

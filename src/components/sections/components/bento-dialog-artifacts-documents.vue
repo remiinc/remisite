@@ -9,7 +9,7 @@ const emit = defineEmits(['book-demo'])
   <div class="dialog-container flex flex-col gap-8 w-full">
     <div class="dialog-header flex flex-col gap-8">
       <h2 class="pr-10 text-3xl font-normal leading-[1.125em] tracking-tight text-foreground text-balance max-w-[32ch]">
-        Remi doesn't just answer. She delivers.
+        Remi doesn't just answer. Remi delivers.
       </h2>
       <div class="grid md:grid-cols-2 gap-8">
         <div class="flex flex-col gap-8 items-start">

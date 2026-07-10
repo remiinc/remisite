@@ -9,7 +9,7 @@ ogTitle: "How to Follow Up on an Unpaid Invoice Without Losing the Client"
 ogDescription: "How to follow up on an unpaid invoice with a cadence and templates that get you paid without souring the client relationship."
 ogImage: "/images/og-image.png"
 ctaTitle: "See what's slipping through your inbox"
-ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire her."
+ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire Remi."
 ctaHref: "/qualify/contact"
 ctaLabel: "Run the free check"
 faq:
@@ -136,11 +136,11 @@ Copy the three templates above, set a reminder for each stage the day you send a
 
 You can run all of this yourself with the templates and cadence above. It works, and plenty of owners do exactly that. The hard part is not the wording. It is remembering which invoice hit day 3, day 7, and day 14 while you are also doing the actual work.
 
-That is the exact job Remi was built for. Remi is an AI teammate for small business owners. She watches your connected books and inbox, flags the invoice that is going stale before it slips your mind, and drafts the follow-up in your voice at the right stage of the cadence. You read it, adjust anything you want, and approve it. Nothing goes out without your say-so, and every action comes with a receipt you can look back on.
+That is the exact job Remi was built for. Remi is an AI teammate for small business owners. Remi watches your connected books and inbox, flags the invoice that is going stale before it slips your mind, and drafts the follow-up in your voice at the right stage of the cadence. You read it, adjust anything you want, and approve it. Nothing goes out without your say-so, and every action comes with a receipt you can look back on.
 
-She prepares and proposes. You decide. If a client raises a problem, you are still the one who picks up the phone. Remi just makes sure the invoice never quietly ages out to 30 days past due while you are busy, which is how that average $17,500 in unpaid invoices piles up in the first place.
+Remi prepares and proposes. You decide. If a client raises a problem, you are still the one who picks up the phone. Remi just makes sure the invoice never quietly ages out to 30 days past due while you are busy, which is how that average $17,500 in unpaid invoices piles up in the first place.
 
-We tell you she is an AI teammate because she will never pretend otherwise, and neither will we. If you ever stop working with her, you keep everything: the receipts, the history, the record of every follow-up. It is your business and your money. Remi just helps you stop leaving it on the table.
+We tell you Remi is an AI teammate because Remi will never pretend otherwise, and neither will we. If you ever stop working with Remi, you keep everything: the receipts, the history, the record of every follow-up. It is your business and your money. Remi just helps you stop leaving it on the table.
 
 ## FAQ
 

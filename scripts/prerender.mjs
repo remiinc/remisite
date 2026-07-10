@@ -198,6 +198,22 @@ const indexBody = (label, description, entries) => `
   </section>
 </main>`
 
+const pricingBody = () => `
+<main class="px-6 pt-32 pb-20">
+  <section class="mx-auto w-full text-center" style="max-width: 44rem">
+    <h1>One missed follow-up can cost more than a month of Remi.</h1>
+  </section>
+  <section class="mx-auto w-full" style="max-width: 44rem">
+    <h2>The human plan</h2>
+    <p>Hiring office help can run $45-55k a year before benefits, tools, onboarding, and the work of managing the work. Great humans are great. Hiring one just to chase loose ends is an expensive way to remember who still owes you money.</p>
+    <h2>Pro</h2>
+    <p>$119 per month, or $99 per month billed annually. Built for owner-run teams ready to hand Remi the daily chase list.</p>
+    <h2>Scale</h2>
+    <p>$239 per month, or $199 per month billed annually. Built for busier teams with more open loops, more customers, and more work in motion.</p>
+    <p><a href="/qualify">Start free trial</a></p>
+  </section>
+</main>`
+
 // Blog posts and case studies
 const renderEntryPage = (entry, sectionLabel) => {
   const jsonLd = [articleSchema(entry)]
@@ -263,9 +279,24 @@ writePage(
   ),
 )
 
+writePage(
+  '/pricing',
+  injectBody(
+    setHead(template, {
+      title: 'Pricing | Remi',
+      description:
+        'Early access pricing for Remi: Pro and Scale plans for owner-run businesses that need invoices, estimates, and follow-ups to keep moving.',
+      url: `${SITE}/pricing`,
+      ogType: 'website',
+    }),
+    pricingBody(),
+  ),
+)
+
 // sitemap.xml
 const staticUrls = [
   { loc: `${SITE}/`, priority: '1.0' },
+  { loc: `${SITE}/pricing`, priority: '0.9' },
   { loc: `${SITE}/blog`, priority: '0.8' },
   { loc: `${SITE}/case-studies`, priority: '0.7' },
 ]
@@ -318,5 +349,5 @@ ${rssItems}
 writeFileSync(join(distDir, 'rss.xml'), rss)
 
 console.log(
-  `Prerendered ${posts.length} blog posts, ${caseStudies.length} case studies, 2 index pages, sitemap.xml, rss.xml`,
+  `Prerendered ${posts.length} blog posts, ${caseStudies.length} case studies, 3 index pages, sitemap.xml, rss.xml`,
 )

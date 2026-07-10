@@ -9,7 +9,7 @@ ogTitle: "How to Send Automatic Invoice Reminders in QuickBooks Online (2026)"
 ogDescription: "How to set up QuickBooks Online automatic invoice reminders in 2026: exact settings, cadence, plan limits, and where the reminders stop working."
 ogImage: "/images/og-image.png"
 ctaTitle: "See what's slipping through your inbox"
-ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire her."
+ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire Remi."
 ctaHref: "/qualify/contact"
 ctaLabel: "Run the free check"
 faq:
@@ -117,9 +117,9 @@ For context on why this matters: Intuit's own [2025 Small Business Late Payments
 
 You can run everything above yourself. Turn on the three reminders, write good templates, and send the manual nudges by hand. For a lot of owners that is enough, and you should start there before you pay for anything.
 
-If you would rather not be the one doing it at 9pm, this is the exact job Remi was built for. Remi is an AI teammate that connects to the tools you already run, including QuickBooks and your inbox. She watches the books and flags what QuickBooks reminders miss: the invoice going stale, the client who stopped replying, the quote that got no answer. Instead of one email on a fixed clock, she drafts the follow-up in your voice, across text, email, or Slack, and hands it to you to approve.
+If you would rather not be the one doing it at 9pm, this is the exact job Remi was built for. Remi is an AI teammate that connects to the tools you already run, including QuickBooks and your inbox. Remi watches the books and flags what QuickBooks reminders miss: the invoice going stale, the client who stopped replying, the quote that got no answer. Instead of one email on a fixed clock, Remi drafts the follow-up in your voice, across text, email, or Slack, and hands it to you to approve.
 
-Nothing goes out without your say-so. Remi prepares, drafts, and reminds; you approve, and only then is it sent. Every action carries a receipt, and the full history is exportable, so if you ever fire her you keep all of it. She is an AI teammate. We say so because she will never pretend otherwise, and neither will we.
+Nothing goes out without your say-so. Remi prepares, drafts, and reminds; you approve, and only then is it sent. Every action carries a receipt, and the full history is exportable, so if you ever fire Remi you keep all of it. Remi is an AI teammate. We say so because Remi will never pretend otherwise, and neither will we.
 
 The difference is judgment. QuickBooks sends the same email to everyone at day seven. Remi tells you which client to nudge, how hard, and on which channel, then writes it so you just have to say yes.
 

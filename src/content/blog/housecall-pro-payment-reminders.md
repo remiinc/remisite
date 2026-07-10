@@ -9,7 +9,7 @@ ogTitle: "Housecall Pro Payment Reminders: Setup, Limits, and Workarounds"
 ogDescription: "How to set up Housecall Pro payment reminders, exactly what the automated invoice reminders cover, where they fall short, and the workarounds owners use to get paid."
 ogImage: "/images/og-image.png"
 ctaTitle: "See what's slipping through your inbox"
-ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire her."
+ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire Remi."
 ctaHref: "/qualify/contact"
 ctaLabel: "Run the free check"
 faq:
@@ -133,11 +133,11 @@ Run that loop and you will collect most of what you are owed without spending a 
 
 You can run all of this yourself with the process and templates above. The catch is that it only works if you are the one watching the list every single day, marking things paid, and remembering which of last month's jobs never came back. That is the part that slips at 9pm when the kids are down and you still have not eaten.
 
-Remi is built for exactly that gap. She connects to the tools you already run, including your email and QuickBooks, watches the money owed across all of them, and speaks up first when an invoice is going stale or a quote got no reply. She does not just chase what lives in one app. She drafts the reminder, in your voice, and shows it to you before anything goes out. You approve it, or you do not. Nothing is sent and nothing is marked paid without your say-so, and every action comes with a receipt you can look back on.
+Remi is built for exactly that gap. Remi connects to the tools you already run, including your email and QuickBooks, watches the money owed across all of them, and speaks up first when an invoice is going stale or a quote got no reply. Remi does not just chase what lives in one app. Remi drafts the reminder, in your voice, and shows it to you before anything goes out. You approve it, or you do not. Nothing is sent and nothing is marked paid without your say-so, and every action comes with a receipt you can look back on.
 
-Remi is an AI teammate. We say so because she will never pretend otherwise, and neither will we. She does not replace Housecall Pro's reminders. She covers the money those reminders cannot see, and she makes sure the ones that should have gone out actually did. Everything she does is on the record and exportable. If you ever let her go, you keep all of it.
+Remi is an AI teammate. We say so because Remi will never pretend otherwise, and neither will we. Remi does not replace Housecall Pro's reminders. Remi covers the money those reminders cannot see, and makes sure the ones that should have gone out actually did. Everything Remi does is on the record and exportable. If you ever let Remi go, you keep all of it.
 
-If you want to see what is already slipping, connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire her.
+If you want to see what is already slipping, connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire Remi.
 
 ## FAQ
 

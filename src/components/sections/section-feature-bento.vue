@@ -49,7 +49,7 @@ const bentoDialogs = {
     component: BentoDialogSharedMemory,
   },
   'feature-bento-5': {
-    title: "Remi doesn't just answer. She delivers.",
+    title: "Remi doesn't just answer. Remi delivers.",
     component: BentoDialogArtifactsDocuments,
   },
 }

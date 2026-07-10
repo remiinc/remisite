@@ -45,5 +45,5 @@ Remi surfaced $18,400 in open invoices and drafted six client chases for approva
 
 The practical win was not another place to manage work. It was the business side speaking up before the owner had to sit down at night and rebuild the whole week from memory.
 
-> "The best part is that Remi does not make me be the bad guy. She shows me who owes what, shows the message it came from, and lets me approve the follow-up."
+> "The best part is that Remi does not make me be the bad guy. Remi shows me who owes what, shows the message it came from, and lets me approve the follow-up."
 > - Owner, remodeling contractor

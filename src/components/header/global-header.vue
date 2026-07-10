@@ -33,7 +33,7 @@ const solutionColumns = [
 const menuLinks = [
   { label: 'Features', href: '#features' },
   { label: 'About', href: '#about' },
-  { label: 'Pricing', href: '#pricing' },
+  { label: 'Pricing', href: '/pricing' },
   { label: 'Security', href: '#security' },
   {
     label: 'Solutions',

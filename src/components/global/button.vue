@@ -34,6 +34,7 @@ defineProps({
     variant === 'secondary' && 'before:bg-muted text-foreground hover:before:bg-muted-hover before:backdrop-blur-md',
     size === 'default' && 'h-10 px-4',
     size === 'sm' && 'h-9 px-3 text-sm',
+    size === 'lg' && 'h-12 px-6 text-base',
   )">
     <span class="relative z-10">
       <slot />

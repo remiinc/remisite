@@ -6,8 +6,6 @@ import {
   PhListChecks,
   PhUserCirclePlus,
 } from '@phosphor-icons/vue'
-import { gsap } from 'gsap'
-import { onMounted, onUnmounted, ref } from 'vue'
 
 const tasks = [
   { label: 'Meeting follow-ups', icon: PhChatsCircle },
@@ -59,189 +57,10 @@ const imageTiles = [
     task: { label: 'Files receipts', icon: PhBookOpen },
   },
 ]
-
-const FADE_TRIGGER_PROGRESS = 0.64
-const REARM_PROGRESS = 0.55
-/** Cover progress through the iPhone section where phone + cards read as composed. */
-const IPHONE_COMPOSITION_COVER = 0.7
-
-const wrapperRef = ref(null)
-const contentRef = ref(null)
-
-let lastScrollY = 0
-let armed = true
-let animating = false
-let autoScrollTween = null
-let rafId = 0
-let desktopMq = null
-let reducedMotionMq = null
-
-const getCoverProgress = (element) => {
-  if (!element) return null
-
-  const rect = element.getBoundingClientRect()
-  const top = window.scrollY + rect.top
-  const coverStart = top - window.innerHeight
-  const coverEnd = top + element.offsetHeight
-  const span = coverEnd - coverStart
-
-  if (span <= 0) return null
-
-  return (window.scrollY - coverStart) / span
-}
-
-const getHeadlineProgress = () => {
-  const content = contentRef.value
-  if (!content) return null
-
-  const animation = content.getAnimations?.()[0]
-  if (typeof animation?.overallProgress === 'number') {
-    return animation.overallProgress
-  }
-
-  return getCoverProgress(wrapperRef.value)
-}
-
-const getIphoneCompositionScrollY = () => {
-  const section = document.querySelector('[data-section-iphone]')
-  if (!section) return null
-
-  const rect = section.getBoundingClientRect()
-  const top = window.scrollY + rect.top
-  const coverStart = top - window.innerHeight
-  const coverEnd = top + section.offsetHeight
-  const span = coverEnd - coverStart
-  if (span <= 0) return null
-
-  const targetY = coverStart + span * IPHONE_COMPOSITION_COVER
-  const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight)
-
-  return Math.round(Math.min(Math.max(0, targetY), maxScroll))
-}
-
-const stopAutoScroll = () => {
-  if (autoScrollTween) {
-    autoScrollTween.kill()
-    autoScrollTween = null
-  }
-  animating = false
-}
-
-const startAutoScroll = (targetY) => {
-  const startY = window.scrollY
-  if (!Number.isFinite(targetY) || targetY <= startY + 8) return
-
-  stopAutoScroll()
-  animating = true
-  armed = false
-
-  const scrollState = { y: startY }
-  autoScrollTween = gsap.to(scrollState, {
-    y: targetY,
-    duration: Math.min(1.45, Math.max(0.85, (targetY - startY) / 2000)),
-    ease: 'power2.inOut',
-    onUpdate: () => {
-      window.scrollTo(0, scrollState.y)
-      lastScrollY = scrollState.y
-    },
-    onComplete: () => {
-      autoScrollTween = null
-      animating = false
-      lastScrollY = window.scrollY
-    },
-  })
-}
-
-const tickHandoff = () => {
-  rafId = 0
-
-  if (!desktopMq?.matches || reducedMotionMq?.matches) {
-    lastScrollY = window.scrollY
-    return
-  }
-
-  // While we own the scroll, don't re-evaluate trigger logic from our own scrollTo calls.
-  if (animating) {
-    lastScrollY = window.scrollY
-    return
-  }
-
-  const scrollY = window.scrollY
-  const goingDown = scrollY > lastScrollY + 1
-  const progress = getHeadlineProgress()
-
-  if (progress != null && progress < REARM_PROGRESS) {
-    armed = true
-  }
-
-  if (armed && goingDown && progress != null && progress >= FADE_TRIGGER_PROGRESS) {
-    const targetY = getIphoneCompositionScrollY()
-    if (targetY != null) startAutoScroll(targetY)
-  }
-
-  lastScrollY = scrollY
-}
-
-const onScroll = () => {
-  if (rafId) return
-  rafId = requestAnimationFrame(tickHandoff)
-}
-
-/** Consume input during the handoff so trackpad inertia can't cancel the tween. */
-const onWheelDuringHandoff = (event) => {
-  if (!animating) return
-  event.preventDefault()
-}
-
-const onTouchDuringHandoff = (event) => {
-  if (!animating) return
-  event.preventDefault()
-}
-
-const onKeyDuringHandoff = (event) => {
-  if (!animating) return
-  if (event.key === 'Escape') {
-    stopAutoScroll()
-    lastScrollY = window.scrollY
-    return
-  }
-
-  if (
-    event.key === 'ArrowDown' ||
-    event.key === 'ArrowUp' ||
-    event.key === 'PageDown' ||
-    event.key === 'PageUp' ||
-    event.key === ' ' ||
-    event.key === 'Home' ||
-    event.key === 'End'
-  ) {
-    event.preventDefault()
-  }
-}
-
-onMounted(() => {
-  desktopMq = window.matchMedia('(min-width: 1024px)')
-  reducedMotionMq = window.matchMedia('(prefers-reduced-motion: reduce)')
-  lastScrollY = window.scrollY
-
-  window.addEventListener('scroll', onScroll, { passive: true })
-  window.addEventListener('wheel', onWheelDuringHandoff, { passive: false })
-  window.addEventListener('touchmove', onTouchDuringHandoff, { passive: false })
-  window.addEventListener('keydown', onKeyDuringHandoff)
-})
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', onScroll)
-  window.removeEventListener('wheel', onWheelDuringHandoff)
-  window.removeEventListener('touchmove', onTouchDuringHandoff)
-  window.removeEventListener('keydown', onKeyDuringHandoff)
-  if (rafId) cancelAnimationFrame(rafId)
-  stopAutoScroll()
-})
 </script>
 
 <template>
-  <section ref="wrapperRef" class="pinned-headline-wrapper relative w-full bg-background overflow-clip">
+  <section class="pinned-headline-wrapper relative w-full bg-background overflow-clip">
     <div aria-hidden="true"
       class="[background-image:var(--gradient-fade-top)] w-full h-1/8 absolute top-0 left-0 z-1 pointer-events-none" />
     <div aria-hidden="true"
@@ -277,7 +96,6 @@ onUnmounted(() => {
         <div
           class="pinned-headline relative w-full mx-auto min-h-[clamp(34rem,60vh,42rem)] grid grid-cols-1 grid-rows-1">
           <div
-            ref="contentRef"
             class="pinned-headline-content relative z-1 w-full max-w-6xl mx-auto flex flex-col items-center justify-center text-center gap-4 col-start-1 row-start-1 col-end-1 row-end-1">
             <p class="relative z-1 block text-base">
               Meet Remi

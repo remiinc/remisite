@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onBeforeUnmount, watchEffect } from 'vue'
+import { computed, onBeforeUnmount, ref, watchEffect } from 'vue'
 import { blogPosts } from '../../lib/blog-posts'
 import { cn } from '../../lib/cn'
 import Button from '../global/button.vue'
@@ -14,6 +14,19 @@ const getPostImage = (post) => post.metadata.heroImage || post.metadata.ogImage 
 const getPostImageAlt = (post) => post.metadata.heroImageAlt || post.title
 const getPostCategory = (post) => post.metadata.category || 'Blog'
 const getPostReadingTime = (post) => post.metadata.readingTime || '3 min read'
+
+const activeCategory = ref('All')
+
+const categories = computed(() => {
+  const unique = new Set(remainingPosts.value.map(getPostCategory))
+  return ['All', ...unique]
+})
+
+const filteredPosts = computed(() =>
+  activeCategory.value === 'All'
+    ? remainingPosts.value
+    : remainingPosts.value.filter((post) => getPostCategory(post) === activeCategory.value),
+)
 
 watchEffect(() => {
   if (typeof document === 'undefined') {
@@ -76,38 +89,53 @@ onBeforeUnmount(() => {
           </div>
         </a>
 
-        <div
-          v-if="remainingPosts.length"
-          class="mt-20 grid grid-cols-1 gap-x-5 gap-y-12 md:grid-cols-2 lg:grid-cols-3"
-          aria-label="More blog posts"
-        >
+        <div v-if="remainingPosts.length" class="mt-20 flex flex-col gap-8">
+          <div
+            v-if="categories.length > 2"
+            class="flex flex-wrap items-center gap-2"
+            role="group"
+            aria-label="Filter posts by category"
+          >
+            <button
+              v-for="category in categories"
+              :key="category"
+              type="button"
+              :aria-pressed="activeCategory === category"
+              :class="cn(
+                'inline-flex h-9 items-center rounded-full px-4 text-sm font-medium leading-none transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+                activeCategory === category
+                  ? 'bg-foreground text-background'
+                  : 'bg-muted text-foreground hover:bg-muted-hover',
+              )"
+              @click="activeCategory = category"
+            >
+              {{ category }}
+            </button>
+          </div>
+
+          <div
+            v-if="filteredPosts.length"
+            class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"
+            aria-label="More blog posts"
+          >
           <a
-            v-for="post in remainingPosts"
+            v-for="post in filteredPosts"
             :key="post.path"
             :href="post.path"
-            class="block min-w-0 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
+            class="block h-full min-w-0 focus-visible:outline-none bg-muted hover:bg-muted-hover focus-visible:bg-muted-hover p-6 lg:p-8 rounded-3xl min-h-96 md:min-h-120 lg:nth-[10n+5]:col-span-2 lg:nth-[10n+9]:col-span-2"
           >
-            <div class="aspect-13/10 overflow-hidden rounded-2xl bg-muted">
-              <img
-                :src="getPostImage(post)"
-                :alt="getPostImageAlt(post)"
-                class="size-full object-cover"
-                loading="lazy"
-                decoding="async"
-              >
-            </div>
-
-            <div class="mt-5">
-              <h3 class="text-2xl font-normal leading-tight tracking-tight text-balance text-foreground">
+            <div class="h-full flex flex-col items-start justify-between gap-8">
+              <h3 class="max-w-3xl text-2xl font-normal leading-tight tracking-tight text-balance text-foreground">
                 {{ post.title }}
               </h3>
-              <p class="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm font-medium leading-none text-muted-foreground">
+              <p class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm leading-none text-muted-foreground">
                 <span>{{ getPostCategory(post) }}</span>
                 <span aria-hidden="true">—</span>
                 <span>{{ getPostReadingTime(post) }}</span>
               </p>
             </div>
           </a>
+          </div>
         </div>
       </section>
 

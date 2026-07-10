@@ -9,7 +9,7 @@ ogTitle: "How to Keep Change Orders in Writing (Text, Email, and What Holds Up i
 ogDescription: "How to keep change orders in writing by text, email, or signed form, what holds up in a dispute, and a one-message template to confirm scope, price, and schedule."
 ogImage: "/images/og-image.png"
 ctaTitle: "See what's slipping through your inbox"
-ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire her."
+ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire Remi."
 ctaHref: "/qualify/contact"
 ctaLabel: "Run the free check"
 faq:
@@ -28,7 +28,7 @@ faq:
 
 A change order is any change to the agreed scope, price, or schedule after work starts, and to keep it in writing you confirm three things in one message before you touch the new work: what is changing, what it costs, and how it moves the timeline. Then you get a clear yes back that you can point to later. A signed change order form is the strongest. An email confirmation with a written yes is strong and hard to deny. A text thread where the customer agrees is usually enough to prove there was a deal, as long as you keep it. A verbal, handshake, or "we'll sort it out later" change order is where contractor money quietly dies.
 
-This guide gives you the whole system: what counts as in writing, what tends to hold up if a job goes sideways, and copy-paste templates you can send from the truck in under a minute. Remi, an AI teammate for small business owners, can run this for you by watching the thread and drafting the confirmation for your approval, but you do not need her to do any of it. The templates below work on their own.
+This guide gives you the whole system: what counts as in writing, what tends to hold up if a job goes sideways, and copy-paste templates you can send from the truck in under a minute. Remi, an AI teammate for small business owners, can run this for you by watching the thread and drafting the confirmation for your approval, but you do not need Remi to do any of it. The templates below work on their own.
 
 ## Why do verbal change orders cost contractors money?
 
@@ -107,11 +107,11 @@ Keep a numbered sequence (Change Order #1, #2, and so on) so the file tells the 
 
 You can run every bit of this yourself with the templates above, and it will hold up far better than a driveway handshake. The hard part is not the message. It is remembering to send it in the moment, and matching every approved number to the final invoice weeks later when you are tired and the job is already three changes deep.
 
-That is the exact job Remi was built for. She watches the thread and the connected sources, flags when work looks like it has grown past the original quote, and drafts the change-order confirmation for you to approve before it goes out. She tracks which changes got a yes and which are still unconfirmed, so nothing gets built for free and no approved change goes unbilled.
+That is the exact job Remi was built for. Remi watches the thread and the connected sources, flags when work looks like it has grown past the original quote, and drafts the change-order confirmation for you to approve before it goes out. Remi tracks which changes got a yes and which are still unconfirmed, so nothing gets built for free and no approved change goes unbilled.
 
-Nothing sends without your say-so. Remi drafts, proposes, and reminds; you approve, and every action carries a receipt you can point to later. Everything stays on the record: the message, the customer's yes, the number. If you ever fire her, you keep all of it.
+Nothing sends without your say-so. Remi drafts, proposes, and reminds; you approve, and every action carries a receipt you can point to later. Everything stays on the record: the message, the customer's yes, the number. If you ever fire Remi, you keep all of it.
 
-Remi is an AI teammate. We say so because she will never pretend otherwise, and neither will we. The work of getting paid for what you actually built is worth doing right, whether you send these messages yourself or hand the watching to her.
+Remi is an AI teammate. We say so because Remi will never pretend otherwise, and neither will we. The work of getting paid for what you actually built is worth doing right, whether you send these messages yourself or hand the watching to Remi.
 
 ## FAQ
 
