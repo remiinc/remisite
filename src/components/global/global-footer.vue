@@ -10,22 +10,20 @@ const footerLinks = [
 ]
 
 const usecases = [
-  { label: 'Meeting follow-ups', href: '#meeting-follow-ups' },
-  { label: 'Client status updates', href: '#client-status-updates' },
-  { label: 'Recurring operations', href: '#recurring-operations' },
-  { label: 'Finding business context', href: '#finding-business-context' },
-  { label: 'Support ticket triage', href: '#support-ticket-triage' },
-  { label: 'Proposal prep', href: '#proposal-prep' },
+  { label: 'Chase an overdue invoice', href: '/blog/follow-up-unpaid-invoice-without-losing-client' },
+  { label: 'Follow up on estimates', href: '/blog/estimate-follow-up-how-soon-how-often' },
+  { label: 'Late payment reminders', href: '/blog/late-payment-reminder-templates' },
+  { label: 'Keep change orders in writing', href: '/blog/keep-change-orders-in-writing' },
+  { label: 'Answer leads first', href: '/blog/respond-first-win-the-job' },
+  { label: "When a client won't pay", href: '/blog/client-wont-pay-step-by-step-playbook' },
 ]
 
 const integrations = [
-  { label: 'Remi in iMessage', href: '#gmail' },
-  { label: 'Remi in Slack', href: '#slack' },
-  { label: 'Remi in Salesforce', href: '#salesforce' },
-  { label: 'Remi in HubSpot', href: '#hubspot' },
-  { label: 'Remi in Zoom', href: '#zoom' },
-  { label: 'Remi in Stripe', href: '#stripe' },
-  { label: 'Remi in Shopify', href: '#shopify' },
+  { label: 'Remi in iMessage', href: '/#features' },
+  { label: 'Remi in Gmail', href: '/#features' },
+  { label: 'Remi in Google Calendar', href: '/#features' },
+  { label: 'Remi in Slack', href: '/#features' },
+  { label: 'Remi with QuickBooks', href: '/blog/quickbooks-online-automatic-invoice-reminders' },
 ]
 </script>
 
@@ -48,7 +46,7 @@ const integrations = [
         </a>
       </nav>
       <nav class="flex flex-col items-start gap-1 col-span-full xs:col-span-2 lg:col-span-1" aria-label="Footer navigation">
-        <span class="text-base font-medium text-foreground mb-4">Usecases</span>
+        <span class="text-base font-medium text-foreground mb-4">Use cases</span>
         <a v-for="link in usecases" :key="link.href" :href="link.href"
           class="text-sm font-normal text-foreground/60 transition-colors hover:text-foreground">
           {{ link.label }}
@@ -65,7 +63,7 @@ const integrations = [
         class="col-span-full flex flex-col gap-4 pt-6 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
         <div class="flex items-center gap-2">
           <span class="size-2 rounded-full bg-emerald-500" aria-hidden="true" />
-          <span>Operational</span>
+          <span>All Systems Healthy</span>
         </div>
 
         <p>&copy; {{ new Date().getFullYear() }} Remi. All rights reserved.</p>
