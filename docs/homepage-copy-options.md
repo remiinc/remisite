@@ -40,23 +40,28 @@ Sits under the fixed H1: "Your business should run. It shouldn't run you."
 Constraint (Hunter, 07-09): **8 words max.** The grammar carries
 everything; no room to explain.
 
+Story rule (Hunter, 07-09 late): money is the protagonist IN the
+story, not THE story. The story is him and her: two jobs, help
+arrives, the load moves. Money shows up in scenes (chips, threads,
+receipts), not as the narrator of every line.
+
 1. "Small service businesses hire Remi over text." (7)
-   *Move: labor grammar pure; the YC opening sentence.*
+   *Move: the fact of the product; labor grammar, no pain at all.*
 
-2. "Contractors hire Remi to run the business side." (8)
-   *Move: maximally specific who + canonical scope phrase.*
+2. "Remi works the desk. You work the job." (8)
+   *Move: the job split in trade voice; desk vs job is his own map of the world.*
 
-3. "Remi gets you paid, over text." (6)
-   *Move: the money lead; hardest-working six words available.*
+3. "For the owner doing two jobs." (6)
+   *Move: self-qualifier and the two-jobs story in six words.*
 
-4. "The hire you've been putting off." (6)
+4. "You've finally got somebody minding the business." (7)
+   *Move: the relief line; the vacancy filled, told as arrival.*
+
+5. "The hire you've been putting off." (6)
    *Move: the vacancy in his own inner voice.*
 
-5. "You do the work. She runs the rest." (8)
-   *Move: the job split as rhythm; H1's idea restated as people.*
-
-6. "The office help you keep not hiring." (7)
-   *Move: the empty chair, named plainly.*
+6. "Remi gets you paid, over text." (6)
+   *Move: the one money-led option kept; right if the ad traffic and the hero must rhyme.*
 
 CTA pair options (primary / secondary):
 - "Text Remi" / "See what's slipping"
@@ -70,25 +75,29 @@ CTA pair options (primary / secondary):
 Replaces "Remi takes care of the work that follows you home." The "Meet Remi" kicker stays above it. Test: a SaaS founder should not think "that's me too."
 Constraint (Hunter, 07-09): **10 words max.** One scream, one line.
 
-1. "Somebody owes you money right now. Remi's already drafting." (9)
-   *Move: the apex pain, present tense; he supplies the name himself.*
+Story rule applies here hardest: this is the "this is me" beat, and
+"me" is his life, not his ledger. Money appears as a character in the
+scene at most.
 
-2. "She chases the money so you're not the bad guy." (10)
-   *Move: the scream plus the buffer insight; the whole wedge in one line.*
+1. "You didn't start this business to chase paperwork at 9pm." (10)
+   *Move: identity first; the second job named as the intruder in his life.*
 
-3. "You built their kitchen. You're not their bank." (8)
-   *Move: the enemy line; angriest option, test against the friendly-firm register.*
+2. "Great at the work. Buried by the business." (8)
+   *Move: the two-jobs trap as a portrait; qualifies hard, wounds gently.*
 
-4. "The invoice you hate chasing? That's her job now." (9)
-   *Move: recognition + relief; "her job now" starts the hire story.*
+3. "It's 9pm and you're still invoicing." (6)
+   *Move: pure scene; the kitchen table, no claim at all. The chips underneath do the money work.*
 
-5. "It's 9pm and you're still invoicing." (6)
-   *Move: the kitchen table in six words; setting, not pitch, so pair with a money support line.*
+4. "Everything you carry in your head? She carries it now." (10)
+   *Move: the load transfer; memory, promises, and money all implied, none named.*
 
-6. "Chasing invoices. Nudging quotes. Remembering what got agreed." (8)
-   *Move: the job list as drumbeat; most disciplined, least emotional.*
+5. "You run the crew. Who's running the office?" (8)
+   *Move: the question form; he answers it himself, which is the recognition.*
 
-*Rank per the one-scream delta: 1 and 2 lead; 3 is the bold test; 5 only works with money immediately beneath it.*
+6. "The late invoice. The quiet quote. The unwritten promise." (9)
+   *Move: three characters in one frame; money present but sharing the stage. The most scene-like money option.*
+
+*Rank: 1 or 2 leads the story version; 6 if the page needs money visible in this beat. The scream itself relocates to where it belongs: the ads, the chips, and the chapter 2 threads, where it plays out as scenes.*
 
 ---
 
@@ -266,10 +275,10 @@ inbox in 60 seconds."
 
 Pre-07-09 shortlist: hero subhead 1, recognition line 4 (with 1 as the A/B), iPhone framing 1, how-it-works set C, job-split header 2 with "Yours / Remi's", proof header 1, capstone 1, straight-talk 2 plus the reversibility rider and the canon disclosure, price line 1, audit offer 1 with button "See what's slipping", and the founder note as "A note from Hunter".
 
-**Revised shortlist after the 07-09 strategy session (short-form
-numbering):** hero subhead 1 ("Small service businesses hire Remi over
-text", with 3 as the A/B), recognition line 2 ("She chases the money
-so you're not the bad guy", with 1 as the A/B),
+**Revised shortlist after the 07-09 strategy session (story-rule
+numbering):** hero subhead 2 ("Remi works the desk. You work the
+job", with 1 as the A/B), recognition line 2 ("Great at the work.
+Buried by the business", with 1 as the A/B),
 iPhone framing 1, how-it-works set D (money-first now that the scream
 leads the page), job-split header 2 with "Yours / Remi's", proof
 header 1, capstone 6 (the one-liner candidate earning its keep; 1 as
