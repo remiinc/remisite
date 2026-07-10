@@ -37,34 +37,26 @@ carries:
 ## Chapter 0: Hero subhead
 
 Sits under the fixed H1: "Your business should run. It shouldn't run you."
+Constraint (Hunter, 07-09): **8 words max.** The grammar carries
+everything; no room to explain.
 
-1. **The division of labor (recommended starting point)**
-   "Remi is a teammate you hire over text. She chases the money, follows up on quotes, and keeps every agreement on the record. You run the work. She runs the business side."
-   *Move: the job split in owner words; last two sentences are the whole positioning.*
+1. "Small service businesses hire Remi over text." (7)
+   *Move: labor grammar pure; the YC opening sentence.*
 
-2. **The self-qualifier**
-   "For owners who still do the invoicing, the chasing, and the remembering themselves. Remi takes the business side. You keep the trade."
-   *Move: the first sentence qualifies the reader the way the ad doctrine demands; a founder bounces, Mike leans in.*
+2. "Contractors hire Remi to run the business side." (8)
+   *Move: maximally specific who + canonical scope phrase.*
 
-3. **The money lead**
-   "Remi gets you paid. She watches your inbox, chases what you're owed, nudges quotes before they go cold, and writes down what everyone agreed to. Nothing goes out without your yes."
-   *Move: pain #1 first, approval promise last; the most conversion-shaped of the five.*
+3. "Remi gets you paid, over text." (6)
+   *Move: the money lead; hardest-working six words available.*
 
-4. **The hire you've been putting off**
-   "The hire you've been putting off. Remi runs the business side: invoices, follow-ups, and what got agreed to, all from your texts."
-   *Move: Viktor's "not a tool, a hire" energy pointed at a man who actually hires; shortest option.*
+4. "The hire you've been putting off." (6)
+   *Move: the vacancy in his own inner voice.*
 
-5. **The plain job list**
-   "Remi is a new hire for the business side. She chases invoices, follows up on quiet quotes, remembers what you told every customer, and texts you before you had to ask."
-   *Move: Rosie plainness; ends on "she texts first" as the differentiator.*
+5. "You do the work. She runs the rest." (8)
+   *Move: the job split as rhythm; H1's idea restated as people.*
 
-6. **[NEW 07-09] The labor grammar, pure**
-   "Small service businesses hire Remi over text. She chases what you're owed, follows up on quotes that went quiet, and keeps every agreement in writing. Nothing goes out without your yes."
-   *Move: customer-as-subject + hire verb; the YC application's opening sentence, which survived five adversarial passes. The subject grammar does the labor-not-software work silently.*
-
-7. **[NEW 07-09] The vacancy**
-   "She's the office help you keep not hiring. Remi chases the money, nudges the quotes, and remembers what got agreed, from the texts you already send. You approve every move."
-   *Move: names the $45k empty chair without the salary math; the counterfactual in his head made explicit.*
+6. "The office help you keep not hiring." (7)
+   *Move: the empty chair, named plainly.*
 
 CTA pair options (primary / secondary):
 - "Text Remi" / "See what's slipping"
@@ -76,31 +68,27 @@ CTA pair options (primary / secondary):
 ## Chapter 1: Recognition line
 
 Replaces "Remi takes care of the work that follows you home." The "Meet Remi" kicker stays above it. Test: a SaaS founder should not think "that's me too."
+Constraint (Hunter, 07-09): **10 words max.** One scream, one line.
 
-1. "Somebody owes you money right now. Remi is already drafting the reminder."
-   *Move: present tense, second person, pain #1; the reader supplies the name himself, which is the recognition.*
+1. "Somebody owes you money right now. Remi's already drafting." (9)
+   *Move: the apex pain, present tense; he supplies the name himself.*
 
-2. "Chasing invoices. Nudging quotes. Remembering what you told the client in April. That's Remi's job now."
-   *Move: three named scenes then the hire punchline; "that's her job now" is the relief line.*
+2. "She chases the money so you're not the bad guy." (10)
+   *Move: the scream plus the buffer insight; the whole wedge in one line.*
 
-3. "It's 9pm and you're still invoicing. Remi was about to text you about that."
-   *Move: the kitchen-table scene plus "she speaks first" smuggled in early; the wittiest option, check it against the serious-money register.*
+3. "You built their kitchen. You're not their bank." (8)
+   *Move: the enemy line; angriest option, test against the friendly-firm register.*
 
-4. "The quote went quiet. The invoice went unpaid. Nobody wrote down what got agreed. Remi catches all three."
-   *Move: pains 1, 2, 3 in ratified order, one clause each; the most disciplined option.*
+4. "The invoice you hate chasing? That's her job now." (9)
+   *Move: recognition + relief; "her job now" starts the hire story.*
 
-5. "Remi handles the part of the business that keeps you up: who owes you, who's waiting on you, and what you promised."
-   *Move: mood line rebuilt with the three concrete objects it was missing; closest evolution of the current line.*
+5. "It's 9pm and you're still invoicing." (6)
+   *Move: the kitchen table in six words; setting, not pitch, so pair with a money support line.*
 
-6. **[NEW 07-09] The bad guy**
-   "You've rewritten that payment reminder three times. Remi sends it, politely, so you don't have to be the bad guy."
-   *Move: the apex scream, straight on. The third-person buffer is the one job where she beats a human hire, and this line is the only one in the set that says it.*
+6. "Chasing invoices. Nudging quotes. Remembering what got agreed." (8)
+   *Move: the job list as drumbeat; most disciplined, least emotional.*
 
-7. **[NEW 07-09] The bank**
-   "You built their kitchen. You're not their bank. Remi goes and gets what you're owed, with your say-so on every send."
-   *Move: the enemy line; the angriest option on the page, test carefully against the friendly-firm register.*
-
-*Re-rank per the one-scream delta: option 1 or 6 leads (money apex); option 4 (three pains in order) demotes to A/B, since the scream doctrine says one apex, scenes elsewhere.*
+*Rank per the one-scream delta: 1 and 2 lead; 3 is the bold test; 5 only works with money immediately beneath it.*
 
 ---
 
@@ -278,9 +266,10 @@ inbox in 60 seconds."
 
 Pre-07-09 shortlist: hero subhead 1, recognition line 4 (with 1 as the A/B), iPhone framing 1, how-it-works set C, job-split header 2 with "Yours / Remi's", proof header 1, capstone 1, straight-talk 2 plus the reversibility rider and the canon disclosure, price line 1, audit offer 1 with button "See what's slipping", and the founder note as "A note from Hunter".
 
-**Revised shortlist after the 07-09 strategy session:** hero subhead 6
-(labor grammar; option 1 as the A/B), recognition line 6 (the bad guy;
-option 1 as the A/B, option 4 demoted per the one-scream delta),
+**Revised shortlist after the 07-09 strategy session (short-form
+numbering):** hero subhead 1 ("Small service businesses hire Remi over
+text", with 3 as the A/B), recognition line 2 ("She chases the money
+so you're not the bad guy", with 1 as the A/B),
 iPhone framing 1, how-it-works set D (money-first now that the scream
 leads the page), job-split header 2 with "Yours / Remi's", proof
 header 1, capstone 6 (the one-liner candidate earning its keep; 1 as
