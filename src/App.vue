@@ -14,7 +14,6 @@ import SectionCaseStudies from './components/sections/section-case-studies.vue'
 import SectionIphone from './components/sections/section-iphone.vue'
 import SectionPinnedHeadline from './components/sections/section-pinned-headline.vue'
 import SectionFeatures from './components/sections/section-features.vue'
-import SectionNews from './components/sections/section-news.vue'
 import SolutionPage from './components/solutions/solution-page.vue'
 
 const pathname = typeof window !== 'undefined' ? window.location.pathname : '/'
@@ -61,7 +60,6 @@ const qualifyContactEmail = computed(() => {
       <SectionIphone />
       <SectionFeatures />
       <SectionCaseStudies />
-      <SectionNews />
       <SectionCta />
     </main>
     <GlobalFooter />

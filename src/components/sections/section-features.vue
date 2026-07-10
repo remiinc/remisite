@@ -16,8 +16,7 @@ import { PhShield, PhLockSimple, PhHouseSimple, PhCheck, PhNumberCircleOne, PhNu
               Text Remi to hire a teammate that onboards itself and works 24/7.
             </h2>
             <p class="max-w-lg text-sm lg:text-base font-normal leading-normal text-pretty text-muted-foreground mb-8">
-              Give Remi access to your email, calendar, messages, and the tools you already use. Remi reads the
-              trail and starts flagging things before you have to ask.
+              Remi connects to and learns from your email, calendar, and all the tools you already use. Remi finds tasks to work on and starts tackling them with your approval.
             </p>
             <ul class="flex flex-col mb-8 divide-y divide-border">
               <li class="flex items-start gap-2 text-sm text-foreground py-2">
@@ -36,7 +35,7 @@ import { PhShield, PhLockSimple, PhHouseSimple, PhCheck, PhNumberCircleOne, PhNu
                 <span class="size-[1lh] shrink-0 flex items-center justify-center">
                   <PhNumberCircleThree class="size-full" weight="fill" />
                 </span>
-                <span>Remi reads the trail across every source</span>
+                <span>Remi gets oriented and identifies tasks</span>
               </li>
               <li class="flex items-start gap-2 text-sm text-foreground py-2">
                 <span class="size-[1lh] shrink-0 flex items-center justify-center">
