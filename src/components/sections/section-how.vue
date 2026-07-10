@@ -25,8 +25,11 @@ const segments = [
 
 <template>
   <section id="how" :class="cn('relative w-full z-1 px-6 py-12 md:py-16')" data-section-how>
-    <div class="w-full mx-auto max-w-(--content-width)">
-      <div class="grid min-w-0 lg:grid-cols-3 gap-8 gap-y-12">
+    <div class="mx-auto flex w-full max-w-(--content-width) flex-col items-center gap-12">
+      <h3 class="max-w-[20ch] text-center text-3xl font-normal leading-none tracking-tight text-balance text-foreground">
+        How Remi works
+      </h3>
+      <div class="grid w-full min-w-0 lg:grid-cols-3 gap-8 gap-y-12">
         <div
           v-for="segment in segments"
           :key="segment.title"

@@ -30,7 +30,7 @@ defineProps({
           Your business should run. <span class="block">It shouldn't run you.</span>
         </h1>
         <p class="text-[0.875em] text-background text-center leading-none *:block flex flex-col gap-1 mb-2">
-          <span>Your company's new agentic COO</span>
+          <span>Meet the last operations hire you'll ever need.</span>
           <span class="text-background/50">Beta launching late 2026</span>
         </p>
       </div>

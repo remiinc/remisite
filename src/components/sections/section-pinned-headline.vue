@@ -284,7 +284,7 @@ onUnmounted(() => {
             </p>
             <h2
               class="relative z-1 block max-w-[20ch] text-center text-4xl md:text-[clamp(3.5rem,8vw,5rem)] leading-[1em] font-normal tracking-[-0.03em] text-balance text-foreground select-none mb-4">
-              Remi takes care of the work that follows you home.
+              Grow your business while Remi helps run operations.
             </h2>
             <ul class="relative z-1 tasks-list text-[1.2em] tracking-tight text-foreground/50 select-none">
               <li v-for="task in tasks" :key="task.label" class="task-item py-[0.25em]">
