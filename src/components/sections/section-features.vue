@@ -13,7 +13,7 @@ import { PhShield, PhLockSimple, PhHouseSimple, PhCheck, PhNumberCircleOne, PhNu
         <div class="section-content w-full py-4 flex flex-col justify-center order-2 lg:order-1">
           <div class="flex flex-col flex-1">
             <h2 class="text-3xl lg:text-4xl font-normal tracking-tight text-balance mb-6">
-              Text Remi to get started and watch the work begin.
+              Text Remi to hire a teammate that onboards itself and works 24/7.
             </h2>
             <p class="max-w-lg text-sm lg:text-base font-normal leading-normal text-pretty text-muted-foreground mb-8">
               Give Remi access to your email, calendar, messages, and the tools you already use. Remi reads the

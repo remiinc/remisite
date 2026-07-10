@@ -22,9 +22,9 @@ const draft = (preview, approvedReply) => ({ preview, approvedReply })
 const scenarios = [
   {
     id: 'money',
-    title: 'Get paid',
+    title: 'Get invoices paid faster',
     icon: PhInvoice,
-    description: 'Find overdue invoices and draft the follow-up.',
+    description: 'Let Remi track & chase invoices to recover late payments.',
     messages: [
       incoming('Henderson is 9 days late on the final invoice. They approved the extra work by text on Friday. 💸'),
       outgoing('Is the job marked complete?'),
@@ -37,9 +37,9 @@ const scenarios = [
   },
   {
     id: 'follow-up',
-    title: 'Respond first',
+    title: 'Respond to customers in minutes',
     icon: PhChatsCircle,
-    description: 'Catch missed requests before they go cold.',
+    description: 'Remi manages customer messages and drafts replies for your approval.',
     draftWidget: draft(
       'Hi Wilson, I can come by tomorrow at 2:30. Send a photo and I will confirm the scope before I head over.',
       'Approved. I’ll send this to Wilson and keep the estimate thread attached. ✅',
@@ -58,7 +58,7 @@ const scenarios = [
     id: 'proof',
     title: 'Remember everything',
     icon: PhBrain,
-    description: 'Keep approvals and receipts tied to the work.',
+    description: 'Remi keeps track of everything across your business.',
     draftWidget: draft(
       'Hi Dana, I found your June 18 approval for the better fixtures and attached the Lowe’s receipt for the materials.',
       'Approved. I’ll send it with the approval text and receipt attached. ✅',
@@ -75,9 +75,9 @@ const scenarios = [
   },
   {
     id: 'control',
-    title: 'Approve the next step',
+    title: 'Nothing happens without your approval',
     icon: PhListChecks,
-    description: 'Review what Remi found before anything goes out.',
+    description: 'Remi can never take actions in the outside world without your approval.',
     messages: [
       incoming('Three open loops are waiting: one overdue invoice, one unanswered quote, and one client approval. 🔎'),
       outgoing('Show me the money first.'),

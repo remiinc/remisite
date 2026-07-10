@@ -31,7 +31,7 @@ defineProps({
         </h1>
         <p class="text-[0.875em] text-background text-center leading-none *:block flex flex-col gap-1 mb-2">
           <span>Meet the last operations hire you'll ever need.</span>
-          <span class="text-background/50">Beta launching late 2026</span>
+          <span class="text-background/50">Let Remi take tasks off your plate</span>
         </p>
       </div>
       <div class="relative z-1 flex w-full max-w-sm flex-col items-center justify-center gap-3 sm:max-w-none sm:flex-row">
