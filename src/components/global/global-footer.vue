@@ -34,8 +34,8 @@ const integrations = [
     <div class="mx-auto max-w-(--content-width) grid grid-cols-6 gap-x-10 gap-y-16">
       <div class="col-span-full lg:col-span-3 flex flex-col items-start gap-12 justify-between">
         <div class="flex flex-col items-start gap-4 max-w-md text-balance">
-        <SiteLogo />
-        <h3 class="text-2xl font-medium text-foreground my-2">AI tools answer questions. Operations need follow-through.</h3>
+        <SiteLogo class="w-24" />
+        <h3 class="text-2xl font-medium text-foreground my-2">Your business shouldn't run you. It should run itself.</h3>
         <Button>Book a Demo</Button>
       </div>
       <span class="text-sm font-normal text-foreground/60 inline-flex items-center gap-1.5">🇺🇸 Made with love in the USA</span>

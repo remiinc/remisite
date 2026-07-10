@@ -45,5 +45,5 @@ Remi surfaced $6,800 in retainers for review and drafted four intake replies wit
 
 For the owner, the useful outcome was not more activity. It was fewer money and intake threads depending on memory, and tighter control before anything reached a client.
 
-> "Remi gives me the draft, the source, and the reason she thinks it matters. I still decide what leaves the office."
+> "Remi gives me the draft, the source, and the reason it matters. I still decide what leaves the office."
 > - Owner, legal services office

@@ -13,12 +13,12 @@ const segments = [
   {
     visual: SectionVisualLearn,
     title: 'Keeps things moving 24/7',
-    body: 'She looks for unpaid invoices, quotes that went quiet, missed requests, and promises clients made.',
+    body: 'Remi looks for unpaid invoices, quotes that went quiet, missed requests, and promises clients made.',
   },
   {
     visual: SectionVisualWorks,
     title: 'You approve the next move',
-    body: 'Remi texts you the draft and proof. You approve, edit, or say no. Once approved, she sends the follow-up.',
+    body: 'Remi texts you the draft and proof. You approve, edit, or say no. Once approved, Remi sends the follow-up.',
   },
 ]
 </script>

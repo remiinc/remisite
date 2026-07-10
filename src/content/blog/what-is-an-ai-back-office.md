@@ -9,7 +9,7 @@ ogTitle: "What Is an AI Back Office? A Plain-English Guide for Business Owners"
 ogDescription: "A plain-English guide to what an AI back office is, what it is not, and what to look for before you buy one for your small business."
 ogImage: "/images/og-image.png"
 ctaTitle: "See what's slipping through your inbox"
-ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire her."
+ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire Remi."
 ctaHref: "/qualify/contact"
 ctaLabel: "Run the free check"
 faq:

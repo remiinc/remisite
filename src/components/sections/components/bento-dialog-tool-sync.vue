@@ -57,7 +57,7 @@ const emit = defineEmits(['book-demo'])
             <span class="font-medium text-foreground">Remi reads from where truth actually lives.</span>
             <span class="text-foreground/50">
               Remi goes to the source — not a copy, not a cached snapshot. Project status comes from the tracker. Client
-              context comes from the thread. She doesn't work from a stale export.
+              context comes from the thread. Remi doesn't work from a stale export.
             </span>
           </p>
         </li>
@@ -76,7 +76,7 @@ const emit = defineEmits(['book-demo'])
           <p>
             <span class="font-medium text-foreground">Remi updates when things change.</span>
             <span class="text-foreground/50">
-              She notices when a project goes quiet, when a deadline passes without delivery, when a client signal
+              Remi notices when a project goes quiet, when a deadline passes without delivery, when a client signal
               shifts.
               The model stays current because the sources stay live.
             </span>
@@ -87,7 +87,7 @@ const emit = defineEmits(['book-demo'])
           <p>
             <span class="font-medium text-foreground">Remi carries context across time.</span>
             <span class="text-foreground/50">
-              Conversations don't reset. What you discussed last week shapes how Remi understands this week. She builds
+              Conversations don't reset. What you discussed last week shapes how Remi understands this week. Remi builds
               an
               accumulating model of your work — not just today's updates, but the history that makes today make sense.
             </span>

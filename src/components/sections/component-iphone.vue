@@ -2,7 +2,7 @@
 import cn from '../../lib/cn';
 import { PhCaretRight, PhCaretLeft, PhCheckCircle, PhMagnifyingGlass, PhPlus, PhMicrophone } from '@phosphor-icons/vue';
 import { gsap } from 'gsap';
-import SiteLogo from '../global/site-logo.vue';
+import SiteIcon from '../global/site-icon.vue';
 import { computed, defineComponent, h, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 
 const props = defineProps({
@@ -537,7 +537,7 @@ const IosMessageHeader = defineComponent({
                 class: 'w-[4em] overflow-hidden relative z-2 aspect-square rounded-full bg-linear-to-b from-neutral-900 to-neutral-800 shadow-[0_0.15em_0.2em_0_rgba(0,0,0,0.1)]',
               },
               [
-                h(SiteLogo, {
+                h(SiteIcon, {
                   class: 'absolute inset-0 m-auto size-[2em] text-white',
                 }),
               ],

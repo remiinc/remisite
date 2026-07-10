@@ -37,7 +37,7 @@ A client said the second retainer would be paid after a milestone. Another asked
 
 Remi watched the sources that shaped each account: email, meeting notes, calendar context, project messages, and invoice history.
 
-When a retainer was overdue, Remi drafted a polite chase with the invoice amount and the last relevant client message attached. When a scope question needed the owner, Remi pulled the original words back into view. When a weekly update was due, Remi prepared the draft and showed what she used.
+When a retainer was overdue, Remi drafted a polite chase with the invoice amount and the last relevant client message attached. When a scope question needed the owner, Remi pulled the original words back into view. When a weekly update was due, Remi prepared the draft and showed the sources used.
 
 ## The results
 

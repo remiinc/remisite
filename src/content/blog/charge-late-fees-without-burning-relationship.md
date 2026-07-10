@@ -9,7 +9,7 @@ ogTitle: "How to Charge Late Fees Without Burning the Relationship"
 ogDescription: "How to charge late fees as a small business without losing the customer: policy, legal caps, grace periods, the first enforcement script, and when to waive."
 ogImage: "/images/og-image.png"
 ctaTitle: "See what's slipping through your inbox"
-ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire her."
+ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire Remi."
 ctaHref: "/qualify/contact"
 ctaLabel: "Run the free check"
 faq:
@@ -111,9 +111,9 @@ When you do waive, say it plainly: "I'm waiving the late fee this time since you
 
 Everything above works with a calendar, a template, and the discipline to actually send the message the day the grace period ends. The hard part is not the policy. It is being the person who tracks 40 invoices, notices the one that just crossed the line, and writes the calm follow-up after a full day on the job.
 
-Remi is an AI teammate for small business owners, and this is the exact job she was built for. She watches your connected invoices, flags the one going stale before it is weeks gone, and drafts the late-fee reminder using your terms and your numbers. She is an AI teammate. We say so because she'll never pretend otherwise, and neither will we.
+Remi is an AI teammate for small business owners, and this is the exact job Remi was built for. Remi watches your connected invoices, flags the one going stale before it is weeks gone, and drafts the late-fee reminder using your terms and your numbers. Remi is an AI teammate. We say so because Remi will never pretend otherwise, and neither will we.
 
-Nothing goes out without your approval. Remi prepares the message and shows you the math, you read it and hit send, and every action carries a receipt so you always have the record. If you fire her, you keep all of it: the invoices, the history, the terms. You can run all of this yourself with the templates above. If you would rather not be the one doing it at 9pm, that is what Remi is for.
+Nothing goes out without your approval. Remi prepares the message and shows you the math, you read it and hit send, and every action carries a receipt so you always have the record. If you fire Remi, you keep all of it: the invoices, the history, the terms. You can run all of this yourself with the templates above. If you would rather not be the one doing it at 9pm, that is what Remi is for.
 
 ## FAQ
 

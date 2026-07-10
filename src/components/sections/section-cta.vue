@@ -1,6 +1,6 @@
 <script setup>
 import { PhCaretLeft, PhMicrophone, PhPlus } from '@phosphor-icons/vue'
-import SiteLogo from '../global/site-logo.vue'
+import SiteIcon from '../global/site-icon.vue'
 </script>
 
 <template>
@@ -83,7 +83,7 @@ import SiteLogo from '../global/site-logo.vue'
                           <div
                             class="relative z-2 aspect-square w-[3.5em] overflow-hidden rounded-full bg-linear-to-b from-neutral-900 to-neutral-800 shadow-[0_0.15em_0.2em_0_rgba(0,0,0,0.1)] flex items-center justify-center"
                             data-message-thread-header-avatar>
-                            <SiteLogo class="size-1/2 text-background" />
+                            <SiteIcon class="w-1/2 text-background" />
                           </div>
                           <div
                             class="relative z-1 mt-[-0.125em] flex items-center justify-center gap-[0.25em] rounded-full bg-neutral-500/5 px-[0.7em] py-[0.2em] text-[1em] font-medium leading-none tracking-tight text-neutral-900 shadow-[0_0_2em_0_rgba(0,0,0,0.15),1px_1px_1px_0_inset_rgba(255,255,255,0.8),-1px_-1px_1px_0_inset_rgba(255,255,255,0.8)] backdrop-blur-md">

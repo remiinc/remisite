@@ -14,7 +14,7 @@ const emit = defineEmits(['book-demo'])
       <div class="grid md:grid-cols-2 gap-8">
         <div class="flex flex-col gap-8 items-start">
           <p class="text-base font-normal leading-normal text-foreground/50 max-w-[40ch]">
-            Remi does not keep one big pile of information. She organizes what happens across Slack, email, docs, and
+            Remi does not keep one big pile of information. Remi organizes what happens across Slack, email, docs, and
             project tools into connected memory layers that stay useful over time.
           </p>
           <div class="flex items-center justify-start gap-2">

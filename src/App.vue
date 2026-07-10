@@ -13,7 +13,7 @@ import SectionCta from './components/sections/section-cta.vue'
 import SectionCaseStudies from './components/sections/section-case-studies.vue'
 import SectionIphone from './components/sections/section-iphone.vue'
 import SectionPinnedHeadline from './components/sections/section-pinned-headline.vue'
-import SectionHow from './components/sections/section-how.vue'
+import SectionFeatures from './components/sections/section-features.vue'
 import SectionNews from './components/sections/section-news.vue'
 import SolutionPage from './components/solutions/solution-page.vue'
 
@@ -59,7 +59,7 @@ const qualifyContactEmail = computed(() => {
       <HomeHeroVideo />
       <SectionPinnedHeadline />
       <SectionIphone />
-      <SectionHow />
+      <SectionFeatures />
       <SectionCaseStudies />
       <SectionNews />
       <SectionCta />
