@@ -10,20 +10,21 @@ const footerLinks = [
 ]
 
 const usecases = [
-  { label: 'Chase an overdue invoice', href: '/blog/follow-up-unpaid-invoice-without-losing-client' },
-  { label: 'Follow up on estimates', href: '/blog/estimate-follow-up-how-soon-how-often' },
-  { label: 'Late payment reminders', href: '/blog/late-payment-reminder-templates' },
-  { label: 'Keep change orders in writing', href: '/blog/keep-change-orders-in-writing' },
-  { label: 'Answer leads first', href: '/blog/respond-first-win-the-job' },
-  { label: "When a client won't pay", href: '/blog/client-wont-pay-step-by-step-playbook' },
+  { label: 'Send a quote from the truck', href: '/#features' },
+  { label: 'Chase the final payment', href: '/blog/follow-up-unpaid-invoice-without-losing-client' },
+  { label: 'Nudge a late invoice', href: '/blog/late-payment-reminder-templates' },
+  { label: "Snap a receipt, it's filed", href: '/#features' },
+  { label: 'What did the client agree to?', href: '/blog/keep-change-orders-in-writing' },
+  { label: 'Answer the lead first', href: '/blog/respond-first-win-the-job' },
 ]
 
 const integrations = [
-  { label: 'Remi in iMessage', href: '/#features' },
-  { label: 'Remi in Gmail', href: '/#features' },
-  { label: 'Remi in Google Calendar', href: '/#features' },
-  { label: 'Remi in Slack', href: '/#features' },
-  { label: 'Remi with QuickBooks', href: '/blog/quickbooks-online-automatic-invoice-reminders' },
+  { label: 'Remi + iMessage', href: '/#features' },
+  { label: 'Remi + Gmail', href: '/#features' },
+  { label: 'Remi + QuickBooks', href: '/blog/quickbooks-online-automatic-invoice-reminders' },
+  { label: 'Remi + Jobber', href: '/blog/jobber-estimate-invoice-follow-ups' },
+  { label: 'Remi + Housecall Pro', href: '/blog/housecall-pro-payment-reminders' },
+  { label: 'Remi + Google Calendar', href: '/#features' },
 ]
 </script>
 
