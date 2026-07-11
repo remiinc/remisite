@@ -149,7 +149,7 @@ const tabClass = (scenario) =>
 
         <div
           class="iphone-mockup relative shrink-0 z-10 order-2 mx-auto w-full lg:order-0 sm:col-start-2 sm:row-start-1 sm:row-end-3 lg:col-start-2 lg:row-start-2">
-          <ComponentIphone class="mx-auto w-full" :messages="activeScenario.messages"
+          <ComponentIphone :key="activeScenarioId" class="mx-auto w-full" :messages="activeScenario.messages"
             :draft-widget="activeScenario.draftWidget" contact-name="Remi" input-placeholder="iMessage" />
           <div class="mx-auto mt-16 flex w-full max-w-sm flex-col items-center gap-8 sm:hidden">
             <div data-mobile-scenario-card

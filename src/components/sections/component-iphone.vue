@@ -3,6 +3,7 @@ import cn from '../../lib/cn';
 import { PhCaretRight, PhCaretLeft, PhCheckCircle, PhMagnifyingGlass, PhPlus, PhMicrophone } from '@phosphor-icons/vue';
 import { gsap } from 'gsap';
 import SiteIcon from '../global/site-icon.vue';
+import SiteLogo from '../global/site-logo.vue';
 import { computed, defineComponent, h, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 
 const props = defineProps({
@@ -42,6 +43,9 @@ const approvalMessages = ref([]);
 let messageTimeline = null;
 let phoneTimeline = null;
 let approvalTimeline = null;
+let intersectionObserver = null;
+let isPhoneInView = false;
+let pendingMessagePlay = false;
 
 const motion = {
   messageHidden: {
@@ -395,18 +399,89 @@ const animateMessages = async () => {
   addDraftSheetOpenSequence(messageTimeline, draftSheetElements);
 };
 
+const isPhoneMostlyVisible = (element = phoneRef.value) => {
+  if (!element) return false;
+
+  const rect = element.getBoundingClientRect();
+  const viewHeight = window.innerHeight || document.documentElement.clientHeight;
+  const visibleHeight = Math.min(rect.bottom, viewHeight) - Math.max(rect.top, 0);
+
+  return visibleHeight > Math.min(rect.height * 0.25, viewHeight * 0.2);
+};
+
+const playMessagesWhenVisible = () => {
+  if (
+    isPhoneInView ||
+    isPhoneMostlyVisible() ||
+    prefersReducedMotion() ||
+    typeof IntersectionObserver === 'undefined'
+  ) {
+    isPhoneInView = true;
+    animateMessages();
+    return;
+  }
+
+  pendingMessagePlay = true;
+};
+
 watch(
   () => [props.messages, props.messages.length, props.draftWidget],
   () => {
     approvalMessages.value = [];
-    animateMessages();
+    playMessagesWhenVisible();
   },
   { flush: 'post' },
 );
 
-onMounted(animateMessages);
+onMounted(async () => {
+  await nextTick();
+
+  const phone = phoneRef.value;
+  const messageItems = getMessageItems();
+  const draftSheetElements = getDraftSheetElements();
+
+  // Keep the thread hidden until the phone is actually on screen.
+  if (messageItems.length && !prefersReducedMotion()) {
+    gsap.set(messageItems, motion.messageHidden);
+    setDraftSheetHidden(draftSheetElements);
+  }
+
+  if (!phone || typeof IntersectionObserver === 'undefined') {
+    animateMessages();
+    return;
+  }
+
+  intersectionObserver = new IntersectionObserver(
+    ([entry]) => {
+      const nextInView = Boolean(entry?.isIntersecting);
+      const enteredView = nextInView && !isPhoneInView;
+
+      isPhoneInView = nextInView;
+
+      if (enteredView || (nextInView && pendingMessagePlay)) {
+        pendingMessagePlay = false;
+        animateMessages();
+      }
+    },
+    {
+      threshold: [0, 0.15, 0.35, 0.6],
+      rootMargin: '0px 0px -5% 0px',
+    },
+  );
+
+  intersectionObserver.observe(phone);
+
+  // Tab remounts (and first paint while already scrolled) need an immediate check.
+  if (isPhoneMostlyVisible(phone)) {
+    isPhoneInView = true;
+    pendingMessagePlay = false;
+    animateMessages();
+  }
+});
 
 onBeforeUnmount(() => {
+  intersectionObserver?.disconnect();
+  intersectionObserver = null;
   killTimeline(messageTimeline);
   killTimeline(phoneTimeline);
   killTimeline(approvalTimeline);
