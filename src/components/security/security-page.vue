@@ -173,107 +173,38 @@ const reviewItems = [
         </div>
       </section>
 
-      <section class="px-6 py-12" aria-labelledby="security-operations-title" data-security-operations>
-        <div class="mx-auto grid w-full max-w-(--content-width) gap-4 md:grid-cols-3">
-          <article class="flex min-h-80 flex-col justify-between rounded-3xl bg-muted p-7">
-            <PhClockCounterClockwise class="size-6 text-foreground/60" weight="regular" aria-hidden="true" />
-            <div class="flex flex-col gap-3">
-              <h2 id="security-operations-title" class="text-2xl font-normal leading-tight tracking-tight">
-                Monitored while you work.
-              </h2>
-              <p class="text-sm leading-normal text-pretty text-foreground/50">
-                Production systems are watched for errors, downtime, and unusual patterns so customer work does not
-                quietly stall.
-              </p>
-            </div>
-          </article>
-
-          <article class="flex min-h-80 flex-col justify-between rounded-3xl bg-muted p-7">
-            <PhSiren class="size-6 text-foreground/60" weight="regular" aria-hidden="true" />
-            <div class="flex flex-col gap-3">
-              <h3 class="text-2xl font-normal leading-tight tracking-tight">
-                Ready when something breaks.
-              </h3>
-              <p class="text-sm leading-normal text-pretty text-foreground/50">
-                Incident response is handled with defined ownership, communication paths, and follow-up so problems
-                get resolved cleanly.
-              </p>
-            </div>
-          </article>
-
-          <article class="flex min-h-80 flex-col justify-between rounded-3xl bg-muted p-7">
-            <PhFileLock class="size-6 text-foreground/60" weight="regular" aria-hidden="true" />
-            <div class="flex flex-col gap-3">
-              <h3 class="text-2xl font-normal leading-tight tracking-tight">
-                Prepared for review.
-              </h3>
-              <p class="text-sm leading-normal text-pretty text-foreground/50">
-                If your team needs details for vendor review, we can walk through the architecture, data handling,
-                and controls that matter.
-              </p>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="px-6 py-20 md:py-28" aria-labelledby="security-review-title" data-security-review>
+      <section class="px-6 py-8" aria-labelledby="security-review-title" data-security-review>
         <div
           class="mx-auto grid w-full max-w-(--content-width) overflow-hidden rounded-3xl bg-foreground text-background lg:grid-cols-[1.1fr_0.9fr]">
-          <div class="flex min-h-120 flex-col justify-between gap-12 p-8 md:p-10 lg:p-12">
-            <div class="flex flex-col gap-5">
-              <p class="text-sm font-medium leading-none text-background/45">
-                Security review
-              </p>
-              <h2 id="security-review-title"
-                class="max-w-[13ch] text-5xl font-normal leading-none tracking-tight text-balance">
-                Need the careful version?
-              </h2>
-            </div>
+          <div class="flex flex-col justify-between gap-12 p-8 md:p-10 lg:p-12">
+            <h2 id="security-review-title"
+              class="max-w-[13ch] text-5xl font-normal leading-none tracking-tight text-balance">
+              Serious about security?
+            </h2>
 
-            <p class="max-w-xl text-lg leading-normal text-pretty text-background/55">
-              Send the questions. We will help with the practical details: what Remi can access, where data moves,
-              how approvals work, and how your team can keep control.
-            </p>
+
+            <Button href="/qualify" size="default" variant="white" class="w-fit">
+              <span class="inline-flex items-center gap-2">
+                <span>Book a demo</span>
+                <PhArrowRight class="size-4" weight="bold" aria-hidden="true" />
+              </span>
+            </Button>
           </div>
 
-          <div
-            class="flex flex-col justify-between gap-10 border-t border-background/10 p-8 md:p-10 lg:border-l lg:border-t-0 lg:p-12">
-            <ul class="grid gap-4">
+          <div class="flex flex-col justify-between gap-4 p-8 md:p-10 lg:p-12">
+            <div class="mb-4">
+              <span class="block">Book a security review</span>
+              <span class="block text-background/50">We'll help you understand what Remi can access, where data moves,
+                how approvals work, and how your team can keep control.</span>
+            </div>
+            <ul class="grid gap-2">
               <li v-for="item in reviewItems" :key="item"
-                class="flex items-start gap-3 text-base leading-snug text-background/75">
+                class="flex items-start gap-3 text-base leading-snug text-background">
                 <PhCheck class="mt-0.5 size-4 shrink-0 text-background" weight="bold" aria-hidden="true" />
                 <span>{{ item }}</span>
               </li>
             </ul>
-
-            <a :class="cn(
-              'inline-flex h-12 w-fit items-center justify-center gap-2 rounded-full bg-background px-5 text-sm font-medium leading-none text-foreground transition-opacity duration-200 hover:opacity-90',
-              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background/60 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground'
-            )" href="mailto:security@remi.new">
-              <span>Contact security</span>
-              <PhArrowRight class="size-4" weight="bold" aria-hidden="true" />
-            </a>
           </div>
-        </div>
-      </section>
-
-      <section class="px-6 py-12" aria-labelledby="security-demo-title" data-security-demo-cta>
-        <div class="mx-auto flex w-full max-w-(--content-width) flex-col items-start justify-between gap-10 rounded-3xl bg-muted p-8 md:p-10 lg:flex-row lg:items-end lg:p-12">
-          <div class="flex max-w-2xl flex-col gap-4">
-            <h2 id="security-demo-title" class="text-4xl font-normal leading-none tracking-tight text-balance text-foreground md:text-5xl">
-              Serious about security?
-            </h2>
-            <p class="text-lg leading-normal text-pretty text-foreground/55">
-              Book a demo to see Remi in action.
-            </p>
-          </div>
-
-          <Button href="/qualify" size="lg">
-            <span class="inline-flex items-center gap-2">
-              <span>Book a demo</span>
-              <PhArrowRight class="size-4" weight="bold" aria-hidden="true" />
-            </span>
-          </Button>
         </div>
       </section>
 

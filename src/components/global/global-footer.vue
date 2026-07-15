@@ -6,6 +6,7 @@ const footerLinks = [
   { label: 'About', href: '#about' },
   { label: 'Features', href: '#features' },
   { label: 'What you get', href: '#what-you-get' },
+  { label: 'Solutions', href: '/solutions' },
   { label: 'Pricing', href: '/pricing' },
   { label: 'Security', href: '/security' },
 ]
@@ -36,7 +37,7 @@ const integrations = [
         <div class="flex flex-col items-start gap-4 max-w-md text-balance">
         <SiteLogo class="w-24" />
         <h3 class="text-2xl font-medium text-foreground my-2">Your business shouldn't run you. It should run itself.</h3>
-        <Button>Book a Demo</Button>
+        <Button href="/qualify">Book a Demo</Button>
       </div>
       <span class="text-sm font-normal text-foreground/60 inline-flex items-center gap-1.5">🇺🇸 Made with love in the USA</span>
       </div>

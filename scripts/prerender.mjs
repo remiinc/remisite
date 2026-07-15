@@ -1,7 +1,6 @@
-// Post-build prerender for content routes. Emits static HTML for /blog,
-// /blog/<slug>, /case-studies, and /case-studies/<slug> so crawlers and
-// answer engines see full article HTML without executing JS. The Vue app
-// still mounts on #app and takes over on load.
+// Post-build prerender for content routes. Emits static HTML for blog and
+// solution pages so crawlers and answer engines see the full page content
+// without executing JS. The Vue app still mounts on #app and takes over.
 //
 // Also generates sitemap.xml and rss.xml. Runs as part of `npm run build`.
 
@@ -9,6 +8,7 @@ import { mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { formatDate, parseFrontmatter, renderMarkdown } from '../src/lib/markdown-content.js'
+import { legacySolutionRedirects } from '../src/lib/solution-redirects.js'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const distDir = join(root, 'dist')
@@ -25,7 +25,7 @@ const escapeHtml = (value = '') =>
 
 const escapeXml = escapeHtml
 
-const loadCollection = (contentDir, basePath) =>
+const loadCollection = (contentDir, basePath, { requiresDate = true, sortBy = 'date' } = {}) =>
   readdirSync(join(root, contentDir))
     .filter((file) => file.endsWith('.md'))
     .map((file) => {
@@ -47,11 +47,48 @@ const loadCollection = (contentDir, basePath) =>
         html: rendered.html,
       }
     })
-    .filter((entry) => entry.date && entry.date !== 'DRAFT')
-    .sort((entryA, entryB) => new Date(entryB.date) - new Date(entryA.date))
+    .filter((entry) => !requiresDate || (entry.date && entry.date !== 'DRAFT'))
+    .sort((entryA, entryB) => {
+      if (sortBy === 'order') {
+        return (Number(entryA.metadata.order) || 0) - (Number(entryB.metadata.order) || 0)
+      }
+
+      return new Date(entryB.date) - new Date(entryA.date)
+    })
 
 const posts = loadCollection('src/content/blog', '/blog')
-const caseStudies = loadCollection('src/content/case-studies', '/case-studies')
+const solutions = loadCollection('src/content/solutions', '/solutions', {
+  requiresDate: false,
+  sortBy: 'order',
+})
+
+if (solutions.length !== 10) {
+  throw new Error(`Expected 10 solution guides, found ${solutions.length}`)
+}
+
+if (new Set(solutions.map((solution) => Number(solution.metadata.order))).size !== solutions.length) {
+  throw new Error('Solution guide order values must be unique')
+}
+
+solutions.forEach((solution) => {
+  const errors = []
+  const stats = Array.isArray(solution.metadata.stats) ? solution.metadata.stats : []
+  const useCases = Array.isArray(solution.metadata.useCases) ? solution.metadata.useCases : []
+
+  if (!solution.metadata.title) errors.push('title')
+  if (!solution.metadata.description) errors.push('description')
+  if (!solution.metadata.industryLabel) errors.push('industryLabel')
+  if ((Number(solution.metadata.order) || 0) < 1) errors.push('a positive order')
+  if (stats.length !== 3) errors.push('exactly three stats')
+  if (useCases.length !== 3) errors.push('exactly three use cases')
+  if (stats.some((stat) => !stat.sourceLabel || !stat.sourceUrl)) {
+    errors.push('source labels and URLs for every stat')
+  }
+
+  if (errors.length) {
+    throw new Error(`Invalid solution guide "${solution.slug}": missing ${errors.join(', ')}`)
+  }
+})
 
 const setHead = (html, { title, description, url, ogType, ogImage, jsonLd = [] }) => {
   let output = html
@@ -171,6 +208,23 @@ const faqSchema = (entry) => {
   }
 }
 
+const solutionSchema = (entry) => ({
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: entry.metadata.ogTitle || `Remi for ${entry.metadata.industryLabel}`,
+  description: entry.description,
+  url: entry.url,
+  about: {
+    '@type': 'Service',
+    name: `Remi for ${entry.metadata.industryLabel}`,
+    provider: {
+      '@type': 'Organization',
+      name: 'Remi',
+      url: `${SITE}/`,
+    },
+  },
+})
+
 const articleBody = (entry, sectionLabel) => `
 <main class="px-6 pt-32 pb-20">
   <article class="mx-auto w-full" style="max-width: 44rem">
@@ -196,6 +250,74 @@ const indexBody = (label, description, entries) => `
         .join('\n      ')}
     </ul>
   </section>
+</main>`
+
+const solutionBody = (entry) => {
+  const stats = entry.metadata.stats
+  const useCases = entry.metadata.useCases
+  const hasTestimonial = entry.metadata.testimonialQuote && entry.metadata.testimonialAuthor
+
+  return `
+<main class="px-6 pt-32 pb-20">
+  <section class="mx-auto w-full text-center" style="max-width: 64rem">
+    <p>Solutions / ${escapeHtml(entry.metadata.industryLabel)}</p>
+    <h1>${escapeHtml(entry.title)}</h1>
+    <p>${escapeHtml(entry.description)}</p>
+    <p><a href="/qualify">Book a demo</a></p>
+  </section>
+  <section class="mx-auto w-full" style="max-width: 72rem">
+    <h2>Remi for ${escapeHtml(entry.metadata.industryLabel)}:</h2>
+    <dl>
+      ${stats
+        .map(
+          (stat) => `<div>
+        <dt>${escapeHtml(stat.label)}</dt>
+        <dd>${escapeHtml(stat.metric)}</dd>
+        <a href="${escapeHtml(stat.sourceUrl)}">${escapeHtml(stat.sourceLabel)}</a>
+      </div>`,
+        )
+        .join('\n      ')}
+    </dl>
+  </section>
+  <section class="mx-auto w-full" style="max-width: 72rem">
+    ${useCases
+      .map(
+        (useCase) => `<article>
+      <h2>${escapeHtml(useCase.title)}</h2>
+      <p>${escapeHtml(useCase.description)}</p>
+    </article>`,
+      )
+      .join('\n    ')}
+  </section>
+  ${hasTestimonial ? `<figure>
+    <blockquote>${escapeHtml(entry.metadata.testimonialQuote)}</blockquote>
+    <figcaption>${escapeHtml(entry.metadata.testimonialAuthor)}${entry.metadata.testimonialRole ? `, ${escapeHtml(entry.metadata.testimonialRole)}` : ''}</figcaption>
+  </figure>` : ''}
+</main>`
+}
+
+const solutionsIndexBody = () => `
+<main class="px-6 pt-32 pb-20">
+  <section class="mx-auto w-full" style="max-width: 72rem">
+    <p>Solutions</p>
+    <h1>Built for businesses with work already in motion.</h1>
+    <p>See how Remi keeps customer replies, estimates, agreements, invoices, and the next decision moving in your line of work.</p>
+    <ul>
+      ${solutions
+        .map(
+          (solution) => `<li>
+        <a href="${solution.path}">${escapeHtml(solution.metadata.industryLabel)}</a><br>
+        ${escapeHtml(solution.title)}
+      </li>`,
+        )
+        .join('\n      ')}
+    </ul>
+  </section>
+</main>`
+
+const redirectBody = (target) => `
+<main class="px-6 pt-32 pb-20">
+  <p>This page has moved. <a href="${target}">Continue to Solutions</a>.</p>
 </main>`
 
 const pricingBody = () => `
@@ -237,7 +359,7 @@ const securityBody = () => `
   </section>
 </main>`
 
-// Blog posts and case studies
+// Blog posts
 const renderEntryPage = (entry, sectionLabel) => {
   const jsonLd = [articleSchema(entry)]
   const faq = faqSchema(entry)
@@ -264,7 +386,21 @@ const renderEntryPage = (entry, sectionLabel) => {
 }
 
 posts.forEach((post) => writePage(post.path, renderEntryPage(post, 'Blog')))
-caseStudies.forEach((study) => writePage(study.path, renderEntryPage(study, 'Case Study')))
+
+const renderSolutionPage = (entry) =>
+  injectBody(
+    setHead(template, {
+      title: `${entry.metadata.ogTitle || `Remi for ${entry.metadata.industryLabel}`} | Remi`,
+      description: entry.metadata.ogDescription || entry.description,
+      url: entry.url,
+      ogType: 'website',
+      ogImage: entry.metadata.ogImage,
+      jsonLd: [solutionSchema(entry)],
+    }),
+    solutionBody(entry),
+  )
+
+solutions.forEach((solution) => writePage(solution.path, renderSolutionPage(solution)))
 
 // Index pages
 writePage(
@@ -286,21 +422,45 @@ writePage(
 )
 
 writePage(
-  '/case-studies',
+  '/solutions',
   injectBody(
     setHead(template, {
-      title: 'Case Studies | Remi',
-      description: 'How owner-run businesses use Remi to follow up on estimates, invoices, and client work.',
-      url: `${SITE}/case-studies`,
+      title: 'Solutions for Owner-Run Service Businesses | Remi',
+      description: 'Explore how Remi helps contractors, home-service businesses, auto shops, cleaning companies, and agencies keep customer work moving.',
+      url: `${SITE}/solutions`,
       ogType: 'website',
+      jsonLd: [{
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: 'Remi Solutions',
+        description: 'Industry guides for owner-run service businesses.',
+        url: `${SITE}/solutions`,
+        hasPart: solutions.map((solution) => ({
+          '@type': 'WebPage',
+          name: solution.metadata.industryLabel,
+          url: solution.url,
+        })),
+      }],
     }),
-    indexBody(
-      'Case Studies',
-      'How owner-run businesses use Remi to follow up on estimates, invoices, and client work.',
-      caseStudies,
-    ),
+    solutionsIndexBody(),
   ),
 )
+
+Object.entries(legacySolutionRedirects).forEach(([from, target]) => {
+  let redirectPage = setHead(template, {
+    title: 'Page moved | Remi',
+    description: 'Continue to Remi Solutions.',
+    url: `${SITE}${target}`,
+    ogType: 'website',
+  })
+
+  redirectPage = redirectPage.replace(
+    '</head>',
+    `    <meta http-equiv="refresh" content="0; url=${target}">\n    <script>window.location.replace(${JSON.stringify(target)})</script>\n  </head>`,
+  )
+
+  writePage(from, injectBody(redirectPage, redirectBody(target)))
+})
 
 writePage(
   '/pricing',
@@ -336,12 +496,12 @@ const staticUrls = [
   { loc: `${SITE}/pricing`, priority: '0.9' },
   { loc: `${SITE}/security`, priority: '0.8' },
   { loc: `${SITE}/blog`, priority: '0.8' },
-  { loc: `${SITE}/case-studies`, priority: '0.7' },
+  { loc: `${SITE}/solutions`, priority: '0.9' },
 ]
 
-const contentUrls = [...posts, ...caseStudies].map((entry) => ({
+const contentUrls = [...posts, ...solutions].map((entry) => ({
   loc: entry.url,
-  lastmod: entry.metadata.dateModified || entry.date,
+  lastmod: entry.metadata.dateModified || entry.date || '',
   priority: '0.7',
 }))
 
@@ -387,5 +547,5 @@ ${rssItems}
 writeFileSync(join(distDir, 'rss.xml'), rss)
 
 console.log(
-  `Prerendered ${posts.length} blog posts, ${caseStudies.length} case studies, 4 index pages, sitemap.xml, rss.xml`,
+  `Prerendered ${posts.length} blog posts, ${solutions.length} solution guides, 5 index pages, sitemap.xml, rss.xml`,
 )

@@ -11,26 +11,26 @@ import { portalLink } from '../../lib/portal-link'
 
 const portalLoginHref = computed(() => portalLink('https://remi.new/login'))
 
-const sizeLinks = [
-  { label: 'Startups', href: '/solutions/startups' },
-  { label: 'Small Businesses', href: '/solutions/small-businesses' },
-  { label: 'Mid-Market', href: '/solutions/mid-market' },
+const constructionLinks = [
+  { label: 'All solutions', href: '/solutions' },
+  { label: 'General Contractors', href: '/solutions/general-contractors' },
+  { label: 'Home Remodeling', href: '/solutions/home-remodeling' },
+  { label: 'Landscaping Services', href: '/solutions/landscaping-services' },
+  { label: 'Roofing Services', href: '/solutions/roofing-services' },
 ]
 
-const industryLinks = [
-  { label: 'Architecture & Engineering', href: '#solutions' },
-  { label: 'Construction', href: '#solutions' },
-  { label: 'Consulting', href: '#solutions' },
-  { label: 'Healthcare', href: '#solutions' },
-  { label: 'Legal', href: '#solutions' },
-  { label: 'Real Estate', href: '#solutions' },
-  { label: 'Retail', href: '#solutions' },
-  { label: 'Home Services', href: '#solutions' },
+const serviceLinks = [
+  { label: 'HVAC Services', href: '/solutions/hvac-services' },
+  { label: 'Plumbing Services', href: '/solutions/plumbing-services' },
+  { label: 'Electrical Services', href: '/solutions/electrical-services' },
+  { label: 'Cleaning Services', href: '/solutions/cleaning-services' },
+  { label: 'Auto Repair', href: '/solutions/auto-repair' },
+  { label: 'Marketing Agencies', href: '/solutions/marketing-agencies' },
 ]
 
 const solutionColumns = [
-  { label: 'By Size', links: sizeLinks, variant: 'featured' },
-  { label: 'By Industry', links: industryLinks, variant: 'compact' },
+  { label: 'Construction', links: constructionLinks, variant: 'compact' },
+  { label: 'Services', links: serviceLinks, variant: 'compact' },
 ]
 
 const menuLinks = [
@@ -40,10 +40,9 @@ const menuLinks = [
   { label: 'Security', href: '/security' },
   {
     label: 'Solutions',
-    href: '#solutions',
+    href: '/solutions',
     panel: 'solutions',
     columns: solutionColumns,
-    hidden: true,
   },
 ]
 

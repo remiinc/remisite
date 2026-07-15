@@ -15,7 +15,8 @@ services, agencies, consultancies, and similar.
 - [Home](https://remi.new/): what Remi does and how to get started
 - [Blog](https://remi.new/blog): practical guides on getting paid, quote
   follow-up, and running the money side of an owner-run business
-- [Case Studies](https://remi.new/case-studies): how owners use Remi
+- [Solutions](https://remi.new/solutions): industry guides for contractors,
+  home services, auto repair shops, cleaning businesses, and agencies
 - [Get Started](https://remi.new/qualify/contact): connect your inbox and
   see what's slipping through it
 
