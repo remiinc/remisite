@@ -33,7 +33,7 @@ defineProps({
       variant === 'white' && 'before:bg-white text-foreground hover:before:bg-white/90 before:shadow-[0_1.5px_3px_-2px_rgba(0,0,0,0.25)]',
     variant === 'secondary' && 'before:bg-muted text-foreground hover:before:bg-muted-hover before:backdrop-blur-md',
     size === 'default' && 'h-10 px-4',
-    size === 'sm' && 'h-9 px-3 text-sm',
+    size === 'sm' && 'h-9 px-4 text-sm',
     size === 'lg' && 'h-12 px-6 text-base',
   )">
     <span class="relative z-10">

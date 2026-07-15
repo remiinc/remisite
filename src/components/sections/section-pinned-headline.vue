@@ -1,61 +1,81 @@
 <script setup>
+import { defineComponent, h } from 'vue'
 import {
-  PhBookOpen,
-  PhChatsCircle,
+  PhCalendarCheck,
+  PhChatTeardropText,
+  PhClipboardText,
   PhInvoice,
-  PhListChecks,
-  PhUserCirclePlus,
+  PhReceipt,
 } from '@phosphor-icons/vue'
 
+const NotificationTile = defineComponent({
+  name: 'NotificationTile',
+  props: {
+    tile: { type: Object, required: true },
+  },
+  setup(props) {
+    return () => h('div', {
+      class: 'image-tile-card bg-background rounded-[1.25em] p-[0.9em] inline-flex items-start gap-[0.75em] border text-[clamp(0.75rem,0.5395rem+0.4386vw,1rem)]',
+    }, [
+      h('img', {
+        src: props.tile.logo,
+        alt: `${props.tile.app} logo`,
+        class: 'size-[2em] rounded-[0.5em] shrink-0 object-contain',
+        loading: 'lazy',
+        decoding: 'async',
+      }),
+      h('div', { class: 'flex flex-col gap-[0.15em]' }, [
+        h('div', {
+          class: 'flex items-baseline justify-between gap-4 text-[0.7em] text-foreground/50 leading-tight',
+        }, [
+          h('span', {}, props.tile.app),
+          h('span', { class: 'shrink-0' }, props.tile.time),
+        ]),
+        h('p', {
+          class: 'text-[0.95em] font-medium text-foreground leading-tight min-w-[20ch]',
+        }, props.tile.title),
+        h('p', {
+          class: 'text-[0.75em] text-foreground/55 leading-tight',
+        }, props.tile.subtitle),
+      ]),
+    ])
+  },
+})
+
 const tasks = [
-  { label: 'Meeting follow-ups', icon: PhChatsCircle },
-  { label: 'Chases late invoices', icon: PhInvoice },
-  { label: 'Keeps the books up-to-date', icon: PhBookOpen },
-  { label: 'Follows up with leads', icon: PhUserCirclePlus },
-  { label: 'Tracks your commitments', icon: PhListChecks },
+  { label: 'Chasing late invoices', icon: PhInvoice },
+  { label: 'Following up quiet quotes', icon: PhChatTeardropText },
+  { label: 'Saving what got agreed', icon: PhClipboardText },
+  { label: 'Filing receipts to the job', icon: PhReceipt },
+  { label: 'Confirming the next step', icon: PhCalendarCheck },
 ]
 
-const imageTiles = [
-  {
-    src: '/images/intro-canvas/img-0001.webp',
-    alt: 'Remi AI for construction businesses',
-    task: { label: 'Chases overdue invoices', icon: PhInvoice },
-  },
-  {
-    src: '/images/intro-canvas/img-0003.webp',
-    alt: 'Remi AI for meeting prep',
-    task: { label: 'Writes meeting follow-ups', icon: PhChatsCircle },
-  },
-  {
-    src: '/images/intro-canvas/img-0005.webp',
-    alt: 'Remi AI for marketing research',
-    task: { label: 'Finds warm leads', icon: PhUserCirclePlus },
-  },
-  {
-    src: '/images/intro-canvas/img-0004.webp',
-    alt: 'Remi AI for presentation research',
-    task: { label: 'Preps project briefs', icon: PhBookOpen },
-  },
-  {
-    src: '/images/intro-canvas/img-0002.webp',
-    alt: 'Remi AI for fashion designers',
-    task: { label: 'Remembers approvals', icon: PhListChecks },
-  },
-  {
-    src: '/images/intro-canvas/img-0006.webp',
-    alt: 'Remi AI for sales teams',
-    task: { label: 'Drafts sales replies', icon: PhChatsCircle },
-  },
-  {
-    src: '/images/intro-canvas/img-0007.webp',
-    alt: 'Remi AI for small businesses',
-    task: { label: 'Tracks open loops', icon: PhListChecks },
-  },
-  {
-    src: '/images/intro-canvas/img-0008.webp',
-    alt: 'Remi AI for accounting teams',
-    task: { label: 'Files receipts', icon: PhBookOpen },
-  },
+const composioLogo = (slug) => `https://logos.composio.dev/api/${slug}`
+
+const notificationTiles = [
+  { app: 'QuickBooks', logo: composioLogo('quickbooks'), title: 'Invoice #482 is 9 days late', subtitle: 'Final payment needs a nudge', time: 'now' },
+  { app: 'Gmail', logo: composioLogo('gmail'), title: 'Wilson wants an estimate', subtitle: 'Asked at 10:14am, no reply yet', time: '2m' },
+  { app: 'iMessage', logo: '/images/app-logos/ios-messages-icon.svg', title: 'Sarah: can you fit us in?', subtitle: 'Reply before she books someone else', time: '4m' },
+  { app: 'Jobber', logo: composioLogo('jobber'), title: 'Quote viewed twice', subtitle: 'No answer since Friday', time: '12m' },
+  { app: 'Google Calendar', logo: composioLogo('googlecalendar'), title: 'Tomorrow 2:30 is open', subtitle: 'Estimate visit needs confirming', time: '18m' },
+  { app: 'Notes', logo: '/images/app-logos/ios-notes-icon.png', title: 'Fixture approval note', subtitle: 'Better fixtures approved by text', time: '37m' },
+  { app: 'Square', logo: composioLogo('square'), title: 'Deposit not paid', subtitle: 'Job start is still on the calendar', time: '1h' },
+  { app: 'Reminders', logo: '/images/app-logos/ios-reminders-icon.png', title: 'Receipt still missing', subtitle: "Lowe's run needs filing", time: '2h' },
+]
+
+const notificationTilesOuter = [
+  { app: 'Gmail', logo: composioLogo('gmail'), title: '3 customer threads waiting', subtitle: 'Two estimates, one invoice question', time: 'now' },
+  { app: 'Housecall Pro', logo: composioLogo('housecallpro'), title: 'New request: window repair', subtitle: 'Confirm availability before noon', time: '3m' },
+  { app: 'QuickBooks', logo: composioLogo('quickbooks'), title: 'Bank feed has 6 matches', subtitle: 'Receipts need attaching to jobs', time: '8m' },
+  { app: 'Google Drive', logo: composioLogo('googledrive'), title: 'Completion photo uploaded', subtitle: 'Needs to go with final invoice', time: '15m' },
+  { app: 'Stripe', logo: composioLogo('stripe'), title: 'Payment link expired', subtitle: 'Resend before the weekend', time: '24m' },
+  { app: 'iMessage', logo: '/images/app-logos/ios-messages-icon.svg', title: 'Marta: any update?', subtitle: 'Client asked yesterday too', time: '41m' },
+  { app: 'Google Calendar', logo: composioLogo('googlecalendar'), title: 'Crew delayed 35 min', subtitle: 'Customer arrival text needs changing', time: '1h' },
+  { app: 'Jobber', logo: composioLogo('jobber'), title: 'Estimate follow-up overdue', subtitle: 'Garage repair quote went quiet', time: '2h' },
+  { app: 'Reminders', logo: '/images/app-logos/ios-reminders-icon.png', title: 'Call supply house', subtitle: 'Door handle lead time is slipping', time: '3h' },
+  { app: 'Notes', logo: '/images/app-logos/ios-notes-icon.png', title: 'Scope change from Friday', subtitle: 'Extra trim approved in writing', time: '4h' },
+  { app: 'Dropbox', logo: composioLogo('dropbox'), title: '12 job photos synced', subtitle: 'Pick the ones for invoice proof', time: '5h' },
+  { app: 'Google Docs', logo: composioLogo('googledocs'), title: 'Contract comment unresolved', subtitle: 'Change order needs an answer', time: '6h' },
 ]
 </script>
 
@@ -74,17 +94,17 @@ const imageTiles = [
         <div
           class="pinned-headline relative w-full mx-auto min-h-[clamp(32rem,60vh,42rem)] grid grid-cols-1 grid-rows-1">
           <ul aria-hidden="true"
-            class="image-grid absolute col-start-1 row-start-1 col-end-1 row-end-1 w-full max-w-7xl min-w-xl justify-self-center self-center h-auto aspect-square list-none m-0 p-0">
-            <li v-for="(tile, index) in imageTiles" :key="tile.src" class="image-tile absolute w-1/5 block"
-              :class="index % 2 === 0 ? 'aspect-3/4' : 'aspect-4/3'">
-              <div class="image-tile-card absolute w-full h-full bg-foreground/6">
-                <img :src="tile.src" :alt="tile.alt" class="w-full h-full object-cover" />
-              </div>
-              <div
-                class="image-tile-label absolute top-1/2 -translate-y-1/2 right-1/2 translate-x-1/2 px-2 py-1 bg-foreground/40 backdrop-blur-sm text-background flex items-center gap-2 text-sm rounded-full font-medium">
-                <component :is="tile.task.icon" class="size-[0.925em] shrink-0" weight="regular" aria-hidden="true" />
-                <span class="whitespace-nowrap">{{ tile.task.label }}</span>
-              </div>
+            class="image-grid-outer absolute col-start-1 row-start-1 col-end-1 row-end-1 w-full max-w-6xl min-w-xl justify-self-center self-center h-auto aspect-square list-none m-0 p-0">
+            <li v-for="tile in notificationTilesOuter" :key="tile.app + tile.title"
+              class="image-tile-outer absolute w-auto block">
+              <NotificationTile :tile="tile" />
+            </li>
+          </ul>
+          <ul aria-hidden="true"
+            class="image-grid absolute col-start-1 row-start-1 col-end-1 row-end-1 w-full max-w-4xl min-w-xl justify-self-center self-center h-auto aspect-square list-none m-0 p-0">
+            <li v-for="tile in notificationTiles" :key="tile.app + tile.title"
+              class="image-tile absolute w-auto block">
+              <NotificationTile :tile="tile" />
             </li>
           </ul>
         </div>
@@ -101,7 +121,7 @@ const imageTiles = [
               Meet Remi
             </p>
             <h2
-              class="relative z-1 block max-w-[20ch] text-center text-4xl md:text-[clamp(3.5rem,8vw,5rem)] leading-[1em] font-normal tracking-[-0.03em] text-balance text-foreground select-none mb-4">
+              class="relative z-1 block max-w-[20ch] text-center text-[clamp(2.5rem,0.8158rem+3.5088vw,4.5rem)] leading-[1em] font-normal tracking-[-0.03em] text-balance text-foreground select-none mb-4">
               You didn't start your business to chase paperwork at 9pm
             </h2>
             <ul class="relative z-1 tasks-list text-[1.2em] tracking-tight text-foreground/50 select-none">
@@ -218,9 +238,6 @@ const imageTiles = [
 
 .image-tile {
   --tile-index: 0;
-  --label-left: 50%;
-  --label-top: 100%;
-  --label-translate: -50% 0.7rem;
   --tile-origin-x: 0cqw;
   --tile-origin-y: 0cqw;
   --tile-collapse-x: 0cqw;
@@ -233,17 +250,8 @@ const imageTiles = [
   will-change: rotate, translate, transform;
 }
 
-.image-tile-card {
-  clip-path: inset(0% round 1em);
-  overflow: hidden;
-  will-change: clip-path, opacity;
-}
-
 .image-grid> :nth-child(1) {
   --tile-index: 0;
-  --label-left: 50%;
-  --label-top: 100%;
-  --label-translate: -50% 0.7rem;
   --tile-origin-x: 0cqw;
   --tile-origin-y: -50cqw;
   --tile-collapse-x: 0cqw;
@@ -252,9 +260,6 @@ const imageTiles = [
 
 .image-grid> :nth-child(2) {
   --tile-index: 1;
-  --label-left: 100%;
-  --label-top: 100%;
-  --label-translate: -85% 0.7rem;
   --tile-origin-x: 40cqw;
   --tile-origin-y: -42.5cqw;
   --tile-collapse-x: 2cqw;
@@ -263,9 +268,6 @@ const imageTiles = [
 
 .image-grid> :nth-child(3) {
   --tile-index: 2;
-  --label-left: 100%;
-  --label-top: 50%;
-  --label-translate: 0.7rem -50%;
   --tile-origin-x: 50cqw;
   --tile-origin-y: 0cqw;
   --tile-collapse-x: 2.5cqw;
@@ -274,9 +276,6 @@ const imageTiles = [
 
 .image-grid> :nth-child(4) {
   --tile-index: 3;
-  --label-left: 100%;
-  --label-top: 0%;
-  --label-translate: -85% -2.4rem;
   --tile-origin-x: 40cqw;
   --tile-origin-y: 42.5cqw;
   --tile-collapse-x: 2cqw;
@@ -285,9 +284,6 @@ const imageTiles = [
 
 .image-grid> :nth-child(5) {
   --tile-index: 4;
-  --label-left: 50%;
-  --label-top: 0%;
-  --label-translate: -50% -2.4rem;
   --tile-origin-x: 0cqw;
   --tile-origin-y: 50cqw;
   --tile-collapse-x: 0cqw;
@@ -296,9 +292,6 @@ const imageTiles = [
 
 .image-grid> :nth-child(6) {
   --tile-index: 5;
-  --label-left: 0%;
-  --label-top: 0%;
-  --label-translate: -15% -2.4rem;
   --tile-origin-x: -40cqw;
   --tile-origin-y: 42.5cqw;
   --tile-collapse-x: -2cqw;
@@ -307,9 +300,6 @@ const imageTiles = [
 
 .image-grid> :nth-child(7) {
   --tile-index: 6;
-  --label-left: 0%;
-  --label-top: 50%;
-  --label-translate: calc(-100% - 0.7rem) -50%;
   --tile-origin-x: -50cqw;
   --tile-origin-y: 0cqw;
   --tile-collapse-x: -2.5cqw;
@@ -318,13 +308,126 @@ const imageTiles = [
 
 .image-grid> :nth-child(8) {
   --tile-index: 7;
-  --label-left: 0%;
-  --label-top: 100%;
-  --label-translate: -15% 0.7rem;
   --tile-origin-x: -40cqw;
   --tile-origin-y: -42.5cqw;
   --tile-collapse-x: -2cqw;
   --tile-collapse-y: -2.125cqw;
+}
+
+.image-grid-outer {
+  container-type: inline-size;
+  transform-origin: center center;
+  will-change: rotate;
+}
+
+.image-tile-outer {
+  --tile-index: 0;
+  --tile-origin-x: 0cqw;
+  --tile-origin-y: 0cqw;
+  --tile-collapse-x: 0cqw;
+  --tile-collapse-y: 0cqw;
+  top: 50%;
+  left: 50%;
+  translate: calc(-50% + var(--tile-origin-x)) calc(-50% + var(--tile-origin-y));
+  transform-origin: center center;
+  transform: translateZ(0);
+  will-change: rotate, translate, transform;
+}
+
+.image-grid-outer> :nth-child(1) {
+  --tile-index: 0;
+  --tile-origin-x: 27cqw;
+  --tile-origin-y: -65cqw;
+  --tile-collapse-x: 1.1cqw;
+  --tile-collapse-y: -2.6cqw;
+}
+
+.image-grid-outer> :nth-child(2) {
+  --tile-index: 1;
+  --tile-origin-x: 56cqw;
+  --tile-origin-y: -43cqw;
+  --tile-collapse-x: 2.25cqw;
+  --tile-collapse-y: -1.7cqw;
+}
+
+.image-grid-outer> :nth-child(3) {
+  --tile-index: 2;
+  --tile-origin-x: 69cqw;
+  --tile-origin-y: -9cqw;
+  --tile-collapse-x: 2.75cqw;
+  --tile-collapse-y: -0.35cqw;
+}
+
+.image-grid-outer> :nth-child(4) {
+  --tile-index: 3;
+  --tile-origin-x: 65cqw;
+  --tile-origin-y: 27cqw;
+  --tile-collapse-x: 2.6cqw;
+  --tile-collapse-y: 1.1cqw;
+}
+
+.image-grid-outer> :nth-child(5) {
+  --tile-index: 4;
+  --tile-origin-x: 43cqw;
+  --tile-origin-y: 56cqw;
+  --tile-collapse-x: 1.7cqw;
+  --tile-collapse-y: 2.25cqw;
+}
+
+.image-grid-outer> :nth-child(6) {
+  --tile-index: 5;
+  --tile-origin-x: 9cqw;
+  --tile-origin-y: 69cqw;
+  --tile-collapse-x: 0.35cqw;
+  --tile-collapse-y: 2.75cqw;
+}
+
+.image-grid-outer> :nth-child(7) {
+  --tile-index: 6;
+  --tile-origin-x: -27cqw;
+  --tile-origin-y: 65cqw;
+  --tile-collapse-x: -1.1cqw;
+  --tile-collapse-y: 2.6cqw;
+}
+
+.image-grid-outer> :nth-child(8) {
+  --tile-index: 7;
+  --tile-origin-x: -56cqw;
+  --tile-origin-y: 43cqw;
+  --tile-collapse-x: -2.25cqw;
+  --tile-collapse-y: 1.7cqw;
+}
+
+.image-grid-outer> :nth-child(9) {
+  --tile-index: 8;
+  --tile-origin-x: -69cqw;
+  --tile-origin-y: 9cqw;
+  --tile-collapse-x: -2.75cqw;
+  --tile-collapse-y: 0.35cqw;
+}
+
+.image-grid-outer> :nth-child(10) {
+  --tile-index: 9;
+  --tile-origin-x: -65cqw;
+  --tile-origin-y: -27cqw;
+  --tile-collapse-x: -2.6cqw;
+  --tile-collapse-y: -1.1cqw;
+}
+
+.image-grid-outer> :nth-child(11) {
+  --tile-index: 10;
+  --tile-origin-x: -43cqw;
+  --tile-origin-y: -56cqw;
+  --tile-collapse-x: -1.7cqw;
+  --tile-collapse-y: -2.25cqw;
+}
+
+.image-grid-outer> :nth-child(12) {
+  --tile-index: 11;
+  --tile-origin-x: -9cqw;
+  --tile-origin-y: -69cqw;
+  --tile-collapse-x: -0.35cqw;
+  --tile-collapse-y: -2.75cqw;
 }
 
 @supports (animation-timeline: view()) {
@@ -347,10 +450,23 @@ const imageTiles = [
     animation-composition: replace, replace, add;
   }
 
-  .image-tile-card {
-    animation: image-tile-stagger linear both;
+  .image-grid-outer {
+    animation: image-grid-rotate-outer linear both;
     animation-timeline: --pinned-headline-scroll;
-    animation-range: cover var(--tile-index) cover calc(var(--tile-index) * 10% + 70%);
+    animation-range: cover 0% cover 100%;
+  }
+
+  .image-tile-outer {
+    animation:
+      image-tile-counter-rotate-outer linear both,
+      image-tile-collapse linear both,
+      image-tile-pushdown linear both;
+    animation-timeline: --pinned-headline-scroll, --pinned-headline-scroll, --pinned-headline-scroll;
+    animation-range:
+      cover 0% cover 100%,
+      cover 0% cover 100%,
+      cover 78% cover 100%;
+    animation-composition: replace, replace, add;
   }
 }
 
@@ -376,20 +492,25 @@ const imageTiles = [
   }
 }
 
-@keyframes image-tile-stagger {
+@keyframes image-grid-rotate-outer {
   0% {
-    opacity: 0;
-    clip-path: inset(20% round 0.5em);
+    rotate: 0deg;
   }
 
-  29% {
-    opacity: 1;
-    clip-path: inset(0em round 1em);
-  }
-
+  78%,
   100% {
-    opacity: 1;
-    clip-path: inset(0em round 1em);
+    rotate: -216deg;
+  }
+}
+
+@keyframes image-tile-counter-rotate-outer {
+  0% {
+    rotate: 0deg;
+  }
+
+  78%,
+  100% {
+    rotate: 216deg;
   }
 }
 
@@ -413,27 +534,6 @@ const imageTiles = [
 
   to {
     transform: translateY(calc(calc(var(--tile-index) + 1 * 1.5) * 20cqw)) scale(calc(calc(var(--tile-index) + 1 * 1.5) * 0.1));
-  }
-}
-
-@keyframes image-label-middle {
-
-  0%,
-  34% {
-    opacity: 0;
-    scale: 0.96;
-  }
-
-  42%,
-  62% {
-    opacity: 1;
-    scale: 1;
-  }
-
-  68%,
-  100% {
-    opacity: 0;
-    scale: 0.98;
   }
 }
 
@@ -552,22 +652,11 @@ const imageTiles = [
   }
 
   .image-grid,
+  .image-grid-outer,
   .image-tile,
-  .image-tile-label,
-  .image-tile-card {
+  .image-tile-outer {
     animation: none;
     rotate: 0deg;
-  }
-
-  .image-tile-card {
-    clip-path: inset(0 round 1em);
-    opacity: 1;
-    translate: 0 0;
-  }
-
-  .image-tile-label {
-    opacity: 1;
-    scale: 1;
   }
 
   .tasks-list {

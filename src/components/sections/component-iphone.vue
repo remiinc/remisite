@@ -1051,35 +1051,7 @@ const IosDraftSheet = defineComponent({
               h(
                 'div',
                 {
-                  class: 'mb-[0.75em] px-[0.75em] flex items-center gap-[0.75em]',
-                },
-                [
-                  h(
-                    'div',
-                    {
-                      class: 'relative flex items-center justify-center shrink-0',
-                    },
-                    [
-                      h(SiteLogo, {
-                        class: 'size-[1.5em] text-foreground',
-                      }),
-                    ],
-                  ),
-                  h(
-                    'div',
-                    {
-                      class: 'min-w-0 flex-1',
-                    },
-                    [
-                      h('div', { class: 'text-[0.875em] font-medium leading-tight tracking-tight text-foreground' }, 'Review draft'),
-                    ],
-                  ),
-                ],
-              ),
-              h(
-                'div',
-                {
-                  class: 'rounded-[1.5em] bg-neutral-100 p-[1.5em]',
+                  class: 'mt-[0.5em] rounded-[1em] bg-neutral-100 p-[1.5em]',
                 },
                 [
                   h('p', { class: 'text-[0.875em] leading-snug tracking-tight text-muted-foreground' }, props.widget.preview || ''),

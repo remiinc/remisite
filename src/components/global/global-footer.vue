@@ -7,6 +7,7 @@ const footerLinks = [
   { label: 'Features', href: '#features' },
   { label: 'What you get', href: '#what-you-get' },
   { label: 'Pricing', href: '/pricing' },
+  { label: 'Security', href: '/security' },
 ]
 
 const usecases = [

@@ -9,6 +9,7 @@ import GlobalHeader from './components/header/global-header.vue'
 import HomeHeroVideo from './components/home/home-hero-video.vue'
 import PricingPage from './components/pricing/pricing-page.vue'
 import QualifyContact from './components/qualify/qualify-contact.vue'
+import SecurityPage from './components/security/security-page.vue'
 import SectionCta from './components/sections/section-cta.vue'
 import SectionCaseStudies from './components/sections/section-case-studies.vue'
 import SectionIphone from './components/sections/section-iphone.vue'
@@ -34,6 +35,7 @@ const isSolutionPage = computed(() => solutionPagePaths.includes(normalizedPath.
 const isBlogIndexPage = computed(() => normalizedPath.value === '/blog')
 const isBlogPostPage = computed(() => normalizedPath.value.startsWith('/blog/'))
 const isPricingPage = computed(() => normalizedPath.value === '/pricing')
+const isSecurityPage = computed(() => normalizedPath.value === '/security')
 const isCaseStudyPage = computed(() =>
   normalizedPath.value === '/case-studies' || normalizedPath.value.startsWith('/case-studies/'),
 )
@@ -48,6 +50,7 @@ const qualifyContactEmail = computed(() => {
   <QualifyContact v-if="isQualifyPage" :email="qualifyContactEmail" />
   <SolutionPage v-else-if="isSolutionPage" />
   <PricingPage v-else-if="isPricingPage" />
+  <SecurityPage v-else-if="isSecurityPage" />
   <BlogIndexPage v-else-if="isBlogIndexPage" />
   <BlogPostPage v-else-if="isBlogPostPage" />
   <CaseStudyPage v-else-if="isCaseStudyPage" />

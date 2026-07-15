@@ -1,7 +1,8 @@
 <script setup>
 import { cn } from '../../lib/cn.js'
 import Button from '../global/button.vue'
-import { PhShield, PhLockSimple, PhHouseSimple, PhCheck, PhNumberCircleOne, PhNumberCircleTwo, PhNumberCircleThree, PhNumberCircleFour, PhPlugs, PhDeviceMobile } from '@phosphor-icons/vue';
+import SectionSecurityPrinciples from './section-security-principles.vue'
+import { PhCheck, PhNumberCircleOne, PhNumberCircleTwo, PhNumberCircleThree, PhNumberCircleFour } from '@phosphor-icons/vue';
 </script>
 
 <template>
@@ -16,7 +17,8 @@ import { PhShield, PhLockSimple, PhHouseSimple, PhCheck, PhNumberCircleOne, PhNu
               Text Remi and hire a teammate that onboards herself and works 24/7.
             </h2>
             <p class="max-w-lg text-sm lg:text-base font-normal leading-normal text-pretty text-muted-foreground mb-8">
-              Remi connects to and learns from your email, calendar, and all the tools you already use. Remi finds tasks to work on and starts tackling them with your approval.
+              Remi connects to and learns from your email, calendar, and all the tools you already use. Remi finds tasks
+              to work on and starts tackling them with your approval.
             </p>
             <ul class="flex flex-col mb-8 divide-y divide-border">
               <li class="flex items-start gap-2 text-sm text-foreground py-2">
@@ -101,7 +103,7 @@ import { PhShield, PhLockSimple, PhHouseSimple, PhCheck, PhNumberCircleOne, PhNu
               </li>
             </ul>
             <div class="flex flex-wrap gap-3 mt-auto">
-              <Button variant="secondary" size="sm">
+              <Button href="/security" variant="secondary" size="sm">
                 Learn more about security
               </Button>
             </div>
@@ -111,41 +113,14 @@ import { PhShield, PhLockSimple, PhHouseSimple, PhCheck, PhNumberCircleOne, PhNu
     </div>
   </section>
 
-  <!-- Features - Security -->
-  <section id="features-security" :class="cn('w-full scroll-mt-24 px-6 py-16')" data-section-security>
-    <div class="section-container mx-auto w-full max-w-(--content-width)">
-      <div class="section-layout w-full grid md:grid-cols-3 gap-x-8 gap-y-12">
-        <div class="flex flex-col gap-4">
-          <PhShield class="size-4 text-foreground" weight="fill" />
-          <h3 class="text-lg font-normal tracking-tight text-balance">
-            Your keys stay locked up
-          </h3>
-          <p class="text-sm font-normal leading-normal text-pretty text-muted-foreground">
-            Every login Remi holds is encrypted and locked to your business. Remi grabs a key only when it needs
-            it, then puts it back. You never have to see or paste one.
-          </p>
-        </div>
-        <div class="flex flex-col gap-4">
-          <PhLockSimple class="size-4 text-foreground" weight="fill" />
-          <h3 class="text-lg font-normal tracking-tight text-balance">
-            Your passwords stay with you
-          </h3>
-          <p class="text-sm font-normal leading-normal text-pretty text-muted-foreground">
-            When Remi has to sign into a website for you, you type the password &mdash; not Remi. We only hold the
-            "already signed in" pass, never the password itself.
-          </p>
-        </div>
-        <div class="flex flex-col gap-4">
-          <PhHouseSimple class="size-4 text-foreground" weight="fill" />
-          <h3 class="text-lg font-normal tracking-tight text-balance">
-            Never sold, never used to train AI
-          </h3>
-          <p class="text-sm font-normal leading-normal text-pretty text-muted-foreground">
-            Your data is yours. We don't sell it or share it. The AI services that read it are contractually barred
-            from training on what they see.
-          </p>
-        </div>
-      </div>
-    </div>
+  <section class="w-full px-6 pt-20 pb-0" data-section-security-intro>
+    <span class="mx-auto flex w-full max-w-(--content-width) items-center gap-6">
+      <h2 class="inline text-4xl font-normal leading-[1em] tracking-tight text-balance text-foreground">
+        <span>How we think about security</span>
+        <span class="h-[1em] inline-flex items-center"><Button href="/security" variant="secondary" size="sm"
+            class="relative left-[0.75em] top-[-0.333em]">Learn more</Button></span>
+      </h2>
+    </span>
   </section>
+  <SectionSecurityPrinciples />
 </template>

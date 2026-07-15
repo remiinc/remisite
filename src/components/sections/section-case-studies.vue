@@ -60,14 +60,19 @@ watch(
   <section v-if="visibleCaseStudies.length" id="case-studies"
     :class="cn('w-full scroll-mt-24 overflow-hidden px-6 py-24')" data-section-case-studies>
     <div class="mx-auto flex w-full max-w-(--content-width) flex-col gap-12">
-      <div class="flex flex-col gap-8">
-        <div class="flex max-w-3xl flex-col items-start gap-4">
+      <div class="flex flex-col gap-12">
+        <div class="flex max-w-3xl mx-auto flex-col text-center items-center gap-8">
+          <p class="text-xs font-medium leading-none text-muted-foreground flex items-center gap-4">
+              <span class="uppercase text-foreground">Solutions</span>
+              <span class="tracking-tight">Every firm. Every team.</span>
+            </p>
           <h2 class="text-5xl font-normal leading-none tracking-tight text-balance text-foreground">
             Helping small business owners do more of what they love.
           </h2>
+          <span class="text-sm leading-normal text-pretty max-w-md text-muted-foreground/80">Remi handles complex workflows end-to-end across quote-to-cash firms and small teams, from intake to last-mile delivery.</span>
         </div>
 
-        <div v-if="visibleCaseStudies.length > 1" class="flex items-center gap-6">
+        <div v-if="visibleCaseStudies.length > 1" class="flex items-center gap-6 mx-auto">
           <button type="button" aria-label="Previous case study" :disabled="!canScrollPrev" :class="cn(
             'flex -mx-3 px-3 py-2 rounded-full cursor-pointer items-center justify-center text-foreground transition-colors hover:bg-foreground/10',
             'focus-visible:outline-none disabled:pointer-events-none disabled:opacity-30',

@@ -214,6 +214,29 @@ const pricingBody = () => `
   </section>
 </main>`
 
+const securityBody = () => `
+<main class="px-6 pt-32 pb-20">
+  <section class="mx-auto w-full" style="max-width: 44rem">
+    <p>Security</p>
+    <h1>Secure by design, careful by default.</h1>
+    <p>Remi can see sensitive business details. We keep that access narrow, logged, and approval-first.</p>
+  </section>
+  <section class="mx-auto w-full" style="max-width: 44rem">
+    <h2>Permission before power.</h2>
+    <p>Remi works inside the access you grant. Connections can be changed, limited, or revoked as your business changes.</p>
+    <h2>Every action leaves a trail.</h2>
+    <p>When Remi drafts, remembers, or prepares a next step, the source stays close so you can see where the answer came from.</p>
+    <h2>Your data is not training data.</h2>
+    <p>Your business data is not sold, shared for advertising, or used to train AI models.</p>
+    <h2>Prepared for review.</h2>
+    <p>If your team needs details for vendor review, we can walk through architecture, data handling, encryption, access, retention, and approval controls.</p>
+    <p><a href="mailto:security@remi.new">Contact security</a></p>
+    <h2>Serious about security?</h2>
+    <p>Book a demo to see Remi in action.</p>
+    <p><a href="/qualify">Book a demo</a></p>
+  </section>
+</main>`
+
 // Blog posts and case studies
 const renderEntryPage = (entry, sectionLabel) => {
   const jsonLd = [articleSchema(entry)]
@@ -293,10 +316,25 @@ writePage(
   ),
 )
 
+writePage(
+  '/security',
+  injectBody(
+    setHead(template, {
+      title: 'Security | Remi',
+      description:
+        'How Remi protects customer messages, invoices, receipts, connected-app data, and approval workflows for owner-run businesses.',
+      url: `${SITE}/security`,
+      ogType: 'website',
+    }),
+    securityBody(),
+  ),
+)
+
 // sitemap.xml
 const staticUrls = [
   { loc: `${SITE}/`, priority: '1.0' },
   { loc: `${SITE}/pricing`, priority: '0.9' },
+  { loc: `${SITE}/security`, priority: '0.8' },
   { loc: `${SITE}/blog`, priority: '0.8' },
   { loc: `${SITE}/case-studies`, priority: '0.7' },
 ]
@@ -349,5 +387,5 @@ ${rssItems}
 writeFileSync(join(distDir, 'rss.xml'), rss)
 
 console.log(
-  `Prerendered ${posts.length} blog posts, ${caseStudies.length} case studies, 3 index pages, sitemap.xml, rss.xml`,
+  `Prerendered ${posts.length} blog posts, ${caseStudies.length} case studies, 4 index pages, sitemap.xml, rss.xml`,
 )
