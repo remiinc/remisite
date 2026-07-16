@@ -68,7 +68,7 @@ stats:
     sourceUrl: "https://www.leadresponsemanagement.org/lrm_study"
 useCases:
   - title: "Follow up while the walkthrough is still fresh"
-    description: "Remi watches estimate threads and the homeowner's last reply. When the conversation goes quiet, she prepares a specific follow-up with the open decision ready for your approval."
+    description: "Remi watches estimate threads and the homeowner's last reply. When the conversation goes quiet, Remi prepares a specific follow-up with the open decision ready for your approval."
     workflow:
       - tool: gmail
         action: "Remi reads the quiet homeowner thread and last reply in Gmail."
@@ -154,19 +154,19 @@ integrations:
   tools:
     - tool: jobnimbus
       title: "Keep selections from becoming delays"
-      description: "Remi checks job activity, tasks, work orders, and open decisions in JobNimbus. She surfaces the selection blocking the next trade and prepares the record update for your approval."
+      description: "Remi checks job activity, tasks, work orders, and open decisions in JobNimbus. Remi surfaces the selection blocking the next trade and prepares the record update for your approval."
     - tool: gmail
       title: "Find the answer inside the homeowner thread"
-      description: "Remi reads connected homeowner, designer, and vendor email for approvals and unresolved questions. She drafts the specific follow-up and waits for your approval before sending."
+      description: "Remi reads connected homeowner, designer, and vendor email for approvals and unresolved questions. Remi drafts the specific follow-up and waits for your approval before sending."
     - tool: googledrive
       title: "Keep the walkthrough evidence together"
-      description: "Remi finds plans, scope documents, walkthrough photos, and signed changes in Google Drive. She assembles the right sources beside the draft so you can review the full story at once."
+      description: "Remi finds plans, scope documents, walkthrough photos, and signed changes in Google Drive. Remi assembles the right sources beside the draft so you can review the full story at once."
     - tool: quickbooks
       title: "Tie every change back to the money"
-      description: "Remi checks deposits, change pricing, progress draws, and open balances in QuickBooks. She flags mismatches and prepares the payment or pricing follow-up for your approval."
+      description: "Remi checks deposits, change pricing, progress draws, and open balances in QuickBooks. Remi flags mismatches and prepares the payment or pricing follow-up for your approval."
     - tool: googlecalendar
       title: "Protect the install date"
-      description: "Remi checks walkthroughs, install dates, vendor windows, and homeowner decision deadlines. She proposes the reminder or calendar change before the schedule slips."
+      description: "Remi checks walkthroughs, install dates, vendor windows, and homeowner decision deadlines. Remi proposes the reminder or calendar change before the schedule slips."
 testimonialQuote: "A homeowner can change a detail during a walkthrough and I do not have to trust that I will remember it that night. Remi brings the note, photo, and next message together for me."
 testimonialName: "Sarah"
 testimonialPosition: "Owner"

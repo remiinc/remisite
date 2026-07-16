@@ -13,7 +13,7 @@ import Button from '../../global/button.vue'
       <div class="grid md:grid-cols-2 gap-8">
         <div class="flex flex-col gap-8 items-start">
           <p class="text-base font-normal leading-normal text-foreground/50 max-w-[40ch]">
-            Remi lives where your team already talks. Ask a question, mention her in a thread, or hand off a task
+            Remi lives where your team already talks. Ask a question, mention Remi in a thread, or hand off a task
             without pulling anyone into another dashboard.
           </p>
           <div class="flex items-center justify-start gap-2">

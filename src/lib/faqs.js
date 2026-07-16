@@ -5,13 +5,13 @@ export const faqGroups = {
       {
         question: 'Is Remi just another chatbot?',
         answers: [
-          'No. You can text Remi, but she is not just a blank chat box. You connect the tools where your work already happens, and Remi watches for the next thing that needs doing.',
+          'No. You can text Remi, but Remi is not just a blank chat box. You connect the tools where your work already happens, and Remi watches for the next thing that needs doing.',
         ],
       },
       {
         question: 'What does Remi actually do?',
         answers: [
-          'Remi looks across email, calendar, texts, files, invoices, estimates, and job notes. She finds loose ends, pulls the source details together, and prepares the next message or task for you to approve.',
+          'Remi looks across email, calendar, texts, files, invoices, estimates, and job notes. Remi finds loose ends, pulls the source details together, and prepares the next message or task for you to approve.',
         ],
       },
       {
@@ -23,7 +23,7 @@ export const faqGroups = {
       {
         question: 'Do I have to change the tools I use?',
         answers: [
-          'No. Remi is built to work with the tools your business already uses. You connect the sources you want her to read, and those systems stay where the work lives.',
+          'No. Remi is built to work with the tools your business already uses. You connect the sources you want Remi to read, and those systems stay where the work lives.',
         ],
       },
       {
@@ -35,7 +35,7 @@ export const faqGroups = {
       {
         question: 'How does Remi know how my business works?',
         answers: [
-          'Remi learns from the sources you connect and the decisions you approve. Over time, she understands your customers, jobs, prices, promises, deadlines, and how you like work handled.',
+          'Remi learns from the sources you connect and the decisions you approve. Over time, Remi understands your customers, jobs, prices, promises, deadlines, and how you like work handled.',
         ],
       },
       {
@@ -133,7 +133,7 @@ export const faqGroups = {
         ],
       },
       {
-        question: 'Does Remi keep a record of what she does?',
+        question: 'Does Remi keep a record of the work?',
         answers: [
           'Remi keeps drafts, source trails, receipts, and work history tied to your business. Important actions stay reviewable instead of disappearing into a black box.',
         ],
@@ -170,7 +170,7 @@ export const faqGroups = {
       {
         question: 'What can Remi take off my plate?',
         answers: [
-          'Remi can watch for unanswered requests, quiet estimates, overdue invoices, missing approvals, schedule changes, and work that needs a written record. She gathers the source context and prepares the next step for review.',
+          'Remi can watch for unanswered requests, quiet estimates, overdue invoices, missing approvals, schedule changes, and work that needs a written record. Remi gathers the source context and prepares the next step for review.',
         ],
       },
       {

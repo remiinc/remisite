@@ -6,9 +6,13 @@ defineProps({
     type: String,
     default: '/videos/hero-video.mp4',
   },
+  mobileVideoSrc: {
+    type: String,
+    default: '/videos/hero-video-mobile.mp4',
+  },
   videoPoster: {
     type: String,
-    default: '',
+    default: '/images/hero-video-poster.jpg',
   },
 })
 </script>
@@ -18,8 +22,11 @@ defineProps({
     <div
       class="hero-video relative col-start-1 col-end-1 row-start-1 row-end-1 overflow-hidden w-full h-full"
       aria-hidden="true">
-      <video v-if="videoSrc" class="absolute inset-0 h-full w-full object-cover" :src="videoSrc"
-        :poster="videoPoster || undefined" autoplay muted loop playsinline preload="auto" />
+      <video v-if="videoSrc" class="absolute inset-0 h-full w-full object-cover" :poster="videoPoster || undefined"
+        width="1280" height="720" autoplay muted loop playsinline preload="metadata">
+        <source v-if="mobileVideoSrc" :src="mobileVideoSrc" media="(max-width: 767px)" type="video/mp4">
+        <source :src="videoSrc" type="video/mp4">
+      </video>
       <div class="absolute inset-0 h-full w-full bg-black/30 mask-t-from-0% mask-t-to-70% pointer-events-none" />
     </div>
 

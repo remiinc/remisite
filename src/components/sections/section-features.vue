@@ -33,7 +33,8 @@ const featureMessages = [
     <div class="section-container mx-auto w-full max-w-(--content-width)">
       <div class="section-layout w-full grid lg:grid-cols-2 gap-x-16 lg:gap-x-24 gap-y-12">
         <div class="section-visual w-full min-h-120 h-full bg-muted rounded-3xl order-1 lg:order-2 overflow-hidden">
-          <img src="/images/features/home-feature-01@2x.jpg" alt="Remi" class="w-full h-full object-cover" />
+          <img src="/images/features/home-feature-01@2x.jpg" alt="Remi" width="1440" height="960"
+            class="w-full h-full object-cover" loading="lazy" decoding="async" />
         </div>
         <div class="section-content w-full py-4 flex flex-col justify-center order-2 lg:order-1">
           <div class="flex flex-col flex-1">
@@ -90,7 +91,8 @@ const featureMessages = [
         <div
           class="section-visual relative w-full min-h-120 h-full bg-muted rounded-3xl overflow-hidden text-[clamp(0.875rem,1.5vw,1.25rem)]">
           <img src="/images/features/home-feature-02@2x.jpg" alt="Remi"
-            class="absolute inset-0 w-full h-full object-cover" />
+            width="1440" height="960" class="absolute inset-0 w-full h-full object-cover" loading="lazy"
+            decoding="async" />
 
           <div class="absolute inset-0 z-10 flex items-center justify-center">
             <div

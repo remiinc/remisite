@@ -108,7 +108,8 @@ onBeforeUnmount(() => {
             class="relative aspect-4/3 w-full overflow-hidden rounded-3xl bg-muted text-[clamp(0.875rem,1.5vw,1.25rem)] md:aspect-2/1"
             :aria-label="solution.heroImageUrl ? solution.heroImageAlt || solution.title : undefined">
             <img v-if="solution.heroImageUrl" :src="solution.heroImageUrl"
-              :alt="solution.heroImageAlt || solution.title" class="absolute inset-0 size-full object-cover">
+              :alt="solution.heroImageAlt || solution.title" width="1600" height="1000"
+              class="absolute inset-0 size-full object-cover" loading="eager" decoding="async" fetchpriority="high">
 
             <div v-if="solution.heroMessage"
               class="absolute inset-x-5 bottom-5 z-10 flex justify-end md:inset-x-10 md:bottom-10">

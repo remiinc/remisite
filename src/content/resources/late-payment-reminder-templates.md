@@ -9,7 +9,7 @@ ogTitle: "7 Late Payment Reminder Templates That Get Small Businesses Paid (Copy
 ogDescription: "Seven copy-and-paste late payment reminder templates, from a gentle pre-due nudge to a firm final notice, plus subject lines and send-timing guidance."
 ogImage: "/images/og-image.png"
 ctaTitle: "See what's slipping through your inbox"
-ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire her."
+ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire Remi."
 ctaHref: "https://remi.new/login"
 ctaLabel: "Run the free check"
 faq:
@@ -139,8 +139,8 @@ Start with email so you have a written record of every follow-up. If email goes 
 
 You can run all of this yourself with the templates above. Pick the right one, fill in the details, and send it on schedule, and you will collect faster than most businesses that never follow up at all.
 
-The catch is the schedule. Remembering which invoice is at day 3 versus day 14, across every open customer, is the part that falls apart when you are also doing the actual work. That is the exact job Remi was built for. Remi is an AI teammate for small business owners. We say so because she will never pretend otherwise, and neither will we.
+The catch is the schedule. Remembering which invoice is at day 3 versus day 14, across every open customer, is the part that falls apart when you are also doing the actual work. That is the exact job Remi was built for. Remi is an AI teammate for small business owners. We say so because Remi will never pretend otherwise, and neither will we.
 
-She watches your connected books and email, flags the invoice going stale before you would have noticed, and drafts the right reminder for that stage, ready for you to approve. Nothing goes out without your say-so, and every reminder carries a receipt, so you always have the record of what was sent and when. If you ever fire her, you keep all of it.
+Remi watches your connected books and email, flags the invoice going stale before you would have noticed, and drafts the right reminder for that stage, ready for you to approve. Nothing goes out without your say-so, and every reminder carries a receipt, so you always have the record of what was sent and when. If you ever fire Remi, you keep all of it.
 
-If you would rather not be the one sending the 9pm follow-up, [connect your inbox and see what is slipping through it](https://remi.new/login) in about 60 seconds. You get the report either way, and we delete everything unless you hire her.
+If you would rather not be the one sending the 9pm follow-up, [connect your inbox and see what is slipping through it](https://remi.new/login) in about 60 seconds. You get the report either way, and we delete everything unless you hire Remi.

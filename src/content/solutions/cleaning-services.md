@@ -154,19 +154,19 @@ integrations:
   tools:
     - tool: servicem8
       title: "Keep recurring jobs and client notes current"
-      description: "Remi checks jobs, clients, queues, tasks, and job notes in ServiceM8. She surfaces the schedule or service detail that changed and proposes the record update for your approval."
+      description: "Remi checks jobs, clients, queues, tasks, and job notes in ServiceM8. Remi surfaces the schedule or service detail that changed and proposes the record update for your approval."
     - tool: gmail
       title: "Turn the inquiry into a specific next step"
-      description: "Remi reads connected inquiries, access instructions, complaints, and site-contact replies in Gmail. She drafts the answer with the right property context and waits for your approval before sending."
+      description: "Remi reads connected inquiries, access instructions, complaints, and site-contact replies in Gmail. Remi drafts the answer with the right property context and waits for your approval before sending."
     - tool: googlecalendar
       title: "Keep recurring visits from drifting"
-      description: "Remi checks recurring visits, crew availability, closures, and requested time changes. She proposes the new slot and prepares the customer confirmation for review."
+      description: "Remi checks recurring visits, crew availability, closures, and requested time changes. Remi proposes the new slot and prepares the customer confirmation for review."
     - tool: googlesheets
       title: "Keep every property instruction attached"
-      description: "Remi checks connected property lists, crew assignments, access notes, and service checklists in Google Sheets. She prepares the row change or crew brief for your approval."
+      description: "Remi checks connected property lists, crew assignments, access notes, and service checklists in Google Sheets. Remi prepares the row change or crew brief for your approval."
     - tool: quickbooks
       title: "Catch overdue recurring work early"
-      description: "Remi checks completed visits, recurring invoices, balances, due dates, and recorded payments in QuickBooks. She groups the open work and drafts one clear reminder for your approval."
+      description: "Remi checks completed visits, recurring invoices, balances, due dates, and recorded payments in QuickBooks. Remi groups the open work and drafts one clear reminder for your approval."
 testimonialQuote: "The recurring jobs are simple until one schedule change gets missed. Remi keeps the customer note, crew update, and invoice follow-up from drifting apart."
 testimonialName: "Nina"
 testimonialPosition: "Owner"

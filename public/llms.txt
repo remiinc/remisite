@@ -1,24 +1,26 @@
 # Remi
 
-> Remi is an AI teammate for owner-run small businesses. She watches your
-> inbox and books, flags unpaid invoices and unanswered quotes, and drafts
-> the follow-ups for your approval. Nothing goes out without your say-so,
-> and every action comes with a receipt. Pro is $99/month, Scale is
-> $199/month, with a 7-day trial at remi.new.
+> Remi is the AI back-office teammate for owner-run businesses. Remi learns
+> how each business works across connected email, calendars, messages, and
+> business tools; finds work that needs attention; and moves it forward with
+> the owner's approval. Nothing customer-facing goes out without approval,
+> and every action comes with a receipt.
 
-Remi is built for owner-led service businesses (1 to 15 people) where the
-owner does the work and chases the money: contractors, remodelers, home
-services, agencies, consultancies, and similar.
+Remi is built for owner-run service businesses where the owner is doing the
+work and running the back office: contractors, remodelers, home services,
+auto shops, cleaning businesses, agencies, and similar companies.
+
+Pro is $99 per month billed annually. Scale is $199 per month billed annually
+and includes more work capacity. Both plans begin with a 7-day trial.
 
 ## Pages
 
 - [Home](https://remi.new/): what Remi does and how to get started
-- [Blog](https://remi.new/blog): practical guides on getting paid, quote
-  follow-up, and running the money side of an owner-run business
+- [Resources](https://remi.new/resources): practical guides for running an
+  owner-run service business
 - [Solutions](https://remi.new/solutions): industry guides for contractors,
   home services, auto repair shops, cleaning businesses, and agencies
-- [Get Started](https://remi.new/login): connect your inbox and
-  see what's slipping through it
+- [Get Started](https://remi.new/start): text Remi and start the 7-day trial
 
 ## Feeds
 

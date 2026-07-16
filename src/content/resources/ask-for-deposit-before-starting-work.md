@@ -9,7 +9,7 @@ ogTitle: "How to Ask for a Deposit Before Starting Work (Scripts Included)"
 ogDescription: "How to ask for a deposit before starting work, with typical deposit ranges by industry, state cap caveats, and three word-for-word scripts you can copy."
 ogImage: "/images/og-image.png"
 ctaTitle: "See what's slipping through your inbox"
-ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire her."
+ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire Remi."
 ctaHref: "https://remi.new/login"
 ctaLabel: "Run the free check"
 faq:
@@ -140,6 +140,6 @@ Before you order materials or block the calendar. The deposit should clear befor
 
 You can run all of this yourself with the scripts above. Send the estimate, state the deposit, hold the start date until it clears. The manual method is complete, and it works.
 
-If you would rather not be the one tracking it at 9pm, this is the exact job Remi was built for. She watches your connected inbox and books, so she sees when a deposit request went out and got no reply, and flags it before the job stalls in limbo. She drafts the follow-up in your voice for your approval. Nothing goes out without your say-so, and every action comes with a receipt.
+If you would rather not be the one tracking it at 9pm, this is the exact job Remi was built for. Remi watches your connected inbox and books, so Remi sees when a deposit request went out and got no reply, and flags it before the job stalls in limbo. Remi drafts the follow-up in your voice for your approval. Nothing goes out without your say-so, and every action comes with a receipt.
 
-Remi is an AI teammate. We say so because she will never pretend otherwise, and neither will we. She prepares and proposes; you approve. The point is not to hand over the keys. It is to stop being the person who has to remember which deposit is still unpaid while three new jobs come in.
+Remi is an AI teammate. We say so because Remi will never pretend otherwise, and neither will we. Remi prepares and proposes; you approve. The point is not to hand over the keys. It is to stop being the person who has to remember which deposit is still unpaid while three new jobs come in.

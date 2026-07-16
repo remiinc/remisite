@@ -188,6 +188,8 @@ onBeforeUnmount(() => {
               :src="heroImage"
               :alt="post.metadata.heroImageAlt || post.title"
               class="aspect-3/2 w-full object-cover"
+              decoding="async"
+              fetchpriority="high"
             >
           </figure>
         </div>

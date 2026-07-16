@@ -9,17 +9,17 @@ ogTitle: "Remi vs Hiring a Part-Time Office Manager: What $199 a Month Actually 
 ogDescription: "AI vs an office manager for a small business: what a part-time hire really costs, what a human does that AI cannot, and when to pick which."
 ogImage: "/images/og-image.png"
 ctaTitle: "See what's slipping through your inbox"
-ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire her."
+ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire Remi."
 ctaHref: "https://remi.new/login"
 ctaLabel: "Run the free check"
 faq:
   - q: "How much does a part-time office manager cost?"
     a: "Office managers average about $23.44 an hour in the US (Indeed, 2026). At 20 hours a week that is roughly $24,000 a year in wages, before you add the 7.65% employer payroll tax, workers' comp, and any benefits."
   - q: "Can Remi replace an office manager entirely?"
-    a: "No. Remi cannot sit at a front desk, answer a ringing phone, greet a walk-in, or make an in-person judgment call. She replaces the follow-up, tracking, and nothing-falls-through part of the job, not the physical presence part."
+    a: "No. Remi cannot sit at a front desk, answer a ringing phone, greet a walk-in, or make an in-person judgment call. Remi replaces the follow-up, tracking, and nothing-falls-through part of the job, not the physical presence part."
   - q: "What can Remi do that a part-time employee cannot?"
-    a: "She watches your connected books and inbox around the clock, never forgets a stale invoice or a quote that got no reply, and puts a receipt on every action. There is no ramp-up, no sick days, and no turnover."
-  - q: "Does Remi send invoices or collect money on her own?"
+    a: "Remi watches your connected books and inbox around the clock, never forgets a stale invoice or a quote that got no reply, and puts a receipt on every action. There is no ramp-up, no sick days, and no turnover."
+  - q: "Does Remi send invoices or collect money without approval?"
     a: "No. Remi drafts the reminder and flags what is going stale. Nothing goes out until you approve it, and every action carries a receipt you can see."
   - q: "Should I hire a person, Remi, or both?"
     a: "If the job is mostly physical presence, phones, cash handling, or managing other staff, hire a person. If it is money follow-up, quote chasing, and keeping track of what is owed, Remi covers that for far less. Plenty of owners run both."
@@ -28,7 +28,7 @@ faq:
 
 A part-time office manager in the US averages about $23.44 an hour ([Indeed, 2026](https://www.indeed.com/career/office-manager/salaries)), which runs past $24,000 a year at 20 hours a week, before you add payroll taxes and overhead. Remi's Scale plan is $199 a month, or $2,388 a year. But they are not the same job. A person can sit at your front desk, answer the phone, read a room, and walk paperwork to the bank. Remi cannot do any of that.
 
-What Remi does is the part that usually gets dropped anyway: watching the money. She connects to the email and accounting tools you already run, then watches around the clock for the invoice going stale, the quote that got no reply, and the customer still waiting on an answer. She never forgets, she never takes a week off, and every action she proposes comes with a receipt. This post lays out what each option actually costs, what a human does that Remi does not, what Remi does that a part-timer cannot, and how to tell which one you need.
+What Remi does is the part that usually gets dropped anyway: watching the money. Remi connects to the email and accounting tools you already run, then watches around the clock for the invoice going stale, the quote that got no reply, and the customer still waiting on an answer. Remi never forgets, Remi never takes a week off, and every action Remi proposes comes with a receipt. This post lays out what each option actually costs, what a human does that Remi does not, what Remi does that a part-timer cannot, and how to tell which one you need.
 
 ## How much does a part-time office manager really cost?
 
@@ -53,7 +53,7 @@ The wage math alone, roughly $24,000 a year plus another $1,800 in payroll tax, 
 Anything that requires being a person in a room. This is the honest part, and it matters more than the price. A human office manager can do things Remi has no way to do, and if your business leans on these, you need the human.
 
 - Be physically present. Someone to greet a walk-in, sign for a delivery, hand a clipboard to a customer, or hold down a front desk is a body in a building. Remi is not.
-- Answer the phone. Remi works over text, email, Slack, and a web portal. She is not a phone receptionist. If your day runs on inbound calls and you have not set up a separate answering service, a person answers and Remi does not.
+- Answer the phone. Remi works over text, email, Slack, and a web portal. Remi is not a phone receptionist. If your day runs on inbound calls and you have not set up a separate answering service, a person answers and Remi does not.
 - Handle cash and physical paperwork. Deposits, petty cash, mailing checks, filing signed contracts in a drawer. That is hands-on work.
 - Make in-person judgment calls with context you never wrote down. A good office manager reads your mood, knows which customer is a headache, and decides on the spot. Remi works from what is connected and written, not from the room.
 - Manage other people and vendors face to face. Scheduling the crew, chasing a supplier in person, smoothing over a tense client meeting. Human work.
@@ -64,13 +64,13 @@ If half your list is on that list, hire the person. Remi is not a replacement fo
 
 Watch the money without stopping, and prove every move. A part-time office manager is present maybe 20 hours a week and is human, which means they sleep, forget, and eventually leave. Remi is built for the exact opposite.
 
-- She watches around the clock. An invoice that goes stale on a Saturday gets flagged Saturday, not Monday when your part-timer is back at their desk.
-- She never forgets. Roughly 47% of small businesses have invoices that slip past 30 days overdue, and the average business is owed about $17,500 at any given time ([Intuit QuickBooks, 2025](https://quickbooks.intuit.com/r/small-business-data/small-business-late-payments-report-2025/)). Remi's whole job is to make sure none of those go quiet.
-- She speaks up first. She flags the quote that got no reply and the customer waiting on an answer before you think to ask. She drafts the follow-up so it is ready for your approval.
-- Every action carries a receipt. You see what she proposed, what you approved, and what happened. There is no "I thought I sent that."
-- No ramp, no turnover, no gap. She works the day you hire her and does not resign in eight months.
+- Remi watches around the clock. An invoice that goes stale on a Saturday gets flagged Saturday, not Monday when your part-timer is back at their desk.
+- Remi never forgets. Roughly 47% of small businesses have invoices that slip past 30 days overdue, and the average business is owed about $17,500 at any given time ([Intuit QuickBooks, 2025](https://quickbooks.intuit.com/r/small-business-data/small-business-late-payments-report-2025/)). Remi's whole job is to make sure none of those go quiet.
+- Remi speaks up first. Remi flags the quote that got no reply and the customer waiting on an answer before you think to ask. Remi drafts the follow-up so it is ready for your approval.
+- Every action carries a receipt. You see what Remi proposed, what you approved, and what happened. There is no "I thought I sent that."
+- No ramp, no turnover, no gap. Remi works the day you hire Remi and does not resign in eight months.
 
-Remi is an AI teammate. We say so because she will never pretend otherwise, and neither will we. The claim discipline is exact: Remi prepares, drafts, proposes, flags, tracks, watches, and reminds. Things get sent or marked paid only when you approve them. She drafts the reminder and you approve it before it goes out.
+Remi is an AI teammate. We say so because Remi will never pretend otherwise, and neither will we. The claim discipline is exact: Remi prepares, drafts, proposes, flags, tracks, watches, and reminds. Things get sent or marked paid only when you approve them. Remi drafts the reminder and you approve it before it goes out.
 
 ## How do I decide between a person, Remi, or both?
 
@@ -103,13 +103,13 @@ Office managers average about $23.44 an hour in the US ([Indeed, 2026](https://w
 
 ### Can Remi replace an office manager entirely?
 
-No. Remi cannot sit at a front desk, answer a ringing phone, greet a walk-in, or make an in-person judgment call. She replaces the follow-up, tracking, and nothing-falls-through part of the job, not the physical presence part. If your role is mostly physical, keep the person.
+No. Remi cannot sit at a front desk, answer a ringing phone, greet a walk-in, or make an in-person judgment call. Remi replaces the follow-up, tracking, and nothing-falls-through part of the job, not the physical presence part. If your role is mostly physical, keep the person.
 
 ### What can Remi do that a part-time employee cannot?
 
-She watches your connected books and inbox around the clock, never forgets a stale invoice or a quote that got no reply, and puts a receipt on every action. There is no ramp-up, no sick days, and no turnover.
+Remi watches your connected books and inbox around the clock, never forgets a stale invoice or a quote that got no reply, and puts a receipt on every action. There is no ramp-up, no sick days, and no turnover.
 
-### Does Remi send invoices or collect money on her own?
+### Does Remi send invoices or collect money without approval?
 
 No. Remi drafts the reminder and flags what is going stale. Nothing goes out until you approve it, and every action carries a receipt you can see. If you fire Remi, you keep all of it: receipts, sources, and an exportable history.
 
@@ -121,6 +121,6 @@ If the job is mostly physical presence, phones, cash handling, or managing other
 
 You do not need to hire anyone to plug the leak this month. Block 30 minutes every Friday, pull up your accounting tool and your sent folder, and work the three-question test above. Draft a short, plain follow-up for every invoice past 30 days and every quote that went quiet, then send them. Keep a running list of what you sent and when, so nothing gets chased twice or forgotten. Done every week, that habit alone recovers most of what slips.
 
-If you would rather not be the one doing it at 9pm after the kids are down, this is the exact job Remi was built for. She connects to the email and accounting tools you already run, watches the books, flags what is going stale, and drafts the follow-up for your approval. Nothing goes out without your say-so, and every action comes with a receipt. She is not a front desk and not a phone line, so if you need a body in the room, hire one. For the money watching that a part-time office manager tends to drop between other tasks, Remi runs $199 a month against a hire that costs ten times that.
+If you would rather not be the one doing it at 9pm after the kids are down, this is the exact job Remi was built for. Remi connects to the email and accounting tools you already run, watches the books, flags what is going stale, and drafts the follow-up for your approval. Nothing goes out without your say-so, and every action comes with a receipt. Remi is not a front desk and not a phone line, so if you need a body in the room, hire one. For the money watching that a part-time office manager tends to drop between other tasks, Remi runs $199 a month against a hire that costs ten times that.
 
-The honest version: if your leak is physical, hire the person. If your leak is money going quiet, start with the free check, see what is actually slipping, and decide from there. We delete everything unless you hire her.
+The honest version: if your leak is physical, hire the person. If your leak is money going quiet, start with the free check, see what is actually slipping, and decide from there. We delete everything unless you hire Remi.

@@ -1,26 +1,28 @@
 <script setup>
-import { computed, onBeforeUnmount, onMounted } from 'vue'
+import { computed, defineAsyncComponent, onBeforeUnmount, onMounted, ref } from 'vue'
 import AnnouncementBar from './components/global/announcement-bar.vue'
-import BlogIndexPage from './components/blog/blog-index-page.vue'
-import BlogPostPage from './components/blog/blog-post-page.vue'
 import GlobalFooter from './components/global/global-footer.vue'
 import GlobalHeader from './components/header/global-header.vue'
-import LegacyRedirect from './components/global/legacy-redirect.vue'
 import HomeHeroVideo from './components/home/home-hero-video.vue'
-import PricingPage from './components/pricing/pricing-page.vue'
-import SecurityPage from './components/security/security-page.vue'
-import StartPage from './components/start/start-page.vue'
 import { getLegacySolutionRedirect } from './lib/solution-redirects'
 import SectionCta from './components/sections/section-cta.vue'
-import SectionIphone from './components/sections/section-iphone.vue'
 import SectionPinnedHeadline from './components/sections/section-pinned-headline.vue'
 import SectionFeatures from './components/sections/section-features.vue'
 import SectionFaq from './components/sections/section-faq.vue'
 import SectionPricing from './components/sections/section-pricing.vue'
 import SectionSolutions from './components/sections/section-solutions.vue'
-import SolutionPage from './components/solutions/solution-page.vue'
-import SolutionsIndexPage from './components/solutions/solutions-index-page.vue'
 import { capturePageview, installMarketingCtaTracking } from './lib/analytics.js'
+import { pageLoaders } from './lib/page-loaders.js'
+
+const BlogIndexPage = defineAsyncComponent(pageLoaders.blogIndex)
+const BlogPostPage = defineAsyncComponent(pageLoaders.blogPost)
+const LegacyRedirect = defineAsyncComponent(pageLoaders.legacyRedirect)
+const PricingPage = defineAsyncComponent(pageLoaders.pricing)
+const SecurityPage = defineAsyncComponent(pageLoaders.security)
+const SolutionPage = defineAsyncComponent(pageLoaders.solution)
+const SolutionsIndexPage = defineAsyncComponent(pageLoaders.solutionsIndex)
+const StartPage = defineAsyncComponent(pageLoaders.start)
+const SectionIphone = defineAsyncComponent(() => import('./components/sections/section-iphone.vue'))
 
 const pathname = typeof window !== 'undefined' ? window.location.pathname : '/'
 
@@ -33,15 +35,35 @@ const isBlogPostPage = computed(() => normalizedPath.value.startsWith('/resource
 const isPricingPage = computed(() => normalizedPath.value === '/pricing')
 const isSecurityPage = computed(() => normalizedPath.value === '/security')
 const isStartPage = computed(() => normalizedPath.value === '/start')
+const iphoneSectionTrigger = ref(null)
+const shouldLoadIphoneSection = ref(false)
+let iphoneSectionObserver = null
 
 let stopMarketingCtaTracking = null
 
 onMounted(() => {
   capturePageview()
   stopMarketingCtaTracking = installMarketingCtaTracking()
+
+  if (!('IntersectionObserver' in window) || !iphoneSectionTrigger.value) {
+    shouldLoadIphoneSection.value = true
+    return
+  }
+
+  iphoneSectionObserver = new IntersectionObserver(([entry]) => {
+    if (!entry?.isIntersecting) return
+    shouldLoadIphoneSection.value = true
+    iphoneSectionObserver.disconnect()
+    iphoneSectionObserver = null
+  }, { rootMargin: '1200px 0px' })
+
+  iphoneSectionObserver.observe(iphoneSectionTrigger.value)
 })
 
-onBeforeUnmount(() => stopMarketingCtaTracking?.())
+onBeforeUnmount(() => {
+  stopMarketingCtaTracking?.()
+  iphoneSectionObserver?.disconnect()
+})
 </script>
 
 <template>
@@ -59,7 +81,9 @@ onBeforeUnmount(() => stopMarketingCtaTracking?.())
       <GlobalHeader />
       <HomeHeroVideo />
       <SectionPinnedHeadline />
-      <SectionIphone />
+      <div ref="iphoneSectionTrigger">
+        <SectionIphone v-if="shouldLoadIphoneSection" />
+      </div>
       <SectionFeatures />
       <SectionSolutions />
       <SectionPricing />

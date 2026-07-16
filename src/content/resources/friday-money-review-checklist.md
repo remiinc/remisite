@@ -9,7 +9,7 @@ ogTitle: "The 15-Minute Friday Money Review for Owner-Run Businesses (Checklist)
 ogDescription: "A 15-minute Friday checklist for a weekly cash flow review any small business owner can run: open invoices, quotes, unbilled jobs, bills, and cash."
 ogImage: "/images/og-image.png"
 ctaTitle: "See what's slipping through your inbox"
-ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire her."
+ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire Remi."
 ctaHref: "https://remi.new/login"
 ctaLabel: "Run the free check"
 faq:
@@ -28,7 +28,7 @@ faq:
 
 A weekly cash flow review is a short, fixed check you run every Friday to see who owes you money, what work is still unbilled, and whether you have enough cash for next week. It takes about 15 minutes and covers six things: open invoices by age, quotes waiting on an answer, finished jobs you have not billed, bills coming due, your real cash position, and one follow-up action for each. Run it every Friday and money stops going stale on you.
 
-Most owners check the money once a month, usually when the bookkeeper asks or a bill bounces. That is too slow. Invoices, quotes, and customer patience all decay in days, not quarters. A weekly rhythm catches a silent quote while the customer still remembers the conversation, and a slipping invoice while a friendly nudge still fixes it. This post gives you the exact checklist, a copy-paste version to keep, and the numbers behind why weekly wins. Remi runs this same review automatically, but you do not need her to start. You need 15 minutes and a Friday.
+Most owners check the money once a month, usually when the bookkeeper asks or a bill bounces. That is too slow. Invoices, quotes, and customer patience all decay in days, not quarters. A weekly rhythm catches a silent quote while the customer still remembers the conversation, and a slipping invoice while a friendly nudge still fixes it. This post gives you the exact checklist, a copy-paste version to keep, and the numbers behind why weekly wins. Remi runs this same review automatically, but you do not need Remi to start. You need 15 minutes and a Friday.
 
 ## Why review cash flow weekly instead of monthly?
 
@@ -108,11 +108,11 @@ This is general operating advice, not accounting or legal advice. If a specific 
 
 You can run all of this yourself with the checklist above, and plenty of owners do. It is genuinely 15 minutes, and the templates here are the whole method. Nothing on this page requires buying anything.
 
-If you would rather not be the one pulling invoice ages and hunting for silent quotes at 9pm on a Friday, this is the exact job Remi was built for. She watches your connected books and inbox all week, so by Friday the six things are already gathered: the invoices going stale, the quotes that got no reply, the finished work that never got billed. She flags what is slipping and drafts the follow-up reminders for you.
+If you would rather not be the one pulling invoice ages and hunting for silent quotes at 9pm on a Friday, this is the exact job Remi was built for. Remi watches your connected books and inbox all week, so by Friday the six things are already gathered: the invoices going stale, the quotes that got no reply, the finished work that never got billed. Remi flags what is slipping and drafts the follow-up reminders for you.
 
-Nothing goes out without your say-so. Remi drafts the reminder and you approve it before it sends, and every action carries a receipt you can look back on. She does not move your money or mark anything paid on her own. She does the watching and the drafting so the review becomes a two-minute approval instead of a 15-minute hunt.
+Nothing goes out without your say-so. Remi drafts the reminder and you approve it before it sends, and every action carries a receipt you can look back on. Remi does not move your money or mark anything paid without approval. Remi does the watching and the drafting so the review becomes a two-minute approval instead of a 15-minute hunt.
 
-Remi is an AI teammate. We say so because she will never pretend otherwise, and neither will we. Everything she does is on the record, and if you ever fire her you keep all of it. If you want to see what a Friday review would surface right now, you can connect your inbox and get the report in about 60 seconds.
+Remi is an AI teammate. We say so because Remi will never pretend otherwise, and neither will we. Everything Remi does is on the record, and if you ever fire Remi you keep all of it. If you want to see what a Friday review would surface right now, you can connect your inbox and get the report in about 60 seconds.
 
 ## FAQ
 

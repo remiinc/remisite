@@ -2,7 +2,7 @@
 import { PhArrowLeft, PhArrowRight } from '@phosphor-icons/vue'
 import useEmblaCarousel from 'embla-carousel-vue'
 import { ref, watch } from 'vue'
-import { solutions } from '../../lib/solutions'
+import { solutionSummaries as solutions } from '../../lib/solution-summaries'
 import { cn } from '../../lib/cn'
 
 const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -83,7 +83,7 @@ watch(
             )">
               <img v-if="solution.thumbnailImageUrl" :src="solution.thumbnailImageUrl" alt="" aria-hidden="true"
                 class="absolute inset-0 size-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02] motion-reduce:transition-none"
-                :loading="index < 3 ? 'eager' : 'lazy'" decoding="async">
+                width="960" height="1440" loading="lazy" decoding="async" fetchpriority="low">
               <span v-if="solution.thumbnailImageUrl"
                 class="absolute inset-0 bg-linear-to-b from-black/20 from-50% to-black/40 to-100% transition-colors group-hover:from-black/10 group-hover:to-black/30 group-focus-visible:from-black/10 group-focus-visible:to-black/30 duration-300"
                 aria-hidden="true" />

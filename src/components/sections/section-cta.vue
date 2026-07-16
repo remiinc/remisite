@@ -7,7 +7,9 @@ import SiteIcon from '../global/site-icon.vue'
 <template>
   <section id="get-started" class="scroll-mt-24 px-6 py-24" data-section-cta>
     <div
-      class="relative mx-auto grid w-full max-w-(--content-width) overflow-hidden rounded-[2em] bg-foreground bg-[url('/images/backgrounds/cta-background.jpg')] bg-cover bg-center text-background md:grid-cols-2 lg:grid-cols-[3fr_2fr] lg:items-center">
+      class="relative mx-auto grid w-full max-w-(--content-width) overflow-hidden rounded-[2em] bg-foreground text-background md:grid-cols-2 lg:grid-cols-[3fr_2fr] lg:items-center">
+      <img src="/images/backgrounds/cta-background.jpg" alt="" width="1600" height="1067" loading="lazy"
+        decoding="async" fetchpriority="low" class="absolute inset-0 size-full object-cover" aria-hidden="true">
       <div class="relative z-1 flex pt-24 pb-8 md:py-12 px-8 lg:px-12 flex-col items-center justify-center gap-8 text-center">
         <h2 class="inline-block text-5xl lg:text-6xl font-normal tracking-tight text-balance max-w-[20ch]">
           Let Remi keep the day moving.

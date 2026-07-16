@@ -9,7 +9,7 @@ ogTitle: "What to Do When a Client Won't Pay: A Step-by-Step Playbook"
 ogDescription: "What to do when a client won't pay: a step-by-step playbook from a friendly reminder through phone call, demand letter, mechanics lien, small claims, and write-off."
 ogImage: "/images/og-image.png"
 ctaTitle: "See what's slipping through your inbox"
-ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire her."
+ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire Remi."
 ctaHref: "https://remi.new/login"
 ctaLabel: "Run the free check"
 faq:
@@ -162,8 +162,8 @@ Consider it only after the relationship is over and the debt has gone cold, sinc
 
 You can run this entire playbook yourself with the templates above, and for most late invoices you should, because it works. The hard part is not knowing the steps. It is being the person who tracks every due date, notices the moment an invoice goes stale, and actually sends the day-10 reminder when you are exhausted and would rather not.
 
-That is the exact job Remi was built for. Remi is an AI teammate for small business owners. She connects to the tools you already use, watches your invoices, and speaks up first when one is going past due, so nothing quietly slips to 60 days while you are on a job site.
+That is the exact job Remi was built for. Remi is an AI teammate for small business owners. Remi connects to the tools you already use, watches your invoices, and speaks up first when one is going past due, so nothing quietly slips to 60 days while you are on a job site.
 
-When something needs chasing, Remi drafts the reminder, the phone-call note, or the demand letter for you, in your voice, ready to go. Nothing is sent and nothing is marked paid without your approval, and every action comes with a receipt you can check. She prepares and tracks the whole ladder. You stay the one who decides.
+When something needs chasing, Remi drafts the reminder, the phone-call note, or the demand letter for you, in your voice, ready to go. Nothing is sent and nothing is marked paid without your approval, and every action comes with a receipt you can check. Remi prepares and tracks the whole ladder. You stay the one who decides.
 
-Remi is an AI teammate. We say so because she'll never pretend otherwise, and neither will we. If you'd rather not be the one working the unpaid-invoice ladder at 9pm, that is the work she takes off your plate.
+Remi is an AI teammate. We say so because Remi will never pretend otherwise, and neither will we. If you'd rather not be the one working the unpaid-invoice ladder at 9pm, that is the work Remi takes off your plate.

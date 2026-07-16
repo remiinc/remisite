@@ -9,7 +9,7 @@ ogTitle: "The Change Order Confirmation Text Every Contractor Should Send"
 ogDescription: "A copy-paste change order confirmation text template with three variants, so every scope change is priced, approved in writing, and paid before work starts."
 ogImage: "/images/og-image.png"
 ctaTitle: "See what's slipping through your inbox"
-ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire her."
+ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire Remi."
 ctaHref: "https://remi.new/login"
 ctaLabel: "Run the free check"
 faq:
@@ -26,7 +26,7 @@ faq:
 ---
 
 
-A change order confirmation text is a short message you send before any extra work starts. It states one thing that changed, the price difference, the effect on the schedule, and a single line asking the client to reply YES to approve. You send it, you wait for the reply, and only then do you start. The reply is a timestamped, written record of what both of you agreed to. Remi can draft that text for you the moment a job scope moves, but the template below works whether you use her or type it yourself.
+A change order confirmation text is a short message you send before any extra work starts. It states one thing that changed, the price difference, the effect on the schedule, and a single line asking the client to reply YES to approve. You send it, you wait for the reply, and only then do you start. The reply is a timestamped, written record of what both of you agreed to. Remi can draft that text for you the moment a job scope moves, but the template below works whether you use Remi or type it yourself.
 
 Here is the master template. Copy it, keep it in your phone, and change the details per job.
 
@@ -123,6 +123,6 @@ Because a verbal okay is not something you can show later. When the invoice is d
 
 You can run all of this yourself with the templates above. Keep the master text in your phone, hold the line on no work before the YES, and you will close most of the leak on your own. The system does not need software. It needs the discipline to send the message every time.
 
-If you would rather not be the one remembering it at 9pm, this is the exact job Remi was built for. She watches the thread and the books, notices when a job scope moves or a confirmed change never got invoiced, and drafts the confirmation text or the follow-up for your approval. Nothing goes out without your say-so, and every action comes with a receipt you can point to later.
+If you would rather not be the one remembering it at 9pm, this is the exact job Remi was built for. Remi watches the thread and the books, notices when a job scope moves or a confirmed change never got invoiced, and drafts the confirmation text or the follow-up for your approval. Nothing goes out without your say-so, and every action comes with a receipt you can point to later.
 
-Remi is an AI teammate. We say so because she will never pretend otherwise, and neither will we. She prepares and drafts and flags. You approve. The change orders that used to live in your memory end up on the record instead, priced and agreed before the work starts, which is the only place they are worth anything when it is time to get paid.
+Remi is an AI teammate. We say so because Remi will never pretend otherwise, and neither will we. Remi prepares and drafts and flags. You approve. The change orders that used to live in your memory end up on the record instead, priced and agreed before the work starts, which is the only place they are worth anything when it is time to get paid.

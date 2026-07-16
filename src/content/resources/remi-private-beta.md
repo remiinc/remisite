@@ -23,7 +23,7 @@ Remi is now available in private beta for a small group of client-facing teams. 
 
 We are starting with teams where the operational signal already lives in too many places: Slack threads, emails, docs, calendars, trackers, and the quick decisions that never quite make it back into the system of record.
 
-Remi is built for that gap. It watches the surfaces where work happens, links the source context, and turns scattered client asks into owners, next steps, and drafts your team can review.
+Remi is built for that gap. Remi watches the surfaces where work happens, links the source context, and turns scattered client asks into owners, next steps, and drafts your team can review.
 
 ## What we are testing first
 

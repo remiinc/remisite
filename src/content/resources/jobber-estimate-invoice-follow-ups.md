@@ -9,7 +9,7 @@ ogTitle: "Jobber Follow-Ups: Automating Estimate and Invoice Chasing (and Where 
 ogDescription: "How Jobber's automatic follow-ups chase unanswered quotes and past-due invoices, the exact setup steps, where they stop, and copy-paste reminder templates."
 ogImage: "/images/og-image.png"
 ctaTitle: "See what's slipping through your inbox"
-ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire her."
+ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire Remi."
 ctaHref: "https://remi.new/login"
 ctaLabel: "Run the free check"
 faq:
@@ -133,8 +133,8 @@ The automation triggers on status, not on the conversation. It stops when a quot
 
 You can run all of this yourself. Turn on Jobber's two quote reminders and two invoice reminders, then use the templates above for everything that falls through the gaps: the stalled quote after nudge two, the invoice that lives in QuickBooks, the client who replied and still has not paid. That is a complete system, and it costs nothing beyond the plan you already have.
 
-If you would rather not be the one holding it together at 9pm, this is the exact job Remi was built for. Remi is an AI teammate for small business owners. She watches the sources your money actually lives in, not just one app, so the QuickBooks invoice and the estimate you texted from your phone get the same attention as the ones in Jobber. She flags the quote going stale and the invoice going quiet, and she drafts the follow-up for you to approve.
+If you would rather not be the one holding it together at 9pm, this is the exact job Remi was built for. Remi is an AI teammate for small business owners. Remi watches the sources your money actually lives in, not just one app, so the QuickBooks invoice and the estimate you texted from your phone get the same attention as the ones in Jobber. Remi flags the quote going stale and the invoice going quiet, and Remi drafts the follow-up for you to approve.
 
-The line she does not cross is the one that matters most. Remi prepares and proposes. Nothing gets sent, and nothing gets marked paid, without your say-so, and every action comes with a receipt you can point to later. She is an AI teammate, and we say so plainly, because she will never pretend otherwise and neither will we.
+The line Remi does not cross is the one that matters most. Remi prepares and proposes. Nothing gets sent, and nothing gets marked paid, without your say-so, and every action comes with a receipt you can point to later. Remi is an AI teammate, and we say so plainly, because Remi will never pretend otherwise and neither will we.
 
-If you want to see what is already slipping, connect your inbox and Remi will show you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report either way. We delete everything unless you hire her.
+If you want to see what is already slipping, connect your inbox and Remi will show you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report either way. We delete everything unless you hire Remi.

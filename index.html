@@ -6,7 +6,7 @@
     <title>Remi | The teammate who runs your back office</title>
     <meta
       name="description"
-      content="Remi is an AI teammate for owner-run businesses. She watches your inbox and books, flags unpaid invoices and unanswered quotes, and drafts the follow-ups for your approval."
+      content="Remi is the AI back-office teammate for owner-run businesses. Remi learns how your business works, finds the work, and moves it forward with your approval."
     />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#fffef9" />
@@ -18,6 +18,7 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
+    <link rel="preload" as="image" href="/images/hero-video-poster.jpg" fetchpriority="high" />
 
     <meta property="og:site_name" content="Remi" />
     <meta property="og:type" content="website" />
@@ -25,14 +26,14 @@
     <meta property="og:title" content="Remi | The teammate who runs your back office" />
     <meta
       property="og:description"
-      content="Remi watches your inbox and books, flags unpaid invoices and unanswered quotes, and drafts the follow-ups for your approval."
+      content="Remi learns how your business works, finds the work, and moves it forward with your approval."
     />
     <meta property="og:image" content="https://remi.new/images/og-image.png" />
     <meta property="og:image:secure_url" content="https://remi.new/images/og-image.png" />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Remi AI operations assistant homepage background" />
+    <meta property="og:image:alt" content="Remi, the AI back-office teammate for owner-run businesses" />
     <meta property="og:locale" content="en_US" />
 
     <meta name="twitter:card" content="summary_large_image" />
@@ -40,26 +41,42 @@
     <meta name="twitter:title" content="Remi | The teammate who runs your back office" />
     <meta
       name="twitter:description"
-      content="Remi watches your inbox and books, flags unpaid invoices and unanswered quotes, and drafts the follow-ups for your approval."
+      content="Remi learns how your business works, finds the work, and moves it forward with your approval."
     />
     <meta name="twitter:image" content="https://remi.new/images/og-image.png" />
-    <meta name="twitter:image:alt" content="Remi AI operations assistant homepage background" />
+    <meta name="twitter:image:alt" content="Remi, the AI back-office teammate for owner-run businesses" />
 
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "Remi",
-        "applicationCategory": "BusinessApplication",
-        "operatingSystem": "Web",
-        "url": "https://remi.new/",
-        "description": "Remi is an AI teammate for owner-run businesses. She watches your inbox and books, flags unpaid invoices and unanswered quotes, and drafts the follow-ups for your approval.",
-        "image": "https://remi.new/images/og-image.png",
-        "publisher": {
-          "@type": "Organization",
-          "name": "Remi",
-          "url": "https://remi.new/"
-        }
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://remi.new/#organization",
+            "name": "Remi",
+            "url": "https://remi.new/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://remi.new/icon-512.png"
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://remi.new/#website",
+            "name": "Remi",
+            "url": "https://remi.new/",
+            "publisher": { "@id": "https://remi.new/#organization" }
+          },
+          {
+            "@type": "Service",
+            "@id": "https://remi.new/#service",
+            "name": "Remi",
+            "serviceType": "AI back-office teammate for owner-run businesses",
+            "url": "https://remi.new/",
+            "description": "Remi learns how your business works, finds the work, and moves it forward with your approval.",
+            "provider": { "@id": "https://remi.new/#organization" }
+          }
+        ]
       }
     </script>
   </head>

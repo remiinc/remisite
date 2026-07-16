@@ -154,19 +154,19 @@ integrations:
   tools:
     - tool: servicem8
       title: "Turn the callout into a complete job record"
-      description: "Remi checks callout jobs, client details, job notes, materials, tasks, and recorded payments in ServiceM8. She surfaces what is missing and proposes the next job-note update for your approval."
+      description: "Remi checks callout jobs, client details, job notes, materials, tasks, and recorded payments in ServiceM8. Remi surfaces what is missing and proposes the next job-note update for your approval."
     - tool: gmail
       title: "Keep customer and supplier answers together"
-      description: "Remi reads connected customer requests, supplier confirmations, and quote questions in Gmail. She drafts the reply with the right job detail and waits for your approval before sending."
+      description: "Remi reads connected customer requests, supplier confirmations, and quote questions in Gmail. Remi drafts the reply with the right job detail and waits for your approval before sending."
     - tool: googlecalendar
       title: "Match the urgent call to a real opening"
-      description: "Remi checks service windows, technician availability, travel gaps, and promised arrival times. She proposes the best appointment and prepares the customer confirmation for review."
+      description: "Remi checks service windows, technician availability, travel gaps, and promised arrival times. Remi proposes the best appointment and prepares the customer confirmation for review."
     - tool: quickbooks
       title: "Build the quote from verified numbers"
-      description: "Remi checks customer records, estimate amounts, invoice balances, and due dates in QuickBooks. She brings the verified numbers into the quote or payment follow-up you approve."
+      description: "Remi checks customer records, estimate amounts, invoice balances, and due dates in QuickBooks. Remi brings the verified numbers into the quote or payment follow-up you approve."
     - tool: square
       title: "Know whether the payment actually landed"
-      description: "Remi checks Square invoice, payment, and payment-link status before a reminder is drafted. She brings the correct link into the message you approve without changing the payment record."
+      description: "Remi checks Square invoice, payment, and payment-link status before a reminder is drafted. Remi brings the correct link into the message you approve without changing the payment record."
 feature:
   title: "Keep the next call moving before you leave this one."
   imageUrl: "/images/solutions/plumbing-feature@2x.webp"

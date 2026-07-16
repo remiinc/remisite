@@ -9,7 +9,7 @@ ogTitle: "Why Clients Pay Late, and the Follow-Up Cadence That Fixes It"
 ogDescription: "Why do clients pay late? The five real reasons ranked, plus the exact follow-up cadence that gets invoices paid without you nagging."
 ogImage: "/images/og-image.png"
 ctaTitle: "See what's slipping through your inbox"
-ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire her."
+ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire Remi."
 ctaHref: "https://remi.new/login"
 ctaLabel: "Run the free check"
 faq:
@@ -132,8 +132,8 @@ Move to a direct phone call, then a formal written past-due notice that restates
 
 You can run all of this yourself with the cadence and templates above. They are complete, and they work without buying anything. The hard part is not knowing what to send. It is being the person who remembers to send it, every time, on day 1 and day 3 and day 7, across every open invoice, while you are also doing the actual work.
 
-That is the exact job Remi was built for. Remi is an AI teammate for small business owners. She watches your connected inbox and books, flags the invoice going stale before it becomes a problem, and drafts the next follow-up in the cadence for your approval. You see the reminder, you approve it, and only then does it go out.
+That is the exact job Remi was built for. Remi is an AI teammate for small business owners. Remi watches your connected inbox and books, flags the invoice going stale before it becomes a problem, and drafts the next follow-up in the cadence for your approval. You see the reminder, you approve it, and only then does it go out.
 
-Nothing gets sent without your say-so, and every action comes with a receipt: what went out, to whom, and when. Remi is an AI teammate. We say so because she will never pretend otherwise, and neither will we. Everything she does stays on the record and is yours to keep. If you ever fire her, you walk away with the whole history.
+Nothing gets sent without your say-so, and every action comes with a receipt: what went out, to whom, and when. Remi is an AI teammate. We say so because Remi will never pretend otherwise, and neither will we. Everything Remi does stays on the record and is yours to keep. If you ever fire Remi, you walk away with the whole history.
 
-If you want to see where you stand right now, connect your inbox and Remi will show you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report either way. We delete everything unless you decide to hire her.
+If you want to see where you stand right now, connect your inbox and Remi will show you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report either way. We delete everything unless you decide to hire Remi.

@@ -154,19 +154,19 @@ integrations:
   tools:
     - tool: ascora
       title: "Keep the job record ready for the next stage"
-      description: "Remi checks jobs, quotations, suppliers, inventory, attachments, and customer records in Ascora. She surfaces the missing dependency and prepares the note, quote, or attachment change for your approval."
+      description: "Remi checks jobs, quotations, suppliers, inventory, attachments, and customer records in Ascora. Remi surfaces the missing dependency and prepares the note, quote, or attachment change for your approval."
     - tool: gmail
       title: "Pull the inspection answer out of the inbox"
-      description: "Remi reads connected inspector, customer, supplier, and permit threads in Gmail. She drafts the response with the job evidence attached and waits for your approval before sending."
+      description: "Remi reads connected inspector, customer, supplier, and permit threads in Gmail. Remi drafts the response with the job evidence attached and waits for your approval before sending."
     - tool: googlecalendar
       title: "Keep inspection and crew dates aligned"
-      description: "Remi checks inspections, crew dates, material arrivals, and energization deadlines. She proposes the schedule adjustment or confirmation before a missed dependency delays the job."
+      description: "Remi checks inspections, crew dates, material arrivals, and energization deadlines. Remi proposes the schedule adjustment or confirmation before a missed dependency delays the job."
     - tool: googledrive
       title: "Bring permits and signoffs to the next step"
-      description: "Remi finds permits, site photos, test records, plans, and signed completion notes in Google Drive. She assembles the source packet beside the draft so it is ready for review."
+      description: "Remi finds permits, site photos, test records, plans, and signed completion notes in Google Drive. Remi assembles the source packet beside the draft so it is ready for review."
     - tool: quickbooks
       title: "Connect added work to the final invoice"
-      description: "Remi checks approved additions, estimate totals, invoices, and open balances in QuickBooks. She flags the amount that needs attention and prepares the follow-up for your approval."
+      description: "Remi checks approved additions, estimate totals, invoices, and open balances in QuickBooks. Remi flags the amount that needs attention and prepares the follow-up for your approval."
 testimonialQuote: "Inspection dates and added-work approvals used to be the things I checked twice. Remi keeps the source close and shows me what is holding the job up."
 testimonialName: "Marcus"
 testimonialPosition: "Owner"

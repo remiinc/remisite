@@ -1,6 +1,5 @@
 <script setup>
 import { PhArrowLeft, PhArrowRight, PhCaretDown, PhCaretRight, PhList, PhX } from '@phosphor-icons/vue'
-import { gsap } from 'gsap'
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import Button from '../global/button.vue'
 import SiteLogo from '../global/site-logo.vue'
@@ -57,12 +56,10 @@ const props = defineProps({
   },
 })
 
-const headerRef = ref(null)
 const isCondensed = ref(false)
 const isMobileMenuOpen = ref(false)
 const isMobileMenuVisible = ref(false)
 const activeMobilePanel = ref(null)
-let headerIntroContext = null
 let onScroll = null
 let onKeydown = null
 let onResize = null
@@ -123,8 +120,6 @@ watch(isMobileMenuVisible, (isVisible) => {
 })
 
 onMounted(() => {
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
   onScroll = () => {
     isCondensed.value = window.scrollY > 80
   }
@@ -145,24 +140,6 @@ onMounted(() => {
   }
   window.addEventListener('resize', onResize)
 
-  if (prefersReducedMotion) {
-    gsap.set(headerRef.value, {
-      autoAlpha: 1,
-      yPercent: 0,
-    })
-    return
-  }
-
-  headerIntroContext = gsap.context(() => {
-    gsap.fromTo(headerRef.value, {
-      autoAlpha: 1,
-      yPercent: -140,
-    }, {
-      duration: 0.9,
-      ease: 'power3.out',
-      yPercent: 0,
-    })
-  }, headerRef.value)
 })
 
 onBeforeUnmount(() => {
@@ -179,14 +156,11 @@ onBeforeUnmount(() => {
     window.clearTimeout(mobileMenuCloseTimer)
   }
   document.body.style.overflow = previousBodyOverflow
-  if (headerIntroContext) {
-    headerIntroContext.revert()
-  }
 })
 </script>
 
 <template>
-  <header ref="headerRef" :data-theme="props.theme" :class="cn(
+  <header :data-theme="props.theme" :class="cn(
     'header-container sticky top-0 h-0 z-50 w-full opacity-0 will-change-transform flex flex-col justify-start transition-colors duration-300',
     headerThemeClass
   )">
@@ -359,6 +333,22 @@ onBeforeUnmount(() => {
   transition: max-width 600ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.header-container {
+  animation: header-intro 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes header-intro {
+  from {
+    opacity: 1;
+    transform: translateY(-5rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .header-bar::before {
   content: '';
   position: absolute;
@@ -406,6 +396,12 @@ onBeforeUnmount(() => {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .header-container {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
   .header-bar {
     transition: none;
   }

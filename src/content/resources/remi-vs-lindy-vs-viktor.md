@@ -9,20 +9,20 @@ ogTitle: "Remi vs Lindy vs Viktor: An Honest 2026 Comparison"
 ogDescription: "Remi vs Lindy vs Viktor compared for 2026: pricing, setup, what each watches, and approvals, so you can pick the right AI teammate for your business."
 ogImage: "/images/og-image.png"
 ctaTitle: "See what's slipping through your inbox"
-ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire her."
+ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire Remi."
 ctaHref: "https://remi.new/login"
 ctaLabel: "Run the free check"
 faq:
   - q: "Is Remi cheaper than Lindy or Viktor?"
-    a: "Remi is flat: Pro is $99 a month and Scale is $199 a month, and the price does not move with how much work she does. Lindy and Viktor both meter usage, so a busy month can cost more than the sticker price. Lindy's paid plans start at $49.99 a month and Viktor's start at $50 a month."
+    a: "Remi is flat: Pro is $99 a month and Scale is $199 a month, and the price does not move with how much work Remi does. Lindy and Viktor both meter usage, so a busy month can cost more than the sticker price. Lindy's paid plans start at $49.99 a month and Viktor's start at $50 a month."
   - q: "Can Lindy or Viktor chase unpaid invoices?"
     a: "Both can be set up to draft follow-ups and update records once you build or instruct the workflow, and both let you approve messages before they go out. Neither is built specifically for an owner who is both doing the work and chasing the money, which is the exact job Remi is built around."
   - q: "Do any of them send messages without my approval?"
-    a: "Lindy offers approval controls before communications go out, and Viktor can be scoped to ask first. Remi's rule is fixed: she prepares, drafts, and flags, and nothing is sent or marked paid without your say-so. Every action carries a receipt."
+    a: "Lindy offers approval controls before communications go out, and Viktor can be scoped to ask first. Remi's rule is fixed: Remi prepares, drafts, and flags, and nothing is sent or marked paid without your say-so. Every action carries a receipt."
   - q: "Which one should a solo contractor or small service business pick?"
-    a: "Remi. It is built for owner-run service businesses of 1 to 15 people where the owner chases the money. Lindy fits busy professionals who live in their inbox and calendar. Viktor fits teams that want a technical coworker inside Slack or Teams."
+    a: "Remi is built for owner-run service businesses of 1 to 15 people where the owner chases the money. Lindy fits busy professionals who live in their inbox and calendar. Viktor fits teams that want a technical coworker inside Slack or Teams."
   - q: "Do I have to build anything to use Remi?"
-    a: "No. You hire Remi and connect your existing tools like email and QuickBooks. She watches those sources and speaks up first. Lindy and Viktor are more build-your-own: you set up agents, workflows, or prompts to get the behavior you want."
+    a: "No. You hire Remi and connect your existing tools like email and QuickBooks. Remi watches those sources and speaks up first. Lindy and Viktor are more build-your-own: you set up agents, workflows, or prompts to get the behavior you want."
 ---
 
 
@@ -61,7 +61,7 @@ Here is the verified side-by-side. Prices are from each company's own pricing pa
 | Who it's for | Owner-run service businesses, 1 to 15 people | Busy professionals, inbox and meeting heavy | Teams wanting a technical coworker |
 | Starting price | $99/mo (Pro), $199/mo (Scale) | $49.99/mo (Plus), $99.99 (Pro), $199.99 (Max) | $50/mo (20,000 credits), scaling up |
 | Pricing model | Flat monthly, does not move with usage | Usage-metered by plan tier | Credit-based, credits reset monthly |
-| Setup model | You hire her, connect tools, she works | Build or configure agents and workflows | Instruct it in Slack or Teams; it builds |
+| Setup model | You hire Remi, connect tools, Remi works | Build or configure agents and workflows | Instruct it in Slack or Teams; it builds |
 | Where it lives | Text, email, Slack, web portal | Email, calendar, iMessage, connected apps | Slack and Microsoft Teams |
 | What it watches | Your inbox and books, flags stale items | Triggers you set up (new email, CRM change) | Tasks you assign across integrations |
 | Approval model | Nothing sent or marked paid without approval | Approval controls before communications go out | Scope it to ask; executes end-to-end |
@@ -71,7 +71,7 @@ Two things worth calling out honestly. First, Lindy and Viktor both meter usage,
 
 ## What does each one watch, and when does it speak first?
 
-This is the biggest real difference, and it is easy to miss. Remi is designed to speak up first. You connect your email and books, and she watches them and surfaces the invoice going stale, the quote that got no reply, and the customer waiting on an answer, without you asking. You do not have to remember to check.
+This is the biggest real difference, and it is easy to miss. Remi is designed to speak up first. You connect your email and books, and Remi watches them and surfaces the invoice going stale, the quote that got no reply, and the customer waiting on an answer, without you asking. You do not have to remember to check.
 
 Lindy watches what you tell it to watch. Its agent builder is trigger-based: you define the event that kicks a workflow off, like a new email or a calendar change, and it runs from there. That is powerful and flexible, and it means the watching is only as good as the agents you build.
 
@@ -81,7 +81,7 @@ If the outcome you want is "tell me what I am missing before it costs me," Remi'
 
 ## How does each one handle approvals and receipts?
 
-Remi's rule is fixed and narrow on purpose. She prepares, drafts, proposes, flags, tracks, and reminds. Things get sent, or marked paid or done, only with your approval, and every action carries a receipt. Everything is on the record: receipts, sources, and an exportable history. If you fire Remi, you keep everything.
+Remi's rule is fixed and narrow on purpose. Remi prepares, drafts, proposes, flags, tracks, and reminds. Things get sent, or marked paid or done, only with your approval, and every action carries a receipt. Everything is on the record: receipts, sources, and an exportable history. If you fire Remi, you keep everything.
 
 Lindy offers approval controls before communications go out, per its site, so you can require a human review before a message sends. That is a real and useful guardrail, and you configure it as part of your setup.
 
@@ -103,15 +103,15 @@ Remi is the better pick when you are the owner, the pain is money, and you want 
 
 You can run all of this yourself. Set a weekly calendar block to age your receivables, draft your own reminder templates, and check every quote for a reply after 48 hours. That manual system works, and it costs nothing. The catch is that you have to be the one doing it, usually at 9pm after the kids are down.
 
-If you would rather not be that person, this is the exact job Remi was built for. She watches your inbox and your books, flags what is going stale, and drafts the follow-up for your approval. Nothing goes out, and nothing gets marked paid, without your say-so, and every action comes with a receipt. Remi is an AI teammate. We say so because she will never pretend otherwise, and neither will we.
+If you would rather not be that person, this is the exact job Remi was built for. Remi watches your inbox and your books, flags what is going stale, and drafts the follow-up for your approval. Nothing goes out, and nothing gets marked paid, without your say-so, and every action comes with a receipt. Remi is an AI teammate. We say so because Remi will never pretend otherwise, and neither will we.
 
-Remi is Pro at $99 a month and Scale at $199 a month, with a 7-day trial that does real starter work. The front door is a free check: connect your inbox and see what is slipping through it in about 60 seconds. We delete everything unless you hire her.
+Remi is Pro at $99 a month and Scale at $199 a month, with a 7-day trial that does real starter work. The front door is a free check: connect your inbox and see what is slipping through it in about 60 seconds. We delete everything unless you hire Remi.
 
 ## FAQ
 
 ### Is Remi cheaper than Lindy or Viktor?
 
-Remi is flat: Pro is $99 a month and Scale is $199 a month, and the price does not move with how much work she does. Lindy and Viktor both meter usage, so a busy month can cost more than the sticker price. Lindy's paid plans start at $49.99 a month and Viktor's start at $50 a month.
+Remi is flat: Pro is $99 a month and Scale is $199 a month, and the price does not move with how much work Remi does. Lindy and Viktor both meter usage, so a busy month can cost more than the sticker price. Lindy's paid plans start at $49.99 a month and Viktor's start at $50 a month.
 
 ### Can Lindy or Viktor chase unpaid invoices?
 
@@ -119,12 +119,12 @@ Both can be set up to draft follow-ups and update records once you build or inst
 
 ### Do any of them send messages without my approval?
 
-Lindy offers approval controls before communications go out, and Viktor can be scoped to ask first. Remi's rule is fixed: she prepares, drafts, and flags, and nothing is sent or marked paid without your say-so. Every action carries a receipt.
+Lindy offers approval controls before communications go out, and Viktor can be scoped to ask first. Remi's rule is fixed: Remi prepares, drafts, and flags, and nothing is sent or marked paid without your say-so. Every action carries a receipt.
 
 ### Which one should a solo contractor or small service business pick?
 
-Remi. It is built for owner-run service businesses of 1 to 15 people where the owner chases the money. Lindy fits busy professionals who live in their inbox and calendar. Viktor fits teams that want a technical coworker inside Slack or Teams.
+Remi is built for owner-run service businesses of 1 to 15 people where the owner chases the money. Lindy fits busy professionals who live in their inbox and calendar. Viktor fits teams that want a technical coworker inside Slack or Teams.
 
 ### Do I have to build anything to use Remi?
 
-No. You hire Remi and connect your existing tools like email and QuickBooks. She watches those sources and speaks up first. Lindy and Viktor are more build-your-own: you set up agents, workflows, or prompts to get the behavior you want.
+No. You hire Remi and connect your existing tools like email and QuickBooks. Remi watches those sources and speaks up first. Lindy and Viktor are more build-your-own: you set up agents, workflows, or prompts to get the behavior you want.

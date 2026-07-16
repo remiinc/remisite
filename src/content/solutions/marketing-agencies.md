@@ -160,19 +160,19 @@ integrations:
   tools:
     - tool: hubspot
       title: "Keep the client record useful"
-      description: "Remi checks contacts, companies, deals, notes, tasks, meetings, and campaign context in HubSpot. She surfaces the missing follow-up and proposes the task or CRM update for your approval."
+      description: "Remi checks contacts, companies, deals, notes, tasks, meetings, and campaign context in HubSpot. Remi surfaces the missing follow-up and proposes the task or CRM update for your approval."
     - tool: slack
       title: "Turn feedback threads into decisions"
-      description: "Remi reads connected client and internal Slack threads for approvals, conflicting feedback, owners, and deadlines. She prepares the decision recap or reply and waits for approval before posting."
+      description: "Remi reads connected client and internal Slack threads for approvals, conflicting feedback, owners, and deadlines. Remi prepares the decision recap or reply and waits for approval before posting."
     - tool: asana
       title: "Keep every next step owned"
-      description: "Remi checks tasks, owners, dependencies, due dates, comments, and project status in Asana. She proposes the task or status update for your approval when client feedback changes the plan."
+      description: "Remi checks tasks, owners, dependencies, due dates, comments, and project status in Asana. Remi proposes the task or status update for your approval when client feedback changes the plan."
     - tool: googledrive
       title: "Keep the SOW beside the request"
-      description: "Remi finds SOWs, briefs, creative assets, reports, and approval records in Google Drive. She assembles the relevant sources before drafting a scope or status response."
+      description: "Remi finds SOWs, briefs, creative assets, reports, and approval records in Google Drive. Remi assembles the relevant sources before drafting a scope or status response."
     - tool: quickbooks
       title: "Put the invoice in the client update"
-      description: "Remi checks retainers, invoices, balances, due dates, and recorded payments in QuickBooks. She adds the verified payment context to the client update you approve."
+      description: "Remi checks retainers, invoices, balances, due dates, and recorded payments in QuickBooks. Remi adds the verified payment context to the client update you approve."
 testimonialQuote: "Client feedback used to turn into a hunt across Slack, email, and the brief. Remi turns it into the decision, owner, and next step we actually need."
 testimonialName: "Maya"
 testimonialPosition: "Founder"

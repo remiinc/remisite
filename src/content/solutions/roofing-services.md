@@ -154,19 +154,19 @@ integrations:
   tools:
     - tool: acculynx
       title: "Move the storm lead into a real job"
-      description: "Remi turns qualified lead details into a contact, job, and inspection appointment in AccuLynx. She prepares each record for your approval before it is created."
+      description: "Remi turns qualified lead details into a contact, job, and inspection appointment in AccuLynx. Remi prepares each record for your approval before it is created."
     - tool: gmail
       title: "Keep homeowner and adjuster threads together"
-      description: "Remi reads connected homeowner, adjuster, supplier, and supplement email in Gmail. She drafts the reply with the relevant job evidence and waits for your approval before sending."
+      description: "Remi reads connected homeowner, adjuster, supplier, and supplement email in Gmail. Remi drafts the reply with the relevant job evidence and waits for your approval before sending."
     - tool: googlecalendar
       title: "Keep inspections and production dates visible"
-      description: "Remi checks inspection appointments, production dates, crew windows, and material arrivals. She proposes the schedule change or confirmation before the job loses momentum."
+      description: "Remi checks inspection appointments, production dates, crew windows, and material arrivals. Remi proposes the schedule change or confirmation before the job loses momentum."
     - tool: googledrive
       title: "Build the supplement packet from the source"
-      description: "Remi finds damage photos, measurements, foreman notes, supplement documents, and warranties in Google Drive. She assembles the packet so it is ready for review."
+      description: "Remi finds damage photos, measurements, foreman notes, supplement documents, and warranties in Google Drive. Remi assembles the packet so it is ready for review."
     - tool: quickbooks
       title: "Bring final proof to the final payment"
-      description: "Remi checks deposits, invoices, balances, due dates, and recorded payments in QuickBooks. She prepares the final-payment follow-up with the verified amount for your approval."
+      description: "Remi checks deposits, invoices, balances, due dates, and recorded payments in QuickBooks. Remi prepares the final-payment follow-up with the verified amount for your approval."
 testimonialQuote: "A supplement can involve photos, notes, and three different conversations. Remi pulls the pieces together so I can review one clear next step."
 testimonialName: "Jake"
 testimonialPosition: "Owner"

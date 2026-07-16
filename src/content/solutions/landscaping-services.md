@@ -155,19 +155,19 @@ integrations:
   tools:
     - tool: ascora
       title: "Keep recurring and quoted work in motion"
-      description: "Remi checks jobs, quotations, suppliers, inventory, attachments, and customer records in Ascora. She surfaces the next seasonal or project dependency and prepares the record change for your approval."
+      description: "Remi checks jobs, quotations, suppliers, inventory, attachments, and customer records in Ascora. Remi surfaces the next seasonal or project dependency and prepares the record change for your approval."
     - tool: gmail
       title: "Catch the seasonal lead while timing matters"
-      description: "Remi reads connected inquiries, property details, upgrade approvals, and supplier replies in Gmail. She drafts the specific response and waits for your approval before sending."
+      description: "Remi reads connected inquiries, property details, upgrade approvals, and supplier replies in Gmail. Remi drafts the specific response and waits for your approval before sending."
     - tool: googlecalendar
       title: "Protect the crew route and material window"
-      description: "Remi checks recurring visits, crew routes, install dates, weather moves, and nursery holds. She proposes the schedule adjustment or customer notice for your approval."
+      description: "Remi checks recurring visits, crew routes, install dates, weather moves, and nursery holds. Remi proposes the schedule adjustment or customer notice for your approval."
     - tool: googlesheets
       title: "Keep the property list from becoming another inbox"
-      description: "Remi checks connected property tables, route plans, seasonal services, and crew notes in Google Sheets. She prepares the row update or daily brief for you to review."
+      description: "Remi checks connected property tables, route plans, seasonal services, and crew notes in Google Sheets. Remi prepares the row update or daily brief for you to review."
     - tool: quickbooks
       title: "See the deposit before materials are committed"
-      description: "Remi checks deposits, upgrade pricing, invoices, due dates, and balances in QuickBooks. She flags what is still open and drafts the payment reminder for your approval."
+      description: "Remi checks deposits, upgrade pricing, invoices, due dates, and balances in QuickBooks. Remi flags what is still open and drafts the payment reminder for your approval."
 testimonialQuote: "Seasonal work moves fast. Remi helps me see which lead needs a reply, which extra needs approval, and which deposit is still missing before the crew rolls out."
 testimonialName: "Elena"
 testimonialPosition: "Owner"

@@ -154,19 +154,19 @@ integrations:
   tools:
     - tool: servicem8
       title: "Keep the service queue moving"
-      description: "Remi checks jobs, queues, notes, materials, clients, and recorded payments in ServiceM8. She surfaces the waiting request or completed job and proposes the next update for your approval."
+      description: "Remi checks jobs, queues, notes, materials, clients, and recorded payments in ServiceM8. Remi surfaces the waiting request or completed job and proposes the next update for your approval."
     - tool: gmail
       title: "Answer the question behind the estimate"
-      description: "Remi reads connected service requests, replacement-estimate threads, and customer questions in Gmail. She drafts a reply grounded in the job details and waits for your approval before sending."
+      description: "Remi reads connected service requests, replacement-estimate threads, and customer questions in Gmail. Remi drafts a reply grounded in the job details and waits for your approval before sending."
     - tool: googlecalendar
       title: "Find the opening before the lead goes cold"
-      description: "Remi checks technician availability, service windows, installation dates, and maintenance visits. She proposes the best slot and prepares the confirmation for your approval."
+      description: "Remi checks technician availability, service windows, installation dates, and maintenance visits. Remi proposes the best slot and prepares the confirmation for your approval."
     - tool: quickbooks
       title: "Catch the unpaid job after the crew leaves"
-      description: "Remi checks estimate, invoice, balance, due date, and payment status in QuickBooks. She prepares the right reminder with the amount and job context ready for review."
+      description: "Remi checks estimate, invoice, balance, due date, and payment status in QuickBooks. Remi prepares the right reminder with the amount and job context ready for review."
     - tool: googledrive
       title: "Keep completion proof close to payment"
-      description: "Remi finds commissioning forms, warranty documents, equipment photos, and signed completion records in Google Drive. She assembles them beside the invoice follow-up so the proof is already there."
+      description: "Remi finds commissioning forms, warranty documents, equipment photos, and signed completion records in Google Drive. Remi assembles them beside the invoice follow-up so the proof is already there."
 testimonialQuote: "I can stay focused on the calls in front of me. Remi catches the estimate that went quiet and puts the follow-up in front of me before the opportunity gets cold."
 testimonialName: "Daniel"
 testimonialPosition: "Owner"

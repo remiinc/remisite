@@ -10,20 +10,20 @@ ogTitle: "AI Employee vs Virtual Assistant: Which Should an Owner-Run Business H
 ogDescription: "AI employee vs virtual assistant for an owner-run business: honest cost, hours, training, and judgment comparison, plus when to hire each and when to use both."
 ogImage: "/images/og-image.png"
 ctaTitle: "See what's slipping through your inbox"
-ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire her."
+ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire Remi."
 ctaHref: "https://remi.new/login"
 ctaLabel: "Run the free check"
 faq:
   - q: "Is an AI teammate cheaper than a virtual assistant?"
     a: "Usually, yes, on paper. A US virtual assistant averages about $25.75 an hour, and even a full-time offshore VA runs roughly $800 to $2,400 a month. An AI teammate like Remi is a flat $99 to $199 a month. But they do different jobs, so the cheaper number is not automatically the right hire."
   - q: "Can an AI teammate make phone calls for me?"
-    a: "Remi does not place phone calls. She works over text, email, Slack, and a web portal. If your bottleneck is calling customers, answering the phone, or chasing people by voice, that is still a job for a person."
+    a: "Remi does not place phone calls. Remi works over text, email, Slack, and a web portal. If your bottleneck is calling customers, answering the phone, or chasing people by voice, that is still a job for a person."
   - q: "Do I have to train an AI teammate like I train a virtual assistant?"
     a: "Less, and differently. A VA needs onboarding, documented processes, and correction over weeks. An AI teammate reads the sources you connect and starts flagging what it sees. You still steer it, but you are approving drafts, not writing a training manual."
   - q: "Can I use a virtual assistant and an AI teammate at the same time?"
     a: "Yes, and many owners do. The clean split is an AI teammate for the always-on watching, drafting, and record-keeping, and a VA for phone calls, in-person errands, and judgment-heavy work. They cover different gaps."
   - q: "What happens to my data if I stop using an AI teammate?"
-    a: "With Remi, everything she tracked stays yours. The receipts, sources, and history are exportable, so firing the software does not erase the record of what happened."
+    a: "With Remi, everything Remi tracked stays yours. The receipts, sources, and history are exportable, so firing the software does not erase the record of what happened."
 ---
 
 
@@ -39,7 +39,7 @@ A VA waits for instructions. You hand off a task, they do it, they come back. Th
 
 An AI teammate works the other way around. Instead of waiting for a task, it watches the sources you connect, your inbox and your accounting tool, and it raises its hand when something is slipping. It does not sleep, take a lunch break, or forget the invoice from three weeks ago. But it lives inside your tools. It reads, tracks, and drafts. It does not pick up the phone or show up in person.
 
-Remi is an AI teammate. We say so plainly because she will never pretend otherwise, and neither will we.
+Remi is an AI teammate. We say so plainly because Remi will never pretend otherwise, and neither will we.
 
 ## How much does each one cost?
 
@@ -128,7 +128,7 @@ Usually, yes, on paper. A US virtual assistant averages about $25.75 an hour, pe
 
 ### Can an AI teammate make phone calls for me?
 
-Remi does not place phone calls. She works over text, email, Slack, and a web portal. If your bottleneck is calling customers, answering the phone, or chasing people by voice, that is still a job for a person.
+Remi does not place phone calls. Remi works over text, email, Slack, and a web portal. If your bottleneck is calling customers, answering the phone, or chasing people by voice, that is still a job for a person.
 
 ### Do I have to train an AI teammate like I train a virtual assistant?
 
@@ -140,14 +140,14 @@ Yes, and many owners do. The clean split is an AI teammate for the always-on wat
 
 ### What happens to my data if I stop using an AI teammate?
 
-With Remi, everything she tracked stays yours. The receipts, sources, and history are exportable, so firing the software does not erase the record of what happened.
+With Remi, everything Remi tracked stays yours. The receipts, sources, and history are exportable, so firing the software does not erase the record of what happened.
 
 ## If you want the watching handled for you
 
 You can run all of this yourself. Set a weekly reminder to comb your inbox for quotes that got no reply, keep a running list of unpaid invoices, and block time to draft the follow-ups. The worksheet above will point you to the right first hire. None of it requires buying anything.
 
-If you would rather not be the one doing the watching at 9pm, that is the exact job Remi was built for. She connects to the tools you already run, your email and QuickBooks and the like, and she watches them so you do not have to. She flags the invoice going stale, the quote that went quiet, the customer still waiting, and she drafts the follow-up for you.
+If you would rather not be the one doing the watching at 9pm, that is the exact job Remi was built for. Remi connects to the tools you already run, your email and QuickBooks and the like, and Remi watches them so you do not have to. Remi flags the invoice going stale, the quote that went quiet, the customer still waiting, and Remi drafts the follow-up for you.
 
-Nothing goes out without your approval, and every action comes with a receipt and the source behind it. She does not replace the person who answers your phone or shows up on site. She replaces the version of you that is supposed to remember all of this after a full day of real work.
+Nothing goes out without your approval, and every action comes with a receipt and the source behind it. Remi does not replace the person who answers your phone or shows up on site. Remi replaces the version of you that is supposed to remember all of this after a full day of real work.
 
-To see what she would catch, connect your inbox and Remi shows you what is slipping through it in about 60 seconds. You get the report either way, and we delete everything unless you hire her.
+To see what Remi would catch, connect your inbox and Remi shows you what is slipping through it in about 60 seconds. You get the report either way, and we delete everything unless you hire Remi.

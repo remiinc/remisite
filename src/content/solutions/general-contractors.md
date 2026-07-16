@@ -68,7 +68,7 @@ stats:
     sourceUrl: "https://www.leadresponsemanagement.org/lrm_study"
 useCases:
   - title: "Prepare progress-draw follow-ups"
-    description: "Remi watches invoice status, draw schedules, email, and job notes. When a draw sits past due, she gathers the balance and supporting details and prepares a follow-up for your approval."
+    description: "Remi watches invoice status, draw schedules, email, and job notes. When a draw sits past due, Remi gathers the balance and supporting details and prepares a follow-up for your approval."
     workflow:
       - tool: gmail
         action: "Remi reads the owner's approval email and the overdue draw thread in Gmail."
@@ -155,19 +155,19 @@ integrations:
   tools:
     - tool: jobnimbus
       title: "Catch the job before it stalls"
-      description: "Remi checks tasks, work orders, material orders, invoices, and job activity. She surfaces the blocker and prepares the task or record change for your approval."
+      description: "Remi checks tasks, work orders, material orders, invoices, and job activity. Remi surfaces the blocker and prepares the task or record change for your approval."
     - tool: quickbooks
       title: "Know which draw needs attention"
-      description: "Remi checks open progress draws, balances, due dates, and recorded payments. She flags the draw that needs a nudge and drafts the follow-up for your approval."
+      description: "Remi checks open progress draws, balances, due dates, and recorded payments. Remi flags the draw that needs a nudge and drafts the follow-up for your approval."
     - tool: gmail
       title: "Turn scattered replies into one decision"
-      description: "Remi reads connected owner, client, and subcontractor threads for approvals and open questions. She drafts the response with the relevant job context and waits for your approval before sending."
+      description: "Remi reads connected owner, client, and subcontractor threads for approvals and open questions. Remi drafts the response with the relevant job context and waits for your approval before sending."
     - tool: googledrive
       title: "Bring the proof with the ask"
-      description: "Remi finds signed changes, plans, completion photos, and draw documents in Google Drive. She assembles the supporting packet so the next request is ready for review."
+      description: "Remi finds signed changes, plans, completion photos, and draw documents in Google Drive. Remi assembles the supporting packet so the next request is ready for review."
     - tool: googlecalendar
       title: "See what blocks the crew next"
-      description: "Remi checks inspections, deliveries, crew starts, and decision deadlines across connected calendars. She proposes the schedule change or customer nudge for your approval."
+      description: "Remi checks inspections, deliveries, crew starts, and decision deadlines across connected calendars. Remi proposes the schedule change or customer nudge for your approval."
 feature:
   title: "Keep the job moving without heading back to the office."
   imageUrl: "/images/solutions/construction-feature@2x.webp"

@@ -9,7 +9,7 @@ ogTitle: "78% of Customers Hire Whoever Responds First. Here's How to Always Be 
 ogDescription: "Speed to lead for a small business: how to respond first with instant acknowledgment, mobile quotes, and after-hours coverage, without hiring anyone."
 ogImage: "/images/og-image.png"
 ctaTitle: "See what's slipping through your inbox"
-ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire her."
+ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire Remi."
 ctaHref: "https://remi.new/login"
 ctaLabel: "Run the free check"
 faq:
@@ -28,7 +28,7 @@ faq:
 
 To always be first, put a system between the inquiry and your reply so the customer hears back in seconds even when you are on a roof or under a sink. That system has three parts: an instant acknowledgment on every channel a lead can reach you, a quote you can build and send from your phone, and a plan for the hours you are not working. About 78% of customers buy from the business that responds first, according to lead-response research compiled by [Vendasta](https://www.vendasta.com/blog/lead-response-time/) from a Lead Connect survey. The good news for a one-person shop is that "first" does not mean you personally answer in five minutes. It means the customer gets a real response in five minutes, which a small amount of setup can handle for you.
 
-Remi fits the follow-up half of this. She watches your connected inbox, flags a new inquiry the moment it lands, and drafts the first reply for you to approve so a hot lead does not sit unread while you are on a job. The rest of this post is the full system you can build yourself, then a short honest note on where Remi helps.
+Remi fits the follow-up half of this. Remi watches your connected inbox, flags a new inquiry the moment it lands, and drafts the first reply for you to approve so a hot lead does not sit unread while you are on a job. The rest of this post is the full system you can build yourself, then a short honest note on where Remi helps.
 
 ## Why does responding first win the job?
 
@@ -101,9 +101,9 @@ The system above respects that. Automation covers the seconds you cannot. You co
 
 You can run all of this yourself with the templates and steps above, and plenty of owners do. The piece that still breaks is the human half: the inquiry that lands in your inbox while you are on a job and does not get seen until tomorrow, and the quote you sent that never got a follow-up.
 
-That is the exact job Remi was built for. She watches your connected inbox and channels, flags a new inquiry the moment it arrives so it does not sit unread, and drafts the first reply for you to approve. She tracks the quotes you sent and reminds you about the one that got no answer after a few days, with the follow-up already drafted. Nothing goes out without your say-so, and every action comes with a receipt you can point to later.
+That is the exact job Remi was built for. Remi watches your connected inbox and channels, flags a new inquiry the moment it arrives so it does not sit unread, and drafts the first reply for you to approve. Remi tracks the quotes you sent and reminds you about the one that got no answer after a few days, with the follow-up already drafted. Nothing goes out without your say-so, and every action comes with a receipt you can point to later.
 
-Remi is not an answering service and she will not auto-send in your name. Remi is an AI teammate. We say so because she'll never pretend otherwise, and neither will we. What she does is make sure the lead you already earned does not slip because you were busy earning it.
+Remi is not an answering service and Remi will not auto-send in your name. Remi is an AI teammate. We say so because Remi will never pretend otherwise, and neither will we. What Remi does is make sure the lead you already earned does not slip because you were busy earning it.
 
 ## FAQ
 

@@ -77,7 +77,7 @@ export function initializeAnalytics({
   const values = runtimeEnv(env)
   const key = values.VITE_POSTHOG_KEY?.trim()
   const host = analyticsHost(values.VITE_POSTHOG_HOST)
-  if (!key || !host || !windowLike) return false
+  if (!client || !key || !host || !windowLike) return false
 
   client.init(key, {
     api_host: host,

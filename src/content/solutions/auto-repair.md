@@ -159,19 +159,19 @@ integrations:
   tools:
     - tool: repairshopr
       title: "Keep the repair order moving"
-      description: "Remi checks leads, estimates, tickets, appointments, invoices, payments, parts, and customer records in RepairShopr. She surfaces the stalled approval or pickup and prepares the update for your approval."
+      description: "Remi checks leads, estimates, tickets, appointments, invoices, payments, parts, and customer records in RepairShopr. Remi surfaces the stalled approval or pickup and prepares the update for your approval."
     - tool: gmail
       title: "Keep customer and parts answers with the repair"
-      description: "Remi reads connected customer questions, parts confirmations, warranty replies, and estimate threads in Gmail. She drafts the answer with the repair context and waits for your approval before sending."
+      description: "Remi reads connected customer questions, parts confirmations, warranty replies, and estimate threads in Gmail. Remi drafts the answer with the repair context and waits for your approval before sending."
     - tool: googlecalendar
       title: "Protect promised drop-off and pickup times"
-      description: "Remi checks drop-offs, diagnostic windows, parts arrivals, and promised pickup times. She proposes the schedule change or customer update before the front desk gets another call."
+      description: "Remi checks drop-offs, diagnostic windows, parts arrivals, and promised pickup times. Remi proposes the schedule change or customer update before the front desk gets another call."
     - tool: quickbooks
       title: "Use the verified total in every update"
-      description: "Remi checks estimate amounts, approved additions, invoices, balances, and recorded payments in QuickBooks. She brings the correct total into the pickup or payment message you approve."
+      description: "Remi checks estimate amounts, approved additions, invoices, balances, and recorded payments in QuickBooks. Remi brings the correct total into the pickup or payment message you approve."
     - tool: square
       title: "Know the payment status before pickup"
-      description: "Remi checks Square invoices, payments, customers, and payment links before the vehicle is released. She prepares the correct payment note for your approval without changing the transaction record."
+      description: "Remi checks Square invoices, payments, customers, and payment links before the vehicle is released. Remi prepares the correct payment note for your approval without changing the transaction record."
 testimonialQuote: "I spend less time bouncing between the repair order, customer messages, and the schedule. Remi gives me the context and a reply I can review."
 testimonialName: "Anthony"
 testimonialPosition: "Shop owner"

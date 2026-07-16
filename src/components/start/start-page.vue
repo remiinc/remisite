@@ -69,7 +69,9 @@ onBeforeUnmount(() => {
 
         <figure data-attribution-state="direct_unknown"
           class="relative overflow-hidden rounded-3xl h-full min-h-140 mx-auto flex min-w-0 w-full flex-col items-center justify-between gap-5 py-12 px-8  text-background text-center">
-          <img src="/images/features/start-feature-01@2x.webp" class="absolute inset-0 w-full h-full object-cover z-0">
+          <img src="/images/features/start-feature-01@2x.webp" alt="A desk ready for Remi to get to work"
+            width="1400" height="2096" class="absolute inset-0 w-full h-full object-cover z-0" loading="eager"
+            decoding="async" fetchpriority="high">
 
           <h2
             class="relative z-1 text-3xl md:text-4xl max-w-[20ch] font-normal leading-none tracking-tight text-balance">

@@ -9,7 +9,7 @@ ogTitle: "Estimate Follow-Up: How Soon, How Often, and What to Say (Templates In
 ogDescription: "How to follow up on an estimate without losing the job: how soon, how often, and three copy-paste templates that turn quiet quotes into signed work."
 ogImage: "/images/og-image.png"
 ctaTitle: "See what's slipping through your inbox"
-ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire her."
+ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire Remi."
 ctaHref: "https://remi.new/login"
 ctaLabel: "Run the free check"
 faq:
@@ -28,7 +28,7 @@ To follow up on an estimate, reach out within 24 to 48 hours of sending it, then
 
 That is the whole answer. The rest of this post gives you the exact timing, a cadence table, three copy-paste templates, and a clear rule for when to stop chasing.
 
-Remi is an AI teammate for small business owners. One of the things she watches is the quotes you send, so when an estimate goes quiet she flags it and drafts the follow-up for your approval. You can do every step below yourself with the templates provided. If you'd rather not be the one tracking it at 9pm, that's covered at the end.
+Remi is an AI teammate for small business owners. One of the things Remi watches is the quotes you send, so when an estimate goes quiet Remi flags it and drafts the follow-up for your approval. You can do every step below yourself with the templates provided. If you'd rather not be the one tracking it at 9pm, that's covered at the end.
 
 ## How soon should you follow up on an estimate?
 
@@ -115,8 +115,8 @@ Give them an easy way to reply and a reason to reply now. Offer a specific open 
 
 You can run all of this yourself with the templates above. Send the quote, set three reminders, and work the cadence. The hard part is not writing the message. It is remembering, across a dozen open estimates, which one went quiet on day 6 while you were on a job site.
 
-That is the exact job Remi was built for. She is an AI teammate for small business owners, and she watches the quotes you send. When an estimate goes quiet, she flags it and drafts the follow-up in your voice, using the same cadence above, ready for you to read.
+That is the exact job Remi was built for. Remi is an AI teammate for small business owners, and Remi watches the quotes you send. When an estimate goes quiet, Remi flags it and drafts the follow-up in your voice, using the same cadence above, ready for you to read.
 
-Nothing goes out without your say-so. Remi drafts and proposes, you approve, and every message she sends on your behalf carries a receipt so you can see exactly what happened and when. If a customer replies, she surfaces it and tracks where the conversation stands. If you ever fire her, you keep everything: the quotes, the history, the record.
+Nothing goes out without your say-so. Remi drafts and proposes, you approve, and every message Remi sends on your behalf carries a receipt so you can see exactly what happened and when. If a customer replies, Remi surfaces it and tracks where the conversation stands. If you ever fire Remi, you keep everything: the quotes, the history, the record.
 
-Remi is an AI teammate. We say so because she'll never pretend otherwise, and neither will we. She won't win the job for you. But she will make sure that quiet quote gets one more honest nudge before it dies from silence, which is where most of them go.
+Remi is an AI teammate. We say so because Remi will never pretend otherwise, and neither will we. Remi won't win the job for you. But Remi will make sure that quiet quote gets one more honest nudge before it dies from silence, which is where most of them go.

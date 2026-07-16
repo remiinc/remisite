@@ -26,7 +26,7 @@ faq:
 ---
 
 
-An AI back office is software that watches the systems your business already runs, your inbox, your invoices, your quotes, and does the follow-through work for you, with your approval on anything that goes out the door. It is not a chatbot you have to prompt, and it is not a replacement for your judgment. Remi is one example: she flags the invoice going stale and drafts the reminder, but nothing sends until you say so.
+An AI back office is software that watches the systems your business already runs, your inbox, your invoices, your quotes, and does the follow-through work for you, with your approval on anything that goes out the door. It is not a chatbot you have to prompt, and it is not a replacement for your judgment. Remi is one example: Remi flags the invoice going stale and drafts the reminder, but nothing sends until you say so.
 
 The back office is all the work that keeps money moving and customers answered but never shows up on a job site: chasing the invoice that went quiet, replying to the quote that got no response, remembering the customer who is still waiting on you. Most owners do this at 9pm, from memory, after everything else is done. An AI back office is built to carry that specific load. It reads what is already happening in your accounts, notices what is slipping, and prepares the next step so all you have to do is say yes.
 
@@ -136,6 +136,6 @@ Look for a flat monthly price you can read in one line, with no per-message or p
 
 You can run all of this yourself. The follow-ups, the reminders, the record-keeping, the deciding what is worth chasing tonight, none of it requires software. Plenty of owners do exactly that, and if your volume is low it is the right call.
 
-If you would rather not be the one doing it at 9pm, this is the exact job Remi was built for. She connects to the inbox and invoicing you already use, watches for what is going stale, and drafts the follow-up for your approval. Nothing goes out without your say-so, and every action comes with a receipt, so you can always see what happened and why. Everything she does stays on the record and is exportable. If you fire her, you keep all of it.
+If you would rather not be the one doing it at 9pm, this is the exact job Remi was built for. Remi connects to the inbox and invoicing you already use, watches for what is going stale, and drafts the follow-up for your approval. Nothing goes out without your say-so, and every action comes with a receipt, so you can always see what happened and why. Everything Remi does stays on the record and is exportable. If you fire Remi, you keep all of it.
 
-Remi is an AI teammate. We say so because she will never pretend otherwise, and neither will we. She prepares, drafts, and flags. You stay the one who decides. The front door is a free check: connect your inbox and see what is slipping through it in about 60 seconds, and we delete everything unless you hire her.
+Remi is an AI teammate. We say so because Remi will never pretend otherwise, and neither will we. Remi prepares, drafts, and flags. You stay the one who decides. The front door is a free check: connect your inbox and see what is slipping through it in about 60 seconds, and we delete everything unless you hire Remi.

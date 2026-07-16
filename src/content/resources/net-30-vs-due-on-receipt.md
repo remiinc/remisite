@@ -9,7 +9,7 @@ ogTitle: "Net 30 vs Due on Receipt: Which Payment Terms Get You Paid Faster?"
 ogDescription: "Net 30 vs due on receipt: due on receipt and short terms get most small businesses paid faster. Compare common payment terms and how to switch clients over."
 ogImage: "/images/og-image.png"
 ctaTitle: "See what's slipping through your inbox"
-ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire her."
+ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire Remi."
 ctaHref: "https://remi.new/login"
 ctaLabel: "Run the free check"
 faq:
@@ -118,8 +118,8 @@ Tell them in advance, apply the new terms to the next project rather than an ope
 
 You can run all of this yourself with the terms and scripts above. Set due on receipt as your default, use the deposit-plus-progress structure on big jobs, and send the script when you move a client onto faster terms. None of it requires software. The hard part is not knowing the right term. The hard part is staying on top of which invoices have gone quiet while you are out doing the actual work.
 
-That is the exact job Remi was built for. She connects to the tools you already run, watches the invoices you have sent, and flags the ones going stale before they turn into a month of silence. When one needs a nudge, she drafts the follow-up in your voice and hands it to you.
+That is the exact job Remi was built for. Remi connects to the tools you already run, watches the invoices you have sent, and flags the ones going stale before they turn into a month of silence. When one needs a nudge, Remi drafts the follow-up in your voice and hands it to you.
 
-Nothing goes out without your say-so. Remi prepares and proposes, you approve, and every action carries a receipt you can look back on. If you ever fire her, you keep all of it: the history, the sources, the record. Remi is an AI teammate. We say so because she'll never pretend otherwise, and neither will we.
+Nothing goes out without your say-so. Remi prepares and proposes, you approve, and every action carries a receipt you can look back on. If you ever fire Remi, you keep all of it: the history, the sources, the record. Remi is an AI teammate. We say so because Remi will never pretend otherwise, and neither will we.
 
 Faster terms shorten the clock. Someone actually watching it is what closes the gap between the term you wrote and the day you get paid.

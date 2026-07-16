@@ -331,7 +331,7 @@ const articleBody = (entry, sectionLabel) => `
     <h1>${escapeHtml(entry.title)}</h1>
     <p>${escapeHtml(entry.description)}</p>
     ${entry.html}
-    <p><a href="https://remi.new/login">See what's slipping through your inbox. Get started with Remi.</a></p>
+    <p><a href="/start">Text Remi to get started.</a></p>
   </article>
 </main>`
 
@@ -368,7 +368,7 @@ const solutionBody = (entry) => {
     <p>Solutions / ${escapeHtml(entry.metadata.industryLabel)}</p>
     <h1>${escapeHtml(entry.title)}</h1>
     <p>${escapeHtml(entry.description)}</p>
-    <p><a href="https://remi.new/login">Book a demo</a></p>
+    <p><a href="/start">Text Remi</a></p>
   </section>
   <section class="mx-auto w-full" style="max-width: 72rem">
     <p>Use cases</p>
@@ -469,6 +469,7 @@ const solutionsIndexBody = () => `
 
 const redirectBody = (target) => `
 <main class="px-6 pt-32 pb-20">
+  <h1>Page moved</h1>
   <p>This page has moved. <a href="${target}">Continue to Solutions</a>.</p>
 </main>`
 
@@ -476,15 +477,26 @@ const pricingBody = () => `
 <main class="px-6 pt-32 pb-20">
   <section class="mx-auto w-full text-center" style="max-width: 44rem">
     <h1>One missed follow-up can cost more than a month of Remi.</h1>
+    <p>Start with a 7-day trial. Plans start at $99 a month, billed annually.</p>
   </section>
   <section class="mx-auto w-full" style="max-width: 44rem">
-    <h2>The human plan</h2>
-    <p>Hiring office help can run $45-55k a year before benefits, tools, onboarding, and the work of managing the work. Great humans are great. Hiring one just to chase loose ends is an expensive way to remember who still owes you money.</p>
     <h2>Pro</h2>
-    <p>$119 per month, or $99 per month billed annually. Built for owner-run teams ready to hand Remi the daily chase list.</p>
+    <p>$119 per month, or $99 per month billed annually. For individuals or small owner-run teams ready to hand Remi the daily chase list.</p>
+    <ul>
+      <li>Learns how your business works across email, calendar, messages, and connected tools</li>
+      <li>Finds work without waiting to be asked and moves it forward</li>
+      <li>Handles follow-ups, quotes, invoices, scheduling, and customer records</li>
+      <li>Brings you approvals, decisions, and receipts instead of another dashboard</li>
+    </ul>
     <h2>Scale</h2>
-    <p>$239 per month, or $199 per month billed annually. Built for busier teams with more open loops, more customers, and more work in motion.</p>
-    <p><a href="https://remi.new/login">Start free trial</a></p>
+    <p>$239 per month, or $199 per month billed annually. Same Remi, with more capacity for businesses with more jobs, customers, and work in motion.</p>
+    <ul>
+      <li>Everything included in Pro</li>
+      <li>More monthly capacity for heavier follow-through</li>
+      <li>Built for more active jobs, customers, and open loops</li>
+      <li>Add more capacity anytime; add-ons remain until used</li>
+    </ul>
+    <p><a href="https://remi.new/login">Try Remi free for 7 days</a></p>
   </section>
   ${faqBody('pricing')}
 </main>`
@@ -507,8 +519,8 @@ const securityBody = () => `
     <p>If your team needs details for vendor review, we can walk through architecture, data handling, encryption, access, retention, and approval controls.</p>
     <p><a href="mailto:security@remi.new">Contact security</a></p>
     <h2>Serious about security?</h2>
-    <p>Book a demo to see Remi in action.</p>
-    <p><a href="https://remi.new/login">Book a demo</a></p>
+    <p>Ask about security and we'll help you understand what Remi can access, where data moves, how approvals work, and how your team keeps control.</p>
+    <p><a href="/start">Text Remi</a></p>
   </section>
   ${faqBody('security')}
 </main>`
@@ -517,7 +529,7 @@ const startBody = () => `
 <main class="px-6 pt-32 pb-20">
   <section class="mx-auto w-full" style="max-width: 72rem">
     <h1>Your new hire is one text away.</h1>
-    <p>Scan the code or open Messages to text Remi. She'll ask a few questions, learn how you work, and help you get started.</p>
+    <p>Scan the code or open Messages to text Remi. Remi will ask a few questions, learn how your business works, and help you get started.</p>
     <p><a href="${escapeHtml(REMI_TEXT_HREF)}">${escapeHtml(REMI_TEXT_NUMBER_DISPLAY)}</a></p>
     <p><a href="${escapeHtml(REMI_TEXT_HREF)}">Open Messages</a></p>
     <figure>
@@ -525,6 +537,37 @@ const startBody = () => `
       <figcaption>Scan to text Remi</figcaption>
     </figure>
   </section>
+</main>`
+
+const homeBody = () => `
+<main class="px-6 pt-32 pb-20">
+  <section class="mx-auto w-full" style="max-width: 72rem">
+    <h1>Your business should run. It shouldn't run you.</h1>
+    <p>Do the work that moves your business forward. Let Remi handle the rest.</p>
+    <p><a href="/start">Text Remi</a></p>
+  </section>
+  <section class="mx-auto w-full" style="max-width: 72rem">
+    <h2>You didn't start your business to do paperwork at 9pm.</h2>
+    <p>Remi learns how your business works, finds the work that needs attention, and moves it forward with your approval.</p>
+  </section>
+  <section class="mx-auto w-full" style="max-width: 72rem">
+    <h2>Hire Remi with a text. Watch the work get done.</h2>
+    <p>Start with a text and let Remi connect to the tools you already use. Remi onboards automatically in the background.</p>
+    <h2>Follow-ups sent. Invoices chased. Loose ends handled.</h2>
+    <p>Remi watches your email, calendar, messages, and tools, then moves the work forward with your approval.</p>
+  </section>
+  <section class="mx-auto w-full" style="max-width: 72rem">
+    <h2>Built for the businesses that keep Main Street moving.</h2>
+    <ul>
+      ${solutions.map((solution) => `<li><a href="${solution.path}">${escapeHtml(solution.metadata.industryLabel)}</a>: ${escapeHtml(solution.title)}</li>`).join('\n      ')}
+    </ul>
+  </section>
+  <section class="mx-auto w-full" style="max-width: 72rem">
+    <h2>Back-office help without adding payroll.</h2>
+    <p>Start with a 7-day trial. Plans start at $99 a month, billed annually.</p>
+    <p><a href="/pricing">See pricing</a></p>
+  </section>
+  ${faqBody('home')}
 </main>`
 
 // Blog posts
@@ -571,6 +614,8 @@ const renderSolutionPage = (entry) =>
 solutions.forEach((solution) => writePage(solution.path, renderSolutionPage(solution)))
 
 // Index pages
+writeFileSync(join(distDir, 'index.html'), injectBody(template, homeBody()))
+
 writePage(
   '/resources',
   injectBody(
@@ -636,7 +681,7 @@ writePage(
     setHead(template, {
       title: 'Pricing | Remi',
       description:
-        'Early access pricing for Remi: Pro and Scale plans for owner-run businesses that need invoices, estimates, and follow-ups to keep moving.',
+        'Remi plans for owner-run businesses that need a back-office teammate to find work and move it forward with approval.',
       url: `${SITE}/pricing`,
       ogType: 'website',
     }),
@@ -736,5 +781,5 @@ ${rssItems}
 writeFileSync(join(distDir, 'rss.xml'), rss)
 
 console.log(
-  `Prerendered ${posts.length} blog posts, ${solutions.length} solution guides, 6 index pages, sitemap.xml, rss.xml`,
+  `Prerendered the homepage, ${posts.length} blog posts, ${solutions.length} solution guides, 6 index pages, sitemap.xml, rss.xml`,
 )
