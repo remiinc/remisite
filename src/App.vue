@@ -9,6 +9,7 @@ import LegacyRedirect from './components/global/legacy-redirect.vue'
 import HomeHeroVideo from './components/home/home-hero-video.vue'
 import PricingPage from './components/pricing/pricing-page.vue'
 import SecurityPage from './components/security/security-page.vue'
+import StartPage from './components/start/start-page.vue'
 import { getLegacySolutionRedirect } from './lib/solution-redirects'
 import SectionCta from './components/sections/section-cta.vue'
 import SectionIphone from './components/sections/section-iphone.vue'
@@ -28,6 +29,7 @@ const isBlogIndexPage = computed(() => normalizedPath.value === '/resources')
 const isBlogPostPage = computed(() => normalizedPath.value.startsWith('/resources/'))
 const isPricingPage = computed(() => normalizedPath.value === '/pricing')
 const isSecurityPage = computed(() => normalizedPath.value === '/security')
+const isStartPage = computed(() => normalizedPath.value === '/start')
 
 </script>
 
@@ -37,6 +39,7 @@ const isSecurityPage = computed(() => normalizedPath.value === '/security')
   <SolutionPage v-else-if="isSolutionPage" />
   <PricingPage v-else-if="isPricingPage" />
   <SecurityPage v-else-if="isSecurityPage" />
+  <StartPage v-else-if="isStartPage" />
   <BlogIndexPage v-else-if="isBlogIndexPage" />
   <BlogPostPage v-else-if="isBlogPostPage" />
   <div v-else>

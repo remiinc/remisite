@@ -229,7 +229,7 @@ onBeforeUnmount(() => {
       </section>
       <SectionSecurityPrinciples id="solution-security" />
 
-      <!-- <SolutionTestimonial v-if="solution.testimonial" :testimonial="solution.testimonial" /> -->
+      <SolutionTestimonial v-if="solution.testimonial" :testimonial="solution.testimonial" />
 
       <SectionFaq type="solutions" />
 

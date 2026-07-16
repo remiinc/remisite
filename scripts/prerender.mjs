@@ -11,12 +11,14 @@ import { formatDate, parseFrontmatter, renderMarkdown } from '../src/lib/markdow
 import { getFaqGroup } from '../src/lib/faqs.js'
 import { legacySolutionRedirects } from '../src/lib/solution-redirects.js'
 import { resolveSolutionTool } from '../src/lib/solution-tools.js'
+import { REMI_TEXT_HREF, REMI_TEXT_NUMBER_DISPLAY } from '../src/lib/start-contact.js'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const distDir = join(root, 'dist')
 const SITE = 'https://remi.new'
 
 const template = readFileSync(join(distDir, 'index.html'), 'utf8')
+const startQrSvg = readFileSync(join(root, 'public/images/start/text-remi-qr.svg'), 'utf8')
 
 const escapeHtml = (value = '') =>
   String(value)
@@ -511,6 +513,20 @@ const securityBody = () => `
   ${faqBody('security')}
 </main>`
 
+const startBody = () => `
+<main class="px-6 pt-32 pb-20">
+  <section class="mx-auto w-full" style="max-width: 72rem">
+    <h1>Your new hire is one text away.</h1>
+    <p>Scan the code or open Messages to text Remi. She'll ask a few questions, learn how you work, and help you get started.</p>
+    <p><a href="${escapeHtml(REMI_TEXT_HREF)}">${escapeHtml(REMI_TEXT_NUMBER_DISPLAY)}</a></p>
+    <p><a href="${escapeHtml(REMI_TEXT_HREF)}">Open Messages</a></p>
+    <figure>
+      ${startQrSvg.replace('<svg ', `<svg role="img" aria-label="QR code to text Remi at ${escapeHtml(REMI_TEXT_NUMBER_DISPLAY)}" `)}
+      <figcaption>Scan to text Remi</figcaption>
+    </figure>
+  </section>
+</main>`
+
 // Blog posts
 const renderEntryPage = (entry, sectionLabel) => {
   const jsonLd = [articleSchema(entry)]
@@ -642,9 +658,30 @@ writePage(
   ),
 )
 
+writePage(
+  '/start',
+  injectBody(
+    setHead(template, {
+      title: 'Text Remi to Get Started — Remi',
+      description: `Text Remi at ${REMI_TEXT_NUMBER_DISPLAY} or scan the QR code to open Messages and get started.`,
+      url: `${SITE}/start`,
+      ogType: 'website',
+      jsonLd: [{
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        name: 'Text Remi to get started',
+        description: 'Open Messages to text Remi and get started.',
+        url: `${SITE}/start`,
+      }],
+    }),
+    startBody(),
+  ),
+)
+
 // sitemap.xml
 const staticUrls = [
   { loc: `${SITE}/`, priority: '1.0' },
+  { loc: `${SITE}/start`, priority: '0.9' },
   { loc: `${SITE}/pricing`, priority: '0.9' },
   { loc: `${SITE}/security`, priority: '0.8' },
   { loc: `${SITE}/resources`, priority: '0.8' },
@@ -699,5 +736,5 @@ ${rssItems}
 writeFileSync(join(distDir, 'rss.xml'), rss)
 
 console.log(
-  `Prerendered ${posts.length} blog posts, ${solutions.length} solution guides, 5 index pages, sitemap.xml, rss.xml`,
+  `Prerendered ${posts.length} blog posts, ${solutions.length} solution guides, 6 index pages, sitemap.xml, rss.xml`,
 )

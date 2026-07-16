@@ -13,7 +13,7 @@ import SiteIcon from '../global/site-icon.vue'
         </h2>
         <div
           class="relative z-1 flex flex-wrap justify-center md:justify-start gap-3">
-          <a href="#"
+          <a href="/start"
             class="inline-flex h-12 w-auto items-center justify-center gap-2.5 rounded-full bg-background px-5 text-sm font-medium leading-none text-foreground transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 focus-visible:ring-offset-2 focus-visible:ring-offset-muted">
             <img src="/images/app-logos/ios-messages-icon.svg" alt="" class="size-5 shrink-0" aria-hidden="true">
             <span>Text Remi</span>

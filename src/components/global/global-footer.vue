@@ -11,22 +11,21 @@ const footerLinks = [
   { label: 'Security', href: '/security' },
 ]
 
-const usecases = [
-  { label: 'Send quotes from the truck', href: '/#features' },
-  { label: 'Chase late payments', href: '/resources/follow-up-unpaid-invoice-without-losing-client' },
-  { label: 'Nudge a late invoice', href: '/resources/late-payment-reminder-templates' },
-  { label:"Snap a receipt, it's filed", href: '/#features' },
-  { label: 'Track client agreements', href: '/resources/keep-change-orders-in-writing' },
-  { label: 'Answer the lead first', href: '/resources/respond-first-win-the-job' },
+const constructionSolutions = [
+  { label: 'All solutions', href: '/solutions' },
+  { label: 'General Contractors', href: '/solutions/general-contractors' },
+  { label: 'Home Remodeling', href: '/solutions/home-remodeling' },
+  { label: 'Landscaping Services', href: '/solutions/landscaping-services' },
+  { label: 'Roofing Services', href: '/solutions/roofing-services' },
 ]
 
-const integrations = [
-  { label: 'Remi + iMessage', href: '/#features' },
-  { label: 'Remi + Gmail', href: '/#features' },
-  { label: 'Remi + QuickBooks', href: '/resources/quickbooks-online-automatic-invoice-reminders' },
-  { label: 'Remi + Jobber', href: '/resources/jobber-estimate-invoice-follow-ups' },
-  { label: 'Remi + Housecall Pro', href: '/resources/housecall-pro-payment-reminders' },
-  { label: 'Remi + Google Calendar', href: '/#features' },
+const serviceSolutions = [
+  { label: 'HVAC Services', href: '/solutions/hvac-services' },
+  { label: 'Plumbing Services', href: '/solutions/plumbing-services' },
+  { label: 'Electrical Services', href: '/solutions/electrical-services' },
+  { label: 'Cleaning Services', href: '/solutions/cleaning-services' },
+  { label: 'Auto Repair', href: '/solutions/auto-repair' },
+  { label: 'Marketing Agencies', href: '/solutions/marketing-agencies' },
 ]
 </script>
 
@@ -51,16 +50,16 @@ const integrations = [
         </nav>
         <nav class="flex flex-col items-start gap-1"
           aria-label="Footer navigation">
-          <span class="text-base font-medium text-foreground mb-4">Use cases</span>
-          <a v-for="link in usecases" :key="link.href" :href="link.href"
+          <span class="text-base font-medium text-foreground mb-4">Construction</span>
+          <a v-for="link in constructionSolutions" :key="link.href" :href="link.href"
             class="text-sm font-normal text-foreground/60 transition-colors hover:text-foreground">
             {{ link.label }}
           </a>
         </nav>
         <nav class="flex flex-col items-start gap-1"
           aria-label="Footer navigation">
-          <span class="text-base font-medium text-foreground mb-4">Integrations</span>
-          <a v-for="link in integrations" :key="link.href" :href="link.href"
+          <span class="text-base font-medium text-foreground mb-4">Services</span>
+          <a v-for="link in serviceSolutions" :key="link.href" :href="link.href"
             class="text-sm font-normal text-foreground/60 transition-colors hover:text-foreground">
             {{ link.label }}
           </a>
