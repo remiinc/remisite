@@ -1,5 +1,4 @@
 <script setup>
-import { trackMarketingCta } from '../../lib/analytics.js'
 import Button from '../global/button.vue'
 import GlobalFooter from '../global/global-footer.vue'
 import GlobalHeader from '../header/global-header.vue'
@@ -26,7 +25,7 @@ if (typeof document !== 'undefined') {
           </h1>
           <div class="relative z-1 flex w-full max-w-sm flex-col items-center justify-center gap-3 sm:max-w-none sm:flex-row">
             <Button href="/start" size="lg" class="w-full sm:w-auto"
-              @click="trackMarketingCta('pricing_text_remi', 'linq')">
+              data-marketing-cta="pricing_text_remi" data-marketing-destination="linq">
               <span class="flex items-center gap-2.5">
                 <img src="/images/app-logos/ios-messages-icon.svg" alt="" class="size-5 shrink-0" aria-hidden="true">
                 <span>Text Remi</span>

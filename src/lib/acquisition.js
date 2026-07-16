@@ -49,6 +49,12 @@ const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_co
 let memoryFirstTouch = null
 let fallbackSequence = 0
 
+function runtimeEnv(env) {
+  if (env) return env
+  if (import.meta.env) return import.meta.env
+  return typeof process !== 'undefined' ? process.env : {}
+}
+
 function safeScalar(value) {
   if (typeof value !== 'string' || !scalarPattern.test(value)) return null
   return collapsedPhonePattern.test(value.replace(/[_-]/gu, '')) ? null : value
@@ -177,6 +183,49 @@ export function getFirstTouch({ nowMs = Date.now(), windowLike = globalThis.wind
     // The in-memory copy still preserves the first touch for this page session.
   }
   return created
+}
+
+function entryOrigin(env) {
+  const raw = runtimeEnv(env).VITE_REMI_ENTRY_ORIGIN?.trim()
+  if (!raw) return null
+  try {
+    const url = new URL(raw)
+    if (!['https:', 'http:'].includes(url.protocol) || url.username || url.password) return null
+    if ((url.pathname !== '/' && url.pathname !== '') || url.search || url.hash) return null
+    return url.origin
+  } catch {
+    return null
+  }
+}
+
+export function buildProductEntryLink(destination, options = {}) {
+  if (destination !== 'google' && destination !== 'linq') return null
+  const origin = entryOrigin(options.env)
+  if (!origin) return null
+  const touch = normalizeStoredTouch(
+    options.firstTouch ?? getFirstTouch(options),
+    options.nowMs ?? Date.now(),
+  )
+  if (!touch) return null
+
+  const url = new URL(`/start/${destination}`, origin)
+  url.searchParams.set('acquisition_id', touch.acquisition_id)
+  if (touch.landing_path) url.searchParams.set('landing_path', touch.landing_path)
+  if (touch.referrer_origin) url.searchParams.set('referrer', touch.referrer_origin)
+  for (const key of utmKeys) {
+    if (touch[key]) url.searchParams.set(key, touch[key])
+  }
+  return url.toString()
+}
+
+export function getOnboardingEntry(destination, options = {}) {
+  const href = buildProductEntryLink(destination, options)
+  return {
+    href,
+    available: href !== null,
+    destination,
+    attributionState: href ? 'carried' : 'direct_unknown',
+  }
 }
 
 export function normalizeAnalyticsProperties(value) {

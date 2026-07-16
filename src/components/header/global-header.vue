@@ -7,9 +7,11 @@ import SiteLogo from '../global/site-logo.vue'
 import HeaderLink from './components/header-link.vue'
 import HeaderLogo from './components/header-logo.vue'
 import cn from '../../lib/cn'
-import { portalLink } from '../../lib/portal-link'
+import { getOnboardingEntry } from '../../lib/acquisition.js'
 
-const portalLoginHref = computed(() => portalLink('https://remi.new/login'))
+const portalLoginHref = 'https://remi.new/login'
+const googleEntry = getOnboardingEntry('google')
+const googleEntryHref = googleEntry.href || portalLoginHref
 
 const constructionLinks = [
   { label: 'All solutions', href: '/solutions' },
@@ -316,7 +318,9 @@ onBeforeUnmount(() => {
                 @click="closeMobileMenu">
                 Login
               </Button>
-              <Button :href="portalLoginHref" variant="secondary" class="h-12 w-full" @click="closeMobileMenu">
+              <Button :href="googleEntryHref" variant="secondary" class="h-12 w-full" @click="closeMobileMenu"
+                data-marketing-cta="header_mobile_google" data-marketing-destination="google"
+                :data-attribution-state="googleEntry.attributionState">
                 Try for free
               </Button>
             </div>
@@ -325,7 +329,9 @@ onBeforeUnmount(() => {
 
         <div class="hidden flex-1 items-center justify-end gap-1 md:flex">
           <HeaderLink :href="portalLoginHref" target="_blank">Login</HeaderLink>
-          <Button :href="portalLoginHref" :variant="headerButtonVariant" size="sm">Try for free</Button>
+          <Button :href="googleEntryHref" :variant="headerButtonVariant" size="sm"
+            data-marketing-cta="header_google" data-marketing-destination="google"
+            :data-attribution-state="googleEntry.attributionState">Try for free</Button>
         </div>
 
         <div class="flex flex-1 items-center justify-end md:hidden">

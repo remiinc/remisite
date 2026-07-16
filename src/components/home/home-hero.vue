@@ -611,7 +611,8 @@ const MessageBubble = {
           Remi is an AI-powered operations assistant that learns how your business runs and gets work done for you.
         </p>
         <div class="flex items-center justify-start gap-2">
-          <Button href="/start">Text Remi</Button>
+          <Button href="/start" data-marketing-cta="home_text_remi"
+            data-marketing-destination="linq">Text Remi</Button>
           <Button variant="secondary">Pricing</Button>
         </div>
       </div>

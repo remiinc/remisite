@@ -36,7 +36,8 @@ const serviceSolutions = [
       <div class="w-full flex flex-col items-start justify-between gap-6 md:gap-12 max-w-md text-balance">
         <h3 class="text-3xl md:text-2xl font-[450] leading-[1.125em] tracking-tight text-foreground">Your business shouldn't run you. It should run itself.
         </h3>
-        <Button href="/start">Text Remi</Button>
+        <Button href="/start" data-marketing-cta="footer_text_remi"
+          data-marketing-destination="linq">Text Remi</Button>
       </div>
 
       <div class="grid grid-cols-2 md:grid-cols-3 w-full md:max-w-3xl md:justify-self-end gap-x-12 gap-y-12">

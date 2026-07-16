@@ -1,6 +1,10 @@
 <script setup>
 import { cn } from '../../lib/cn'
+import { getOnboardingEntry } from '../../lib/acquisition.js'
 import Button from '../global/button.vue'
+
+const googleEntry = getOnboardingEntry('google')
+const googleEntryHref = googleEntry.href || 'https://remi.new/login'
 
 const comparisonRows = [
   {
@@ -128,7 +132,9 @@ const rowBaseClasses = cn(
         </div>
       </div>
 
-      <Button href="https://remi.new/login">Get Started</Button>
+      <Button :href="googleEntryHref" data-marketing-cta="comparison_google"
+        data-marketing-destination="google"
+        :data-attribution-state="googleEntry.attributionState">Get Started</Button>
     </div>
   </section>
 </template>

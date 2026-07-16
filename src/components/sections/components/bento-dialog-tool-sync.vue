@@ -17,7 +17,8 @@ import Button from '../../global/button.vue'
             to open, no new habit to build.
           </p>
           <div class="flex items-center justify-start gap-2">
-            <Button href="/start">Text Remi</Button>
+            <Button href="/start" data-marketing-cta="tool_sync_text_remi"
+              data-marketing-destination="linq">Text Remi</Button>
             <Button variant="secondary">Pricing</Button>
           </div>
 
