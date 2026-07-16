@@ -48,21 +48,19 @@ const serviceSolutions = [
             {{ link.label }}
           </a>
         </nav>
-        <nav class="flex flex-col items-start gap-1"
+        <nav class="md:col-span-2 flex flex-col items-start gap-1"
           aria-label="Footer navigation">
-          <span class="text-base font-medium text-foreground mb-4">Construction</span>
+          <span class="text-base font-medium text-foreground mb-4">Solutions</span>
+          <div class="w-full grid md:grid-cols-2 gap-x-12 gap-y-1">
           <a v-for="link in constructionSolutions" :key="link.href" :href="link.href"
             class="text-sm font-normal text-foreground/60 transition-colors hover:text-foreground">
             {{ link.label }}
           </a>
-        </nav>
-        <nav class="flex flex-col items-start gap-1"
-          aria-label="Footer navigation">
-          <span class="text-base font-medium text-foreground mb-4">Services</span>
           <a v-for="link in serviceSolutions" :key="link.href" :href="link.href"
             class="text-sm font-normal text-foreground/60 transition-colors hover:text-foreground">
             {{ link.label }}
           </a>
+        </div>
         </nav>
       </div>
 
