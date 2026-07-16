@@ -24,10 +24,52 @@ stats:
 useCases:
   - title: "Follow up on every new inquiry"
     description: "Remi watches connected inboxes and messages for prospective customers still waiting and prepares a specific response for your approval."
+    thread:
+      time: "09:31"
+      messages:
+        - variant: incoming
+          text: "Ava asked about biweekly cleaning at 9:06 and is still waiting. She included a 3-bed, 2-bath floor plan. 👀"
+        - variant: outgoing
+          text: "Do we have room on Fridays?"
+        - variant: incoming
+          text: "Every other Friday at 11, starting next week. 📅"
+        - variant: outgoing
+          text: "Draft the reply."
+        - variant: incoming
+          text: "Ready for review with the opening and questions about pets and access. ✍️"
+          quickActions: [reminders]
   - title: "Keep recurring schedule changes on the record"
     description: "When a customer changes the day, access details, or scope, Remi brings the request into a clear note so the team is not relying on memory."
+    thread:
+      time: "12:17"
+      messages:
+        - variant: incoming
+          text: "The Lewis family moved Thursday's visit to Friday and added the guest suite. The crew calendar still shows Thursday. 🗓️"
+        - variant: outgoing
+          text: "What exactly changed?"
+        - variant: incoming
+          text: "Friday at 1, plus 45 minutes and the guest-suite checklist. Their text is attached. 📝"
+        - variant: outgoing
+          text: "Put it in the notes."
+        - variant: incoming
+          text: "Prepared with the source message attached. Review it before the schedule changes. ✅"
+          quickActions: [notes]
   - title: "Catch unpaid recurring work early"
     description: "Remi flags open invoices alongside the customer thread and prepares a polite reminder before several visits turn into one large balance."
+    thread:
+      time: "15:46"
+      messages:
+        - variant: incoming
+          text: "Bright Dental has three completed visits and a $1,320 balance. The oldest invoice is 24 days late. 💸"
+        - variant: outgoing
+          text: "Any complaint in the thread?"
+        - variant: incoming
+          text: "None. Their last message says the team did a great job. ✅"
+        - variant: outgoing
+          text: "Draft a polite reminder."
+        - variant: incoming
+          text: "Ready for review with all three invoice dates and the total balance included. 📎"
+          documentPreview: "Invoice summary PDF"
 ogTitle: "Remi for Cleaning Services"
 ogDescription: "Turn cleaning inquiries into booked work, track recurring schedules, and catch overdue invoices with Remi."
 ---

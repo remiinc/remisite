@@ -227,11 +227,11 @@ onBeforeUnmount(() => {
               <a
                 v-if="!activeMobilePanel"
                 href="/"
-                class="inline-flex size-10 items-center justify-center rounded-full text-foreground transition-colors hover:bg-foreground/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                class="inline-flex w-20 h-9 items-center justify-center rounded-full text-foreground transition-colors hover:bg-foreground/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
                 aria-label="Remi home"
                 @click="closeMobileMenu"
               >
-                <SiteLogo class="size-8" />
+                <SiteLogo class="w-full" />
               </a>
 
               <button

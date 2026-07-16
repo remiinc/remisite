@@ -16,6 +16,32 @@ const normalizeStats = (stats) =>
     }))
     .filter((stat) => stat.metric && stat.label)
 
+const normalizeDocumentPreview = (documentPreview) => {
+  if (typeof documentPreview === 'string') {
+    return documentPreview ? { label: documentPreview } : null
+  }
+
+  if (documentPreview && typeof documentPreview === 'object') {
+    return documentPreview.label ? { label: String(documentPreview.label) } : null
+  }
+
+  return null
+}
+
+const normalizeThread = (thread) => {
+  if (!thread || typeof thread !== 'object') return null
+
+  return {
+    time: thread.time ? String(thread.time) : '09:42',
+    messages: (Array.isArray(thread.messages) ? thread.messages : []).map((message) => ({
+      variant: message?.variant || '',
+      text: message?.text || '',
+      quickActions: (Array.isArray(message?.quickActions) ? message.quickActions : []).map(String),
+      documentPreview: normalizeDocumentPreview(message?.documentPreview),
+    })),
+  }
+}
+
 const normalizeUseCases = (useCases) =>
   (Array.isArray(useCases) ? useCases : [])
     .map((useCase) => ({
@@ -23,8 +49,20 @@ const normalizeUseCases = (useCases) =>
       description: useCase?.description || '',
       imageUrl: useCase?.imageUrl || '',
       imageAlt: useCase?.imageAlt || '',
+      thread: normalizeThread(useCase?.thread),
     }))
     .filter((useCase) => useCase.title && useCase.description)
+
+const isValidThread = (thread) => {
+  if (!thread || thread.messages.length < 3 || thread.messages.length > 6) return false
+
+  return thread.messages.every((message) => (
+    ['incoming', 'outgoing'].includes(message.variant)
+    && Boolean(message.text)
+    && message.quickActions.every((action) => ['notes', 'reminders'].includes(action))
+    && (!message.documentPreview || Boolean(message.documentPreview.label))
+  ))
+}
 
 const normalizeSolution = (entry) => {
   const { metadata } = entry
@@ -61,6 +99,9 @@ const validateSolution = (solution) => {
   if (solution.order < 1) errors.push('a positive order')
   if (solution.stats.length !== 3) errors.push('exactly three stats')
   if (solution.useCases.length !== 3) errors.push('exactly three use cases')
+  if (solution.useCases.some((useCase) => !isValidThread(useCase.thread))) {
+    errors.push('a valid 3-6 message thread for every use case')
+  }
   if (solution.stats.some((stat) => !stat.sourceLabel || !stat.sourceUrl)) {
     errors.push('a source label and URL for every stat')
   }

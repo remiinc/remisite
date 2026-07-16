@@ -5,6 +5,7 @@ import Button from '../global/button.vue'
 import GlobalFooter from '../global/global-footer.vue'
 import GlobalHeader from '../header/global-header.vue'
 import SectionCta from '../sections/section-cta.vue'
+import SolutionIphone from './solution-iphone.vue'
 
 const requestedSlug = computed(() => {
   if (typeof window === 'undefined') return ''
@@ -150,11 +151,18 @@ onBeforeUnmount(() => {
               </p>
             </div>
 
-            <figure class="relative aspect-4/3 w-full overflow-hidden rounded-3xl bg-muted"
+            <figure class="relative h-auto w-full overflow-hidden rounded-3xl bg-muted"
               :class="index % 2 ? 'md:order-1' : 'md:order-2'"
-              :aria-label="useCase.imageUrl ? useCase.imageAlt || useCase.title : undefined"
-              :aria-hidden="useCase.imageUrl ? undefined : 'true'">
-              <img v-if="useCase.imageUrl" :src="useCase.imageUrl" :alt="useCase.imageAlt || useCase.title"
+              :aria-label="!useCase.thread && useCase.imageUrl ? useCase.imageAlt || useCase.title : undefined"
+              :aria-hidden="!useCase.thread && !useCase.imageUrl ? 'true' : undefined">
+              <div v-if="useCase.thread" class="flex items-start justify-center overflow-hidden pt-12">
+                <SolutionIphone
+                  class="w-[min(74%,24rem)] md:w-[min(58%,26rem)] xl:w-[min(50%,28rem)]"
+                  :messages="useCase.thread.messages"
+                  :time="useCase.thread.time"
+                />
+              </div>
+              <img v-else-if="useCase.imageUrl" :src="useCase.imageUrl" :alt="useCase.imageAlt || useCase.title"
                 class="absolute inset-0 size-full object-cover" loading="lazy" decoding="async">
             </figure>
           </article>
