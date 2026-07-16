@@ -74,5 +74,6 @@ const trustPrinciples = [
         </article>
       </div>
     </div>
+
   </section>
 </template>

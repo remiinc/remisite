@@ -9,6 +9,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { formatDate, parseFrontmatter, renderMarkdown } from '../src/lib/markdown-content.js'
 import { legacySolutionRedirects } from '../src/lib/solution-redirects.js'
+import { resolveSolutionTool } from '../src/lib/solution-tools.js'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const distDir = join(root, 'dist')
@@ -74,13 +75,40 @@ solutions.forEach((solution) => {
   const errors = []
   const stats = Array.isArray(solution.metadata.stats) ? solution.metadata.stats : []
   const useCases = Array.isArray(solution.metadata.useCases) ? solution.metadata.useCases : []
+  const integrations = solution.metadata.integrations
+  const integrationTools = Array.isArray(integrations?.tools) ? integrations.tools : []
+  const feature = solution.metadata.feature
 
   if (!solution.metadata.title) errors.push('title')
   if (!solution.metadata.description) errors.push('description')
   if (!solution.metadata.industryLabel) errors.push('industryLabel')
+  if (!solution.metadata.useCasesTitle) errors.push('useCasesTitle')
   if ((Number(solution.metadata.order) || 0) < 1) errors.push('a positive order')
   if (stats.length !== 3) errors.push('exactly three stats')
   if (useCases.length !== 3) errors.push('exactly three use cases')
+  if (!integrations?.title || !integrations?.description) {
+    errors.push('integration section title and description')
+  }
+  if (integrationTools.length !== 5) errors.push('exactly five integration tools')
+  if (new Set(integrationTools.map((tool) => tool?.tool)).size !== integrationTools.length) {
+    errors.push('unique integration tools')
+  }
+  if (integrationTools.some((entry) => {
+    const tool = resolveSolutionTool(entry?.tool)
+    return !tool?.docsUrl || !tool?.iconUrl || !entry?.title || !entry?.description
+  })) {
+    errors.push('recognized integration tools with complete copy')
+  }
+  if (feature && (
+    !feature.title
+    || !feature.description
+    || !feature.imageUrl
+    || !feature.imageAlt
+    || !feature.ctaLabel
+    || !feature.ctaUrl
+  )) {
+    errors.push('complete optional feature content')
+  }
   if (stats.some((stat) => !stat.sourceLabel || !stat.sourceUrl)) {
     errors.push('source labels and URLs for every stat')
   }
@@ -255,6 +283,8 @@ const indexBody = (label, description, entries) => `
 const solutionBody = (entry) => {
   const stats = entry.metadata.stats
   const useCases = entry.metadata.useCases
+  const integrations = entry.metadata.integrations
+  const feature = entry.metadata.feature
   const hasTestimonial = entry.metadata.testimonialQuote && entry.metadata.testimonialAuthor
 
   return `
@@ -280,6 +310,7 @@ const solutionBody = (entry) => {
     </dl>
   </section>
   <section class="mx-auto w-full" style="max-width: 72rem">
+    <h2>${escapeHtml(entry.metadata.useCasesTitle)}</h2>
     ${useCases
       .map(
         (useCase) => `<article>
@@ -289,6 +320,29 @@ const solutionBody = (entry) => {
       )
       .join('\n    ')}
   </section>
+  <section class="mx-auto w-full" style="max-width: 72rem">
+    <p>Your tools, handled</p>
+    <h2>${escapeHtml(integrations.title)}</h2>
+    <p>${escapeHtml(integrations.description)}</p>
+    <ul>
+      ${integrations.tools
+        .map((entry) => {
+          const tool = resolveSolutionTool(entry.tool)
+          return `<li>
+        <h3>${escapeHtml(tool.name)}: ${escapeHtml(entry.title)}</h3>
+        <p>${escapeHtml(entry.description)}</p>
+      </li>`
+        })
+        .join('\n      ')}
+    </ul>
+    <p>Remi works inside the access you grant. Customer-facing sends and important record changes wait for your approval.</p>
+  </section>
+  ${feature ? `<section class="mx-auto w-full" style="max-width: 72rem">
+    <img src="${escapeHtml(feature.imageUrl)}" alt="${escapeHtml(feature.imageAlt)}">
+    <h2>${escapeHtml(feature.title)}</h2>
+    <p>${escapeHtml(feature.description)}</p>
+    <p><a href="${escapeHtml(feature.ctaUrl)}">${escapeHtml(feature.ctaLabel)}</a></p>
+  </section>` : ''}
   ${hasTestimonial ? `<figure>
     <blockquote>${escapeHtml(entry.metadata.testimonialQuote)}</blockquote>
     <figcaption>${escapeHtml(entry.metadata.testimonialAuthor)}${entry.metadata.testimonialRole ? `, ${escapeHtml(entry.metadata.testimonialRole)}` : ''}</figcaption>

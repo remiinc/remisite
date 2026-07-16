@@ -8,6 +8,7 @@ heroImageUrl: "/images/solutions/auto-repair-cover@2x.webp"
 heroImageAlt: "Auto mechanic inspecting the underside of a vehicle"
 thumbnailImageUrl: "/images/solutions/auto-repair-thumb@2x.webp"
 thumbnailImageAlt: "Auto mechanic inspecting the underside of a vehicle"
+useCasesTitle: "The bay moves. The customer stays informed."
 stats:
   - metric: "$17.5k"
     label: "in unpaid invoices owed to the average small business"
@@ -24,6 +25,19 @@ stats:
 useCases:
   - title: "Follow up on estimates waiting for a yes"
     description: "Remi watches estimate conversations, surfaces the last customer response, and prepares the next message for your approval before the repair goes elsewhere."
+    workflow:
+      - tool: gmail
+        action: "Remi finds the quiet brake-estimate conversation in Gmail."
+      - tool: googledrive
+        action: "Remi reads the technician's safety note in Google Drive."
+      - tool: quickbooks
+        action: "Remi verifies the $860 estimate in QuickBooks."
+      - tool: googlecalendar
+        action: "Remi checks Google Calendar for this week's repair openings."
+      - tool: messages
+        action: "Remi texts you with the safety context and a specific follow-up."
+      - tool: gmail
+        action: "After you approve it, Remi sends the estimate follow-up through Gmail."
     thread:
       time: "09:04"
       messages:
@@ -40,6 +54,17 @@ useCases:
           documentPreview: "Repair estimate PDF"
   - title: "Keep the approval trail with the repair"
     description: "Remi ties the customer's authorization, added work, and price discussion back to the source so the decision does not live only in someone's memory."
+    workflow:
+      - tool: messages
+        action: "Remi reads the customer's added-repair approval in Messages."
+      - tool: googledrive
+        action: "Remi opens the teardown notes and original repair order in Google Drive."
+      - tool: quickbooks
+        action: "Remi verifies the approved $420 addition and updated total in QuickBooks."
+      - tool: googledocs
+        action: "Remi updates the repair order in Google Docs with the approval attached."
+      - tool: messages
+        action: "Remi texts you when the complete approval trail is ready for review."
     thread:
       time: "11:37"
       messages:
@@ -57,6 +82,19 @@ useCases:
           quickActions: [notes]
   - title: "Prepare pickup and payment updates"
     description: "When the repair status changes, Remi brings together the customer thread, open balance, and promised timing and drafts the update for you to review."
+    workflow:
+      - tool: googledrive
+        action: "Remi reads the passed road-test result in Google Drive."
+      - tool: googlecalendar
+        action: "Remi checks Google Calendar for the promised pickup window."
+      - tool: quickbooks
+        action: "Remi verifies the $1,740 final balance in QuickBooks."
+      - tool: square
+        action: "Remi checks Square to confirm that payment is still due."
+      - tool: messages
+        action: "Remi texts you with the pickup timing, balance, and final notes."
+      - tool: messages
+        action: "After you approve it, Remi sends the pickup update in Messages."
     thread:
       time: "15:52"
       messages:
@@ -71,6 +109,25 @@ useCases:
         - variant: incoming
           text: "Ready for review with the balance, pickup hours, and road-test result included. ✍️"
           quickActions: [reminders]
+integrations:
+  title: "Keep the bay moving while Remi works the front desk."
+  description: "Remi connects the estimate, customer approval, repair ticket, promised timing, and final payment without asking the technician to chase every screen."
+  tools:
+    - tool: repairshopr
+      title: "Keep the repair order moving"
+      description: "Remi checks leads, estimates, tickets, appointments, invoices, payments, parts, and customer records in RepairShopr. She surfaces the stalled approval or pickup and prepares the update for your approval."
+    - tool: gmail
+      title: "Keep customer and parts answers with the repair"
+      description: "Remi reads connected customer questions, parts confirmations, warranty replies, and estimate threads in Gmail. She drafts the answer with the repair context and waits for your approval before sending."
+    - tool: googlecalendar
+      title: "Protect promised drop-off and pickup times"
+      description: "Remi checks drop-offs, diagnostic windows, parts arrivals, and promised pickup times. She proposes the schedule change or customer update before the front desk gets another call."
+    - tool: quickbooks
+      title: "Use the verified total in every update"
+      description: "Remi checks estimate amounts, approved additions, invoices, balances, and recorded payments in QuickBooks. She brings the correct total into the pickup or payment message you approve."
+    - tool: square
+      title: "Know the payment status before pickup"
+      description: "Remi checks Square invoices, payments, customers, and payment links before the vehicle is released. She prepares the correct payment note for your approval without changing the transaction record."
 ogTitle: "Remi for Auto Repair Shops"
 ogDescription: "Keep repair estimates, customer approvals, updates, and unpaid orders moving with Remi."
 ---

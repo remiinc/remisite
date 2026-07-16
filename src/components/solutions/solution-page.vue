@@ -5,6 +5,9 @@ import Button from '../global/button.vue'
 import GlobalFooter from '../global/global-footer.vue'
 import GlobalHeader from '../header/global-header.vue'
 import SectionCta from '../sections/section-cta.vue'
+import SectionSecurityPrinciples from '../sections/section-security-principles.vue'
+import SolutionFeature from './solution-feature.vue'
+import SolutionIntegrations from './solution-integrations.vue'
 import SolutionIphone from './solution-iphone.vue'
 
 const requestedSlug = computed(() => {
@@ -138,6 +141,13 @@ onBeforeUnmount(() => {
 
       <section class="w-full px-6 py-16 md:py-24" data-solution-use-cases>
         <div class="mx-auto flex w-full max-w-(--content-width) flex-col gap-24 md:gap-32">
+          <h2
+            class="max-w-4xl text-4xl font-normal leading-none tracking-tight text-balance md:text-5xl"
+            data-solution-use-cases-title
+          >
+            {{ solution.useCasesTitle }}
+          </h2>
+
           <article v-for="(useCase, index) in solution.useCases" :key="useCase.title"
             class="grid items-start gap-10 lg:gap-20"
             :class="index % 2 ? 'md:grid-cols-[1fr_25%]' : 'md:grid-cols-[25%_1fr]'">
@@ -149,6 +159,44 @@ onBeforeUnmount(() => {
               <p class="text-lg leading-tight text-pretty text-muted-foreground/75">
                 {{ useCase.description }}
               </p>
+
+              <div
+                class="mt-10 w-full border-t border-border/60 pt-5"
+                aria-label="How Remi handles it"
+                data-solution-workflow
+              >
+                <p class="text-xs font-medium uppercase leading-tight text-muted-foreground/50">
+                  How Remi handles it
+                </p>
+                <ol class="mt-5 flex flex-col">
+                  <li
+                    v-for="(step, stepIndex) in useCase.workflow"
+                    :key="`${step.key}-${stepIndex}`"
+                    class="grid min-w-0 grid-cols-[1.5rem_1fr] gap-3 pb-5 last:pb-0"
+                    :data-solution-workflow-step="step.key"
+                  >
+                    <div class="relative flex justify-center">
+                      <img
+                        :src="step.iconUrl"
+                        alt=""
+                        class="relative z-1 size-5 shrink-0 object-contain"
+                        aria-hidden="true"
+                        loading="lazy"
+                        decoding="async"
+                      >
+                      <span
+                        v-if="stepIndex < useCase.workflow.length - 1"
+                        class="absolute top-6 -bottom-5 left-1/2 w-px -translate-x-1/2 bg-border/70"
+                        aria-hidden="true"
+                        data-solution-workflow-line
+                      />
+                    </div>
+                    <p class="min-w-0 text-sm leading-snug text-foreground/70">
+                      {{ step.action }}
+                    </p>
+                  </li>
+                </ol>
+              </div>
             </div>
 
             <figure class="relative h-auto w-full overflow-hidden rounded-3xl bg-muted"
@@ -169,6 +217,10 @@ onBeforeUnmount(() => {
         </div>
       </section>
 
+      <SolutionIntegrations :integrations="solution.integrations" />
+
+      <SolutionFeature v-if="solution.feature" :feature="solution.feature" />
+
       <section v-if="solution.testimonial" class="w-full px-6 py-16 md:py-24" aria-label="Customer testimonial"
         data-solution-testimonial>
         <figure
@@ -182,6 +234,20 @@ onBeforeUnmount(() => {
           </figcaption>
         </figure>
       </section>
+
+      <section class="w-full px-6 pt-20 pb-0" data-section-security-intro>
+        <span class="mx-auto flex w-full max-w-(--content-width) items-center gap-6">
+          <h2 class="inline text-4xl font-normal leading-[1em] tracking-tight text-balance text-foreground">
+            <span>How we think about security</span>
+            <span class="h-[1em] inline-flex items-center">
+              <Button href="/security" variant="secondary" size="sm" class="relative left-[0.75em] top-[-0.333em]">
+                Learn more
+              </Button>
+            </span>
+          </h2>
+        </span>
+      </section>
+      <SectionSecurityPrinciples id="solution-security" />
 
       <SectionCta />
     </main>

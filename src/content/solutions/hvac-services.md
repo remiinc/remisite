@@ -8,6 +8,7 @@ heroImageUrl: "/images/solutions/hvac-cover@2x.webp"
 heroImageAlt: "HVAC professional servicing residential equipment"
 thumbnailImageUrl: "/images/solutions/hvac-thumb@2x.webp"
 thumbnailImageAlt: "HVAC professional at work"
+useCasesTitle: "Every service call gets a clear next step."
 stats:
   - metric: "70%"
     label: "of contractors regularly face delayed payments"
@@ -24,6 +25,17 @@ stats:
 useCases:
   - title: "Catch the service request you could not answer"
     description: "Remi watches connected email and messages for customers waiting on a reply, then prepares a response with the request and available context ready for your approval."
+    workflow:
+      - tool: hubspot
+        action: "Remi spots the unanswered no-cooling request in HubSpot."
+      - tool: googlecalendar
+        action: "Remi checks Google Calendar for the next service opening."
+      - tool: airtable
+        action: "Remi checks the dispatch board in Airtable to confirm the route and technician."
+      - tool: messages
+        action: "Remi texts you with the 4:30 opening and the customer's location."
+      - tool: messages
+        action: "After you approve it, Remi sends the appointment offer in Messages."
     thread:
       time: "08:42"
       messages:
@@ -40,6 +52,17 @@ useCases:
           quickActions: [reminders]
   - title: "Keep replacement estimates from going cold"
     description: "When a system replacement estimate gets no answer, Remi surfaces the last conversation and drafts a useful nudge instead of leaving the quote to disappear in the inbox."
+    workflow:
+      - tool: gmail
+        action: "Remi reads the customer's financing question in Gmail."
+      - tool: quickbooks
+        action: "Remi opens the replacement estimate and expiration date in QuickBooks."
+      - tool: googlesheets
+        action: "Remi checks the 16-SEER and 18-SEER financing comparison in Google Sheets."
+      - tool: messages
+        action: "Remi texts you with the unanswered question and a useful draft."
+      - tool: gmail
+        action: "After you approve it, Remi sends the estimate follow-up through Gmail."
     thread:
       time: "10:06"
       messages:
@@ -56,6 +79,17 @@ useCases:
           documentPreview: "Replacement estimate PDF"
   - title: "Follow up after the work is complete"
     description: "Remi ties the open invoice to the completed job and customer thread, then prepares a payment reminder for you to check before anything goes out."
+    workflow:
+      - tool: quickbooks
+        action: "Remi finds the unpaid $7,240 invoice in QuickBooks."
+      - tool: googledrive
+        action: "Remi verifies the signed commissioning checklist in Google Drive."
+      - tool: stripe
+        action: "Remi checks Stripe to confirm that no payment has arrived."
+      - tool: messages
+        action: "Remi texts you with the balance and completion proof already matched."
+      - tool: gmail
+        action: "After you approve it, Remi sends the payment reminder through Gmail."
     thread:
       time: "16:14"
       messages:
@@ -70,6 +104,25 @@ useCases:
         - variant: incoming
           text: "Ready for review with the invoice and signed completion checklist attached. 📎"
           documentPreview: "Final invoice PDF"
+integrations:
+  title: "Work the call. Let Remi work the service stack."
+  description: "Remi watches the request, schedule, job record, supporting documents, and invoice while your team stays focused on the work in front of them."
+  tools:
+    - tool: servicem8
+      title: "Keep the service queue moving"
+      description: "Remi checks jobs, queues, notes, materials, clients, and recorded payments in ServiceM8. She surfaces the waiting request or completed job and proposes the next update for your approval."
+    - tool: gmail
+      title: "Answer the question behind the estimate"
+      description: "Remi reads connected service requests, replacement-estimate threads, and customer questions in Gmail. She drafts a reply grounded in the job details and waits for your approval before sending."
+    - tool: googlecalendar
+      title: "Find the opening before the lead goes cold"
+      description: "Remi checks technician availability, service windows, installation dates, and maintenance visits. She proposes the best slot and prepares the confirmation for your approval."
+    - tool: quickbooks
+      title: "Catch the unpaid job after the crew leaves"
+      description: "Remi checks estimate, invoice, balance, due date, and payment status in QuickBooks. She prepares the right reminder with the amount and job context ready for review."
+    - tool: googledrive
+      title: "Keep completion proof close to payment"
+      description: "Remi finds commissioning forms, warranty documents, equipment photos, and signed completion records in Google Drive. She assembles them beside the invoice follow-up so the proof is already there."
 ogTitle: "Remi for HVAC Services"
 ogDescription: "Answer service requests, keep replacement estimates warm, and catch unpaid HVAC jobs with Remi."
 ---
