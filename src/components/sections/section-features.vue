@@ -39,11 +39,11 @@ const featureMessages = [
         <div class="section-content w-full py-4 flex flex-col justify-center order-2 lg:order-1">
           <div class="flex flex-col flex-1">
             <h2 class="text-3xl lg:text-4xl font-normal tracking-tight text-balance mb-6">
-              Text Remi and hire a teammate that onboards herself and works 24/7.
+              Hire Remi with a text. Watch the work get done.
             </h2>
             <p class="max-w-lg text-sm lg:text-base font-normal leading-normal text-pretty text-muted-foreground mb-8">
-              Remi connects to and learns from your email, calendar, and all the tools you already use. Remi finds tasks
-              to work on and starts tackling them with your approval.
+              Start with a text and let Remi connect to the tools you already use. Remi onboards automatically in the
+              background.
             </p>
             <ul class="flex flex-col mb-8 divide-y divide-border">
               <li class="flex items-start gap-2 text-sm text-foreground py-2">
@@ -76,9 +76,6 @@ const featureMessages = [
                 @click="trackMarketingCta('features_text_remi', 'linq')">
                 <div class="flex items-center gap-2"><img src="/images/app-logos/ios-messages-icon.svg" alt="Google"
                     class="size-3" /><span>Text Remi</span></div>
-              </Button>
-              <Button variant="secondary" size="sm">
-                Book a Demo
               </Button>
             </div>
           </div>
@@ -123,11 +120,10 @@ const featureMessages = [
         <div class="section-content w-full py-4 flex flex-col justify-center">
           <div class="flex flex-col flex-1">
             <h2 class="text-3xl lg:text-4xl font-normal tracking-tight text-balance mb-6">
-              Do the jobs you love. Remi does the ones you dont.
+              Follow-ups sent. Invoices chased. Loose ends handled.
             </h2>
             <p class="max-w-lg text-sm lg:text-base font-normal leading-normal text-pretty text-muted-foreground mb-8">
-              Remi watches your email, calendar, messages, and tools to chase overdue invoices,
-              follow up on quotes, and remember what every client agreed to.
+              Remi watches your email, calendar, messages, and tools, then moves the work forward with your approval.
             </p>
             <ul class="flex flex-col gap-2 mb-8">
               <li class="flex items-start gap-2 text-sm text-foreground">

@@ -6,7 +6,7 @@ import SiteIcon from '../global/site-icon.vue'
 </script>
 
 <template>
-  <section id="demo" class="scroll-mt-24 px-6 py-24" data-section-cta>
+  <section id="get-started" class="scroll-mt-24 px-6 py-24" data-section-cta>
     <div
       class="relative mx-auto grid w-full max-w-(--content-width) overflow-hidden rounded-[2em] bg-foreground bg-[url('/images/backgrounds/cta-background.jpg')] bg-cover bg-center text-background md:grid-cols-2 lg:grid-cols-[3fr_2fr] lg:items-center">
       <div class="relative z-1 flex pt-24 pb-8 md:py-12 px-8 lg:px-12 flex-col items-center justify-center gap-8 text-center">
@@ -21,9 +21,6 @@ import SiteIcon from '../global/site-icon.vue'
               <img src="/images/app-logos/ios-messages-icon.svg" alt="" class="size-5 shrink-0" aria-hidden="true">
               <span>Text Remi</span>
             </span>
-          </Button>
-          <Button href="#" variant="translucent" size="lg">
-            Book a Demo
           </Button>
         </div>
       </div>

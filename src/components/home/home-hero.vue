@@ -5,8 +5,6 @@ import { Shader, Godrays, Fog, Swirl, ChromaticAberration } from 'shaders/vue'
 import { h, onBeforeUnmount, onMounted, ref } from 'vue'
 import AnnouncementBar from '../global/announcement-bar.vue'
 
-const emit = defineEmits(['book-demo'])
-
 const heroSectionRef = ref(null)
 const heroShaderRef = ref(null)
 const heroCopyRef = ref(null)
@@ -613,7 +611,7 @@ const MessageBubble = {
           Remi is an AI-powered operations assistant that learns how your business runs and gets work done for you.
         </p>
         <div class="flex items-center justify-start gap-2">
-          <Button>Book a Demo</Button>
+          <Button href="/start">Text Remi</Button>
           <Button variant="secondary">Pricing</Button>
         </div>
       </div>

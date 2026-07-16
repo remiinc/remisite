@@ -32,9 +32,9 @@ defineProps({
           class="max-w-[20ch] text-4xl md:text-[clamp(3.5rem,8vw,5rem)] leading-[1em] font-normal tracking-[-0.03em] text-balance text-background select-none">
           Your business should run. <span class="block">It shouldn't run you.</span>
         </h1>
-        <p class="text-[0.875em] text-background text-center leading-none *:block flex flex-col gap-1 mb-2">
-          <span>Meet the last operations hire you'll ever need.</span>
-          <span class="text-background/50">Let Remi take tasks off your plate</span>
+        <p class="max-w-[38ch] text-[0.875em] text-center leading-snug mb-2">
+          <span class="block text-background">Do the work that moves your business forward.</span>
+          <span class="block text-background/60">Let Remi handle the rest.</span>
         </p>
       </div>
       <div class="relative z-1 flex w-full max-w-sm flex-col items-center justify-center gap-3 sm:max-w-none sm:flex-row">
@@ -44,9 +44,6 @@ defineProps({
             <img src="/images/app-logos/ios-messages-icon.svg" alt="" class="size-5 shrink-0" aria-hidden="true">
             <span>Text Remi</span>
           </span>
-        </Button>
-        <Button href="#" variant="translucent" size="lg" class="w-full sm:w-auto">
-          Book a Demo
         </Button>
       </div>
     </div>

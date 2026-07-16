@@ -17,8 +17,6 @@ import RadialNetworkCanvas from './components/radial-network-canvas.vue'
 import ArtifactsWheel from './components/artifacts-wheel.vue'
 import { cn } from '../../lib/cn'
 
-const emit = defineEmits(['book-demo'])
-
 const gridClasses = cn(
   'bento-grid',
   'grid grid-cols-1 gap-2 md:gap-4 lg:gap-6 grid-cols-1 xs:grid-cols-2 lg:grid-cols-3',
@@ -76,11 +74,6 @@ const openBentoDialog = (id) => {
   }
 
   activeBentoDialogId.value = id
-}
-
-const openBookDemo = () => {
-  activeBentoDialogId.value = ''
-  emit('book-demo')
 }
 
 const BentoExpandIcon = defineComponent({
@@ -231,7 +224,7 @@ const BentoExpandIcon = defineComponent({
     </div>
 
     <GlobalModal v-model="isBentoDialogOpen" :label="activeBentoDialog?.title || 'Feature details'" size="large">
-      <component :is="activeBentoDialogComponent" v-if="activeBentoDialogComponent" @book-demo="openBookDemo" />
+      <component :is="activeBentoDialogComponent" v-if="activeBentoDialogComponent" />
     </GlobalModal>
   </section>
 </template>

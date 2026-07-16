@@ -32,9 +32,6 @@ if (typeof document !== 'undefined') {
                 <span>Text Remi</span>
               </span>
             </Button>
-            <Button href="#" variant="secondary" size="lg" class="w-full sm:w-auto">
-              Book a Demo
-            </Button>
           </div>
         </div>
       </section>

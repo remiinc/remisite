@@ -24,65 +24,7 @@ import SiteLogo from '../global/site-logo.vue'
       </div>
     </fieldset>
 
-    <div class="grid gap-y-4 lg:grid-cols-3">
-      <article :class="cn(
-        'relative flex flex-col justify-between overflow-hidden rounded-2xl py-8 lg:mr-2',
-        'order-last lg:order-first',
-        'shadow-[0_0_0_1px_var(--color-border)]',
-      )">
-        <div class="flex flex-col gap-6 px-8">
-          <div class="flex flex-col gap-3">
-            <div class="flex items-center gap-3">
-              <div class="size-8 overflow-hidden rounded-full bg-foreground/10">
-                <img src="/images/avatars/person-avatar-003.png" alt="Human hire" class="size-full object-cover">
-              </div>
-              <h3 class="text-base font-medium">Human hire</h3>
-            </div>
-            <span class="text-sm text-foreground/40">
-              Excellent idea. Just make room for payroll, onboarding, management and sick days.
-            </span>
-          </div>
-
-          <div class="flex flex-col gap-4">
-            <div class="flex flex-wrap items-end gap-x-4 gap-y-2">
-              <p class="flex items-end gap-2">
-                <span class="inline-flex items-end gap-2 text-foreground group-has-[#pricing-annually:checked]:hidden">
-                  <span class="text-5xl font-normal leading-none tracking-tight line-through decoration-2">$5k</span>
-                  <span class="text-sm leading-[2em] text-foreground/40">/month</span>
-                </span>
-                <span class="hidden items-end gap-2 text-foreground group-has-[#pricing-annually:checked]:inline-flex">
-                  <span class="text-5xl font-normal leading-none tracking-tight line-through decoration-2">$60k</span>
-                  <span class="text-sm leading-[2em] text-foreground/40">/year</span>
-                </span>
-              </p>
-            </div>
-          </div>
-
-          <ul class="grid gap-3">
-            <li class="flex gap-3 text-sm leading-snug">
-              <PhCheck class="mt-0.5 size-4 shrink-0" weight="regular" aria-hidden="true" />
-              <span>Worth it, if you can afford it.</span>
-            </li>
-            <li class="flex gap-3 text-sm leading-snug">
-              <PhCheck class="mt-0.5 size-4 shrink-0" weight="regular" aria-hidden="true" />
-              <span>Needs onboarding before they know where the job details live</span>
-            </li>
-            <li class="flex gap-3 text-sm leading-snug">
-              <PhCheck class="mt-0.5 size-4 shrink-0" weight="regular" aria-hidden="true" />
-              <span>Works the hours you pay for, not whenever a quote goes quiet</span>
-            </li>
-            <li class="flex gap-3 text-sm leading-snug">
-              <PhCheck class="mt-0.5 size-4 shrink-0" weight="regular" aria-hidden="true" />
-              <span>Still needs you to explain the customer, invoice, and promise</span>
-            </li>
-            <li class="flex gap-3 text-sm leading-snug">
-              <PhCheck class="mt-0.5 size-4 shrink-0" weight="regular" aria-hidden="true" />
-              <span>Comes with payroll, tools, taxes, and meetings about the work</span>
-            </li>
-          </ul>
-        </div>
-      </article>
-
+    <div class="grid gap-y-4 lg:grid-cols-2">
       <article :class="cn(
         'relative flex flex-col justify-between overflow-hidden rounded-2xl py-8 lg:rounded-r-none',
         'bg-muted text-foreground',
@@ -116,26 +58,26 @@ import SiteLogo from '../global/site-logo.vue'
             <ul class="grid gap-3">
               <li class="flex gap-3 text-sm leading-snug">
                 <PhCheck class="mt-0.5 size-4 shrink-0" weight="regular" aria-hidden="true" />
-                <span>Watches overdue invoices, quiet estimates, and missed follow-ups</span>
+                <span>Learns how your business works across email, calendar, messages, and connected tools</span>
               </li>
               <li class="flex gap-3 text-sm leading-snug">
                 <PhCheck class="mt-0.5 size-4 shrink-0" weight="regular" aria-hidden="true" />
-                <span>Drafts replies and next steps for approval</span>
+                <span>Finds work without waiting to be asked and moves it forward</span>
               </li>
               <li class="flex gap-3 text-sm leading-snug">
                 <PhCheck class="mt-0.5 size-4 shrink-0" weight="regular" aria-hidden="true" />
-                <span>Keeps receipts attached to the work Remi prepares</span>
+                <span>Handles follow-ups, quotes, invoices, scheduling, and customer records</span>
               </li>
               <li class="flex gap-3 text-sm leading-snug">
                 <PhCheck class="mt-0.5 size-4 shrink-0" weight="regular" aria-hidden="true" />
-                <span>Works across the everyday tools your business already uses</span>
+                <span>Brings you approvals, decisions, and receipts instead of another dashboard</span>
               </li>
             </ul>
           </div>
 
           <Button href="https://remi.new/login" class="mt-12 w-full" size="lg">
             <span class="inline-flex items-center gap-2">
-              <span>Get Remi Pro</span>
+              <span>Try Remi free for 7 days</span>
               <PhArrowRight class="size-4" weight="bold" aria-hidden="true" />
             </span>
           </Button>
@@ -158,7 +100,7 @@ import SiteLogo from '../global/site-logo.vue'
                 </h3>
               </div>
               <span class="text-sm text-foreground/40">
-                For busier teams with more open loops, more customers, and more work in motion.
+                Same Remi. More capacity for businesses with more jobs, customers, and work in motion.
               </span>
             </div>
 
@@ -175,19 +117,19 @@ import SiteLogo from '../global/site-logo.vue'
             <ul class="grid gap-3">
               <li class="flex gap-3 text-sm leading-snug">
                 <PhCheck class="mt-0.5 size-4 shrink-0" weight="regular" aria-hidden="true" />
-                <span>More monthly work capacity for heavier follow-through</span>
+                <span>Everything included in Pro</span>
               </li>
               <li class="flex gap-3 text-sm leading-snug">
                 <PhCheck class="mt-0.5 size-4 shrink-0" weight="regular" aria-hidden="true" />
-                <span>Better fit for teams with multiple active jobs or accounts</span>
+                <span>More monthly capacity for heavier follow-through</span>
               </li>
               <li class="flex gap-3 text-sm leading-snug">
                 <PhCheck class="mt-0.5 size-4 shrink-0" weight="regular" aria-hidden="true" />
-                <span>Same approval-first workflow and receipt trail</span>
+                <span>Built for more active jobs, customers, and open loops</span>
               </li>
               <li class="flex gap-3 text-sm leading-snug">
                 <PhCheck class="mt-0.5 size-4 shrink-0" weight="regular" aria-hidden="true" />
-                <span>Capacity add-ons persist until used when a busy month spikes</span>
+                <span>Add more capacity anytime; add-ons remain until used</span>
               </li>
             </ul>
           </div>

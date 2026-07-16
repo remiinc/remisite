@@ -17,22 +17,22 @@ defineProps({
 const trustPrinciples = [
   {
     title: 'You stay in control',
-    description: 'Remi only works inside the access you grant. Connections can be changed, limited, or revoked as your business changes.',
+    description: 'Remi only uses the access you grant. Change, limit, or revoke any connection whenever you need.',
     icon: PhKey,
   },
   {
     title: 'Every action leaves a trail',
-    description: 'When Remi drafts, remembers, or prepares a next step, the source stays close so you can see where the answer came from.',
+    description: 'Remi keeps the source close to every draft, answer, and next step, so you can see where the work came from.',
     icon: PhEye,
   },
   {
     title: 'Approval comes first',
-    description: 'Customer-facing work is prepared for review. Remi keeps the day moving without quietly taking over the relationship.',
+    description: 'Remi starts by asking and earns more responsibility over time. You decide what Remi can do without approval.',
     icon: PhShieldCheck,
   },
   {
     title: 'Your data is not training data',
-    description: 'Your business data is not sold, shared for advertising, or used to train AI models.',
+    description: 'Your business data is never sold, shared for advertising, or used to train AI models.',
     icon: PhLockSimple,
   },
 ]
@@ -50,8 +50,8 @@ const trustPrinciples = [
             </h2>
           </div>
           <p class="max-w-md text-base leading-normal text-pretty text-background">
-            Remi is most useful when she can see enough to help. She is safest when every connection is scoped,
-            every draft can be checked, and every important action still has a person in the loop.
+            Remi works best with enough context to help and clear boundaries on what happens next. Every connection is
+            scoped, every draft can be checked, and important actions stay under your control.
           </p>
         </div>
       </div>

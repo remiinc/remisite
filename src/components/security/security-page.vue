@@ -184,9 +184,9 @@ const reviewItems = [
             </h2>
 
 
-            <Button href="https://remi.new/login" size="default" variant="white" class="w-fit">
+            <Button href="/start" size="default" variant="white" class="w-fit">
               <span class="inline-flex items-center gap-2">
-                <span>Book a demo</span>
+                <span>Text Remi</span>
                 <PhArrowRight class="size-4" weight="bold" aria-hidden="true" />
               </span>
             </Button>
@@ -194,7 +194,7 @@ const reviewItems = [
 
           <div class="flex flex-col justify-between gap-4 p-8 md:p-10 lg:p-12">
             <div class="mb-4">
-              <span class="block">Book a security review</span>
+              <span class="block">Ask about security</span>
               <span class="block text-background/50">We'll help you understand what Remi can access, where data moves,
                 how approvals work, and how your team can keep control.</span>
             </div>

@@ -1,25 +1,18 @@
 <script setup>
 import { PhArrowRight } from '@phosphor-icons/vue'
-import { latestBlogPost } from '../../lib/blog-posts'
-
-const announcementText = latestBlogPost?.title || 'Read the latest Remi update'
-const announcementHref = latestBlogPost?.path || '/resources'
-const announcementLabel = latestBlogPost
-  ? `Read latest article: ${latestBlogPost.title}`
-  : 'Read the latest Remi update'
 </script>
 
 <template>
   <a
-    :href="announcementHref"
-    :aria-label="announcementLabel"
+    href="/start"
+    aria-label="Remi is now available in Early Access. Try for free."
     class="announcement-bar relative flex h-(--topbar-height) w-full flex-col items-center justify-center px-2"
     data-announcement-bar
   >
     <div class="flex w-full min-w-0 items-center justify-center gap-2 px-3 text-center text-sm sm:gap-4">
-      <span class="min-w-0 truncate">{{ announcementText }}</span>
+      <span class="min-w-0 truncate">Now available in Early Access</span>
       <span class="inline-flex shrink-0 items-center justify-center gap-1 text-foreground/50">
-        <span>Read post</span>
+        <span>Try for free</span>
         <PhArrowRight size="16" weight="regular" aria-hidden="true" />
       </span>
     </div>
