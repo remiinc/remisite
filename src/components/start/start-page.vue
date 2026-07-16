@@ -4,12 +4,14 @@ import Button from '../global/button.vue'
 import GlobalHeader from '../header/global-header.vue'
 import GlobalFooter from '../global/global-footer.vue'
 import TextRemiQr from './text-remi-qr.vue'
+import { trackMarketingCta } from '../../lib/analytics.js'
 import {
-  REMI_TEXT_HREF,
   REMI_TEXT_NUMBER_DISPLAY,
+  getTextRemiEntry,
   isAppleDevice,
 } from '../../lib/start-contact'
 
+const linqEntry = getTextRemiEntry()
 let openMessagesTimer = null
 
 onMounted(() => {
@@ -18,7 +20,8 @@ onMounted(() => {
   }
 
   openMessagesTimer = window.setTimeout(() => {
-    window.location.assign(REMI_TEXT_HREF)
+    trackMarketingCta('start_auto_open', 'linq')
+    window.location.assign(linqEntry.href)
   }, 300)
 })
 
@@ -43,7 +46,9 @@ onBeforeUnmount(() => {
               Remi to get started</span></p>
           <h1 id="start-title"
             class="max-w-[20ch] text-5xl lg:text-6xl font-normal leading-[1em] tracking-tight text-balance text-center">
-            You can just text <a :href="REMI_TEXT_HREF" :aria-label="`Text Remi at ${REMI_TEXT_NUMBER_DISPLAY}`"
+            You can just text <a :href="linqEntry.href" :aria-label="`Text Remi at ${REMI_TEXT_NUMBER_DISPLAY}`"
+              data-marketing-cta="start_phone_link" data-marketing-destination="linq"
+              :data-attribution-state="linqEntry.attributionState"
               class="text-foreground hover:text-blue-500 transition-colors underline decoration-foreground/10 hover:decoration-blue-500 decoration-1 underline-offset-10 whitespace-nowrap"
               style="text-decoration-skip-ink: none;">{{ REMI_TEXT_NUMBER_DISPLAY }}</a> to get started.
           </h1>
@@ -51,7 +56,9 @@ onBeforeUnmount(() => {
             Scan the code or open Messages to get started. Remi will ask you a few questions, learn how you work, and
             help you get set up.
           </p>
-          <Button :href="REMI_TEXT_HREF" size="lg" class="mt-8"
+          <Button :href="linqEntry.href" size="lg" class="mt-8"
+            data-marketing-cta="start_open_messages" data-marketing-destination="linq"
+            :data-attribution-state="linqEntry.attributionState"
             :aria-label="`Open Messages to text Remi at ${REMI_TEXT_NUMBER_DISPLAY}`">
             <span class="flex items-center gap-2.5">
               <img src="/images/app-logos/ios-messages-icon.svg" alt="" class="size-5 shrink-0" aria-hidden="true">
@@ -60,7 +67,7 @@ onBeforeUnmount(() => {
           </Button>
         </div>
 
-        <figure
+        <figure data-attribution-state="direct_unknown"
           class="relative overflow-hidden rounded-3xl h-full min-h-140 mx-auto flex min-w-0 w-full flex-col items-center justify-between gap-5 py-12 px-8  text-background text-center">
           <img src="/images/features/start-feature-01@2x.webp" class="absolute inset-0 w-full h-full object-cover z-0">
 

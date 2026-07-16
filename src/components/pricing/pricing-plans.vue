@@ -1,8 +1,12 @@
 <script setup>
 import { PhArrowRight, PhCheck } from '@phosphor-icons/vue'
 import { cn } from '../../lib/cn.js'
+import { getOnboardingEntry } from '../../lib/acquisition.js'
 import Button from '../global/button.vue'
 import SiteLogo from '../global/site-logo.vue'
+
+const googleEntry = getOnboardingEntry('google')
+const googleEntryHref = googleEntry.href || 'https://remi.new/login'
 </script>
 
 <template>
@@ -75,7 +79,9 @@ import SiteLogo from '../global/site-logo.vue'
             </ul>
           </div>
 
-          <Button href="https://remi.new/login" class="mt-12 w-full" size="lg">
+          <Button :href="googleEntryHref" class="mt-12 w-full" size="lg"
+            data-marketing-cta="pricing_pro_google" data-marketing-destination="google"
+            :data-attribution-state="googleEntry.attributionState">
             <span class="inline-flex items-center gap-2">
               <span>Try Remi free for 7 days</span>
               <PhArrowRight class="size-4" weight="bold" aria-hidden="true" />
@@ -134,7 +140,9 @@ import SiteLogo from '../global/site-logo.vue'
             </ul>
           </div>
 
-          <Button href="https://remi.new/login" class="mt-12 w-full" size="lg">
+          <Button :href="googleEntryHref" class="mt-12 w-full" size="lg"
+            data-marketing-cta="pricing_scale_google" data-marketing-destination="google"
+            :data-attribution-state="googleEntry.attributionState">
             <span class="inline-flex items-center gap-2">
               <span>Get Remi Scale</span>
               <PhArrowRight class="size-4" weight="bold" aria-hidden="true" />

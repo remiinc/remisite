@@ -96,7 +96,8 @@ onBeforeUnmount(() => {
               {{ solution.title }}
             </h1>
             <div class="flex flex-wrap gap-3 mt-4">
-              <Button href="/start" variant="primary" size="sm">
+              <Button href="/start" variant="primary" size="sm"
+                data-marketing-cta="solution_hero_text_remi" data-marketing-destination="linq">
                 <div class="flex items-center gap-2"><img src="/images/app-logos/ios-messages-icon.svg" alt="Google"
                     class="size-3" /><span>Try for Free</span></div>
               </Button>

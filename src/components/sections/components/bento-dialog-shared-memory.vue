@@ -17,7 +17,8 @@ import Button from '../../global/button.vue'
             project tools into connected memory layers that stay useful over time.
           </p>
           <div class="flex items-center justify-start gap-2">
-            <Button href="/start">Text Remi</Button>
+            <Button href="/start" data-marketing-cta="shared_memory_text_remi"
+              data-marketing-destination="linq">Text Remi</Button>
             <Button variant="secondary">Pricing</Button>
           </div>
         </div>

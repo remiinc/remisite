@@ -184,7 +184,8 @@ const reviewItems = [
             </h2>
 
 
-            <Button href="/start" size="default" variant="white" class="w-fit">
+            <Button href="/start" size="default" variant="white" class="w-fit"
+              data-marketing-cta="security_text_remi" data-marketing-destination="linq">
               <span class="inline-flex items-center gap-2">
                 <span>Text Remi</span>
                 <PhArrowRight class="size-4" weight="bold" aria-hidden="true" />

@@ -28,7 +28,8 @@ defineProps({
           <h2 class="max-w-[20ch] text-4xl lg:text-5xl font-normal leading-none tracking-tight text-balance">
             {{ feature.title }}
           </h2>
-          <Button :href="feature.ctaUrl" variant="white" size="sm">
+          <Button :href="feature.ctaUrl" variant="white" size="sm"
+            data-marketing-cta="solution_feature_text_remi" data-marketing-destination="linq">
             {{ feature.ctaLabel }}
           </Button>
         </div>

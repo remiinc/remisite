@@ -90,7 +90,7 @@ export function initializeAnalytics({
     disable_surveys: true,
     disable_web_experiments: true,
     disable_external_dependency_loading: true,
-    disable_beacon: true,
+    disable_beacon: false,
     disable_compression: true,
     save_campaign_params: false,
     save_referrer: false,
@@ -109,22 +109,48 @@ export function capturePageview(firstTouch = getFirstTouch()) {
   const properties = normalizeAnalyticsProperties(firstTouch)
   if (!properties.landing_path) return
   pageviewCaptured = true
-  analyticsClient.capture('$pageview', properties)
+  try {
+    analyticsClient.capture('$pageview', properties)
+  } catch {
+    // Analytics must never block rendering or navigation.
+  }
 }
 
 export function captureMarketingCta({ cta, destination, ...firstTouch }) {
-  if (!analyticsClient) return
-  analyticsClient.capture('marketing_cta_clicked', {
-    ...normalizeAnalyticsProperties(firstTouch),
-    cta,
-    destination,
-  })
+  if (!analyticsClient) return false
+  try {
+    analyticsClient.capture(
+      'marketing_cta_clicked',
+      {
+        ...normalizeAnalyticsProperties(firstTouch),
+        cta,
+        destination,
+      },
+      { send_instantly: true, transport: 'sendBeacon' },
+    )
+    return true
+  } catch {
+    return false
+  }
 }
 
 export function trackMarketingCta(cta, destination) {
-  captureMarketingCta({
+  return captureMarketingCta({
     ...getFirstTouch(),
     cta,
     destination,
   })
+}
+
+export function installMarketingCtaTracking(documentLike = globalThis.document) {
+  if (!documentLike?.addEventListener) return () => {}
+
+  const onClick = (event) => {
+    const target = event?.target?.closest?.('[data-marketing-cta][data-marketing-destination]')
+    if (!target) return
+    trackMarketingCta(target.dataset.marketingCta, target.dataset.marketingDestination)
+  }
+
+  documentLike.addEventListener('click', onClick, true)
+  return () => documentLike.removeEventListener?.('click', onClick, true)
 }

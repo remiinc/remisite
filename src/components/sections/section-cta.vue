@@ -1,6 +1,5 @@
 <script setup>
 import { PhCaretLeft, PhMicrophone, PhPlus } from '@phosphor-icons/vue'
-import { trackMarketingCta } from '../../lib/analytics.js'
 import Button from '../global/button.vue'
 import SiteIcon from '../global/site-icon.vue'
 </script>
@@ -16,7 +15,7 @@ import SiteIcon from '../global/site-icon.vue'
         <div
           class="relative z-1 flex flex-wrap justify-center md:justify-start gap-3">
           <Button href="/start" variant="white" size="lg"
-            @click="trackMarketingCta('closing_text_remi', 'linq')">
+            data-marketing-cta="closing_text_remi" data-marketing-destination="linq">
             <span class="flex items-center gap-2.5">
               <img src="/images/app-logos/ios-messages-icon.svg" alt="" class="size-5 shrink-0" aria-hidden="true">
               <span>Text Remi</span>

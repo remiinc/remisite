@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted } from 'vue'
+import { computed, onBeforeUnmount, onMounted } from 'vue'
 import AnnouncementBar from './components/global/announcement-bar.vue'
 import BlogIndexPage from './components/blog/blog-index-page.vue'
 import BlogPostPage from './components/blog/blog-post-page.vue'
@@ -20,7 +20,7 @@ import SectionPricing from './components/sections/section-pricing.vue'
 import SectionSolutions from './components/sections/section-solutions.vue'
 import SolutionPage from './components/solutions/solution-page.vue'
 import SolutionsIndexPage from './components/solutions/solutions-index-page.vue'
-import { capturePageview } from './lib/analytics.js'
+import { capturePageview, installMarketingCtaTracking } from './lib/analytics.js'
 
 const pathname = typeof window !== 'undefined' ? window.location.pathname : '/'
 
@@ -34,7 +34,14 @@ const isPricingPage = computed(() => normalizedPath.value === '/pricing')
 const isSecurityPage = computed(() => normalizedPath.value === '/security')
 const isStartPage = computed(() => normalizedPath.value === '/start')
 
-onMounted(() => capturePageview())
+let stopMarketingCtaTracking = null
+
+onMounted(() => {
+  capturePageview()
+  stopMarketingCtaTracking = installMarketingCtaTracking()
+})
+
+onBeforeUnmount(() => stopMarketingCtaTracking?.())
 </script>
 
 <template>
