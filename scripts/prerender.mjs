@@ -8,6 +8,7 @@ import { mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { formatDate, parseFrontmatter, renderMarkdown } from '../src/lib/markdown-content.js'
+import { getFaqGroup } from '../src/lib/faqs.js'
 import { legacySolutionRedirects } from '../src/lib/solution-redirects.js'
 import { resolveSolutionTool } from '../src/lib/solution-tools.js'
 
@@ -25,6 +26,23 @@ const escapeHtml = (value = '') =>
     .replace(/"/g, '&quot;')
 
 const escapeXml = escapeHtml
+
+const faqBody = (type) => {
+  const group = getFaqGroup(type)
+  if (!group) return ''
+
+  return `<section class="mx-auto w-full" style="max-width: 72rem">
+    <h2>${escapeHtml(group.title)}</h2>
+    <dl>
+      ${group.items
+        .map((faq) => `<div>
+        <dt>${escapeHtml(faq.question)}</dt>
+        <dd>${faq.answers.map((answer) => `<p>${escapeHtml(answer)}</p>`).join('')}</dd>
+      </div>`)
+        .join('\n      ')}
+    </dl>
+  </section>`
+}
 
 const loadCollection = (contentDir, basePath, { requiresDate = true, sortBy = 'date' } = {}) =>
   readdirSync(join(root, contentDir))
@@ -57,7 +75,7 @@ const loadCollection = (contentDir, basePath, { requiresDate = true, sortBy = 'd
       return new Date(entryB.date) - new Date(entryA.date)
     })
 
-const posts = loadCollection('src/content/blog', '/blog')
+const posts = loadCollection('src/content/resources', '/resources')
 const solutions = loadCollection('src/content/solutions', '/solutions', {
   requiresDate: false,
   sortBy: 'order',
@@ -71,13 +89,32 @@ if (new Set(solutions.map((solution) => Number(solution.metadata.order))).size !
   throw new Error('Solution guide order values must be unique')
 }
 
+if (new Set(solutions.map((solution) => solution.metadata.useCaseCatalog?.title)).size !== solutions.length) {
+  throw new Error('Solution use case catalog titles must be unique')
+}
+
+if (new Set(solutions.map((solution) => solution.metadata.useCaseCatalog?.description)).size !== solutions.length) {
+  throw new Error('Solution use case catalog descriptions must be unique')
+}
+
 solutions.forEach((solution) => {
   const errors = []
   const stats = Array.isArray(solution.metadata.stats) ? solution.metadata.stats : []
   const useCases = Array.isArray(solution.metadata.useCases) ? solution.metadata.useCases : []
+  const useCaseCatalog = solution.metadata.useCaseCatalog
+  const useCaseCatalogCategories = Array.isArray(useCaseCatalog?.categories) ? useCaseCatalog.categories : []
+  const useCaseCatalogItems = useCaseCatalogCategories.flatMap((category) => (
+    Array.isArray(category?.items) ? category.items : []
+  ))
   const integrations = solution.metadata.integrations
   const integrationTools = Array.isArray(integrations?.tools) ? integrations.tools : []
   const feature = solution.metadata.feature
+  const testimonialFields = [
+    solution.metadata.testimonialQuote,
+    solution.metadata.testimonialName,
+    solution.metadata.testimonialPosition,
+    solution.metadata.testimonialCompanyType,
+  ]
 
   if (!solution.metadata.title) errors.push('title')
   if (!solution.metadata.description) errors.push('description')
@@ -86,6 +123,26 @@ solutions.forEach((solution) => {
   if ((Number(solution.metadata.order) || 0) < 1) errors.push('a positive order')
   if (stats.length !== 3) errors.push('exactly three stats')
   if (useCases.length !== 3) errors.push('exactly three use cases')
+  if (!useCaseCatalog?.title || !useCaseCatalog?.description) {
+    errors.push('use case catalog title and description')
+  }
+  if (useCaseCatalogCategories.length !== 4) {
+    errors.push('exactly four use case catalog categories')
+  }
+  if (useCaseCatalogCategories.some((category) => (
+    !category?.title
+    || !Array.isArray(category.items)
+    || category.items.length !== 4
+    || category.items.some((item) => !item?.title || !item?.description)
+  ))) {
+    errors.push('four complete items in every use case catalog category')
+  }
+  if (new Set(useCaseCatalogCategories.map((category) => category?.title)).size !== useCaseCatalogCategories.length) {
+    errors.push('unique use case catalog category titles')
+  }
+  if (new Set(useCaseCatalogItems.map((item) => item?.title)).size !== useCaseCatalogItems.length) {
+    errors.push('unique use case catalog item titles')
+  }
   if (!integrations?.title || !integrations?.description) {
     errors.push('integration section title and description')
   }
@@ -101,13 +158,15 @@ solutions.forEach((solution) => {
   }
   if (feature && (
     !feature.title
-    || !feature.description
     || !feature.imageUrl
     || !feature.imageAlt
     || !feature.ctaLabel
     || !feature.ctaUrl
   )) {
     errors.push('complete optional feature content')
+  }
+  if (testimonialFields.some(Boolean) && testimonialFields.some((value) => !value)) {
+    errors.push('complete optional testimonial content')
   }
   if (stats.some((stat) => !stat.sourceLabel || !stat.sourceUrl)) {
     errors.push('source labels and URLs for every stat')
@@ -117,6 +176,16 @@ solutions.forEach((solution) => {
     throw new Error(`Invalid solution guide "${solution.slug}": missing ${errors.join(', ')}`)
   }
 })
+
+const solutionCatalogItemCount = solutions.reduce((total, solution) => (
+  total + solution.metadata.useCaseCatalog.categories.reduce((categoryTotal, category) => (
+    categoryTotal + category.items.length
+  ), 0)
+), 0)
+
+if (solutionCatalogItemCount !== 160) {
+  throw new Error(`Expected 160 solution catalog use cases, found ${solutionCatalogItemCount}`)
+}
 
 const setHead = (html, { title, description, url, ogType, ogImage, jsonLd = [] }) => {
   let output = html
@@ -260,7 +329,7 @@ const articleBody = (entry, sectionLabel) => `
     <h1>${escapeHtml(entry.title)}</h1>
     <p>${escapeHtml(entry.description)}</p>
     ${entry.html}
-    <p><a href="/qualify/contact">See what's slipping through your inbox. Get started with Remi.</a></p>
+    <p><a href="https://remi.new/login">See what's slipping through your inbox. Get started with Remi.</a></p>
   </article>
 </main>`
 
@@ -283,9 +352,13 @@ const indexBody = (label, description, entries) => `
 const solutionBody = (entry) => {
   const stats = entry.metadata.stats
   const useCases = entry.metadata.useCases
+  const useCaseCatalog = entry.metadata.useCaseCatalog
   const integrations = entry.metadata.integrations
   const feature = entry.metadata.feature
-  const hasTestimonial = entry.metadata.testimonialQuote && entry.metadata.testimonialAuthor
+  const hasTestimonial = entry.metadata.testimonialQuote
+    && entry.metadata.testimonialName
+    && entry.metadata.testimonialPosition
+    && entry.metadata.testimonialCompanyType
 
   return `
 <main class="px-6 pt-32 pb-20">
@@ -293,7 +366,29 @@ const solutionBody = (entry) => {
     <p>Solutions / ${escapeHtml(entry.metadata.industryLabel)}</p>
     <h1>${escapeHtml(entry.title)}</h1>
     <p>${escapeHtml(entry.description)}</p>
-    <p><a href="/qualify">Book a demo</a></p>
+    <p><a href="https://remi.new/login">Book a demo</a></p>
+  </section>
+  <section class="mx-auto w-full" style="max-width: 72rem">
+    <p>Use cases</p>
+    <h2>${escapeHtml(useCaseCatalog.title)}</h2>
+    <p>${escapeHtml(useCaseCatalog.description)}</p>
+    ${useCaseCatalog.categories
+      .map(
+        (category) => `<section>
+      <h3>${escapeHtml(category.title)}</h3>
+      <ul>
+        ${category.items
+          .map(
+            (item) => `<li>
+          <h4>${escapeHtml(item.title)}</h4>
+          <p>${escapeHtml(item.description)}</p>
+        </li>`,
+          )
+          .join('\n        ')}
+      </ul>
+    </section>`,
+      )
+      .join('\n    ')}
   </section>
   <section class="mx-auto w-full" style="max-width: 72rem">
     <h2>Remi for ${escapeHtml(entry.metadata.industryLabel)}:</h2>
@@ -340,13 +435,13 @@ const solutionBody = (entry) => {
   ${feature ? `<section class="mx-auto w-full" style="max-width: 72rem">
     <img src="${escapeHtml(feature.imageUrl)}" alt="${escapeHtml(feature.imageAlt)}">
     <h2>${escapeHtml(feature.title)}</h2>
-    <p>${escapeHtml(feature.description)}</p>
     <p><a href="${escapeHtml(feature.ctaUrl)}">${escapeHtml(feature.ctaLabel)}</a></p>
   </section>` : ''}
   ${hasTestimonial ? `<figure>
     <blockquote>${escapeHtml(entry.metadata.testimonialQuote)}</blockquote>
-    <figcaption>${escapeHtml(entry.metadata.testimonialAuthor)}${entry.metadata.testimonialRole ? `, ${escapeHtml(entry.metadata.testimonialRole)}` : ''}</figcaption>
+    <figcaption>${escapeHtml(entry.metadata.testimonialName)}, ${escapeHtml(entry.metadata.testimonialPosition)}, ${escapeHtml(entry.metadata.testimonialCompanyType)}</figcaption>
   </figure>` : ''}
+  ${faqBody('solutions')}
 </main>`
 }
 
@@ -367,6 +462,7 @@ const solutionsIndexBody = () => `
         .join('\n      ')}
     </ul>
   </section>
+  ${faqBody('solutions')}
 </main>`
 
 const redirectBody = (target) => `
@@ -386,8 +482,9 @@ const pricingBody = () => `
     <p>$119 per month, or $99 per month billed annually. Built for owner-run teams ready to hand Remi the daily chase list.</p>
     <h2>Scale</h2>
     <p>$239 per month, or $199 per month billed annually. Built for busier teams with more open loops, more customers, and more work in motion.</p>
-    <p><a href="/qualify">Start free trial</a></p>
+    <p><a href="https://remi.new/login">Start free trial</a></p>
   </section>
+  ${faqBody('pricing')}
 </main>`
 
 const securityBody = () => `
@@ -409,8 +506,9 @@ const securityBody = () => `
     <p><a href="mailto:security@remi.new">Contact security</a></p>
     <h2>Serious about security?</h2>
     <p>Book a demo to see Remi in action.</p>
-    <p><a href="/qualify">Book a demo</a></p>
+    <p><a href="https://remi.new/login">Book a demo</a></p>
   </section>
+  ${faqBody('security')}
 </main>`
 
 // Blog posts
@@ -458,13 +556,13 @@ solutions.forEach((solution) => writePage(solution.path, renderSolutionPage(solu
 
 // Index pages
 writePage(
-  '/blog',
+  '/resources',
   injectBody(
     setHead(template, {
       title: 'Blog | Remi',
       description:
         'Practical guides for owner-run businesses: getting paid, following up on quotes, and keeping the money side of the business moving.',
-      url: `${SITE}/blog`,
+      url: `${SITE}/resources`,
       ogType: 'website',
     }),
     indexBody(
@@ -549,7 +647,7 @@ const staticUrls = [
   { loc: `${SITE}/`, priority: '1.0' },
   { loc: `${SITE}/pricing`, priority: '0.9' },
   { loc: `${SITE}/security`, priority: '0.8' },
-  { loc: `${SITE}/blog`, priority: '0.8' },
+  { loc: `${SITE}/resources`, priority: '0.8' },
   { loc: `${SITE}/solutions`, priority: '0.9' },
 ]
 
@@ -589,7 +687,7 @@ const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>The Remi Blog</title>
-    <link>${SITE}/blog</link>
+    <link>${SITE}/resources</link>
     <atom:link href="${SITE}/rss.xml" rel="self" type="application/rss+xml" />
     <description>Practical guides for owner-run businesses: getting paid, following up on quotes, and keeping the money side moving.</description>
     <language>en-us</language>

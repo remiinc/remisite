@@ -10,7 +10,7 @@ ogDescription: "Why do clients pay late? The five real reasons ranked, plus the 
 ogImage: "/images/og-image.png"
 ctaTitle: "See what's slipping through your inbox"
 ctaText: "Connect your inbox and Remi shows you the unpaid invoices, unanswered quotes, and waiting customers in about 60 seconds. You get the report. We delete everything unless you hire her."
-ctaHref: "/qualify/contact"
+ctaHref: "https://remi.new/login"
 ctaLabel: "Run the free check"
 faq:
   - q: "How long should I wait before following up on an unpaid invoice?"

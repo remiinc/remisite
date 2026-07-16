@@ -4,7 +4,7 @@ import { latestBlogPost } from '../../lib/blog-posts'
 
 const announcementText =
   latestBlogPost?.metadata.announcement || latestBlogPost?.title || 'Read the latest Remi update'
-const announcementHref = latestBlogPost?.path || '/blog'
+const announcementHref = latestBlogPost?.path || '/resources'
 const announcementLabel = latestBlogPost
   ? `Read latest blog post: ${latestBlogPost.title}`
   : 'Read the latest Remi update'

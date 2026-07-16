@@ -5,10 +5,13 @@ import Button from '../global/button.vue'
 import GlobalFooter from '../global/global-footer.vue'
 import GlobalHeader from '../header/global-header.vue'
 import SectionCta from '../sections/section-cta.vue'
+import SectionFaq from '../sections/section-faq.vue'
 import SectionSecurityPrinciples from '../sections/section-security-principles.vue'
 import SolutionFeature from './solution-feature.vue'
 import SolutionIntegrations from './solution-integrations.vue'
 import SolutionIphone from './solution-iphone.vue'
+import SolutionTestimonial from './solution-testimonial.vue'
+import SolutionUseCaseCatalog from './solution-use-case-catalog.vue'
 
 const requestedSlug = computed(() => {
   if (typeof window === 'undefined') return ''
@@ -87,12 +90,21 @@ onBeforeUnmount(() => {
           <div class="flex max-w-4xl self-end flex-col items-start gap-6">
             <p class="text-xs font-medium leading-none text-muted-foreground flex items-center gap-4">
               <span class="uppercase text-foreground">Solutions</span>
-              <span class="text-sm tracking-tight">{{ solution.industryLabel }}</span>
+              <span class="text-sm tracking-tight font-normal">{{ solution.industryLabel }}</span>
             </p>
             <h1 class="text-4xl font-normal leading-none tracking-tight text-balance md:text-5xl">
               {{ solution.title }}
             </h1>
-            <Button href="/qualify" size="sm" variant="secondary" class="mt-4">Book a demo</Button>
+            <div class="flex flex-wrap gap-3 mt-4">
+              <Button variant="primary" size="sm">
+                <div class="flex items-center gap-2"><img src="/images/app-logos/ios-messages-icon.svg" alt="Google"
+                    class="size-3" /><span>Try for Free</span></div>
+              </Button>
+              <Button variant="secondary" size="sm">
+                <div class="flex items-center gap-2"><img src="/images/app-logos/gmail.svg" alt="Google"
+                    class="size-3" /><span>Sign up with Gmail</span></div>
+              </Button>
+            </div>
           </div>
 
           <figure
@@ -118,7 +130,7 @@ onBeforeUnmount(() => {
             Remi for {{ solution.industryLabel }}
           </h2>
 
-          <dl class="grid gap-3 md:grid-cols-3 gap-x-4 divide-y divide-border md:divide-none">
+          <dl class="grid gap-3 md:max-w-4xl md:justify-self-end md:grid-cols-3 gap-x-4 divide-y divide-border md:divide-none">
             <div v-for="stat in solution.stats" :key="`${stat.metric}-${stat.label}`"
               class="flex flex-col justify-between gap-6 py-8 md:py-0 first:pt-0 last:pb-0">
               <dd
@@ -141,10 +153,8 @@ onBeforeUnmount(() => {
 
       <section class="w-full px-6 py-16 md:py-24" data-solution-use-cases>
         <div class="mx-auto flex w-full max-w-(--content-width) flex-col gap-24 md:gap-32">
-          <h2
-            class="max-w-4xl text-4xl font-normal leading-none tracking-tight text-balance md:text-5xl"
-            data-solution-use-cases-title
-          >
+          <h2 class="max-w-4xl text-4xl font-normal leading-none tracking-tight text-balance md:text-5xl"
+            data-solution-use-cases-title>
             {{ solution.useCasesTitle }}
           </h2>
 
@@ -160,36 +170,21 @@ onBeforeUnmount(() => {
                 {{ useCase.description }}
               </p>
 
-              <div
-                class="mt-10 w-full border-t border-border/60 pt-5"
-                aria-label="How Remi handles it"
-                data-solution-workflow
-              >
+              <div class="mt-10 w-full border-t border-border/60 pt-5" aria-label="How Remi handles it"
+                data-solution-workflow>
                 <p class="text-xs font-medium uppercase leading-tight text-muted-foreground/50">
                   How Remi handles it
                 </p>
                 <ol class="mt-5 flex flex-col">
-                  <li
-                    v-for="(step, stepIndex) in useCase.workflow"
-                    :key="`${step.key}-${stepIndex}`"
+                  <li v-for="(step, stepIndex) in useCase.workflow" :key="`${step.key}-${stepIndex}`"
                     class="grid min-w-0 grid-cols-[1.5rem_1fr] gap-3 pb-5 last:pb-0"
-                    :data-solution-workflow-step="step.key"
-                  >
+                    :data-solution-workflow-step="step.key">
                     <div class="relative flex justify-center">
-                      <img
-                        :src="step.iconUrl"
-                        alt=""
-                        class="relative z-1 size-5 shrink-0 object-contain"
-                        aria-hidden="true"
-                        loading="lazy"
-                        decoding="async"
-                      >
-                      <span
-                        v-if="stepIndex < useCase.workflow.length - 1"
-                        class="absolute top-6 -bottom-5 left-1/2 w-px -translate-x-1/2 bg-border/70"
-                        aria-hidden="true"
-                        data-solution-workflow-line
-                      />
+                      <img :src="step.iconUrl" alt="" class="relative z-1 size-5 shrink-0 object-contain"
+                        aria-hidden="true" loading="lazy" decoding="async">
+                      <span v-if="stepIndex < useCase.workflow.length - 1"
+                        class="absolute top-6 -bottom-5 left-1/2 w-px -translate-x-1/2 bg-border/70" aria-hidden="true"
+                        data-solution-workflow-line />
                     </div>
                     <p class="min-w-0 text-sm leading-snug text-foreground/70">
                       {{ step.action }}
@@ -204,11 +199,8 @@ onBeforeUnmount(() => {
               :aria-label="!useCase.thread && useCase.imageUrl ? useCase.imageAlt || useCase.title : undefined"
               :aria-hidden="!useCase.thread && !useCase.imageUrl ? 'true' : undefined">
               <div v-if="useCase.thread" class="flex items-start justify-center overflow-hidden pt-12">
-                <SolutionIphone
-                  class="w-[min(74%,24rem)] md:w-[min(58%,26rem)] xl:w-[min(50%,28rem)]"
-                  :messages="useCase.thread.messages"
-                  :time="useCase.thread.time"
-                />
+                <SolutionIphone class="w-[min(74%,24rem)] md:w-[min(58%,26rem)] xl:w-[min(50%,28rem)]"
+                  :messages="useCase.thread.messages" :time="useCase.thread.time" />
               </div>
               <img v-else-if="useCase.imageUrl" :src="useCase.imageUrl" :alt="useCase.imageAlt || useCase.title"
                 class="absolute inset-0 size-full object-cover" loading="lazy" decoding="async">
@@ -221,19 +213,7 @@ onBeforeUnmount(() => {
 
       <SolutionFeature v-if="solution.feature" :feature="solution.feature" />
 
-      <section v-if="solution.testimonial" class="w-full px-6 py-16 md:py-24" aria-label="Customer testimonial"
-        data-solution-testimonial>
-        <figure
-          class="mx-auto flex min-h-96 w-full max-w-(--content-width) flex-col items-center justify-center gap-12 rounded-3xl bg-muted p-8 text-center md:p-16">
-          <blockquote class="max-w-4xl text-3xl font-normal leading-tight tracking-tight text-balance md:text-5xl">
-            &ldquo;{{ solution.testimonial.quote }}&rdquo;
-          </blockquote>
-          <figcaption class="text-sm text-muted-foreground">
-            {{ solution.testimonial.author }}<span v-if="solution.testimonial.role">, {{ solution.testimonial.role
-              }}</span>
-          </figcaption>
-        </figure>
-      </section>
+      <SolutionUseCaseCatalog :catalog="solution.useCaseCatalog" />
 
       <section class="w-full px-6 pt-20 pb-0" data-section-security-intro>
         <span class="mx-auto flex w-full max-w-(--content-width) items-center gap-6">
@@ -248,6 +228,10 @@ onBeforeUnmount(() => {
         </span>
       </section>
       <SectionSecurityPrinciples id="solution-security" />
+
+      <!-- <SolutionTestimonial v-if="solution.testimonial" :testimonial="solution.testimonial" /> -->
+
+      <SectionFaq type="solutions" />
 
       <SectionCta />
     </main>

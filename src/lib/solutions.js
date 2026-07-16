@@ -47,7 +47,6 @@ const normalizeFeature = (feature) => {
 
   return {
     title: String(feature.title || ''),
-    description: String(feature.description || ''),
     imageUrl: String(feature.imageUrl || ''),
     imageAlt: String(feature.imageAlt || ''),
     ctaLabel: String(feature.ctaLabel || ''),
@@ -103,6 +102,22 @@ const normalizeUseCases = (useCases) =>
     }))
     .filter((useCase) => useCase.title && useCase.description)
 
+const normalizeUseCaseCatalog = (catalog) => {
+  if (!catalog || typeof catalog !== 'object') return null
+
+  return {
+    title: String(catalog.title || ''),
+    description: String(catalog.description || ''),
+    categories: (Array.isArray(catalog.categories) ? catalog.categories : []).map((category) => ({
+      title: String(category?.title || ''),
+      items: (Array.isArray(category?.items) ? category.items : []).map((item) => ({
+        title: String(item?.title || ''),
+        description: String(item?.description || ''),
+      })),
+    })),
+  }
+}
+
 const isValidThread = (thread) => {
   if (!thread || thread.messages.length < 3 || thread.messages.length > 6) return false
 
@@ -116,11 +131,19 @@ const isValidThread = (thread) => {
 
 const normalizeSolution = (entry) => {
   const { metadata } = entry
-  const testimonial = metadata.testimonialQuote && metadata.testimonialAuthor
+  const testimonialFields = [
+    metadata.testimonialQuote,
+    metadata.testimonialName,
+    metadata.testimonialPosition,
+    metadata.testimonialCompanyType,
+  ]
+  const testimonial = testimonialFields.some(Boolean)
     ? {
-        quote: metadata.testimonialQuote,
-        author: metadata.testimonialAuthor,
-        role: metadata.testimonialRole || '',
+        quote: String(metadata.testimonialQuote || ''),
+        name: String(metadata.testimonialName || ''),
+        position: String(metadata.testimonialPosition || ''),
+        companyType: String(metadata.testimonialCompanyType || ''),
+        placeholder: metadata.testimonialPlaceholder === true,
       }
     : null
 
@@ -136,6 +159,7 @@ const normalizeSolution = (entry) => {
     useCasesTitle: metadata.useCasesTitle || '',
     stats: normalizeStats(metadata.stats),
     useCases: normalizeUseCases(metadata.useCases),
+    useCaseCatalog: normalizeUseCaseCatalog(metadata.useCaseCatalog),
     integrations: normalizeIntegrations(metadata.integrations),
     feature: normalizeFeature(metadata.feature),
     testimonial,
@@ -164,6 +188,35 @@ const validateSolution = (solution) => {
   ))) {
     errors.push('a valid 4-6 step workflow with a Messages handoff for every use case')
   }
+  if (!solution.useCaseCatalog?.title || !solution.useCaseCatalog?.description) {
+    errors.push('use case catalog title and description')
+  }
+  if (solution.useCaseCatalog?.categories.length !== 4) {
+    errors.push('exactly four use case catalog categories')
+  }
+  if (solution.useCaseCatalog?.categories.some((category) => (
+    !category.title
+    || category.items.length !== 4
+    || category.items.some((item) => !item.title || !item.description)
+  ))) {
+    errors.push('four complete items in every use case catalog category')
+  }
+  if (
+    solution.useCaseCatalog
+    && new Set(solution.useCaseCatalog.categories.map((category) => category.title)).size
+      !== solution.useCaseCatalog.categories.length
+  ) {
+    errors.push('unique use case catalog category titles')
+  }
+  if (solution.useCaseCatalog) {
+    const catalogItemTitles = solution.useCaseCatalog.categories.flatMap((category) => (
+      category.items.map((item) => item.title)
+    ))
+
+    if (new Set(catalogItemTitles).size !== catalogItemTitles.length) {
+      errors.push('unique use case catalog item titles')
+    }
+  }
   if (!solution.integrations?.title || !solution.integrations?.description) {
     errors.push('integration section title and description')
   }
@@ -188,13 +241,20 @@ const validateSolution = (solution) => {
   }
   if (solution.feature && (
     !solution.feature.title
-    || !solution.feature.description
     || !solution.feature.imageUrl
     || !solution.feature.imageAlt
     || !solution.feature.ctaLabel
     || !solution.feature.ctaUrl
   )) {
     errors.push('complete optional feature content')
+  }
+  if (solution.testimonial && (
+    !solution.testimonial.quote
+    || !solution.testimonial.name
+    || !solution.testimonial.position
+    || !solution.testimonial.companyType
+  )) {
+    errors.push('complete optional testimonial content')
   }
   if (solution.stats.some((stat) => !stat.sourceLabel || !stat.sourceUrl)) {
     errors.push('a source label and URL for every stat')
@@ -220,8 +280,27 @@ if (new Set(normalizedSolutions.map((solution) => solution.order)).size !== norm
   throw new Error('Solution guide order values must be unique')
 }
 
+if (new Set(normalizedSolutions.map((solution) => solution.useCaseCatalog.title)).size !== normalizedSolutions.length) {
+  throw new Error('Solution use case catalog titles must be unique')
+}
+
+if (
+  new Set(normalizedSolutions.map((solution) => solution.useCaseCatalog.description)).size
+    !== normalizedSolutions.length
+) {
+  throw new Error('Solution use case catalog descriptions must be unique')
+}
+
 if (normalizedSolutions.reduce((total, solution) => total + solution.integrations.tools.length, 0) !== 50) {
   throw new Error('Expected 50 solution integration entries')
+}
+
+if (normalizedSolutions.reduce((total, solution) => (
+  total + solution.useCaseCatalog.categories.reduce((categoryTotal, category) => (
+    categoryTotal + category.items.length
+  ), 0)
+), 0) !== 160) {
+  throw new Error('Expected 160 solution catalog use cases')
 }
 
 export const solutions = normalizedSolutions

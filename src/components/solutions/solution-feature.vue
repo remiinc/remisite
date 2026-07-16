@@ -10,9 +10,9 @@ defineProps({
 </script>
 
 <template>
-  <section class="w-full px-6 py-16 md:py-24" data-solution-feature>
+  <section class="w-full px-6 py-12" data-solution-feature>
     <article
-      class="relative mx-auto aspect-[4/5] w-full max-w-(--content-width) overflow-hidden rounded-3xl bg-foreground md:aspect-[2/1]"
+      class="relative grid mx-auto min-h-160 md:min-h-120 w-full max-w-(--content-width) overflow-hidden rounded-3xl bg-foreground"
     >
       <img
         :src="feature.imageUrl"
@@ -21,16 +21,13 @@ defineProps({
         loading="lazy"
         decoding="async"
       >
-      <div class="absolute inset-0 bg-black/45" aria-hidden="true" />
+      <div class="absolute inset-0 bg-linear-to-r from-black/40 from-20% to-black/20 to-75% transition-colors duration-300" aria-hidden="true" />
 
-      <div class="relative z-1 flex size-full items-end p-7 md:p-12">
-        <div class="flex max-w-2xl flex-col items-start gap-5 text-background">
-          <h2 class="max-w-[14ch] text-4xl font-normal leading-none tracking-tight text-balance md:text-5xl">
+      <div class="relative z-1 h-full flex flex-col items-stretch p-7 md:p-12">
+        <div class="flex flex-1 max-w-2xl flex-col items-start justify-between gap-12 text-background">
+          <h2 class="max-w-[20ch] text-4xl lg:text-5xl font-normal leading-none tracking-tight text-balance">
             {{ feature.title }}
           </h2>
-          <p class="max-w-xl text-base leading-snug text-pretty text-background/75 md:text-lg">
-            {{ feature.description }}
-          </p>
           <Button :href="feature.ctaUrl" variant="white" size="sm">
             {{ feature.ctaLabel }}
           </Button>

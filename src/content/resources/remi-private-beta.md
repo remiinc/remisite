@@ -13,7 +13,7 @@ ogDescription: "Private beta is open for Remi, the AI operations assistant for c
 ogImage: "/images/og-image.png"
 ctaTitle: "Want Remi in your operations stack?"
 ctaText: "Join the private beta and show us where client follow-ups, owners, and next steps still get stuck."
-ctaHref: "/qualify/contact"
+ctaHref: "https://remi.new/login"
 ctaLabel: "Request Access"
 ---
 

@@ -5,6 +5,7 @@ import { cn } from '../../lib/cn'
 import GlobalFooter from '../global/global-footer.vue'
 import GlobalHeader from '../header/global-header.vue'
 import SectionCta from '../sections/section-cta.vue'
+import SectionFaq from '../sections/section-faq.vue'
 
 const originalTitle = typeof document !== 'undefined' ? document.title : ''
 
@@ -70,6 +71,8 @@ onBeforeUnmount(() => {
           </div>
         </div>
       </section>
+
+      <SectionFaq type="solutions" />
 
       <SectionCta />
     </main>

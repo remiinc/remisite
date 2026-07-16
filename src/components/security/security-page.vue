@@ -17,6 +17,7 @@ import Button from '../global/button.vue'
 import GlobalFooter from '../global/global-footer.vue'
 import GlobalHeader from '../header/global-header.vue'
 import SectionCta from '../sections/section-cta.vue'
+import SectionFaq from '../sections/section-faq.vue'
 import SectionSecurityPrinciples from '../sections/section-security-principles.vue'
 
 if (typeof document !== 'undefined') {
@@ -183,7 +184,7 @@ const reviewItems = [
             </h2>
 
 
-            <Button href="/qualify" size="default" variant="white" class="w-fit">
+            <Button href="https://remi.new/login" size="default" variant="white" class="w-fit">
               <span class="inline-flex items-center gap-2">
                 <span>Book a demo</span>
                 <PhArrowRight class="size-4" weight="bold" aria-hidden="true" />
@@ -207,6 +208,8 @@ const reviewItems = [
           </div>
         </div>
       </section>
+
+      <SectionFaq type="security" />
 
       <SectionCta />
     </main>

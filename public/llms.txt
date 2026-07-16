@@ -17,7 +17,7 @@ services, agencies, consultancies, and similar.
   follow-up, and running the money side of an owner-run business
 - [Solutions](https://remi.new/solutions): industry guides for contractors,
   home services, auto repair shops, cleaning businesses, and agencies
-- [Get Started](https://remi.new/qualify/contact): connect your inbox and
+- [Get Started](https://remi.new/login): connect your inbox and
   see what's slipping through it
 
 ## Feeds

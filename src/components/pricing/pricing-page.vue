@@ -179,7 +179,7 @@ if (typeof document !== 'undefined') {
                   </ul>
                 </div>
 
-                <Button href="/qualify" class="mt-12 w-full" size="lg">
+                <Button href="https://remi.new/login" class="mt-12 w-full" size="lg">
                   <span class="inline-flex items-center gap-2">
                     <span>Get Remi Pro</span>
                     <PhArrowRight class="size-4" weight="bold" aria-hidden="true" />
@@ -241,7 +241,7 @@ if (typeof document !== 'undefined') {
                   </ul>
                 </div>
 
-                <Button href="/qualify" class="mt-12 w-full" size="lg">
+                <Button href="https://remi.new/login" class="mt-12 w-full" size="lg">
                   <span class="inline-flex items-center gap-2">
                     <span>Get Remi Scale</span>
                     <PhArrowRight class="size-4" weight="bold" aria-hidden="true" />
@@ -255,7 +255,7 @@ if (typeof document !== 'undefined') {
 
       <SectionWhyRemi />
 
-      <SectionFaq />
+      <SectionFaq type="pricing" />
 
       <SectionCta />
     </main>

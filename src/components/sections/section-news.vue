@@ -63,7 +63,7 @@ watch(
           <h2 class="text-4xl font-normal tracking-tight text-balance text-foreground">
             News
           </h2>
-          <Button href="/blog" variant="secondary" size="sm">See more</Button>
+          <Button href="/resources" variant="secondary" size="sm">See more</Button>
         </div>
 
         <div v-if="newsPosts.length > 1" class="flex items-center gap-6">

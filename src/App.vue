@@ -8,7 +8,6 @@ import GlobalHeader from './components/header/global-header.vue'
 import LegacyRedirect from './components/global/legacy-redirect.vue'
 import HomeHeroVideo from './components/home/home-hero-video.vue'
 import PricingPage from './components/pricing/pricing-page.vue'
-import QualifyContact from './components/qualify/qualify-contact.vue'
 import SecurityPage from './components/security/security-page.vue'
 import { getLegacySolutionRedirect } from './lib/solution-redirects'
 import SectionCta from './components/sections/section-cta.vue'
@@ -20,30 +19,20 @@ import SolutionPage from './components/solutions/solution-page.vue'
 import SolutionsIndexPage from './components/solutions/solutions-index-page.vue'
 
 const pathname = typeof window !== 'undefined' ? window.location.pathname : '/'
-const searchString = typeof window !== 'undefined' ? window.location.search : ''
 
 const normalizedPath = computed(() => pathname.replace(/\/+$/, '') || '/')
-const isQualifyPage = computed(() =>
-  normalizedPath.value === '/qualify' || normalizedPath.value === '/qualify/contact',
-)
-
 const legacyRedirectTarget = computed(() => getLegacySolutionRedirect(normalizedPath.value))
 const isSolutionsIndexPage = computed(() => normalizedPath.value === '/solutions')
 const isSolutionPage = computed(() => normalizedPath.value.startsWith('/solutions/'))
-const isBlogIndexPage = computed(() => normalizedPath.value === '/blog')
-const isBlogPostPage = computed(() => normalizedPath.value.startsWith('/blog/'))
+const isBlogIndexPage = computed(() => normalizedPath.value === '/resources')
+const isBlogPostPage = computed(() => normalizedPath.value.startsWith('/resources/'))
 const isPricingPage = computed(() => normalizedPath.value === '/pricing')
 const isSecurityPage = computed(() => normalizedPath.value === '/security')
 
-const qualifyContactEmail = computed(() => {
-  const params = new URLSearchParams(searchString)
-  return params.get('email') || ''
-})
 </script>
 
 <template>
-  <QualifyContact v-if="isQualifyPage" :email="qualifyContactEmail" />
-  <LegacyRedirect v-else-if="legacyRedirectTarget" :to="legacyRedirectTarget" />
+  <LegacyRedirect v-if="legacyRedirectTarget" :to="legacyRedirectTarget" />
   <SolutionsIndexPage v-else-if="isSolutionsIndexPage" />
   <SolutionPage v-else-if="isSolutionPage" />
   <PricingPage v-else-if="isPricingPage" />

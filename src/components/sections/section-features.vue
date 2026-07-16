@@ -3,6 +3,28 @@ import { cn } from '../../lib/cn.js'
 import Button from '../global/button.vue'
 import SectionSecurityPrinciples from './section-security-principles.vue'
 import { PhCheck, PhNumberCircleOne, PhNumberCircleTwo, PhNumberCircleThree, PhNumberCircleFour } from '@phosphor-icons/vue';
+
+const scrollToSolutions = (event) => {
+  const target = document.getElementById('solutions')
+  if (!target) return
+  event.preventDefault()
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' })
+  if (window.history?.replaceState) {
+    window.history.replaceState(null, '', '#solutions')
+  }
+}
+
+const featureMessages = [
+  { text: 'Three invoices are overdue. 💸', sender: 'remi', x: '42%', y: '15%', rotation: '-1.5deg' },
+  { text: 'What needs me today?', sender: 'user', x: '12%', y: '24%', rotation: '2deg' },
+  { text: 'The signed estimate is attached. 📎', sender: 'remi', x: '28%', y: '33%', rotation: '-2deg' },
+  { text: 'Draft the follow-up.', sender: 'user', x: '55%', y: '42%', rotation: '1deg' },
+  { text: 'Tomorrow has a 2:30 opening. 📅', sender: 'remi', x: '8%', y: '51%', rotation: '1.5deg' },
+  { text: 'Put that in writing.', sender: 'user', x: '48%', y: '60%', rotation: '-2deg' },
+  { text: 'The change order is still waiting. 👀', sender: 'remi', x: '25%', y: '69%', rotation: '2deg' },
+  { text: 'Remind me Friday.', sender: 'user', x: '15%', y: '78%', rotation: '-1deg' },
+]
 </script>
 
 <template>
@@ -10,7 +32,9 @@ import { PhCheck, PhNumberCircleOne, PhNumberCircleTwo, PhNumberCircleThree, PhN
   <section id="features" :class="cn('w-full scroll-mt-24 px-6 py-16')" data-section-features>
     <div class="section-container mx-auto w-full max-w-(--content-width)">
       <div class="section-layout w-full grid lg:grid-cols-2 gap-x-16 lg:gap-x-24 gap-y-12">
-        <div class="section-visual w-full min-h-120 h-full bg-muted rounded-3xl order-1 lg:order-2"></div>
+        <div class="section-visual w-full min-h-120 h-full bg-muted rounded-3xl order-1 lg:order-2 overflow-hidden">
+          <img src="/images/features/home-feature-01@2x.jpg" alt="Remi" class="w-full h-full object-cover" />
+        </div>
         <div class="section-content w-full py-4 flex flex-col justify-center order-2 lg:order-1">
           <div class="flex flex-col flex-1">
             <h2 class="text-3xl lg:text-4xl font-normal tracking-tight text-balance mb-6">
@@ -66,7 +90,35 @@ import { PhCheck, PhNumberCircleOne, PhNumberCircleTwo, PhNumberCircleThree, PhN
   <section id="features" :class="cn('w-full scroll-mt-24 px-6 py-16')" data-section-features>
     <div class="section-container mx-auto w-full max-w-(--content-width)">
       <div class="section-layout w-full grid lg:grid-cols-2 gap-x-16 lg:gap-x-24 gap-y-12">
-        <div class="section-visual w-full min-h-120 h-full bg-muted rounded-3xl"></div>
+        <div
+          class="section-visual relative w-full min-h-120 h-full bg-muted rounded-3xl overflow-hidden text-[clamp(0.875rem,1.5vw,1.25rem)]">
+          <img src="/images/features/home-feature-02@2x.jpg" alt="Remi"
+            class="absolute inset-0 w-full h-full object-cover" />
+
+          <div class="absolute inset-0 z-10 flex items-center justify-center">
+            <div
+              v-for="message in featureMessages"
+              :key="message.text"
+              class="absolute"
+              :style="{
+                left: message.x,
+                top: message.y,
+                transform: `rotate(${message.rotation})`,
+              }"
+            >
+              <div
+                :class="cn(
+                  'relative inline-block w-fit px-[0.875em] py-[0.5em] text-sm md:text-base leading-tight tracking-tight',
+                  message.sender === 'user'
+                    ? 'rounded-l-[1.25em] rounded-tr-[1.25em] rounded-br-[0.25em] bg-blue-400 text-white'
+                    : 'rounded-r-[1.25em] rounded-tl-[1.25em] rounded-bl-[0.25em] bg-background/95 text-foreground backdrop-blur-sm',
+                )"
+              >
+                {{ message.text }}
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="section-content w-full py-4 flex flex-col justify-center">
           <div class="flex flex-col flex-1">
             <h2 class="text-3xl lg:text-4xl font-normal tracking-tight text-balance mb-6">
@@ -103,8 +155,8 @@ import { PhCheck, PhNumberCircleOne, PhNumberCircleTwo, PhNumberCircleThree, PhN
               </li>
             </ul>
             <div class="flex flex-wrap gap-3 mt-auto">
-              <Button href="/security" variant="secondary" size="sm">
-                Learn more about security
+              <Button href="/#solutions" variant="secondary" size="sm" @click="scrollToSolutions">
+                See solutions
               </Button>
             </div>
           </div>

@@ -13,7 +13,7 @@ defineProps({
       <header class="flex flex-col items-start gap-5 md:sticky md:top-[calc(var(--header-height)+2em)] md:self-start">
         <p class="text-xs font-medium leading-none text-muted-foreground flex items-center gap-4"><span
             class="uppercase text-foreground">Apps</span>
-            <span class="text-sm tracking-tight">Your tools, handled</span></p>
+            <span class="text-sm tracking-tight font-normal">Your tools, handled</span></p>
         <h2 class="text-3xl font-normal leading-none tracking-tight text-balance md:text-4xl">
           {{ integrations.title }}
         </h2>
@@ -38,7 +38,7 @@ defineProps({
               <h3 class="text-lg font-medium leading-tight tracking-tight text-balance">
                 {{ tool.title }}
               </h3>
-              <p class="max-w-2xl text-base leading-snug text-pretty text-muted-foreground/75">
+              <p class="max-w-2xl text-sm leading-snug text-pretty text-muted-foreground/75">
                 {{ tool.description }}
               </p>
             </div>

@@ -9,6 +9,50 @@ heroImageAlt: "Landscapers cleaning the garden. Person pushing an empty wheelbar
 thumbnailImageUrl: "/images/solutions/landscaping-thumb@2x.webp"
 thumbnailImageAlt: "Landscapers cleaning the garden. Person pushing an empty wheelbarrow."
 useCasesTitle: "Leads, crews, and balances move on the same schedule."
+useCaseCatalog:
+  title: "More ways Remi keeps the season moving."
+  description: "Remi keeps leads, property notes, crew changes, material decisions, and balances connected across every route and season."
+  categories:
+    - title: "Seasonal leads and quoting"
+      items:
+        - title: "Respond to the seasonal rush"
+          description: "Remi sorts new requests by service, location, and wait time, then prepares the most urgent replies for review."
+        - title: "Prepare the property walk"
+          description: "Remi gathers photos, measurements, customer priorities, and access details into a concise estimate-visit brief."
+        - title: "Follow up on a design proposal"
+          description: "Remi surfaces the customer's last question, current proposal, and planting notes, then drafts a specific follow-up."
+        - title: "Bring requested add-ons into the quote"
+          description: "Remi connects the customer's mulch, irrigation, or seasonal-care request with the existing scope for your review."
+    - title: "Crews, routes, and weather"
+      items:
+        - title: "Rebuild the route after rain"
+          description: "Remi identifies affected visits, checks the next workable openings, and prepares customer updates for approval."
+        - title: "Brief the crew on property details"
+          description: "Remi gathers gate codes, pet notes, service preferences, and the day's scope into one route-ready handoff."
+        - title: "Catch a material delivery conflict"
+          description: "Remi compares the nursery update with the crew schedule and flags the job that needs a new plan."
+        - title: "Prepare a last-minute reschedule"
+          description: "Remi finds the customer and crew affected by a delay, then drafts the revised timing for review."
+    - title: "Upgrades and recurring work"
+      items:
+        - title: "Document an on-site upgrade"
+          description: "Remi turns the added bed, plants, or hardscape request into a written scope and price draft."
+        - title: "Prepare the seasonal renewal"
+          description: "Remi reviews the current service history, upcoming season, and requested changes, then drafts the renewal for approval."
+        - title: "Bring back an irrigation issue"
+          description: "Remi connects the crew note, property photo, and customer history and prepares the recommended next conversation."
+        - title: "Keep recurring preferences current"
+          description: "Remi finds the customer's latest service instruction and prepares the route-note update for your approval."
+    - title: "Deposits, invoicing, and renewals"
+      items:
+        - title: "Verify the deposit before materials"
+          description: "Remi checks the approved quote, payment status, and nursery hold date, then surfaces what is still missing."
+        - title: "Prepare the milestone invoice"
+          description: "Remi ties completed work and approved upgrades to the next payment stage and prepares the invoice review."
+        - title: "Follow up on a recurring balance"
+          description: "Remi finds the unpaid visits, checks the billing history, and drafts a clear reminder for approval."
+        - title: "Assemble the renewal summary"
+          description: "Remi brings together completed visits, extras, customer requests, and proposed next-season terms into one review."
 stats:
   - metric: "70%"
     label: "of contractors regularly face delayed payments"
@@ -124,6 +168,11 @@ integrations:
     - tool: quickbooks
       title: "See the deposit before materials are committed"
       description: "Remi checks deposits, upgrade pricing, invoices, due dates, and balances in QuickBooks. She flags what is still open and drafts the payment reminder for your approval."
+testimonialQuote: "Seasonal work moves fast. Remi helps me see which lead needs a reply, which extra needs approval, and which deposit is still missing before the crew rolls out."
+testimonialName: "Elena"
+testimonialPosition: "Owner"
+testimonialCompanyType: "landscaping services"
+testimonialPlaceholder: true
 ogTitle: "Remi for Landscaping Services"
 ogDescription: "Keep seasonal leads, written upgrades, deposits, and landscaping balances moving with Remi."
 ---

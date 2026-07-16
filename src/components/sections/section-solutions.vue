@@ -47,7 +47,7 @@ watch(
         <div class="flex max-w-3xl flex-col items-start gap-6">
           <p class="text-xs font-medium leading-none text-muted-foreground/75 flex items-center gap-4">
             <span class="uppercase text-foreground">Solutions</span>
-            <span class="tracking-tight text-sm">Every firm. Every workflow.</span>
+            <span class="tracking-tight text-sm font-normal">Every firm. Every workflow.</span>
           </p>
           <h2 class="text-5xl font-normal leading-none tracking-tight text-balance text-foreground">
             Built for the businesses that keep Main Street moving.

@@ -12,7 +12,7 @@ ogDescription: "Why client-facing teams need more than another dashboard when wo
 ogImage: "/images/og-image.png"
 ctaTitle: "Want Remi watching the open loops?"
 ctaText: "Show us where follow-ups, owners, and client context still get scattered across your day."
-ctaHref: "/qualify/contact"
+ctaHref: "https://remi.new/login"
 ctaLabel: "Request Access"
 ---
 

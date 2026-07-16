@@ -128,7 +128,7 @@ const rowBaseClasses = cn(
         </div>
       </div>
 
-      <Button href="/qualify">Get Started</Button>
+      <Button href="https://remi.new/login">Get Started</Button>
     </div>
   </section>
 </template>
