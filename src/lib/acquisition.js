@@ -44,6 +44,7 @@ const acquisitionIdPattern = /^[A-Za-z0-9_-]{16,128}$/u
 const collapsedPhonePattern = /\d{7,}/u
 const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content']
 let memoryFirstTouch = null
+let fallbackSequence = 0
 
 function runtimeEnv(env) {
   if (env) return env
@@ -116,11 +117,21 @@ function readStoredTouch(storage, nowMs) {
 }
 
 function createAcquisitionId(windowLike, nowMs) {
+  const cryptoLike = windowLike?.crypto ?? globalThis.crypto
   try {
-    const id = windowLike?.crypto?.randomUUID?.()
+    const id = cryptoLike?.randomUUID?.()
     if (typeof id === 'string' && acquisitionIdPattern.test(id)) return id
   } catch { /* deterministic fallback below */ }
-  return `acq_${nowMs.toString(36)}_${Math.random().toString(36).slice(2, 14)}`
+  try {
+    const bytes = new Uint8Array(16)
+    cryptoLike?.getRandomValues?.(bytes)
+    if (bytes.some((byte) => byte !== 0)) {
+      return `acq_${[...bytes].map((byte) => byte.toString(16).padStart(2, '0')).join('')}`
+    }
+  } catch { /* runtime-safe fallback below */ }
+  fallbackSequence += 1
+  const random = Math.random().toString(36).slice(2).padEnd(12, '0').slice(0, 12)
+  return `acq_${nowMs.toString(36)}_${fallbackSequence.toString(36).padStart(4, '0')}_${random}`
 }
 
 function createFirstTouch(windowLike, nowMs) {

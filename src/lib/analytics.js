@@ -1,4 +1,4 @@
-import posthog from 'posthog-js'
+import { posthog } from 'posthog-js'
 
 import { getFirstTouch, normalizeAnalyticsProperties } from './acquisition.js'
 
@@ -81,6 +81,7 @@ export function initializeAnalytics({
 
   client.init(key, {
     api_host: host,
+    api_transport: 'fetch',
     autocapture: false,
     capture_pageview: false,
     capture_pageleave: false,
@@ -89,10 +90,13 @@ export function initializeAnalytics({
     disable_surveys: true,
     disable_web_experiments: true,
     disable_external_dependency_loading: true,
+    disable_beacon: true,
+    disable_compression: true,
     save_campaign_params: false,
     save_referrer: false,
     advanced_disable_flags: true,
     person_profiles: 'never',
+    request_batching: false,
     before_send: (event) => sanitizePostHogEvent(event, key),
   })
   analyticsClient = client
