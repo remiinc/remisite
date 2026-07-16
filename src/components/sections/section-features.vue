@@ -16,14 +16,14 @@ const scrollToSolutions = (event) => {
 }
 
 const featureMessages = [
-  { text: 'Three invoices are overdue. 💸', sender: 'remi', x: '42%', y: '15%', rotation: '-1.5deg' },
-  { text: 'What needs me today?', sender: 'user', x: '12%', y: '24%', rotation: '2deg' },
-  { text: 'The signed estimate is attached. 📎', sender: 'remi', x: '28%', y: '33%', rotation: '-2deg' },
-  { text: 'Draft the follow-up.', sender: 'user', x: '55%', y: '42%', rotation: '1deg' },
-  { text: 'Tomorrow has a 2:30 opening. 📅', sender: 'remi', x: '8%', y: '51%', rotation: '1.5deg' },
-  { text: 'Put that in writing.', sender: 'user', x: '48%', y: '60%', rotation: '-2deg' },
-  { text: 'The change order is still waiting. 👀', sender: 'remi', x: '25%', y: '69%', rotation: '2deg' },
-  { text: 'Remind me Friday.', sender: 'user', x: '15%', y: '78%', rotation: '-1deg' },
+  { text: 'Three invoices are overdue. 💸', sender: 'remi', x: '58%', y: '15%', rotation: '-1.5deg' },
+  { text: 'What needs me today?', sender: 'user', x: '25%', y: '25%', rotation: '2deg' },
+  { text: 'The signed estimate is attached. 📎', sender: 'remi', x: '50%', y: '35%', rotation: '-2deg' },
+  { text: 'Draft the follow-up.', sender: 'user', x: '72%', y: '45%', rotation: '1deg' },
+  { text: 'Tomorrow has a 2:30 opening. 📅', sender: 'remi', x: '42%', y: '55%', rotation: '1.5deg' },
+  { text: 'Put that in writing.', sender: 'user', x: '72%', y: '65%', rotation: '-2deg' },
+  { text: 'The change order is still waiting. 👀', sender: 'remi', x: '48%', y: '75%', rotation: '2deg' },
+  { text: 'Remind me Friday.', sender: 'user', x: '33%', y: '85%', rotation: '-1deg' },
 ]
 </script>
 
@@ -103,7 +103,7 @@ const featureMessages = [
               :style="{
                 left: message.x,
                 top: message.y,
-                transform: `rotate(${message.rotation})`,
+                transform: `translate(-50%, -50%) rotate(${message.rotation})`,
               }"
             >
               <div
