@@ -1,5 +1,6 @@
 <script setup>
 import { cn } from '../../lib/cn.js'
+import { trackMarketingCta } from '../../lib/analytics.js'
 import Button from '../global/button.vue'
 import SectionSecurityPrinciples from './section-security-principles.vue'
 import { PhCheck, PhNumberCircleOne, PhNumberCircleTwo, PhNumberCircleThree, PhNumberCircleFour } from '@phosphor-icons/vue';
@@ -71,11 +72,13 @@ const featureMessages = [
               </li>
             </ul>
             <div class="flex flex-wrap gap-3 mt-auto">
-              <Button href="/start" variant="primary" size="sm">
+              <Button href="/start" variant="primary" size="sm"
+                @click="trackMarketingCta('features_text_remi', 'linq')">
                 <div class="flex items-center gap-2"><img src="/images/app-logos/ios-messages-icon.svg" alt="Google"
                     class="size-3" /><span>Text Remi</span></div>
               </Button>
-              <Button variant="secondary" size="sm">
+              <Button variant="secondary" size="sm"
+                @click="trackMarketingCta('features_signup_gmail', 'google')">
                 <div class="flex items-center gap-2"><img src="/images/app-logos/gmail.svg" alt="Google"
                     class="size-3" /><span>Sign up with Gmail</span></div>
               </Button>

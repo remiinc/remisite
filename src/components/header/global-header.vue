@@ -316,7 +316,7 @@ onBeforeUnmount(() => {
                 @click="closeMobileMenu">
                 Login
               </Button>
-              <Button href="https://remi.new/login" variant="secondary" class="h-12 w-full" @click="closeMobileMenu">
+              <Button :href="portalLoginHref" variant="secondary" class="h-12 w-full" @click="closeMobileMenu">
                 Try for free
               </Button>
             </div>
@@ -325,7 +325,7 @@ onBeforeUnmount(() => {
 
         <div class="hidden flex-1 items-center justify-end gap-1 md:flex">
           <HeaderLink :href="portalLoginHref" target="_blank">Login</HeaderLink>
-          <Button href="https://remi.new/login" :variant="headerButtonVariant" size="sm">Try for free</Button>
+          <Button :href="portalLoginHref" :variant="headerButtonVariant" size="sm">Try for free</Button>
         </div>
 
         <div class="flex flex-1 items-center justify-end md:hidden">

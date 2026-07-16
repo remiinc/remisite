@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import AnnouncementBar from './components/global/announcement-bar.vue'
 import BlogIndexPage from './components/blog/blog-index-page.vue'
 import BlogPostPage from './components/blog/blog-post-page.vue'
@@ -18,6 +18,7 @@ import SectionFeatures from './components/sections/section-features.vue'
 import SectionSolutions from './components/sections/section-solutions.vue'
 import SolutionPage from './components/solutions/solution-page.vue'
 import SolutionsIndexPage from './components/solutions/solutions-index-page.vue'
+import { capturePageview } from './lib/analytics.js'
 
 const pathname = typeof window !== 'undefined' ? window.location.pathname : '/'
 
@@ -31,6 +32,7 @@ const isPricingPage = computed(() => normalizedPath.value === '/pricing')
 const isSecurityPage = computed(() => normalizedPath.value === '/security')
 const isStartPage = computed(() => normalizedPath.value === '/start')
 
+onMounted(() => capturePageview())
 </script>
 
 <template>
