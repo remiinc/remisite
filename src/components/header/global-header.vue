@@ -7,9 +7,10 @@ import SiteLogo from '../global/site-logo.vue'
 import HeaderLink from './components/header-link.vue'
 import HeaderLogo from './components/header-logo.vue'
 import cn from '../../lib/cn'
-import { portalLink } from '../../lib/portal-link'
+import { getOnboardingEntry } from '../../lib/acquisition.js'
+import { trackOnboardingCta } from '../../lib/analytics.js'
 
-const portalLoginHref = computed(() => portalLink('https://remi.new/login'))
+const googleEntry = getOnboardingEntry('google')
 
 const sizeLinks = [
   { label: 'Startups', href: '/solutions/startups' },
@@ -334,13 +335,15 @@ onBeforeUnmount(() => {
 
             <div class="grid shrink-0 grid-cols-2 gap-3 px-6 pt-4 pb-[max(1.5rem,env(safe-area-inset-bottom))] md:hidden">
               <Button
-                :href="portalLoginHref"
+                :href="googleEntry.href"
                 target="_blank"
                 variant="primary"
                 class="h-12 w-full"
-                @click="closeMobileMenu"
+                :aria-disabled="!googleEntry.available"
+                :data-destination-state="googleEntry.available ? 'available' : 'unavailable'"
+                @click="trackOnboardingCta($event, googleEntry, 'header_login_mobile'); closeMobileMenu()"
               >
-                Login
+                {{ googleEntry.available ? 'Login' : 'Login unavailable' }}
               </Button>
               <Button
                 href="/qualify"
@@ -355,7 +358,18 @@ onBeforeUnmount(() => {
         </Teleport>
 
         <div class="hidden flex-1 items-center justify-end gap-1 md:flex">
-          <HeaderLink :href="portalLoginHref" target="_blank">Login</HeaderLink>
+          <HeaderLink
+            v-if="googleEntry.available"
+            :href="googleEntry.href"
+            target="_blank"
+            data-destination-state="available"
+            @click="trackOnboardingCta($event, googleEntry, 'header_login_desktop')"
+          >
+            Login
+          </HeaderLink>
+          <span v-else aria-disabled="true" data-destination-state="unavailable" class="px-3 py-2 text-sm">
+            Login unavailable
+          </span>
           <Button href="/qualify" :variant="headerButtonVariant" size="sm">Try for free</Button>
         </div>
 

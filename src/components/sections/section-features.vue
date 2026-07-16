@@ -2,6 +2,11 @@
 import { cn } from '../../lib/cn.js'
 import Button from '../global/button.vue'
 import { PhShield, PhLockSimple, PhHouseSimple, PhCheck, PhNumberCircleOne, PhNumberCircleTwo, PhNumberCircleThree, PhNumberCircleFour, PhPlugs, PhDeviceMobile } from '@phosphor-icons/vue';
+import { getOnboardingEntry } from '../../lib/acquisition.js'
+import { trackOnboardingCta } from '../../lib/analytics.js'
+
+const linqEntry = getOnboardingEntry('linq')
+const googleEntry = getOnboardingEntry('google')
 </script>
 
 <template>
@@ -45,13 +50,19 @@ import { PhShield, PhLockSimple, PhHouseSimple, PhCheck, PhNumberCircleOne, PhNu
               </li>
             </ul>
             <div class="flex flex-wrap gap-3 mt-auto">
-              <Button variant="primary" size="sm">
+              <Button :href="linqEntry.href" variant="primary" size="sm"
+                :aria-disabled="!linqEntry.available"
+                :data-destination-state="linqEntry.available ? 'available' : 'unavailable'"
+                @click="trackOnboardingCta($event, linqEntry, 'features_text_remi')">
                 <div class="flex items-center gap-2"><img src="/images/app-logos/ios-messages-icon.svg" alt="Google"
-                    class="size-3" /><span>Text Remi</span></div>
+                    class="size-3" /><span>{{ linqEntry.available ? 'Text Remi' : 'Text Remi unavailable' }}</span></div>
               </Button>
-              <Button variant="secondary" size="sm">
+              <Button :href="googleEntry.href" variant="secondary" size="sm"
+                :aria-disabled="!googleEntry.available"
+                :data-destination-state="googleEntry.available ? 'available' : 'unavailable'"
+                @click="trackOnboardingCta($event, googleEntry, 'features_signup_gmail')">
                 <div class="flex items-center gap-2"><img src="/images/app-logos/gmail.svg" alt="Google"
-                    class="size-3" /><span>Sign up with Gmail</span></div>
+                    class="size-3" /><span>{{ googleEntry.available ? 'Sign up with Gmail' : 'Gmail signup unavailable' }}</span></div>
               </Button>
             </div>
           </div>

@@ -1,6 +1,11 @@
 <script setup>
 import { PhCaretLeft, PhMicrophone, PhPlus } from '@phosphor-icons/vue'
 import SiteIcon from '../global/site-icon.vue'
+import { getOnboardingEntry } from '../../lib/acquisition.js'
+import { trackOnboardingCta } from '../../lib/analytics.js'
+
+const linqEntry = getOnboardingEntry('linq')
+const googleEntry = getOnboardingEntry('google')
 </script>
 
 <template>
@@ -13,15 +18,21 @@ import SiteIcon from '../global/site-icon.vue'
         </h2>
         <div
           class="relative z-1 flex flex-wrap justify-center md:justify-start gap-3">
-          <a href="#"
+          <a :href="linqEntry.href || undefined"
+            :aria-disabled="!linqEntry.available"
+            :data-destination-state="linqEntry.available ? 'available' : 'unavailable'"
+            @click="trackOnboardingCta($event, linqEntry, 'closing_text_remi')"
             class="inline-flex h-12 w-auto items-center justify-center gap-2.5 rounded-full bg-background px-5 text-sm font-medium leading-none text-foreground transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 focus-visible:ring-offset-2 focus-visible:ring-offset-muted">
             <img src="/images/app-logos/ios-messages-icon.svg" alt="" class="size-5 shrink-0" aria-hidden="true">
-            <span>Text Remi</span>
+            <span>{{ linqEntry.available ? 'Text Remi' : 'Text Remi unavailable' }}</span>
           </a>
-          <a href="#"
+          <a :href="googleEntry.href || undefined"
+            :aria-disabled="!googleEntry.available"
+            :data-destination-state="googleEntry.available ? 'available' : 'unavailable'"
+            @click="trackOnboardingCta($event, googleEntry, 'closing_signup_gmail')"
             class="inline-flex h-12 w-auto items-center justify-center gap-2.5 rounded-full bg-background/20 px-5 text-sm font-medium leading-none text-background shadow-[0_0_0_1px_rgba(255,255,255,0.18)_inset] backdrop-blur-sm transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background/60 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground">
             <img src="/images/app-logos/gmail.svg" alt="" class="size-5 shrink-0" aria-hidden="true">
-            <span>Sign up with Gmail</span>
+            <span>{{ googleEntry.available ? 'Sign up with Gmail' : 'Gmail signup unavailable' }}</span>
           </a>
         </div>
       </div>
