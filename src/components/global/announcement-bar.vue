@@ -2,11 +2,10 @@
 import { PhArrowRight } from '@phosphor-icons/vue'
 import { latestBlogPost } from '../../lib/blog-posts'
 
-const announcementText =
-  latestBlogPost?.metadata.announcement || latestBlogPost?.title || 'Read the latest Remi update'
+const announcementText = latestBlogPost?.title || 'Read the latest Remi update'
 const announcementHref = latestBlogPost?.path || '/resources'
 const announcementLabel = latestBlogPost
-  ? `Read latest blog post: ${latestBlogPost.title}`
+  ? `Read latest article: ${latestBlogPost.title}`
   : 'Read the latest Remi update'
 </script>
 
