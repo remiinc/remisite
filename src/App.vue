@@ -15,6 +15,8 @@ import SectionCta from './components/sections/section-cta.vue'
 import SectionIphone from './components/sections/section-iphone.vue'
 import SectionPinnedHeadline from './components/sections/section-pinned-headline.vue'
 import SectionFeatures from './components/sections/section-features.vue'
+import SectionFaq from './components/sections/section-faq.vue'
+import SectionPricing from './components/sections/section-pricing.vue'
 import SectionSolutions from './components/sections/section-solutions.vue'
 import SolutionPage from './components/solutions/solution-page.vue'
 import SolutionsIndexPage from './components/solutions/solutions-index-page.vue'
@@ -53,6 +55,8 @@ onMounted(() => capturePageview())
       <SectionIphone />
       <SectionFeatures />
       <SectionSolutions />
+      <SectionPricing />
+      <SectionFaq type="home" />
       <SectionCta />
     </main>
     <GlobalFooter />

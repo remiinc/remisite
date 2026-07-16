@@ -1,4 +1,57 @@
 export const faqGroups = {
+  home: {
+    title: 'Questions we hear a lot.',
+    items: [
+      {
+        question: 'Is Remi just another chatbot?',
+        answers: [
+          'No. You can text Remi, but she is not just a blank chat box. You connect the tools where your work already happens, and Remi watches for the next thing that needs doing.',
+        ],
+      },
+      {
+        question: 'What does Remi actually do?',
+        answers: [
+          'Remi looks across email, calendar, texts, files, invoices, estimates, and job notes. She finds loose ends, pulls the source details together, and prepares the next message or task for you to approve.',
+        ],
+      },
+      {
+        question: 'What kinds of work can Remi catch?',
+        answers: [
+          'Remi can help with overdue invoices, quiet estimates, unanswered customer requests, missing approvals, job details buried in messages, and follow-ups you meant to send later.',
+        ],
+      },
+      {
+        question: 'Do I have to change the tools I use?',
+        answers: [
+          'No. Remi is built to work with the tools your business already uses. You connect the sources you want her to read, and those systems stay where the work lives.',
+        ],
+      },
+      {
+        question: 'Can Remi send messages without me?',
+        answers: [
+          'Important customer-facing work waits for your approval. Remi can draft the follow-up and show the source, but you decide what gets sent.',
+        ],
+      },
+      {
+        question: 'How does Remi know how my business works?',
+        answers: [
+          'Remi learns from the sources you connect and the decisions you approve. Over time, she understands your customers, jobs, prices, promises, deadlines, and how you like work handled.',
+        ],
+      },
+      {
+        question: 'Who is Remi built for?',
+        answers: [
+          'Remi is built for owner-run service businesses and small teams where the person doing the work is also chasing invoices, quotes, customer replies, and job details.',
+        ],
+      },
+      {
+        question: 'Is my business data used to train AI models?',
+        answers: [
+          'No. Your business data is not sold, shared for advertising, or used to train AI models. Remi works only inside the access you grant.',
+        ],
+      },
+    ],
+  },
   pricing: {
     title: 'Questions we hear a lot.',
     items: [

@@ -1,5 +1,6 @@
 <script setup>
 import { trackMarketingCta } from '../../lib/analytics.js'
+import Button from '../global/button.vue'
 
 defineProps({
   videoSrc: {
@@ -37,15 +38,16 @@ defineProps({
         </p>
       </div>
       <div class="relative z-1 flex w-full max-w-sm flex-col items-center justify-center gap-3 sm:max-w-none sm:flex-row">
-        <a href="/start" @click="trackMarketingCta('hero_text_remi', 'linq')"
-          class="inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-full bg-background px-5 text-sm font-medium leading-none text-foreground transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background/60 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground sm:w-auto">
-          <img src="/images/app-logos/ios-messages-icon.svg" alt="" class="size-5 shrink-0" aria-hidden="true">
-          <span>Text Remi</span>
-        </a>
-        <a href="#"
-          class="inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-full bg-background/20 px-5 text-sm font-medium leading-none text-background shadow-[0_0_0_1px_rgba(255,255,255,0.18)_inset] backdrop-blur-sm transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background/60 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground sm:w-auto">
-          <span>Book a Demo</span>
-        </a>
+        <Button href="/start" variant="white" size="lg" class="w-full sm:w-auto"
+          @click="trackMarketingCta('hero_text_remi', 'linq')">
+          <span class="flex items-center gap-2.5">
+            <img src="/images/app-logos/ios-messages-icon.svg" alt="" class="size-5 shrink-0" aria-hidden="true">
+            <span>Text Remi</span>
+          </span>
+        </Button>
+        <Button href="#" variant="translucent" size="lg" class="w-full sm:w-auto">
+          Book a Demo
+        </Button>
       </div>
     </div>
   </section>
