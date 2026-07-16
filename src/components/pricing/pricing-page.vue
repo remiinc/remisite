@@ -8,6 +8,11 @@ import SectionCta from '../sections/section-cta.vue'
 import SectionFaq from '../sections/section-faq.vue'
 import SectionWhyRemi from '../sections/section-why-remi.vue'
 import SiteLogo from '../global/site-logo.vue'
+import { getOnboardingEntry } from '../../lib/acquisition.js'
+import { trackOnboardingCta } from '../../lib/analytics.js'
+
+const linqEntry = getOnboardingEntry('linq')
+const googleEntry = getOnboardingEntry('google')
 
 if (typeof document !== 'undefined') {
   document.title = 'Pricing | Remi'
@@ -26,15 +31,21 @@ if (typeof document !== 'undefined') {
             One missed follow-up can cost more than a month of Remi.
           </h1>
           <div class="relative z-1 flex w-full max-w-sm flex-col items-center justify-center gap-3 sm:max-w-none sm:flex-row">
-            <a href="#"
+            <a :href="linqEntry.href || undefined"
+              :aria-disabled="!linqEntry.available"
+              :data-destination-state="linqEntry.available ? 'available' : 'unavailable'"
+              @click="trackOnboardingCta($event, linqEntry, 'pricing_text_remi')"
               class="inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-full bg-foreground px-5 text-sm font-medium leading-none text-background transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:w-auto">
               <img src="/images/app-logos/ios-messages-icon.svg" alt="" class="size-5 shrink-0" aria-hidden="true">
-              <span>Text Remi</span>
+              <span>{{ linqEntry.available ? 'Text Remi' : 'Text Remi unavailable' }}</span>
             </a>
-            <a href="#"
+            <a :href="googleEntry.href || undefined"
+              :aria-disabled="!googleEntry.available"
+              :data-destination-state="googleEntry.available ? 'available' : 'unavailable'"
+              @click="trackOnboardingCta($event, googleEntry, 'pricing_signup_gmail')"
               class="inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-full bg-muted px-5 text-sm font-medium leading-none text-foreground shadow-[0_0_0_1px_rgba(0,0,0,0.06)_inset] transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:w-auto">
               <img src="/images/app-logos/gmail.svg" alt="" class="size-5 shrink-0" aria-hidden="true">
-              <span>Sign up with Gmail</span>
+              <span>{{ googleEntry.available ? 'Sign up with Gmail' : 'Gmail signup unavailable' }}</span>
             </a>
           </div>
         </div>

@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import AnnouncementBar from './components/global/announcement-bar.vue'
 import BlogIndexPage from './components/blog/blog-index-page.vue'
 import BlogPostPage from './components/blog/blog-post-page.vue'
@@ -15,6 +15,7 @@ import SectionIphone from './components/sections/section-iphone.vue'
 import SectionPinnedHeadline from './components/sections/section-pinned-headline.vue'
 import SectionFeatures from './components/sections/section-features.vue'
 import SolutionPage from './components/solutions/solution-page.vue'
+import { capturePageview } from './lib/analytics.js'
 
 const pathname = typeof window !== 'undefined' ? window.location.pathname : '/'
 const searchString = typeof window !== 'undefined' ? window.location.search : ''
@@ -42,6 +43,8 @@ const qualifyContactEmail = computed(() => {
   const params = new URLSearchParams(searchString)
   return params.get('email') || ''
 })
+
+onMounted(() => capturePageview())
 </script>
 
 <template>
