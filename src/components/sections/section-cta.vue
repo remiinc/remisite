@@ -19,10 +19,9 @@ import SiteIcon from '../global/site-icon.vue'
             <img src="/images/app-logos/ios-messages-icon.svg" alt="" class="size-5 shrink-0" aria-hidden="true">
             <span>Text Remi</span>
           </a>
-          <a href="#" @click="trackMarketingCta('closing_signup_gmail', 'google')"
+          <a href="#"
             class="inline-flex h-12 w-auto items-center justify-center gap-2.5 rounded-full bg-background/20 px-5 text-sm font-medium leading-none text-background shadow-[0_0_0_1px_rgba(255,255,255,0.18)_inset] backdrop-blur-sm transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background/60 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground">
-            <img src="/images/app-logos/gmail.svg" alt="" class="size-5 shrink-0" aria-hidden="true">
-            <span>Sign up with Gmail</span>
+            <span>Book a Demo</span>
           </a>
         </div>
       </div>

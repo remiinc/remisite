@@ -77,10 +77,8 @@ const featureMessages = [
                 <div class="flex items-center gap-2"><img src="/images/app-logos/ios-messages-icon.svg" alt="Google"
                     class="size-3" /><span>Text Remi</span></div>
               </Button>
-              <Button variant="secondary" size="sm"
-                @click="trackMarketingCta('features_signup_gmail', 'google')">
-                <div class="flex items-center gap-2"><img src="/images/app-logos/gmail.svg" alt="Google"
-                    class="size-3" /><span>Sign up with Gmail</span></div>
+              <Button variant="secondary" size="sm">
+                Book a Demo
               </Button>
             </div>
           </div>

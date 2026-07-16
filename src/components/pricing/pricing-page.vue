@@ -27,16 +27,16 @@ if (typeof document !== 'undefined') {
             One missed follow-up can cost more than a month of Remi.
           </h1>
           <div class="relative z-1 flex w-full max-w-sm flex-col items-center justify-center gap-3 sm:max-w-none sm:flex-row">
-            <a href="/start" @click="trackMarketingCta('pricing_text_remi', 'linq')"
-              class="inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-full bg-foreground px-5 text-sm font-medium leading-none text-background transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:w-auto">
-              <img src="/images/app-logos/ios-messages-icon.svg" alt="" class="size-5 shrink-0" aria-hidden="true">
-              <span>Text Remi</span>
-            </a>
-            <a href="#" @click="trackMarketingCta('pricing_signup_gmail', 'google')"
-              class="inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-full bg-muted px-5 text-sm font-medium leading-none text-foreground shadow-[0_0_0_1px_rgba(0,0,0,0.06)_inset] transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:w-auto">
-              <img src="/images/app-logos/gmail.svg" alt="" class="size-5 shrink-0" aria-hidden="true">
-              <span>Sign up with Gmail</span>
-            </a>
+            <Button href="/start" size="lg" class="w-full sm:w-auto"
+              @click="trackMarketingCta('pricing_text_remi', 'linq')">
+              <span class="flex items-center gap-2.5">
+                <img src="/images/app-logos/ios-messages-icon.svg" alt="" class="size-5 shrink-0" aria-hidden="true">
+                <span>Text Remi</span>
+              </span>
+            </Button>
+            <Button href="#" variant="secondary" size="lg" class="w-full sm:w-auto">
+              Book a Demo
+            </Button>
           </div>
         </div>
       </section>
@@ -133,8 +133,8 @@ if (typeof document !== 'undefined') {
                 <div class="flex flex-col gap-6">
                   <div class="flex flex-col gap-3">
                     <div class="flex items-center gap-1">
-                      <div class="size-8 flex items-center justify-center">
-                        <SiteLogo class="size-6" />
+                      <div class="h-8 flex items-center justify-center">
+                        <SiteLogo class="h-4 w-auto" />
                       </div>
                       <h3
                         class="text-base leading-none px-3 py-1.5 flex items-center justify-center text-background bg-foreground rounded-full">
@@ -197,8 +197,8 @@ if (typeof document !== 'undefined') {
                 <div class="flex flex-col gap-6">
                   <div class="flex flex-col gap-3">
                     <div class="flex items-center gap-1">
-                      <div class="size-8 flex items-center justify-center">
-                        <SiteLogo class="size-6" />
+                      <div class="h-8 flex items-center justify-center">
+                        <SiteLogo class="h-4 w-auto" />
                       </div>
                       <h3
                         class="text-base leading-none px-3 py-1.5 flex items-center justify-center text-background bg-foreground rounded-full">

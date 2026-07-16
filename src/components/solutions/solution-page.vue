@@ -101,8 +101,7 @@ onBeforeUnmount(() => {
                     class="size-3" /><span>Try for Free</span></div>
               </Button>
               <Button variant="secondary" size="sm">
-                <div class="flex items-center gap-2"><img src="/images/app-logos/gmail.svg" alt="Google"
-                    class="size-3" /><span>Sign up with Gmail</span></div>
+                Book a Demo
               </Button>
             </div>
           </div>
