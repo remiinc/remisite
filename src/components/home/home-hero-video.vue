@@ -36,7 +36,7 @@ defineProps({
       <div class="hero-copy relative z-1 flex flex-col items-center gap-10">
         <h1
           class="max-w-[20ch] text-4xl font-normal leading-[1em] tracking-[-0.03em] text-balance text-background select-none md:text-[clamp(3.5rem,8vw,5rem)]">
-          Grow your business. <span class="block">Leave the admin to Remi.</span>
+          Grow your business. <span class="block">Let Remi handle the admin.</span>
         </h1>
         <p class="mb-2 max-w-[38ch] text-center text-[0.875em] font-normal leading-snug">
           <span class="block text-background">From the first quote to the final payment.</span>
