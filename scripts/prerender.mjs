@@ -12,6 +12,7 @@ import { getFaqGroup } from '../src/lib/faqs.js'
 import { legacySolutionRedirects } from '../src/lib/solution-redirects.js'
 import { resolveSolutionTool } from '../src/lib/solution-tools.js'
 import { REMI_TEXT_HREF, REMI_TEXT_NUMBER_DISPLAY } from '../src/lib/start-contact.js'
+import { injectPrerenderBody } from './prerender-shell.mjs'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const distDir = join(root, 'dist')
@@ -255,11 +256,7 @@ const setHead = (html, { title, description, url, ogType, ogImage, jsonLd = [] }
   return output
 }
 
-const injectBody = (html, staticBody) =>
-  html.replace(
-    /(<div id="app"[^>]*>)(<\/div>)/,
-    `$1${staticBody}$2`,
-  )
+const injectBody = injectPrerenderBody
 
 const writePage = (routePath, html) => {
   const outDir = join(distDir, ...routePath.split('/').filter(Boolean))

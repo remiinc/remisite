@@ -8,4 +8,6 @@ const routeLoader = getPageLoader(window.location.pathname)
 if (routeLoader) await routeLoader()
 
 initializeAnalytics()
-createApp(App).mount('#app')
+const appRoot = document.querySelector('#app')
+createApp(App).mount(appRoot)
+appRoot.removeAttribute('data-prerendered')
