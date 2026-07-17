@@ -50,7 +50,7 @@ watch(
             <span class="tracking-tight text-sm font-normal">Every firm. Every workflow.</span>
           </p>
           <h2 class="text-5xl font-normal leading-none tracking-tight text-balance text-foreground">
-            Built for the businesses that keep Main Street moving.
+            Built for the businesses that keep America moving.
           </h2>
         </div>
 

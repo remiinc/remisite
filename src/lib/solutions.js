@@ -7,6 +7,10 @@ const markdownFiles = import.meta.glob('../content/solutions/*.md', {
   eager: true,
 })
 
+const expectedIndustrySolutionCount = 10
+const expectedCapabilitySolutionCount = 7
+const expectedSolutionCount = expectedIndustrySolutionCount + expectedCapabilitySolutionCount
+
 const normalizeWorkflow = (workflow) =>
   (Array.isArray(workflow) ? workflow : []).map((step) => {
     const key = String(step?.tool || '')
@@ -149,6 +153,7 @@ const normalizeSolution = (entry) => {
 
   return {
     ...entry,
+    pageType: metadata.pageType === 'capability' ? 'capability' : 'industry',
     industryLabel: metadata.industryLabel || '',
     order: Number(metadata.order) || 0,
     heroMessage: metadata.heroMessage || '',
@@ -272,8 +277,19 @@ const normalizedSolutions = buildMarkdownCollection(markdownFiles, '/solutions')
   .map(validateSolution)
   .sort((solutionA, solutionB) => solutionA.order - solutionB.order)
 
-if (normalizedSolutions.length !== 10) {
-  throw new Error(`Expected 10 solution guides, found ${normalizedSolutions.length}`)
+if (normalizedSolutions.length !== expectedSolutionCount) {
+  throw new Error(`Expected ${expectedSolutionCount} solution guides, found ${normalizedSolutions.length}`)
+}
+
+const industrySolutions = normalizedSolutions.filter((solution) => solution.pageType === 'industry')
+const capabilitySolutions = normalizedSolutions.filter((solution) => solution.pageType === 'capability')
+
+if (industrySolutions.length !== expectedIndustrySolutionCount) {
+  throw new Error(`Expected ${expectedIndustrySolutionCount} industry guides, found ${industrySolutions.length}`)
+}
+
+if (capabilitySolutions.length !== expectedCapabilitySolutionCount) {
+  throw new Error(`Expected ${expectedCapabilitySolutionCount} capability guides, found ${capabilitySolutions.length}`)
 }
 
 if (new Set(normalizedSolutions.map((solution) => solution.order)).size !== normalizedSolutions.length) {
@@ -291,19 +307,23 @@ if (
   throw new Error('Solution use case catalog descriptions must be unique')
 }
 
-if (normalizedSolutions.reduce((total, solution) => total + solution.integrations.tools.length, 0) !== 50) {
-  throw new Error('Expected 50 solution integration entries')
+if (
+  normalizedSolutions.reduce((total, solution) => total + solution.integrations.tools.length, 0)
+    !== expectedSolutionCount * 5
+) {
+  throw new Error(`Expected ${expectedSolutionCount * 5} solution integration entries`)
 }
 
 if (normalizedSolutions.reduce((total, solution) => (
   total + solution.useCaseCatalog.categories.reduce((categoryTotal, category) => (
     categoryTotal + category.items.length
   ), 0)
-), 0) !== 160) {
-  throw new Error('Expected 160 solution catalog use cases')
+), 0) !== expectedSolutionCount * 16) {
+  throw new Error(`Expected ${expectedSolutionCount * 16} solution catalog use cases`)
 }
 
 export const solutions = normalizedSolutions
+export { capabilitySolutions, industrySolutions }
 
 export const getSolutionBySlug = (slug) =>
   solutions.find((solution) => solution.slug === slug) || null

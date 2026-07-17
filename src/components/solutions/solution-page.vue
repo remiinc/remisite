@@ -22,6 +22,7 @@ const requestedSlug = computed(() => {
 
 const solution = computed(() => getSolutionBySlug(requestedSlug.value))
 const fallbackSolution = computed(() => solutions[0] || null)
+const sectionLabel = computed(() => solution.value?.pageType === 'capability' ? 'Capabilities' : 'Industries')
 const originalTitle = typeof document !== 'undefined' ? document.title : ''
 const changedMeta = new Map()
 
@@ -89,7 +90,7 @@ onBeforeUnmount(() => {
         <div class="mx-auto flex w-full max-w-(--content-width) flex-col items-center gap-24">
           <div class="flex max-w-4xl self-end flex-col items-start gap-6">
             <p class="text-xs font-medium leading-none text-muted-foreground flex items-center gap-4">
-              <span class="uppercase text-foreground">Solutions</span>
+              <span class="uppercase text-foreground">{{ sectionLabel }}</span>
               <span class="text-sm tracking-tight font-normal">{{ solution.industryLabel }}</span>
             </p>
             <h1 class="text-4xl font-normal leading-none tracking-tight text-balance md:text-5xl">
@@ -227,7 +228,10 @@ onBeforeUnmount(() => {
       </section>
       <SectionSecurityPrinciples id="solution-security" />
 
-      <SolutionTestimonial v-if="solution.testimonial" :testimonial="solution.testimonial" />
+      <SolutionTestimonial
+        v-if="solution.testimonial && !solution.testimonial.placeholder"
+        :testimonial="solution.testimonial"
+      />
 
       <SectionFaq type="solutions" />
 
@@ -241,7 +245,7 @@ onBeforeUnmount(() => {
           Solution guide not found
         </h1>
         <p class="text-lg leading-relaxed text-pretty text-muted-foreground">
-          This industry guide is not available.
+          This solution guide is not available.
         </p>
         <Button v-if="fallbackSolution" :href="fallbackSolution.path">
           Browse solution guides

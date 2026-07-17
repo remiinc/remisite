@@ -28,7 +28,61 @@ const googleEntryHref = googleEntry.href || 'https://remi.new/login'
       </div>
     </fieldset>
 
-    <div class="grid gap-y-4 lg:grid-cols-2">
+    <div class="grid gap-y-4 lg:grid-cols-3">
+      <article :class="cn(
+        'relative flex flex-col justify-between overflow-hidden rounded-2xl py-8 lg:mr-2',
+        'order-last lg:order-first',
+        'shadow-[0_0_0_1px_var(--color-border)]',
+      )">
+        <div class="flex flex-col gap-6 px-8">
+          <div class="flex flex-col gap-3">
+            <div class="flex items-center gap-3">
+              <div class="size-8 overflow-hidden rounded-full bg-foreground/10">
+                <img src="/images/avatars/person-avatar-003.png" alt="Full-time operations hire" class="size-full object-cover">
+              </div>
+              <h3 class="text-base font-medium">A full-time operations hire</h3>
+            </div>
+            <span class="text-sm text-foreground/40">
+              Worth it when you need the whole role. Expensive when you mainly need the work handled.
+            </span>
+          </div>
+
+          <div class="flex flex-col gap-4">
+            <div class="flex flex-wrap items-end gap-x-4 gap-y-2">
+              <p class="flex items-end gap-2">
+                <span class="inline-flex items-end gap-2 text-foreground group-has-[#pricing-annually:checked]:hidden">
+                  <span class="text-5xl font-normal leading-none tracking-tight line-through decoration-2">$5k</span>
+                  <span class="text-sm leading-[2em] text-foreground/40">/month</span>
+                </span>
+                <span class="hidden items-end gap-2 text-foreground group-has-[#pricing-annually:checked]:inline-flex">
+                  <span class="text-5xl font-normal leading-none tracking-tight line-through decoration-2">$60k</span>
+                  <span class="text-sm leading-[2em] text-foreground/40">/year</span>
+                </span>
+              </p>
+            </div>
+          </div>
+
+          <ul class="grid gap-3">
+            <li class="flex gap-3 text-sm leading-snug">
+              <PhCheck class="mt-0.5 size-4 shrink-0" weight="regular" aria-hidden="true" />
+              <span>Salary plus taxes and benefits</span>
+            </li>
+            <li class="flex gap-3 text-sm leading-snug">
+              <PhCheck class="mt-0.5 size-4 shrink-0" weight="regular" aria-hidden="true" />
+              <span>Time to recruit and onboard well</span>
+            </li>
+            <li class="flex gap-3 text-sm leading-snug">
+              <PhCheck class="mt-0.5 size-4 shrink-0" weight="regular" aria-hidden="true" />
+              <span>Ongoing management and development</span>
+            </li>
+            <li class="flex gap-3 text-sm leading-snug">
+              <PhCheck class="mt-0.5 size-4 shrink-0" weight="regular" aria-hidden="true" />
+              <span>Best when the role is truly full-time</span>
+            </li>
+          </ul>
+        </div>
+      </article>
+
       <article :class="cn(
         'relative flex flex-col justify-between overflow-hidden rounded-2xl py-8 lg:rounded-r-none',
         'bg-muted text-foreground',

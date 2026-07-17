@@ -83,8 +83,22 @@ const solutions = loadCollection('src/content/solutions', '/solutions', {
   sortBy: 'order',
 })
 
-if (solutions.length !== 10) {
-  throw new Error(`Expected 10 solution guides, found ${solutions.length}`)
+const expectedIndustrySolutionCount = 10
+const expectedCapabilitySolutionCount = 7
+const expectedSolutionCount = expectedIndustrySolutionCount + expectedCapabilitySolutionCount
+const industrySolutions = solutions.filter((solution) => solution.metadata.pageType !== 'capability')
+const capabilitySolutions = solutions.filter((solution) => solution.metadata.pageType === 'capability')
+
+if (solutions.length !== expectedSolutionCount) {
+  throw new Error(`Expected ${expectedSolutionCount} solution guides, found ${solutions.length}`)
+}
+
+if (industrySolutions.length !== expectedIndustrySolutionCount) {
+  throw new Error(`Expected ${expectedIndustrySolutionCount} industry guides, found ${industrySolutions.length}`)
+}
+
+if (capabilitySolutions.length !== expectedCapabilitySolutionCount) {
+  throw new Error(`Expected ${expectedCapabilitySolutionCount} capability guides, found ${capabilitySolutions.length}`)
 }
 
 if (new Set(solutions.map((solution) => Number(solution.metadata.order))).size !== solutions.length) {
@@ -185,8 +199,8 @@ const solutionCatalogItemCount = solutions.reduce((total, solution) => (
   ), 0)
 ), 0)
 
-if (solutionCatalogItemCount !== 160) {
-  throw new Error(`Expected 160 solution catalog use cases, found ${solutionCatalogItemCount}`)
+if (solutionCatalogItemCount !== expectedSolutionCount * 16) {
+  throw new Error(`Expected ${expectedSolutionCount * 16} solution catalog use cases, found ${solutionCatalogItemCount}`)
 }
 
 const setHead = (html, { title, description, url, ogType, ogImage, jsonLd = [] }) => {
@@ -361,11 +375,12 @@ const solutionBody = (entry) => {
     && entry.metadata.testimonialName
     && entry.metadata.testimonialPosition
     && entry.metadata.testimonialCompanyType
+    && entry.metadata.testimonialPlaceholder !== true
 
   return `
 <main class="px-6 pt-32 pb-20">
   <section class="mx-auto w-full text-center" style="max-width: 64rem">
-    <p>Solutions / ${escapeHtml(entry.metadata.industryLabel)}</p>
+    <p>${entry.metadata.pageType === 'capability' ? 'Capabilities' : 'Industries'} / ${escapeHtml(entry.metadata.industryLabel)}</p>
     <h1>${escapeHtml(entry.title)}</h1>
     <p>${escapeHtml(entry.description)}</p>
     <p><a href="/start">Text Remi</a></p>
@@ -454,7 +469,7 @@ const solutionsIndexBody = () => `
     <h1>Built for businesses with work already in motion.</h1>
     <p>See how Remi keeps customer replies, estimates, agreements, invoices, and the next decision moving in your line of work.</p>
     <ul>
-      ${solutions
+      ${industrySolutions
         .map(
           (solution) => `<li>
         <a href="${solution.path}">${escapeHtml(solution.metadata.industryLabel)}</a><br>
@@ -480,6 +495,15 @@ const pricingBody = () => `
     <p>Start with a 7-day trial. Plans start at $99 a month, billed annually.</p>
   </section>
   <section class="mx-auto w-full" style="max-width: 44rem">
+    <h2>A full-time operations hire</h2>
+    <p>Worth it when you need the whole role. Expensive when you mainly need the work handled.</p>
+    <p>$5,000 per month, or $60,000 per year.</p>
+    <ul>
+      <li>Salary plus taxes and benefits</li>
+      <li>Time to recruit and onboard well</li>
+      <li>Ongoing management and development</li>
+      <li>Best when the role is truly full-time</li>
+    </ul>
     <h2>Pro</h2>
     <p>$119 per month, or $99 per month billed annually. For individuals or small owner-run teams ready to hand Remi the daily chase list.</p>
     <ul>
@@ -557,13 +581,13 @@ const homeBody = () => `
     <p>Remi watches your email, calendar, messages, and tools, then moves the work forward with your approval.</p>
   </section>
   <section class="mx-auto w-full" style="max-width: 72rem">
-    <h2>Built for the businesses that keep Main Street moving.</h2>
+    <h2>Built for the businesses that keep America moving.</h2>
     <ul>
-      ${solutions.map((solution) => `<li><a href="${solution.path}">${escapeHtml(solution.metadata.industryLabel)}</a>: ${escapeHtml(solution.title)}</li>`).join('\n      ')}
+      ${industrySolutions.map((solution) => `<li><a href="${solution.path}">${escapeHtml(solution.metadata.industryLabel)}</a>: ${escapeHtml(solution.title)}</li>`).join('\n      ')}
     </ul>
   </section>
   <section class="mx-auto w-full" style="max-width: 72rem">
-    <h2>Back-office help without adding payroll.</h2>
+    <h2>Run like a bigger company. Without the bigger payroll.</h2>
     <p>Start with a 7-day trial. Plans start at $99 a month, billed annually.</p>
     <p><a href="/pricing">See pricing</a></p>
   </section>
@@ -639,7 +663,7 @@ writePage(
   injectBody(
     setHead(template, {
       title: 'Solutions for Owner-Run Service Businesses | Remi',
-      description: 'Explore how Remi helps contractors, home-service businesses, auto shops, cleaning companies, and agencies keep customer work moving.',
+      description: 'Explore how Remi helps contractors and owner-run field-service businesses keep customer work moving.',
       url: `${SITE}/solutions`,
       ogType: 'website',
       jsonLd: [{
@@ -648,7 +672,7 @@ writePage(
         name: 'Remi Solutions',
         description: 'Industry guides for owner-run service businesses.',
         url: `${SITE}/solutions`,
-        hasPart: solutions.map((solution) => ({
+        hasPart: industrySolutions.map((solution) => ({
           '@type': 'WebPage',
           name: solution.metadata.industryLabel,
           url: solution.url,

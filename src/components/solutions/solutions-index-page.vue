@@ -1,6 +1,6 @@
 <script setup>
 import { onBeforeUnmount, onMounted } from 'vue'
-import { solutions } from '../../lib/solutions'
+import { industrySolutions as solutions } from '../../lib/solutions'
 import { cn } from '../../lib/cn'
 import GlobalFooter from '../global/global-footer.vue'
 import GlobalHeader from '../header/global-header.vue'

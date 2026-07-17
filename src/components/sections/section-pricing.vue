@@ -7,7 +7,7 @@ import PricingPlans from '../pricing/pricing-plans.vue'
     <div class="mx-auto flex w-full max-w-(--content-width) flex-col gap-16">
       <div class="mx-auto flex max-w-3xl flex-col items-center gap-6 text-center">
         <h2 class="text-5xl font-normal leading-none tracking-tight text-balance text-foreground">
-          Back-office help without adding payroll.
+          Run like a bigger company. Without the bigger payroll.
         </h2>
         <p class="max-w-[48ch] text-base leading-normal text-pretty text-muted-foreground">
           Start with a 7-day trial. Plans start at $99 a month, billed annually.

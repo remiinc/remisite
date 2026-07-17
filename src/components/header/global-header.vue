@@ -12,26 +12,30 @@ const portalLoginHref = 'https://remi.new/login'
 const googleEntry = getOnboardingEntry('google')
 const googleEntryHref = googleEntry.href || portalLoginHref
 
-const constructionLinks = [
-  { label: 'All solutions', href: '/solutions' },
+const industryLinks = [
   { label: 'General Contractors', href: '/solutions/general-contractors' },
-  { label: 'Home Remodeling', href: '/solutions/home-remodeling' },
-  { label: 'Landscaping Services', href: '/solutions/landscaping-services' },
-  { label: 'Roofing Services', href: '/solutions/roofing-services' },
+  { label: 'Home Remodelers', href: '/solutions/home-remodeling' },
+  { label: 'HVAC Contractors', href: '/solutions/hvac-services' },
+  { label: 'Plumbers', href: '/solutions/plumbing-services' },
+  { label: 'Electricians', href: '/solutions/electrical-services' },
+  { label: 'Landscapers', href: '/solutions/landscaping-services' },
+  { label: 'Roofers', href: '/solutions/roofing-services' },
+  { label: 'View All Industries', href: '/solutions' },
 ]
 
-const serviceLinks = [
-  { label: 'HVAC Services', href: '/solutions/hvac-services' },
-  { label: 'Plumbing Services', href: '/solutions/plumbing-services' },
-  { label: 'Electrical Services', href: '/solutions/electrical-services' },
-  { label: 'Cleaning Services', href: '/solutions/cleaning-services' },
-  { label: 'Auto Repair', href: '/solutions/auto-repair' },
-  { label: 'Marketing Agencies', href: '/solutions/marketing-agencies' },
+const capabilityLinks = [
+  { label: 'Catch Every Loose End', href: '/solutions/catch-every-loose-end' },
+  { label: 'Send Quotes Faster', href: '/solutions/send-quotes-faster' },
+  { label: 'Stop Missing Follow-Ups', href: '/solutions/stop-missing-follow-ups' },
+  { label: 'Keep Jobs Moving', href: '/solutions/keep-jobs-moving' },
+  { label: 'Get Paid on Time', href: '/solutions/get-paid-on-time' },
+  { label: 'Capture Every Approval', href: '/solutions/capture-every-approval' },
+  { label: 'End Paperwork Chaos', href: '/solutions/end-paperwork-chaos' },
 ]
 
 const solutionColumns = [
-  { label: 'Construction', links: constructionLinks, variant: 'compact' },
-  { label: 'Services', links: serviceLinks, variant: 'compact' },
+  { label: 'Industries', links: industryLinks, variant: 'compact' },
+  { label: 'Capabilities', links: capabilityLinks, variant: 'compact' },
 ]
 
 const menuLinks = [
