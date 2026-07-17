@@ -250,7 +250,7 @@ const securityLinks = [
               size="default"
               variant="white"
               class="w-fit"
-              data-marketing-cta="security_ask_remi"
+              data-marketing-cta="security_text_remi"
               data-marketing-destination="linq"
             >
               <span class="inline-flex items-center gap-2">
