@@ -156,7 +156,9 @@ const normalizeSolution = (entry) => {
     pageType: metadata.pageType === 'capability' ? 'capability' : 'industry',
     industryLabel: metadata.industryLabel || '',
     order: Number(metadata.order) || 0,
+    heroDescription: metadata.heroDescription || '',
     heroMessage: metadata.heroMessage || '',
+    heroMessageVariant: metadata.heroMessageVariant === 'incoming' ? 'incoming' : 'outgoing',
     heroImageUrl: metadata.heroImageUrl || '',
     heroImageAlt: metadata.heroImageAlt || '',
     thumbnailImageUrl: metadata.thumbnailImageUrl || '',
@@ -196,15 +198,19 @@ const validateSolution = (solution) => {
   if (!solution.useCaseCatalog?.title || !solution.useCaseCatalog?.description) {
     errors.push('use case catalog title and description')
   }
-  if (solution.useCaseCatalog?.categories.length !== 4) {
-    errors.push('exactly four use case catalog categories')
+  if (
+    solution.useCaseCatalog?.categories.length < 2
+    || solution.useCaseCatalog?.categories.length > 4
+  ) {
+    errors.push('two to four use case catalog categories')
   }
   if (solution.useCaseCatalog?.categories.some((category) => (
     !category.title
-    || category.items.length !== 4
+    || category.items.length < 3
+    || category.items.length > 4
     || category.items.some((item) => !item.title || !item.description)
   ))) {
-    errors.push('four complete items in every use case catalog category')
+    errors.push('three to four complete items in every use case catalog category')
   }
   if (
     solution.useCaseCatalog
@@ -312,14 +318,6 @@ if (
     !== expectedSolutionCount * 5
 ) {
   throw new Error(`Expected ${expectedSolutionCount * 5} solution integration entries`)
-}
-
-if (normalizedSolutions.reduce((total, solution) => (
-  total + solution.useCaseCatalog.categories.reduce((categoryTotal, category) => (
-    categoryTotal + category.items.length
-  ), 0)
-), 0) !== expectedSolutionCount * 16) {
-  throw new Error(`Expected ${expectedSolutionCount * 16} solution catalog use cases`)
 }
 
 export const solutions = normalizedSolutions

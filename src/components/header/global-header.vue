@@ -14,11 +14,9 @@ const googleEntryHref = googleEntry.href || portalLoginHref
 
 const industryLinks = [
   { label: 'General Contractors', href: '/solutions/general-contractors' },
-  { label: 'Home Remodelers', href: '/solutions/home-remodeling' },
   { label: 'HVAC Contractors', href: '/solutions/hvac-services' },
   { label: 'Plumbers', href: '/solutions/plumbing-services' },
   { label: 'Electricians', href: '/solutions/electrical-services' },
-  { label: 'Landscapers', href: '/solutions/landscaping-services' },
   { label: 'Roofers', href: '/solutions/roofing-services' },
   { label: 'View All Industries', href: '/solutions' },
 ]

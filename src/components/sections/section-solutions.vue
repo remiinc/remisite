@@ -45,10 +45,7 @@ watch(
     <div class="mx-auto flex w-full max-w-(--content-width) flex-col gap-16">
       <div class="flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
         <div class="flex max-w-3xl flex-col items-start gap-6">
-          <p class="text-xs font-medium leading-none text-muted-foreground/75 flex items-center gap-4">
-            <span class="uppercase text-foreground">Solutions</span>
-            <span class="tracking-tight text-sm font-normal">Every firm. Every workflow.</span>
-          </p>
+          <p class="text-xs font-medium leading-none uppercase text-foreground">Solutions</p>
           <h2 class="text-5xl font-normal leading-none tracking-tight text-balance text-foreground">
             Built for the businesses that keep America moving.
           </h2>

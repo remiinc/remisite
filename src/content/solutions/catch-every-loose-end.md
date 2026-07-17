@@ -1,128 +1,103 @@
 ---
-title: "Every loose end gets found, owned, and moved forward."
-description: "Remi watches connected inboxes, calendars, job records, and books to find the work nobody remembered to ask about and bring back the next step."
+title: "Remi finds the next step before you have to remember it."
+description: "Remi watches your inbox, calendar, jobs, and books, then prepares the follow-up, reminder, or record before it slips."
+heroDescription: "Remi watches your inbox, calendar, jobs, and books, then prepares the follow-up, reminder, or record before it slips."
 industryLabel: "Catch Every Loose End"
 pageType: "capability"
 order: "11"
-heroMessage: "Remi, tell me what is waiting, what is blocked, and what needs my approval."
+heroMessage: "Three things need attention today. The Park deposit could block the 1:00 start. I drafted the reminder."
+heroMessageVariant: "incoming"
 heroImageUrl: "/images/solutions/construction-cover@2x.webp"
 heroImageAlt: "Contractor reviewing active work with a crew at a residential jobsite"
-useCasesTitle: "Nothing waits just because nobody remembered to ask."
+useCasesTitle: "The next step shows up before the work stalls."
 useCaseCatalog:
-  title: "More loose ends Remi brings back."
-  description: "Remi keeps the unanswered request, missing decision, promised follow-up, open balance, and unfinished record from disappearing between tools."
+  title: "What Remi catches."
+  description: "A loose end is not another alert. Remi brings back the missing context and prepares the next move."
   categories:
-    - title: "Leads and customer requests"
+    - title: "Customers and jobs"
       items:
-        - title: "Surface the unanswered lead"
-          description: "Remi finds the new request still waiting and prepares a response with the customer's details attached."
-        - title: "Bring back the promised callback"
-          description: "Remi notices the callback in your notes, checks whether it happened, and prepares the next message for review."
-        - title: "Recover the quiet estimate"
-          description: "Remi connects the sent quote with the customer's last question and drafts a useful follow-up."
-        - title: "Catch the missing appointment detail"
-          description: "Remi spots the job without an address, access note, or confirmed time and prepares the question that closes the gap."
-    - title: "Jobs and schedules"
-      items:
-        - title: "Find the task blocking tomorrow"
-          description: "Remi compares tomorrow's schedule with open tasks and surfaces the missing item that could stop the work."
-        - title: "Reconnect the supplier promise"
-          description: "Remi matches the supplier's latest update to the affected job and prepares a schedule handoff."
-        - title: "Bring back the unfinished closeout"
-          description: "Remi finds the completed job still missing photos, notes, or a customer update and assembles the remaining work."
-        - title: "Catch a calendar conflict"
-          description: "Remi compares confirmed appointments, travel time, and crew availability and flags the collision before the day starts."
-    - title: "Decisions and approvals"
-      items:
-        - title: "Surface the decision without an owner"
-          description: "Remi gathers the open question and its deadline, then proposes who needs to make the call."
-        - title: "Bring back the verbal approval"
-          description: "Remi finds the source conversation and prepares a written confirmation before work continues."
-        - title: "Catch the unsigned change"
-          description: "Remi compares added work with the approved scope and brings forward the missing sign-off."
-        - title: "Reconnect the decision to the job"
-          description: "Remi attaches the customer's answer to the relevant task, document, and promised next step."
+        - title: "A customer still waiting"
+          description: "Remi finds the unanswered request and prepares a reply with the customer details already attached."
+        - title: "A promise without a reminder"
+          description: "Remi catches the callback, revised quote, or update you promised and prepares it before the customer asks again."
+        - title: "Tomorrow's job missing something"
+          description: "Remi spots the missing deposit, approval, access detail, inspection, part, or material before it stops the work."
     - title: "Money and records"
       items:
-        - title: "Find the completed job not invoiced"
-          description: "Remi spots finished work without a final invoice and prepares the billing record for review."
-        - title: "Bring back the overdue balance"
-          description: "Remi verifies the open amount and completed work, then drafts the payment follow-up."
-        - title: "Catch the receipt without a job"
-          description: "Remi matches the purchase to the right customer record and prepares the attachment for approval."
-        - title: "Close the record after payment"
-          description: "Remi confirms the payment landed and prepares the final status update across the connected tools."
+        - title: "A change that was never written down"
+          description: "Remi finds the source conversation and prepares a written confirmation before the added work becomes a dispute."
+        - title: "Completed work that was never invoiced"
+          description: "Remi brings together the finished job, completion proof, and balance so the invoice is ready for review."
+        - title: "A payment promise nobody checked"
+          description: "Remi checks whether the promised payment landed and prepares the right follow-up when it did not."
 stats:
+  - metric: "$17.5K"
+    label: "in unpaid invoices owed to the average small business with outstanding invoices"
+    sourceLabel: "Intuit QuickBooks, 2025"
+    sourceUrl: "https://quickbooks.intuit.com/r/small-business-data/small-business-late-payments-report-2025/"
   - metric: "40%"
     label: "of home-service businesses name customer communication as a major daily time drain"
     sourceLabel: "Jobber, 2026"
     sourceUrl: "https://www.getjobber.com/home-service-trends-report/"
-  - metric: "31%"
-    label: "name admin or paperwork among their most time-consuming daily work"
+  - metric: "48%"
+    label: "name jobsite management among their most time-consuming daily work"
     sourceLabel: "Jobber, 2026"
     sourceUrl: "https://www.getjobber.com/home-service-trends-report/"
-  - metric: "$17.5k"
-    label: "in unpaid invoices owed to the average small business with outstanding invoices"
-    sourceLabel: "Intuit QuickBooks, 2025"
-    sourceUrl: "https://quickbooks.intuit.com/r/small-business-data/small-business-late-payments-report-2025/"
 useCases:
-  - title: "Start the day with every loose end ranked"
-    description: "Remi checks what arrived overnight, what is due today, and what still has no owner, then brings you the few decisions that can unblock the most work."
+  - title: "Catch the promise that never became a task"
+    description: "Remi finds the callback, revised quote, or customer update you promised but never scheduled, then prepares it before the customer asks again."
     workflow:
       - tool: gmail
-        action: "Remi finds the unanswered customer and supplier threads in Gmail."
+        action: "Remi finds the promised revised estimate in the customer thread in Gmail."
       - tool: googlecalendar
-        action: "Remi checks Google Calendar for today's jobs and promised deadlines."
-      - tool: clickup
-        action: "Remi compares the schedule with open tasks and missing owners in ClickUp."
-      - tool: quickbooks
-        action: "Remi verifies the deposit that must land before the afternoon start."
-      - tool: messages
-        action: "Remi texts you a ranked brief with the blocking deposit at the top."
-      - tool: gmail
-        action: "After you approve it, Remi sends the customer follow-up through Gmail."
-    thread:
-      time: "06:54"
-      messages:
-        - variant: incoming
-          text: "Five loose ends came in overnight. Two can block work today. 👀"
-        - variant: outgoing
-          text: "What needs me first?"
-        - variant: incoming
-          text: "The Park deposit. Their install starts at 1:00, but the payment link is still unopened. 💸"
-        - variant: outgoing
-          text: "Draft the nudge."
-        - variant: incoming
-          text: "Ready for review with the start time, deposit amount, and payment link attached. ✅"
-          quickActions: [reminders]
-  - title: "Rescue the customer still waiting"
-    description: "When a request gets split across a form, email, and calendar, Remi reconstructs the context and prepares the next response before the customer asks again."
-    workflow:
-      - tool: hubspot
-        action: "Remi spots the new lead without a completed follow-up task in HubSpot."
-      - tool: gmail
-        action: "Remi reads the customer's photos and availability in Gmail."
-      - tool: googlecalendar
-        action: "Remi checks Google Calendar for the nearest real opening."
+        action: "Remi confirms that no follow-up or customer appointment was added to Google Calendar."
       - tool: googledrive
-        action: "Remi attaches the site notes from the matching property folder."
+        action: "Remi gathers the updated measurements and material price from Google Drive."
       - tool: messages
-        action: "Remi texts you with the customer, context, and proposed appointment."
+        action: "Remi texts you with the missed promise and a ready next step."
       - tool: gmail
-        action: "After you approve it, Remi sends the appointment offer through Gmail."
+        action: "After you approve it, Remi sends the revised estimate through Gmail."
     thread:
-      time: "10:17"
+      time: "09:12"
       messages:
         - variant: incoming
-          text: "Eli asked about the porch repair yesterday. The form never became a follow-up task. 🔎"
+          text: "You told the Martins you would send the revised estimate yesterday. It never went out. 👀"
         - variant: outgoing
-          text: "Do we have enough to reply?"
+          text: "Do we have everything?"
         - variant: incoming
-          text: "Yes. Photos, address, and Thursday availability are attached. You have a 3:30 opening. 📎"
+          text: "Yes. The updated measurements and material price are attached. I drafted the email. 📎"
         - variant: outgoing
-          text: "Prepare the response."
+          text: "Let me see it."
         - variant: incoming
-          text: "Ready for review. It confirms the repair and offers Thursday at 3:30. ✍️"
+          text: "Ready for review with the revised total and the next available start date. ✍️"
+  - title: "Find tomorrow's blocker before the crew arrives"
+    description: "Remi compares the job, schedule, messages, and files to catch the missing approval, part, deposit, or access detail before it costs a day."
+    workflow:
+      - tool: jobnimbus
+        action: "Remi finds tomorrow's roofing job still waiting on a color selection in JobNimbus."
+      - tool: gmail
+        action: "Remi finds the supplier note showing that the material order has not been released."
+      - tool: googlecalendar
+        action: "Remi confirms the crew is scheduled to arrive tomorrow morning in Google Calendar."
+      - tool: googledrive
+        action: "Remi pulls the approved estimate and available color options from Google Drive."
+      - tool: messages
+        action: "Remi texts you with the blocker and a customer message ready for review."
+      - tool: gmail
+        action: "After you approve it, Remi sends the selection request through Gmail."
+    thread:
+      time: "16:38"
+      messages:
+        - variant: incoming
+          text: "The Oak Street roof starts at 8:00 tomorrow, but the color is still unconfirmed. The supplier has not released the order. ⚠️"
+        - variant: outgoing
+          text: "What do they need from us?"
+        - variant: incoming
+          text: "One selection. I attached the three approved options and drafted a message that asks for an answer by 5:30. 📎"
+        - variant: outgoing
+          text: "Show me the draft."
+        - variant: incoming
+          text: "Ready. It explains that the crew start depends on the selection without sounding pushy. ✍️"
   - title: "Finish the job after the field work ends"
     description: "Remi finds completed work that is still missing a record, invoice, or customer handoff and assembles the remaining steps for approval."
     workflow:
@@ -132,8 +107,6 @@ useCases:
         action: "Remi gathers the signed work order and completion photos from Google Drive."
       - tool: quickbooks
         action: "Remi prepares the final invoice details in QuickBooks."
-      - tool: square
-        action: "Remi confirms that no final payment has posted in Square."
       - tool: messages
         action: "Remi texts you with the finished work and missing billing step together."
       - tool: gmail
@@ -153,8 +126,8 @@ useCases:
           text: "Ready for review with the invoice and completion note attached. 📎"
           documentPreview: "Final invoice PDF"
 integrations:
-  title: "See the work hiding between your tools."
-  description: "Remi connects messages, deadlines, job records, files, and balances so an open loop cannot disappear just because it crossed systems."
+  title: "The loose end can cross tools. Remi follows it."
+  description: "Remi connects customer messages, schedules, trade job records, and books so the missing next step comes back with the right context."
   tools:
     - tool: gmail
       title: "Find the thread that still needs an answer"
@@ -162,15 +135,15 @@ integrations:
     - tool: googlecalendar
       title: "Connect promises to real deadlines"
       description: "Remi checks appointments, start dates, follow-up reminders, and availability so the loose end arrives before it becomes a schedule problem."
-    - tool: clickup
-      title: "Put an owner on the next step"
-      description: "Remi checks tasks, owners, due dates, comments, and status changes, then proposes the task update or escalation that moves the work forward."
-    - tool: googledrive
-      title: "Bring the source back with the decision"
-      description: "Remi finds scopes, photos, approvals, notes, and completion records so the missing next step comes with proof instead of another hunt."
+    - tool: jobnimbus
+      title: "Catch the job missing its next step"
+      description: "Remi checks roofing and contractor job records for missing selections, approvals, tasks, and status changes that can stop the work."
+    - tool: servicem8
+      title: "Finish the service call after the field work"
+      description: "Remi checks completed service jobs for the customer update, completion record, invoice, or payment step that still needs handling."
     - tool: quickbooks
       title: "Catch the money still waiting"
       description: "Remi checks estimates, invoices, balances, due dates, and recorded payments, then brings the right billing action to you for approval."
 ogTitle: "Catch Every Loose End with Remi"
-ogDescription: "Find unanswered requests, missing decisions, unfinished records, and open balances before they turn into bigger problems."
+ogDescription: "Remi catches unanswered requests, missing decisions, blocked jobs, and unfinished closeouts, then prepares the next step."
 ---

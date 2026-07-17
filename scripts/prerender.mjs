@@ -142,16 +142,17 @@ solutions.forEach((solution) => {
   if (!useCaseCatalog?.title || !useCaseCatalog?.description) {
     errors.push('use case catalog title and description')
   }
-  if (useCaseCatalogCategories.length !== 4) {
-    errors.push('exactly four use case catalog categories')
+  if (useCaseCatalogCategories.length < 2 || useCaseCatalogCategories.length > 4) {
+    errors.push('two to four use case catalog categories')
   }
   if (useCaseCatalogCategories.some((category) => (
     !category?.title
     || !Array.isArray(category.items)
-    || category.items.length !== 4
+    || category.items.length < 3
+    || category.items.length > 4
     || category.items.some((item) => !item?.title || !item?.description)
   ))) {
-    errors.push('four complete items in every use case catalog category')
+    errors.push('three to four complete items in every use case catalog category')
   }
   if (new Set(useCaseCatalogCategories.map((category) => category?.title)).size !== useCaseCatalogCategories.length) {
     errors.push('unique use case catalog category titles')
@@ -192,16 +193,6 @@ solutions.forEach((solution) => {
     throw new Error(`Invalid solution guide "${solution.slug}": missing ${errors.join(', ')}`)
   }
 })
-
-const solutionCatalogItemCount = solutions.reduce((total, solution) => (
-  total + solution.metadata.useCaseCatalog.categories.reduce((categoryTotal, category) => (
-    categoryTotal + category.items.length
-  ), 0)
-), 0)
-
-if (solutionCatalogItemCount !== expectedSolutionCount * 16) {
-  throw new Error(`Expected ${expectedSolutionCount * 16} solution catalog use cases, found ${solutionCatalogItemCount}`)
-}
 
 const setHead = (html, { title, description, url, ogType, ogImage, jsonLd = [] }) => {
   let output = html

@@ -27,7 +27,8 @@ defineProps({
             {{ category.title }}
           </h3>
 
-          <ul class="grid sm:grid-cols-2 lg:grid-cols-4 gap-2">
+          <ul class="grid gap-2 sm:grid-cols-2"
+            :class="category.items.length === 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-4'">
             <li v-for="item in category.items" :key="item.title"
               class="flex flex-col gap-y-12 items-stretch justify-between p-4 md:p-6 rounded-xl bg-muted">
               <h4 class="text-sm font-medium leading-tight tracking-tight text-balance">

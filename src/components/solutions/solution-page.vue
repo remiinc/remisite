@@ -96,6 +96,10 @@ onBeforeUnmount(() => {
             <h1 class="text-4xl font-normal leading-none tracking-tight text-balance md:text-5xl">
               {{ solution.title }}
             </h1>
+            <p v-if="solution.heroDescription"
+              class="max-w-2xl text-lg leading-snug text-pretty text-muted-foreground">
+              {{ solution.heroDescription }}
+            </p>
             <div class="flex flex-wrap gap-3 mt-4">
               <Button href="/start" variant="primary" size="sm"
                 data-marketing-cta="solution_hero_text_remi" data-marketing-destination="linq">
@@ -113,9 +117,13 @@ onBeforeUnmount(() => {
               class="absolute inset-0 size-full object-cover" loading="eager" decoding="async" fetchpriority="high">
 
             <div v-if="solution.heroMessage"
-              class="absolute inset-x-5 bottom-5 z-10 flex justify-end md:inset-x-10 md:bottom-10">
+              class="absolute inset-x-5 bottom-5 z-10 flex md:inset-x-10 md:bottom-10"
+              :class="solution.heroMessageVariant === 'incoming' ? 'justify-start' : 'justify-end'">
               <div
-                class="relative ml-[25%] inline-block max-w-[78%] rounded-l-[1.25em] rounded-tr-[1.25em] rounded-br-[0.25em] bg-blue-400 bg-fixed px-[0.875em] py-[0.5em] text-[0.9em] leading-tight tracking-tight text-white">
+                class="relative inline-block max-w-[78%] px-[0.875em] py-[0.5em] text-[0.9em] leading-tight tracking-tight"
+                :class="solution.heroMessageVariant === 'incoming'
+                  ? 'mr-[25%] rounded-r-[1.25em] rounded-tl-[1.25em] rounded-bl-[0.25em] bg-white/90 text-foreground backdrop-blur-sm'
+                  : 'ml-[25%] rounded-l-[1.25em] rounded-tr-[1.25em] rounded-br-[0.25em] bg-blue-400 bg-fixed text-white'">
                 {{ solution.heroMessage }}
               </div>
             </div>
