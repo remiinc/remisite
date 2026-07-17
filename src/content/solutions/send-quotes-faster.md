@@ -1,118 +1,98 @@
 ---
 title: "Turn field notes into a quote before the customer asks again."
-description: "Remi gathers the request, site notes, photos, pricing, and promised next step, then prepares a complete quote for your approval."
+description: "Remi brings together the customer request, field notes, photos, and owner-approved pricing, then prepares a complete quote for your review."
+heroDescription: "Remi brings together the customer request, field notes, photos, and owner-approved pricing, then prepares a complete quote for your review."
 industryLabel: "Send Quotes Faster"
 pageType: "capability"
 order: "12"
-heroMessage: "Remi, turn today's walkthrough notes into quotes and flag anything still missing."
+heroMessage: "The Alvarez quote is ready. I built both fixture options from your notes and left one material price open for you."
+heroMessageVariant: "incoming"
 heroImageUrl: "/images/solutions/plumbing-cover@2x.webp"
 heroImageAlt: "Service-business owner recording job details while working in a customer's home"
 useCasesTitle: "The quote moves while you are already on the next job."
+workflowLabel: "Example workflow"
+workflowDescription: "Works with the tools you already use."
 useCaseCatalog:
-  title: "More ways Remi gets the quote out."
-  description: "Remi turns inquiries, field notes, supplier details, pricing rules, and customer questions into review-ready quotes without rebuilding the job from memory."
+  title: "What Remi gets quote-ready."
+  description: "Remi turns what you captured in the field into a clear scope and verified price without inventing what is missing."
   categories:
-    - title: "Lead intake and qualification"
+    - title: "Build the scope"
       items:
-        - title: "Turn the inquiry into a quote brief"
-          description: "Remi gathers the customer's request, property details, timing, and photos into one estimating handoff."
-        - title: "Ask for the missing measurement"
-          description: "Remi spots the dimension the quote requires and prepares a focused question for your approval."
-        - title: "Separate the urgent job from the maybe"
-          description: "Remi compares timing, scope, and readiness and surfaces the request most likely to move now."
-        - title: "Bring the site walk onto your calendar"
-          description: "Remi checks your openings and prepares the appointment message with the known job details attached."
-    - title: "Scope and job context"
+        - title: "Turn field notes into scope"
+          description: "Remi organizes your notes into labor, materials, assumptions, exclusions, and open questions."
+        - title: "Keep photos with the right line item"
+          description: "Remi matches job photos to the work being priced so the quote carries the evidence you saw onsite."
+        - title: "Flag the missing detail"
+          description: "Remi catches the measurement, selection, or supplier price the quote still needs and prepares the exact question."
+    - title: "Make the numbers clear"
       items:
-        - title: "Turn voice notes into scope"
-          description: "Remi organizes your field notes into labor, materials, assumptions, exclusions, and open questions."
-        - title: "Keep photos with the line item"
-          description: "Remi matches job photos to the relevant scope so the estimate carries the evidence you saw onsite."
-        - title: "Reuse the approved pricing rule"
-          description: "Remi finds the labor rate, markup, or package you already use and brings it into the draft."
-        - title: "Flag a scope conflict"
-          description: "Remi compares the new request with the customer's earlier description and surfaces the mismatch before pricing."
-    - title: "Pricing and preparation"
-      items:
-        - title: "Chase the missing material price"
-          description: "Remi finds the supplier quote still outstanding and prepares a request with the exact item and deadline."
-        - title: "Build options instead of one guess"
-          description: "Remi organizes the good, better, and best scope into clear alternatives using your approved pricing."
-        - title: "Check the math before review"
-          description: "Remi compares quantities, rates, tax, deposit, and totals and flags anything that does not reconcile."
-        - title: "Draft the customer-ready quote"
-          description: "Remi turns the verified scope and numbers into a clean quote with assumptions and exclusions attached."
-    - title: "Sending and closing"
-      items:
-        - title: "Bring back the quote you promised"
-          description: "Remi connects your promised send time with the unfinished draft and surfaces what still blocks it."
-        - title: "Answer the customer's quote question"
-          description: "Remi checks the current quote and source notes, then drafts a specific answer for your approval."
-        - title: "Follow up before the quote goes cold"
-          description: "Remi recognizes the quiet estimate and prepares a useful follow-up based on the customer's last concern."
-        - title: "Turn acceptance into the next step"
-          description: "Remi connects the approved quote to the deposit, schedule, and job record that need to happen next."
+        - title: "Use only owner-approved prices"
+          description: "Remi uses the labor rates, material prices, markups, and packages you approved and leaves unknown numbers open."
+        - title: "Show the choices clearly"
+          description: "Remi separates options, allowances, and exclusions so the customer can see exactly what changes."
+        - title: "Tie payment to real milestones"
+          description: "Remi lays out the deposit and progress payments against the work they actually unlock."
 stats:
   - metric: "37%"
     label: "of home-service businesses rank quoting among their most time-consuming daily work"
     sourceLabel: "Jobber, 2026"
     sourceUrl: "https://www.getjobber.com/home-service-trends-report/"
-  - metric: "55%+"
-    label: "of customers expect a response from a home-service business within the hour"
-    sourceLabel: "Jobber, 2026"
-    sourceUrl: "https://www.getjobber.com/home-service-trends-report/"
-  - metric: "21x"
-    label: "more likely to qualify a lead when replying within five minutes instead of thirty"
-    sourceLabel: "MIT and InsideSales lead-response research"
-    sourceUrl: "https://www.leadresponsemanagement.org/lrm_study"
+  - metric: "93%"
+    label: "of homeowners say instant estimates influence who they hire"
+    sourceLabel: "Housecall Pro, 2025"
+    sourceUrl: "https://www.housecallpro.com/resources/home-service-customer-service-report-trends-statistics/"
+  - metric: "57%"
+    label: "of residential jobs get good-better-best options from top-performing contractors"
+    sourceLabel: "ServiceTitan, 2026"
+    sourceUrl: "https://www.servicetitan.com/toolbox/state-of-the-trades/trends/top-performer-profile"
 useCases:
   - title: "Turn today's walkthrough into a quote"
-    description: "Remi brings your notes, photos, customer request, and approved pricing together while the visit is still fresh, then prepares the draft for review."
+    description: "Remi brings your notes, photos, customer request, and approved pricing together while the visit is still fresh, then prepares the quote for review."
     workflow:
+      - tool: servicem8
+        action: "Remi gathers the job notes, materials, and customer details already captured."
       - tool: googledrive
-        action: "Remi reads the site photos and voice-note transcript in Google Drive."
+        action: "Remi pulls in site photos and voice notes from connected files."
       - tool: gmail
-        action: "Remi checks Gmail for the customer's original request and promised options."
+        action: "Remi checks the original request and the options you promised."
       - tool: quickbooks
-        action: "Remi pulls the approved labor rates and material pricing from QuickBooks."
-      - tool: googledocs
-        action: "Remi drafts the scope, options, assumptions, and exclusions in Google Docs."
+        action: "Remi builds the estimate using only your approved pricing."
       - tool: messages
-        action: "Remi texts you when the quote is ready for price confirmation."
+        action: "Remi flags any missing details before the quote reaches you."
       - tool: gmail
-        action: "After you approve it, Remi sends the quote through Gmail."
+        action: "After approval, Remi sends the finished quote to the customer."
     thread:
       time: "11:36"
       messages:
         - variant: incoming
-          text: "Your Alvarez notes cover the panel upgrade, six outlets, and two fixture options. ⚡"
+          text: "The Alvarez quote is ready with standard and upgraded fixture options. I left one material price open. ⚡"
         - variant: outgoing
-          text: "Do we have everything to quote it?"
+          text: "Did you use our approved labor rates?"
         - variant: incoming
-          text: "Yes. Photos, labor rates, and the customer's preferred start week are attached. 📎"
+          text: "Yes. Both options use your current service rate and markup. The missing fixture price is clearly flagged. 📎"
         - variant: outgoing
-          text: "Build both options."
+          text: "Show me the draft."
         - variant: incoming
-          text: "Ready for review with standard and upgraded fixture options. ✍️"
+          text: "Ready for review with the scope, options, assumptions, and exclusions together. ✍️"
           documentPreview: "Quote PDF"
-  - title: "Get the missing supplier number"
-    description: "When one material cost holds up the entire quote, Remi finds the gap and prepares the supplier follow-up with the exact product and deadline."
+  - title: "Catch what is missing before the quote goes out"
+    description: "Remi spots the missing measurement, selection, or supplier price, gathers the surrounding job details, and leaves the unknown number open instead of guessing."
     workflow:
-      - tool: googlesheets
-        action: "Remi finds the blank window price in the estimating sheet."
+      - tool: jobnimbus
+        action: "Remi finds the unpriced material in the connected job record."
       - tool: googledrive
-        action: "Remi opens the customer selection and measured opening in Google Drive."
+        action: "Remi pulls in the selection, site photo, and measurements."
       - tool: gmail
-        action: "Remi checks Gmail and confirms the supplier has not answered yesterday's request."
+        action: "Remi checks whether the supplier has answered the pricing request."
       - tool: messages
-        action: "Remi texts you with the missing price and supplier thread together."
+        action: "Remi brings you the missing price and supporting context together."
       - tool: gmail
-        action: "After you approve it, Remi sends a focused pricing request through Gmail."
+        action: "After approval, Remi asks the supplier for price and lead time."
     thread:
       time: "13:08"
       messages:
         - variant: incoming
-          text: "The Chen quote is ready except for the black-frame window price. 🔎"
+          text: "The Chen quote is built, but the black-frame window price is still missing. I left that line open. 🔎"
         - variant: outgoing
           text: "Did the supplier answer?"
         - variant: incoming
@@ -122,53 +102,54 @@ useCases:
         - variant: incoming
           text: "Draft ready for review. It asks for price and lead time by 3:00. ✅"
           quickActions: [reminders]
-  - title: "Bring a quiet quote back to life"
-    description: "Remi watches sent estimates and customer conversations, then drafts a follow-up that answers the real hesitation instead of sending a generic check-in."
+  - title: "Build the choices into the quote"
+    description: "Remi turns owner-approved pricing into clear options, allowances, exclusions, and payment milestones so the customer can understand what they are approving."
     workflow:
-      - tool: hubspot
-        action: "Remi finds the seven-day-old estimate without a follow-up task in HubSpot."
-      - tool: gmail
-        action: "Remi reads the customer's last question about timing in Gmail."
-      - tool: googlecalendar
-        action: "Remi checks Google Calendar and finds the next available start week."
+      - tool: jobnimbus
+        action: "Remi gathers the approved scope, selections, and job notes."
       - tool: googledrive
-        action: "Remi attaches the current quote and option sheet from Google Drive."
+        action: "Remi pulls in the photos and details behind each option."
+      - tool: quickbooks
+        action: "Remi builds each option using your approved prices and payment terms."
+      - tool: googlecalendar
+        action: "Remi checks the calendar before including an available start window."
       - tool: messages
-        action: "Remi texts you with the customer's concern and proposed answer."
+        action: "Remi shows you the differences, exclusions, and payment milestones."
       - tool: gmail
-        action: "After you approve it, Remi sends the quote follow-up through Gmail."
+        action: "After approval, Remi sends the finished quote to the customer."
     thread:
       time: "15:21"
       messages:
         - variant: incoming
-          text: "The Morgan deck quote has been quiet for seven days. Their last question was about a September start. 👀"
+          text: "The Morgan deck quote is ready with cedar and composite options. Both use your approved labor and material prices. 🪵"
         - variant: outgoing
-          text: "Can we still make September?"
+          text: "What changes between them?"
         - variant: incoming
-          text: "Yes. The week of September 14 is open and the quoted price is still current. 📅"
+          text: "Only the decking material and warranty. Demo, framing, railing, and the payment schedule stay the same."
         - variant: outgoing
-          text: "Draft the follow-up."
+          text: "Any exclusions?"
         - variant: incoming
-          text: "Ready for review. It answers the timing question and brings the quote back without pressure. ✍️"
+          text: "Permit fees are listed separately, and the start window is marked tentative until the deposit clears. Ready for review. ✍️"
+          documentPreview: "Quote PDF"
 integrations:
   title: "Build the quote from the details you already captured."
-  description: "Remi connects the request, field record, pricing source, promised deadline, and customer conversation so the quote arrives complete instead of starting from a blank page."
+  description: "Remi connects the customer request, field record, photos, and pricing source so the quote starts with the real job instead of a blank page."
   tools:
-    - tool: gmail
-      title: "Start with what the customer actually asked for"
-      description: "Remi reads connected inquiries, questions, attachments, and promised next steps, then carries the relevant context into the quote draft."
+    - tool: servicem8
+      title: "Bring service-call details into the quote"
+      description: "Remi reads connected customer, job, material, and field-note context so HVAC, plumbing, and electrical quotes start with what happened onsite."
+    - tool: jobnimbus
+      title: "Bring contractor job context into the quote"
+      description: "Remi reads connected job, product, work-order, and task context so contractor and roofing quotes keep the field details attached."
+    - tool: quickbooks
+      title: "Prepare the estimate with approved numbers"
+      description: "Remi uses connected products, services, customer records, tax settings, and owner-approved rates to prepare the estimate for review."
     - tool: googledrive
       title: "Turn photos and notes into scope"
-      description: "Remi finds site photos, measurements, voice-note transcripts, and reference documents and organizes them around the work being priced."
-    - tool: quickbooks
-      title: "Use the numbers your business already trusts"
-      description: "Remi checks products, services, labor rates, prior estimates, customer records, and tax settings before preparing the quote for review."
-    - tool: googlesheets
-      title: "Keep quantities and markups consistent"
-      description: "Remi checks estimating sheets, pricing tables, formulas, and approved markups and flags missing or inconsistent numbers."
-    - tool: hubspot
-      title: "Keep the quote attached to the opportunity"
-      description: "Remi checks the contact, deal stage, notes, tasks, and last customer response, then proposes the follow-up or record update for approval."
+      description: "Remi gathers site photos, measurements, voice-note transcripts, selections, and reference documents around the work being priced."
+    - tool: gmail
+      title: "Carry the customer's request into the quote"
+      description: "Remi reads connected customer and supplier threads, keeps the promised options and open questions attached, and sends only after you approve."
 ogTitle: "Send Quotes Faster with Remi"
-ogDescription: "Turn customer requests, field notes, photos, and pricing into complete quotes ready for your approval."
+ogDescription: "Turn customer requests, field notes, photos, and owner-approved pricing into complete quotes ready for your review."
 ---

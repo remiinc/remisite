@@ -1,172 +1,150 @@
 ---
-title: "Every waiting customer gets the next message."
-description: "Remi notices unanswered leads, quiet quotes, promised callbacks, missing customer details, and overdue invoices, then prepares the follow-up with the full context attached."
+title: "Don't let the next job go cold."
+description: "Remi catches unanswered leads, quiet quotes, and past customers worth another call, then drafts the right message for your approval."
+heroDescription: "Remi catches unanswered leads, quiet quotes, and past customers worth another call, then drafts the right message for your approval."
 industryLabel: "Stop Missing Follow-Ups"
 pageType: "capability"
 order: "13"
-heroMessage: "Remi, find every customer waiting on us and draft the next response."
+heroMessage: "Three follow-ups need attention. The Lee quote has been quiet five days, and I drafted the first nudge."
+heroMessageVariant: "incoming"
 heroImageUrl: "/images/solutions/hvac-cover@2x.webp"
 heroImageAlt: "Service professional reviewing customer work from a phone beside an HVAC system"
-useCasesTitle: "The follow-up happens before the opportunity goes cold."
+useCasesTitle: "The next message is ready before the job goes cold."
+workflowLabel: "Example workflow"
+workflowDescription: "Works with the tools you already use."
 useCaseCatalog:
-  title: "More follow-ups Remi keeps moving."
-  description: "Remi connects the last conversation, promised next step, current job status, and real deadline so every follow-up feels timely and specific."
+  title: "What Remi keeps warm."
+  description: "Remi brings back the real conversation, timing, and job history so each follow-up has a reason."
   categories:
-    - title: "New leads and inquiries"
+    - title: "New work"
       items:
-        - title: "Answer the request still waiting"
-          description: "Remi finds the unanswered inquiry and prepares a response using the customer's details and your availability."
-        - title: "Bring back the missed call"
-          description: "Remi connects the caller, voicemail, and customer record and drafts the callback text for review."
-        - title: "Ask for the missing job detail"
-          description: "Remi spots the photo, address, measurement, or timing detail needed to move forward and prepares the question."
-        - title: "Confirm the site visit"
-          description: "Remi checks the appointment and prepares a confirmation with arrival window and access details."
-    - title: "Quotes and decisions"
+        - title: "Answer the new inquiry"
+          description: "Remi finds the unanswered request and prepares a response specific to the customer's job."
+        - title: "Ask only what is missing"
+          description: "Remi asks for the one or two details needed to understand the work and move it forward."
+        - title: "Offer a real visit time"
+          description: "Remi checks your calendar and proposes an opening you can actually keep."
+    - title: "Warm work"
       items:
-        - title: "Follow up on the quiet quote"
-          description: "Remi surfaces the customer's last concern and drafts a useful response around the current estimate."
-        - title: "Bring back the promised revision"
-          description: "Remi notices the quote change still unfinished and gathers the details needed to complete it."
-        - title: "Ask for the open selection"
-          description: "Remi connects the pending customer choice to its schedule deadline and prepares a focused nudge."
-        - title: "Confirm the verbal yes"
-          description: "Remi finds the source conversation and prepares the written confirmation, deposit, and scheduling next step."
-    - title: "Active jobs and handoffs"
-      items:
-        - title: "Send the pre-arrival update"
-          description: "Remi checks the route and job notes and prepares the customer message before the crew arrives."
-        - title: "Bring back the supplier answer"
-          description: "Remi matches the supplier's response to the affected customer and prepares the next update."
-        - title: "Follow up on missing access"
-          description: "Remi notices the job still lacks entry instructions and prepares a clear request before dispatch."
-        - title: "Close the loop after service"
-          description: "Remi turns completion notes into the customer update, warranty detail, or next appointment you promised."
-    - title: "Invoices and relationships"
-      items:
-        - title: "Nudge the overdue invoice"
-          description: "Remi verifies the balance and completed work and drafts a tactful reminder for approval."
-        - title: "Confirm the payment promise"
-          description: "Remi finds the customer's promised payment date and prepares the right follow-up when it passes."
-        - title: "Bring back the renewal"
-          description: "Remi connects the expiring service agreement with the customer's history and prepares the renewal message."
-        - title: "Ask for the review"
-          description: "Remi recognizes a completed job and positive customer response and prepares a timely review request."
+        - title: "Nudge the quiet quote"
+          description: "Remi uses the customer's real question, quote, and timing instead of sending a generic check-in."
+        - title: "Know when another text will not help"
+          description: "After two unanswered nudges, Remi recommends a call instead of adding more noise."
+        - title: "Reconnect from real job history"
+          description: "Remi finds a completed job and a natural reason to reach back out to that customer."
 stats:
-  - metric: "55%+"
-    label: "of customers expect a response from a home-service business within the hour"
-    sourceLabel: "Jobber, 2026"
-    sourceUrl: "https://www.getjobber.com/home-service-trends-report/"
   - metric: "25%"
-    label: "of customers cite response speed as an important factor when choosing a provider"
+    label: "of customers cite initial response speed as a factor when choosing a provider"
     sourceLabel: "Jobber, 2026"
     sourceUrl: "https://www.getjobber.com/home-service-trends-report/"
-  - metric: "47%"
-    label: "of small businesses report invoices more than 30 days overdue"
-    sourceLabel: "Intuit QuickBooks, 2025"
-    sourceUrl: "https://quickbooks.intuit.com/r/small-business-data/small-business-late-payments-report-2025/"
+  - metric: "77%"
+    label: "of estimates are closed during the same visit by top-performing contractors"
+    sourceLabel: "ServiceTitan, 2026"
+    sourceUrl: "https://www.servicetitan.com/toolbox/state-of-the-trades/trends/top-performer-profile"
+  - metric: "68%"
+    label: "of homeowners would hire the same company again after excellent service"
+    sourceLabel: "Housecall Pro, 2025"
+    sourceUrl: "https://www.housecallpro.com/resources/home-service-customer-service-report-trends-statistics/"
 useCases:
-  - title: "Answer the lead while the job is still available"
-    description: "Remi notices the unanswered request, gathers the customer's problem and location, checks your availability, and prepares a specific response for approval."
+  - title: "Answer the lead before they call the next contractor"
+    description: "Remi gathers the request, checks real availability, and prepares a specific first reply while the job is still available."
     workflow:
-      - tool: hubspot
-        action: "Remi finds the new lead without a completed response in HubSpot."
       - tool: gmail
-        action: "Remi reads the customer's request and attached photos in Gmail."
+        action: "Remi reads the customer's request and attached photos."
+      - tool: googledrive
+        action: "Remi gathers any measurements or property details already captured."
       - tool: googlecalendar
-        action: "Remi checks Google Calendar for the nearest site-visit opening."
+        action: "Remi checks the calendar for one or two real visit times."
       - tool: messages
-        action: "Remi texts you with the request, location, and proposed appointment."
+        action: "Remi brings you the request and proposed next step for review."
       - tool: gmail
-        action: "After you approve it, Remi sends the site-visit offer through Gmail."
+        action: "After approval, Remi replies with the specific job and visit options."
     thread:
       time: "08:07"
       messages:
         - variant: incoming
-          text: "Jordan asked about a leaking skylight 42 minutes ago and is still waiting. 👀"
+          text: "Jordan asked about a leaking skylight 42 minutes ago and is still waiting. I drafted a reply. 👀"
         - variant: outgoing
           text: "What can we offer?"
         - variant: incoming
-          text: "Tomorrow at 9:30. The address is 12 minutes from your first job and photos are attached. 📍"
+          text: "Tomorrow at 9:30 or Thursday at 2:00. Both are open, and their photos are attached. 📍"
         - variant: outgoing
-          text: "Draft the reply."
+          text: "Show me."
         - variant: incoming
-          text: "Ready for review with the appointment window and photo confirmation. ✍️"
+          text: "Ready for review. It names the skylight leak and offers those two times. ✍️"
           quickActions: [reminders]
-  - title: "Follow up on the quote with a reason to reply"
-    description: "Instead of sending a generic check-in, Remi brings forward the customer's last question, current quote, and real scheduling context."
+  - title: "Follow up on a quiet quote with something useful"
+    description: "Remi confirms the silence, finds the customer's real concern, and prepares a short nudge with a concrete next step."
     workflow:
-      - tool: servicem8
-        action: "Remi finds the sent estimate that has been quiet for five days in ServiceM8."
       - tool: gmail
-        action: "Remi reads the customer's last question about project timing in Gmail."
-      - tool: googlecalendar
-        action: "Remi checks Google Calendar for the next available start date."
+        action: "Remi confirms the customer has not replied to the quote."
       - tool: googledrive
-        action: "Remi attaches the current scope and option sheet from Google Drive."
+        action: "Remi pulls in the current quote and the customer's selected option."
+      - tool: googlecalendar
+        action: "Remi checks the calendar before mentioning a start window."
       - tool: messages
-        action: "Remi texts you with the customer's concern and a concrete answer."
+        action: "Remi brings you the quiet quote and grounded nudge for review."
       - tool: gmail
-        action: "After you approve it, Remi sends the quote follow-up through Gmail."
+        action: "After approval, Remi sends the first follow-up in the existing thread."
     thread:
       time: "12:44"
       messages:
         - variant: incoming
-          text: "The Lee kitchen quote has been quiet for five days. Their last concern was the start date. 🔎"
+          text: "The Lee heat-pump quote has been quiet five days. Their last concern was the start date. 🔎"
         - variant: outgoing
-          text: "What is our next opening?"
+          text: "Do we have an opening?"
         - variant: incoming
-          text: "October 6. The quote is current and their preferred cabinet option is still available. 📅"
+          text: "October 6 is open, and the quoted equipment is still available. 📅"
         - variant: outgoing
-          text: "Use that in the follow-up."
+          text: "Use that."
         - variant: incoming
-          text: "Ready for review. It answers the timing question and includes the selected option. ✅"
+          text: "Ready for review. It answers the timing question without inventing urgency. ✅"
           documentPreview: "Estimate PDF"
-  - title: "Chase the invoice without losing the relationship"
-    description: "Remi connects the overdue balance with the completed work and recent customer conversation, then prepares the right reminder for the moment."
+  - title: "Bring back a past customer for the next job"
+    description: "Remi uses completed job history and a real reason to reconnect, then prepares one personal note—not a marketing blast."
     workflow:
-      - tool: quickbooks
-        action: "Remi finds the 14-day-overdue invoice and verifies the open balance in QuickBooks."
       - tool: googledrive
-        action: "Remi gathers the signed work order and completion record from Google Drive."
+        action: "Remi finds the completed job record and photos from the work."
       - tool: gmail
-        action: "Remi reads the customer's promise to pay after Friday's inspection."
+        action: "Remi checks what the customer previously said about future work."
+      - tool: googlecalendar
+        action: "Remi confirms there is room in the schedule before offering it."
       - tool: messages
-        action: "Remi texts you with the balance, promise, and supporting record together."
+        action: "Remi brings you the customer, past job, and reason to reach out."
       - tool: gmail
-        action: "After you approve it, Remi sends the payment reminder through Gmail."
+        action: "After approval, Remi sends one personal note in the existing relationship."
     thread:
       time: "16:18"
       messages:
         - variant: incoming
-          text: "The Cole invoice is 14 days late. They said payment would follow Friday's passed inspection. 💸"
+          text: "The Novaks' kitchen was completed two years ago, and they mentioned the hall bath. You have room opening next month. 🛠️"
         - variant: outgoing
-          text: "Did the inspection pass?"
+          text: "Any issues on the last job?"
         - variant: incoming
-          text: "Yes. The approval and $2,460 balance are attached. 📎"
+          text: "None. Final payment landed, and they said they loved the kitchen. The old thread is attached. ✅"
         - variant: outgoing
-          text: "Prepare the reminder."
+          text: "Draft a note."
         - variant: incoming
-          text: "Ready for review. It references their promise and keeps the tone straightforward. ✍️"
+          text: "Ready for review. It references the kitchen and offers a time to look at the bath. ✍️"
 integrations:
-  title: "Follow up with the full story, not another check-in."
-  description: "Remi connects the customer, last conversation, promised next step, schedule, quote, and balance so every follow-up moves something specific forward."
+  title: "Follow up from the history you already have."
+  description: "These are examples, not requirements. Remi works across the customer conversations, schedules, quotes, and job records your business already uses."
   tools:
-    - tool: hubspot
-      title: "Find the lead without a next step"
-      description: "Remi checks contacts, deals, notes, tasks, forms, and last activity and proposes the follow-up or CRM update that should happen next."
     - tool: gmail
-      title: "Continue the conversation with context"
-      description: "Remi reads connected customer and supplier threads, finds the unresolved question, and drafts the response around what was actually said."
+      title: "Continue the real conversation"
+      description: "Remi reads the connected thread, finds the unanswered question, and prepares the next reply around what the customer actually said."
     - tool: googlecalendar
-      title: "Use a real opening in the follow-up"
-      description: "Remi checks appointments, start dates, availability, and promised callbacks so the next message can offer a concrete path forward."
-    - tool: servicem8
-      title: "Catch the job or estimate going quiet"
-      description: "Remi checks clients, quotes, jobs, tasks, notes, and payments in ServiceM8 and surfaces the record that still needs movement."
-    - tool: quickbooks
-      title: "Follow the invoice until payment lands"
-      description: "Remi verifies invoice status, balance, due date, and payment history before preparing the right reminder for your approval."
+      title: "Offer time you can actually keep"
+      description: "Remi checks real visit times, start windows, and callbacks before putting a date in front of the customer."
+    - tool: googledrive
+      title: "Keep the quote and job history attached"
+      description: "Remi brings forward the current quote, photos, scope, and completed work so the follow-up stays specific."
+    - tool: acculynx
+      title: "Bring the roofing record with you"
+      description: "Remi can use connected customer, lead, and job details to ground the next step without making you rebuild the context."
+    - tool: repairshopr
+      title: "Pick up from the service history"
+      description: "Remi can connect the customer record, prior work, and open conversation before preparing a personal follow-up."
 ogTitle: "Stop Missing Follow-Ups with Remi"
-ogDescription: "Catch unanswered leads, quiet quotes, promised callbacks, customer updates, and overdue invoices before they slip."
+ogDescription: "Answer new leads, follow up on quiet quotes, and reconnect with past customers before the next job goes cold."
 ---

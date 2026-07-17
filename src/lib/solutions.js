@@ -156,6 +156,9 @@ const normalizeSolution = (entry) => {
     pageType: metadata.pageType === 'capability' ? 'capability' : 'industry',
     industryLabel: metadata.industryLabel || '',
     order: Number(metadata.order) || 0,
+    heroTitleLines: (Array.isArray(metadata.heroTitleLines) ? metadata.heroTitleLines : [])
+      .map((line) => String(line || ''))
+      .filter(Boolean),
     heroDescription: metadata.heroDescription || '',
     heroMessage: metadata.heroMessage || '',
     heroMessageVariant: metadata.heroMessageVariant === 'incoming' ? 'incoming' : 'outgoing',
@@ -164,6 +167,8 @@ const normalizeSolution = (entry) => {
     thumbnailImageUrl: metadata.thumbnailImageUrl || '',
     thumbnailImageAlt: metadata.thumbnailImageAlt || '',
     useCasesTitle: metadata.useCasesTitle || '',
+    workflowLabel: metadata.workflowLabel || 'How Remi handles it',
+    workflowDescription: metadata.workflowDescription || '',
     stats: normalizeStats(metadata.stats),
     useCases: normalizeUseCases(metadata.useCases),
     useCaseCatalog: normalizeUseCaseCatalog(metadata.useCaseCatalog),

@@ -88,13 +88,16 @@ onBeforeUnmount(() => {
     <main v-if="solution">
       <section class="w-full px-6 pb-16 pt-[calc(var(--header-height)+5rem)]" data-solution-hero>
         <div class="mx-auto flex w-full max-w-(--content-width) flex-col items-center gap-24">
-          <div class="flex max-w-4xl self-end flex-col items-start gap-6">
+          <div class="flex w-full max-w-4xl self-end flex-col items-start gap-6">
             <p class="text-xs font-medium leading-none text-muted-foreground flex items-center gap-4">
               <span class="uppercase text-foreground">{{ sectionLabel }}</span>
               <span class="text-sm tracking-tight font-normal">{{ solution.industryLabel }}</span>
             </p>
             <h1 class="text-4xl font-normal leading-none tracking-tight text-balance md:text-5xl">
-              {{ solution.title }}
+              <template v-if="solution.heroTitleLines.length">
+                <span v-for="line in solution.heroTitleLines" :key="line" class="block">{{ line }}</span>
+              </template>
+              <template v-else>{{ solution.title }}</template>
             </h1>
             <p v-if="solution.heroDescription"
               class="max-w-2xl text-lg leading-snug text-pretty text-muted-foreground">
@@ -177,12 +180,15 @@ onBeforeUnmount(() => {
                 {{ useCase.description }}
               </p>
 
-              <div class="mt-10 w-full border-t border-border/60 pt-5" aria-label="How Remi handles it"
+              <div class="mt-10 w-full border-t border-border/60 pt-5" :aria-label="solution.workflowLabel"
                 data-solution-workflow>
                 <p class="text-xs font-medium uppercase leading-tight text-muted-foreground/50">
-                  How Remi handles it
+                  {{ solution.workflowLabel }}
                 </p>
-                <ol class="mt-5 flex flex-col">
+                <p v-if="solution.workflowDescription" class="mt-2 text-sm leading-snug text-muted-foreground/65">
+                  {{ solution.workflowDescription }}
+                </p>
+                <ol class="flex flex-col" :class="solution.workflowDescription ? 'mt-4' : 'mt-5'">
                   <li v-for="(step, stepIndex) in useCase.workflow" :key="`${step.key}-${stepIndex}`"
                     class="grid min-w-0 grid-cols-[1.5rem_1fr] gap-3 pb-5 last:pb-0"
                     :data-solution-workflow-step="step.key">

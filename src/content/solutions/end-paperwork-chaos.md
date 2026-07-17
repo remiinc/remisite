@@ -1,175 +1,152 @@
 ---
-title: "Paperwork gets handled while you keep the business moving."
-description: "Remi turns connected emails, messages, notes, photos, receipts, approvals, and payment records into organized job paperwork ready for your review."
+title: "Keep every job record complete from the first note to the final handoff."
+heroTitleLines:
+  - "Keep every job record complete"
+  - "from the first note to the final handoff."
+description: "Remi turns field notes, photos, receipts, and customer records into organized job documentation while the work is still fresh."
+heroDescription: "Remi turns field notes, photos, receipts, and customer records into organized job documentation while the work is still fresh."
 industryLabel: "End Paperwork Chaos"
 pageType: "capability"
 order: "17"
-heroMessage: "Remi, organize today's notes, receipts, approvals, and customer promises by job."
+heroMessage: "I turned today's six photos, two field notes, and one supplier receipt into job records. One receipt still needs a job."
+heroMessageVariant: "incoming"
 heroImageUrl: "/images/solutions/auto-repair-cover@2x.webp"
 heroImageAlt: "Service-business owner reviewing job details while work continues nearby"
-useCasesTitle: "The record gets built as the work happens."
+useCasesTitle: "The job record stays current while the work moves."
+workflowLabel: "Example workflow"
+workflowDescription: "Works with the tools you already use."
 useCaseCatalog:
-  title: "More paperwork Remi keeps organized."
-  description: "Remi keeps requests, scopes, field notes, approvals, receipts, invoices, and closeout records attached to the right customer and job."
+  title: "What Remi keeps out of the paperwork pile."
+  description: "Remi turns the notes, photos, receipts, and documents the work already creates into a source-backed record attached to the right job."
   categories:
-    - title: "Intake and job records"
+    - title: "Capture the work"
       items:
-        - title: "Turn the request into a job brief"
-          description: "Remi gathers the customer, property, scope, timing, photos, and open questions into one starting record."
-        - title: "Match the message to the customer"
-          description: "Remi connects a stray email or text with the right contact and active job before proposing the update."
-        - title: "Bring scattered notes together"
-          description: "Remi organizes voice notes, photos, measurements, and promises into a structured job summary."
-        - title: "Surface the missing detail"
-          description: "Remi spots the absent address, access note, model, measurement, or owner and prepares the question."
-    - title: "Quotes and agreements"
+        - title: "Log the day from notes and photos"
+          description: "Remi turns what actually happened into a dated job entry with the original source attached."
+        - title: "Attach receipts to the correct job"
+          description: "Remi reads the vendor, date, amount, and materials and connects the cost to the work it belongs to."
+        - title: "Stop and ask when the match is uncertain"
+          description: "Remi brings ambiguous photos, receipts, and notes back to you instead of quietly filing them under the wrong job."
+    - title: "Finish with a clean record"
       items:
-        - title: "Build the scope from field notes"
-          description: "Remi turns observations, labor, materials, assumptions, and exclusions into a review-ready draft."
-        - title: "Keep the signed scope current"
-          description: "Remi connects approved changes to the latest agreement and flags any version mismatch."
-        - title: "Attach the source to the change"
-          description: "Remi carries the customer request, price, and written approval into the change record."
-        - title: "Organize the decision history"
-          description: "Remi turns scattered comments and answers into one chronological, source-backed record."
-    - title: "Field documentation"
-      items:
-        - title: "Turn the day into a progress note"
-          description: "Remi organizes completed work, conditions, photos, issues, and tomorrow's next step."
-        - title: "Match photos to the right job"
-          description: "Remi uses the customer, location, timing, and surrounding notes to propose where each photo belongs."
-        - title: "Attach the receipt to the work"
-          description: "Remi matches the vendor, amount, date, and material to the likely job and prepares the record update."
-        - title: "Build the completion record"
-          description: "Remi gathers the final notes, photos, signature, and customer acknowledgment into one packet."
-    - title: "Billing and closeout"
-      items:
-        - title: "Prepare the invoice backup"
-          description: "Remi connects completed work, approved extras, receipts, and payment terms to the invoice draft."
-        - title: "Reconcile the job folder"
-          description: "Remi compares the connected systems and flags missing or conflicting documents before closeout."
-        - title: "Assemble warranties and manuals"
-          description: "Remi collects product records, serial numbers, warranties, and customer instructions into the final handoff."
-        - title: "Close the paid job everywhere"
-          description: "Remi confirms payment and prepares the final status, archive, and customer-record updates for approval."
+        - title: "Surface missing documents before closeout"
+          description: "Remi checks what the job should contain and separates real gaps from paperwork already on file."
+        - title: "Assemble warranties, photos, and manuals"
+          description: "Remi gathers the promised customer handoff into one organized package for review."
+        - title: "Build a source-backed job timeline"
+          description: "Remi puts the quote, changes, field events, approvals, and invoices in order without inventing what the record cannot prove."
 stats:
   - metric: "31%"
     label: "of home-service businesses rank admin or paperwork among their biggest daily time drains"
     sourceLabel: "Jobber, 2026"
     sourceUrl: "https://www.getjobber.com/home-service-trends-report/"
-  - metric: "37%"
-    label: "rank quoting among their most time-consuming daily work"
-    sourceLabel: "Jobber, 2026"
-    sourceUrl: "https://www.getjobber.com/home-service-trends-report/"
-  - metric: "28%"
-    label: "rank invoicing among their most time-consuming daily work"
-    sourceLabel: "Jobber, 2026"
-    sourceUrl: "https://www.getjobber.com/home-service-trends-report/"
+  - metric: "5.5 hrs"
+    label: "are lost each week on average searching for project plans and information"
+    sourceLabel: "Autodesk and FMI"
+    sourceUrl: "https://www.autodesk.com/blogs/construction/?p=4870"
+  - metric: "35%"
+    label: "of construction professionals' time goes to nonproductive work such as finding information and correcting mistakes"
+    sourceLabel: "Autodesk and FMI"
+    sourceUrl: "https://www.autodesk.com/blogs/construction/construction-disconnected-fmi-report/"
 useCases:
-  - title: "Turn a scattered request into one job record"
-    description: "Remi connects the customer's form, email, photos, calendar promise, and existing contact so the job starts with a complete record instead of five loose pieces."
+  - title: "Turn today's field notes into a dated job record"
+    description: "Remi pulls the concrete events from your notes and photos, checks which job they belong to, and keeps each entry with its original source."
     workflow:
-      - tool: hubspot
-        action: "Remi finds the existing customer and property record in HubSpot."
-      - tool: gmail
-        action: "Remi reads the new request, measurements, and attached photos in Gmail."
-      - tool: googlecalendar
-        action: "Remi checks the promised site-walk time in Google Calendar."
-      - tool: googledrive
-        action: "Remi creates the proposed job folder and organizes the source files in Google Drive."
       - tool: messages
-        action: "Remi texts you with the completed brief and one missing access detail."
-      - tool: hubspot
-        action: "After you approve it, Remi updates the customer and job record in HubSpot."
+        action: "Remi reads the texted field note and the actual contents of its attached photos."
+      - tool: googledrive
+        action: "Remi checks the active job records and existing diary so the event lands once on the right job."
+      - tool: messages
+        action: "Remi brings you the proposed event, date, job, and source when anything needs confirmation."
+      - tool: googledrive
+        action: "After review, Remi keeps the dated entry beside the job with the original note and photos attached."
     thread:
-      time: "08:39"
+      time: "17:08"
       messages:
         - variant: incoming
-          text: "The Owen request is spread across a form, two emails, and four photos. I matched it to their existing property. 🗂️"
+          text: "Today's Bell deck note says rain stopped work at 11, and the lumber delivery moved to Thursday. The source text and photo are attached. 🌧️"
         - variant: outgoing
-          text: "What is still missing?"
+          text: "Are you certain it belongs to Bell?"
         - variant: incoming
-          text: "Gate access. The scope, measurements, photos, and Friday site walk are already together. 📎"
+          text: "Yes. The note names Bell, and the photo matches that job address. No other active job fits. 📍"
         - variant: outgoing
-          text: "Prepare the record and ask."
+          text: "Log it."
         - variant: incoming
-          text: "Ready for review with one complete job brief and one access question. ✅"
+          text: "Logged to the Bell deck as a weather delay with Thursday's delivery noted. I kept the source attached. ✅"
           quickActions: [notes]
-  - title: "Put today's field record together"
-    description: "Remi organizes notes, photos, receipts, and added work by job, then brings you only the uncertain matches and approvals."
+  - title: "Match every receipt to the right job"
+    description: "Remi reads the receipt, checks the job context, and records an operational cost with the source attached. When two jobs are plausible, Remi asks instead of guessing."
     workflow:
-      - tool: googledrive
-        action: "Remi reads today's field photos and voice-note transcripts in Google Drive."
-      - tool: quickbooks
-        action: "Remi finds the unmatched supplier receipt in QuickBooks."
-      - tool: jobnimbus
-        action: "Remi compares today's active jobs, addresses, and material notes in JobNimbus."
       - tool: messages
-        action: "Remi texts you with the likely receipt match and added-work note."
+        action: "Remi reads the vendor, date, total, and legible line items from the receipt photo."
       - tool: googledrive
-        action: "After you approve it, Remi files the receipt and progress record in Google Drive."
+        action: "Remi compares the materials and surrounding notes with the active job records."
+      - tool: quickbooks
+        action: "Remi checks for an existing transaction so the same purchase is not counted twice."
+      - tool: messages
+        action: "Remi brings you any uncertain job match before recording the cost."
+      - tool: googledrive
+        action: "After confirmation, Remi keeps the operational job cost with the original receipt attached."
     thread:
       time: "17:12"
       messages:
         - variant: incoming
-          text: "I organized today's photos and notes. One $286 supplier receipt needs your confirmation. 🧾"
+          text: "This $286 supplier receipt could belong to the Bell deck or the Ruiz porch. Both jobs used the same fasteners. 🧾"
         - variant: outgoing
-          text: "Which job is the likely match?"
+          text: "It belongs to Bell."
         - variant: incoming
-          text: "The Bell deck. The receipt lists the same fasteners from the 2:14 field note. 🔎"
+          text: "Got it. The vendor, amount, date, and line items are readable. I found no duplicate cost on that job. 🔎"
         - variant: outgoing
-          text: "Attach it there."
+          text: "Record it there."
         - variant: incoming
-          text: "Ready for review with the receipt, note, and job reference together. ✅"
+          text: "Recorded as a Bell deck job cost with the receipt attached. Nothing was posted to the books. ✅"
           documentPreview: "Receipt PDF"
-  - title: "Assemble the closeout without another scavenger hunt"
-    description: "When work finishes, Remi checks the job for every promised document and prepares one complete customer handoff."
+  - title: "Finish the job with one complete handoff"
+    description: "When the work wraps, Remi gathers the promised documents, checks the job for gaps, and prepares one customer-ready closeout package for review."
     workflow:
-      - tool: jobnimbus
-        action: "Remi finds the completed job and closeout checklist in JobNimbus."
       - tool: googledrive
-        action: "Remi gathers warranties, final photos, inspection records, and manuals from Google Drive."
-      - tool: quickbooks
-        action: "Remi confirms the final invoice is paid in QuickBooks."
-      - tool: googledocs
-        action: "Remi prepares the customer closeout summary in Google Docs."
-      - tool: messages
-        action: "Remi texts you with the complete handoff and one missing serial number."
+        action: "Remi gathers the warranty, final photos, inspection record, and owner manual already on file."
       - tool: gmail
-        action: "After you approve it, Remi sends the closeout package through Gmail."
+        action: "Remi checks the customer and supplier threads for promised documents or missing attachments."
+      - tool: quickbooks
+        action: "Remi confirms the recorded invoice status without treating an unpaid balance as closed."
+      - tool: googledocs
+        action: "Remi prepares the closeout summary and calls out every real gap separately."
+      - tool: messages
+        action: "Remi brings you the complete handoff and missing items for review before anything is sent."
     thread:
       time: "14:56"
       messages:
         - variant: incoming
-          text: "The Grant project is paid and ready to close. I found every promised document except one serial number. 📁"
+          text: "The Grant garage-door job is ready for closeout. The warranty, inspection, final photos, and owner manual are together. 📁"
         - variant: outgoing
-          text: "Which product is missing it?"
+          text: "What is still missing?"
         - variant: incoming
-          text: "The garage opener. Warranty, inspection, final photos, and owner manual are already assembled. 📎"
+          text: "Only the opener serial number. The final invoice is recorded as paid. 📎"
         - variant: outgoing
           text: "Flag it and prepare the rest."
         - variant: incoming
-          text: "Ready for review with the missing serial number called out separately. ✍️"
+          text: "Ready for review with the missing serial number called out separately. Nothing has been sent. ✍️"
           documentPreview: "Closeout package PDF"
 integrations:
   title: "Build the record from the work already happening."
-  description: "Remi connects conversations, files, job systems, documents, and books so paperwork stays organized without turning you into the data-entry department."
+  description: "These are examples, not requirements. Remi works across the customer conversations, files, job systems, documents, and books your business already uses."
   tools:
     - tool: gmail
-      title: "Turn the inbox into organized job context"
-      description: "Remi reads connected requests, approvals, supplier updates, attachments, and promises and proposes where each item belongs."
+      title: "Bring customer and supplier context into the record"
+      description: "Remi reads connected requests, attachments, approvals, delivery updates, and promises and keeps each source beside the relevant job."
     - tool: googledrive
-      title: "Keep every source in the right job folder"
-      description: "Remi finds and organizes photos, notes, scopes, receipts, warranties, and closeout files while preserving the original source."
-    - tool: jobnimbus
-      title: "Keep the job record current"
-      description: "Remi checks contacts, jobs, tasks, activity, documents, estimates, and payments and proposes the record update that reflects the latest work."
-    - tool: googledocs
-      title: "Turn raw details into usable documents"
-      description: "Remi prepares scopes, change records, progress summaries, decision recaps, and closeout handoffs for your review."
+      title: "Keep the original source with the job"
+      description: "Remi organizes notes, photos, scopes, receipts, warranties, and closeout files without separating the record from its proof."
     - tool: quickbooks
-      title: "Keep the paperwork connected to the money"
-      description: "Remi checks customers, estimates, invoices, receipts, balances, and payments and flags missing support before billing or closeout."
+      title: "Use the books as supporting context"
+      description: "Remi checks connected transactions, invoices, and payments for duplicates and status while keeping operational records distinct from posted accounting truth."
+    - tool: ascora
+      title: "Keep field-service records current"
+      description: "Remi can use connected customer, job, appointment, and completion context to attach paperwork to the right service call."
+    - tool: repairshopr
+      title: "Keep repair paperwork with the ticket"
+      description: "Remi can use connected customer, ticket, parts, and repair context to organize receipts, notes, warranties, and the final handoff."
 ogTitle: "End Paperwork Chaos with Remi"
-ogDescription: "Turn scattered messages, notes, photos, receipts, approvals, and payment records into organized job paperwork."
+ogDescription: "Turn field notes, photos, receipts, and closeout documents into complete, source-backed job records while the work is still fresh."
 ---
