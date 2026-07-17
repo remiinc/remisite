@@ -26,13 +26,13 @@ const trustPrinciples = [
     icon: PhEye,
   },
   {
-    title: 'Approval comes first',
-    description: 'Remi starts by asking and earns more responsibility over time. You decide what Remi can do without approval.',
+    title: 'Authority comes first',
+    description: 'A direct request, your review, or a standing approval must exist before Remi performs an important external action.',
     icon: PhShieldCheck,
   },
   {
     title: 'Your data is not training data',
-    description: 'Your business data is never sold, shared for advertising, or used to train AI models.',
+    description: 'Customer content is not used to train generalized AI models unless your organization separately agrees in writing.',
     icon: PhLockSimple,
   },
 ]

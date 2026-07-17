@@ -47,7 +47,7 @@ export const faqGroups = {
       {
         question: 'Is my business data used to train AI models?',
         answers: [
-          'No. Your business data is not sold, shared for advertising, or used to train AI models. Remi works only inside the access you grant.',
+          'Customer content is not used to train generalized AI models unless your organization separately agrees in writing. Remi works only inside the access you grant.',
         ],
       },
     ],
@@ -111,49 +111,31 @@ export const faqGroups = {
       {
         question: 'What can Remi access?',
         answers: [
-          'Only the sources you connect and the permissions you grant. Connections can be limited, changed, or revoked as your business changes.',
+          'Only the sources you connect and the permission scopes you grant. Remi uses the identity and boundaries attached to your workspace, and connections can be limited, changed, or revoked.',
         ],
       },
       {
-        question: 'Is my data encrypted?',
+        question: 'What can Remi do without asking me?',
         answers: [
-          'Data is protected in transit, and sensitive stored data is encrypted at rest. Remi handles connected-app data through scoped, encrypted channels.',
+          'Remi can read connected sources, organize context, surface loose ends, and prepare work inside the access you granted. An important external action needs authority from a direct request, your review, or a standing approval.',
+        ],
+      },
+      {
+        question: 'How is my data protected?',
+        answers: [
+          'Data is protected in transit, sensitive credentials and stored secrets are encrypted at rest, and authentication and tenant boundaries separate workspaces. Production systems are monitored for availability, errors, abuse signals, and unusual behavior.',
         ],
       },
       {
         question: 'Is my business data used to train AI models?',
         answers: [
-          'No. Your business data is not sold, shared for advertising, or used to train AI models.',
+          'Customer content is not used to train generalized AI models unless your organization separately agrees in writing. We require AI providers to honor available no-training commitments for customer content routed through Remi.',
         ],
       },
       {
-        question: 'Can Remi contact customers without my approval?',
+        question: 'Can I revoke access or request deletion?',
         answers: [
-          'Customer-facing work is prepared for review. Remi shows you the draft and its source context, and you decide what goes out.',
-        ],
-      },
-      {
-        question: 'Does Remi keep a record of the work?',
-        answers: [
-          'Remi keeps drafts, source trails, receipts, and work history tied to your business. Important actions stay reviewable instead of disappearing into a black box.',
-        ],
-      },
-      {
-        question: 'Can I revoke a connection or request data deletion?',
-        answers: [
-          'Yes. Connected access can be changed or revoked, and customer data is handled under clear retention, deletion, and access-request processes.',
-        ],
-      },
-      {
-        question: 'What happens when Remi gets something wrong?',
-        answers: [
-          'Remi is useful, not infallible. That is why customer-facing work waits for approval and why the source stays attached, so you can correct the draft before it leaves.',
-        ],
-      },
-      {
-        question: 'Can you support a security review?',
-        answers: [
-          'Yes. We can walk through architecture, data flows, AI providers, encryption, access, retention, and approval controls, and help with a security questionnaire.',
+          'Yes. Connected access can be changed or revoked. You can request deletion at ops@remi.new; limited records may remain temporarily in backups, logs, billing records, security systems, or audit trails as described in our privacy policy.',
         ],
       },
     ],
