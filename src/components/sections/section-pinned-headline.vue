@@ -119,7 +119,7 @@ const notificationTilesOuter = [
             class="pinned-headline-content relative z-1 w-full max-w-6xl mx-auto flex flex-col items-center justify-center text-center gap-6 col-start-1 row-start-1 col-end-1 row-end-1">
             <h2
               class="relative z-1 block max-w-[16ch] text-center text-[clamp(2.5rem,0.8158rem+3.5088vw,4rem)] leading-[1em] font-normal tracking-[-0.03em] text-balance text-foreground select-none mb-4">
-              You didn't start your business to do paperwork at 9pm.
+              You didn't start your business to sweat paperwork at 9pm.
             </h2>
             <ul class="relative z-1 tasks-list text-[1.2em] tracking-tight text-foreground/50 select-none">
               <li v-for="task in tasks" :key="task.label" class="task-item py-[0.25em]">

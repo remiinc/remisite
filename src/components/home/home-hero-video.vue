@@ -35,12 +35,12 @@ defineProps({
       <div class="z-1 flex flex-1" aria-hidden="true" />
       <div class="hero-copy relative z-1 flex flex-col items-center gap-10">
         <h1
-          class="max-w-[20ch] text-4xl md:text-[clamp(3.5rem,8vw,5rem)] leading-[1em] font-normal tracking-[-0.03em] text-balance text-background select-none">
-          Your business should run. <span class="block">It shouldn't run you.</span>
+          class="max-w-[20ch] text-4xl font-normal leading-[1em] tracking-[-0.03em] text-balance text-background select-none md:text-[clamp(3.5rem,8vw,5rem)]">
+          Grow your business. <span class="block">Leave the admin to Remi.</span>
         </h1>
-        <p class="max-w-[38ch] text-[0.875em] text-center leading-snug mb-2">
-          <span class="block text-background">Do the work that moves your business forward.</span>
-          <span class="block text-background/60">Let Remi handle the rest.</span>
+        <p class="mb-2 max-w-[38ch] text-center text-[0.875em] font-normal leading-snug">
+          <span class="block text-background">From the first quote to the final payment.</span>
+          <span class="block text-background/60">Run it all from your phone.</span>
         </p>
       </div>
       <div class="relative z-1 flex w-full max-w-sm flex-col items-center justify-center gap-3 sm:max-w-none sm:flex-row">
