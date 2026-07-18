@@ -34,8 +34,18 @@ const faqBody = (type) => {
   const group = getFaqGroup(type)
   if (!group) return ''
 
+  const links = Array.isArray(group.links) && group.links.length
+    ? `<nav aria-label="More answers">
+      ${group.links.map((link) => `<a href="${escapeHtml(link.href)}">${escapeHtml(link.label)} →</a>`).join('\n      ')}
+    </nav>`
+    : ''
+  const cta = group.cta
+    ? `<a href="${escapeHtml(group.cta.href)}">${escapeHtml(group.cta.label)}</a>`
+    : ''
+
   return `<section class="mx-auto w-full" style="max-width: 72rem">
     <h2>${escapeHtml(group.title)}</h2>
+    ${cta}
     <dl>
       ${group.items
         .map((faq) => `<div>
@@ -44,6 +54,7 @@ const faqBody = (type) => {
       </div>`)
         .join('\n      ')}
     </dl>
+    ${links}
   </section>`
 }
 

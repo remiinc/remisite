@@ -1,53 +1,53 @@
 export const faqGroups = {
   home: {
-    title: 'Questions we hear a lot.',
+    title: 'Have questions? Text Remi.',
+    defaultOpenIndex: 0,
+    cta: { label: 'Text Remi', href: '/start' },
+    links: [
+      { label: 'Pricing questions', href: '/pricing#faq' },
+      { label: 'How Remi protects your data', href: '/security#faq' },
+    ],
     items: [
       {
-        question: 'Is Remi just another chatbot?',
+        question: 'What does Remi actually handle?',
         answers: [
-          'No. You can text Remi, but Remi is not just a blank chat box. You connect the tools where your work already happens, and Remi watches for the next thing that needs doing.',
+          'Remi keeps the business side moving from the first quote to the final payment—follow-ups, approvals, paperwork, invoices, and the loose ends between them.',
         ],
       },
       {
-        question: 'What does Remi actually do?',
+        question: 'Do I have to keep telling Remi what to do?',
         answers: [
-          'Remi looks across email, calendar, texts, files, invoices, estimates, and job notes. Remi finds loose ends, pulls the source details together, and prepares the next message or task for you to approve.',
+          'No. Remi watches the sources you connect, notices work that needs attention, and texts you first. You can also text Remi whenever you need something handled.',
         ],
       },
       {
-        question: 'What kinds of work can Remi catch?',
+        question: 'Do I have to change the tools I already use?',
         answers: [
-          'Remi can help with overdue invoices, quiet estimates, unanswered customer requests, missing approvals, job details buried in messages, and follow-ups you meant to send later.',
+          'No. Your inbox, calendar, files, accounting system, and job tools stay where the work lives. Remi connects the context and brings the next decision to you.',
         ],
       },
       {
-        question: 'Do I have to change the tools I use?',
+        question: 'Can I really run this from my phone?',
         answers: [
-          'No. Remi is built to work with the tools your business already uses. You connect the sources you want Remi to read, and those systems stay where the work lives.',
+          'Yes. You text Remi from your phone, and Remi brings questions, drafts, approvals, and receipts back to the conversation. Your connected tools remain the source of truth.',
         ],
       },
       {
-        question: 'Can Remi send messages without me?',
+        question: 'What can Remi do without my approval?',
         answers: [
-          'Important customer-facing work waits for your approval. Remi can draft the follow-up and show the source, but you decide what gets sent.',
+          'Remi can read connected sources, organize context, and prepare work. Customer-facing sends and important record changes wait for your approval. If something looks wrong, the source stays attached so you can correct it before it leaves.',
         ],
       },
       {
-        question: 'How does Remi know how my business works?',
+        question: 'Is my business data safe?',
         answers: [
-          'Remi learns from the sources you connect and the decisions you approve. Over time, Remi understands your customers, jobs, prices, promises, deadlines, and how you like work handled.',
+          'Remi works only inside the access you grant. Your business data is not sold, used for advertising, or used to train generalized AI models. You can change or revoke connected access.',
         ],
       },
       {
-        question: 'Who is Remi built for?',
+        question: 'How do I get started?',
         answers: [
-          'Remi is built for owner-run service businesses and small teams where the person doing the work is also chasing invoices, quotes, customer replies, and job details.',
-        ],
-      },
-      {
-        question: 'Is my business data used to train AI models?',
-        answers: [
-          'Customer content is not used to train generalized AI models unless your organization separately agrees in writing. Remi works only inside the access you grant.',
+          'Text Remi. Remi asks a few questions about your business, then helps you choose which tools and sources to connect. You can start small and add more over time.',
         ],
       },
     ],
