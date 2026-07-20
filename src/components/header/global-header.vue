@@ -163,7 +163,7 @@ onBeforeUnmount(() => {
 
 <template>
   <header :data-theme="props.theme" :class="cn(
-    'header-container sticky top-0 h-0 z-50 w-full opacity-0 will-change-transform flex flex-col justify-start transition-colors duration-300',
+    'header-container sticky top-0 h-0 z-50 w-full opacity-100 flex flex-col justify-start transition-colors duration-300',
     headerThemeClass
   )">
     <div :class="cn(
@@ -179,6 +179,8 @@ onBeforeUnmount(() => {
         'relative w-full mx-auto max-w-[calc(var(--content-width))]',
         'flex gap-4 items-center p-(--padding)',
       )">
+        <div class="header-backdrop" aria-hidden="true"></div>
+
         <div class="flex items-center justify-start">
           <div
             :class="cn('flex items-center justify-center transition-padding', isCondensed ? 'pl-2' : 'pl-2 md:pl-0')">
@@ -335,8 +337,13 @@ onBeforeUnmount(() => {
   transition: max-width 600ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.header-bar > :not(.header-backdrop, .scroll-progress) {
+  position: relative;
+  z-index: 1;
+}
+
 .header-container {
-  animation: header-intro 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: header-intro 900ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @keyframes header-intro {
@@ -347,37 +354,35 @@ onBeforeUnmount(() => {
 
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
 }
 
-.header-bar::before {
-  content: '';
+.header-backdrop {
   position: absolute;
   z-index: 0;
   border-radius: 9999px;
   opacity: 0;
   inset: 1em;
-  filter: blur(0.5em);
-  transition: opacity 600ms cubic-bezier(0.22, 1, 0.36, 1), inset 600ms cubic-bezier(0.22, 1, 0.36, 1), filter 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  background-color: rgba(0, 0, 0, 0.40);
+  -webkit-backdrop-filter: blur(0.5em);
+  backdrop-filter: blur(0.5em);
+  transition: opacity 600ms cubic-bezier(0.22, 1, 0.36, 1), inset 600ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .header-bar .scroll-progress {
   position: absolute;
-  z-index: -1;
+  z-index: 1;
   border-radius: 9999px;
   opacity: 0;
   inset: calc(-1 * var(--header-bg-inset) - calc(var(--scroll-progress-line) * 0.5));
+  pointer-events: none;
   filter: blur(0.5em);
   transition: opacity 600ms cubic-bezier(0.22, 1, 0.36, 1), inset 600ms cubic-bezier(0.22, 1, 0.36, 1), filter 600ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.header-bar::before {
-  background-color: rgba(0, 0, 0, 0.40);
-  backdrop-filter: blur(0.5em);
-}
-
-.header-container[data-theme='light'] .header-bar::before {
+.header-container[data-theme='light'] .header-backdrop {
   background-color: rgba(255, 255, 255, 0.82);
   box-shadow: 0 1em 3em rgba(0, 0, 0, 0.08);
 }
@@ -386,10 +391,9 @@ onBeforeUnmount(() => {
   max-width: 800px;
 }
 
-.header-wrap.is-condensed .header-bar::before {
+.header-wrap.is-condensed .header-backdrop {
   opacity: 1;
   inset: calc(-1 * var(--header-bg-inset));
-  filter: blur(0em);
 }
 
 .header-wrap.is-condensed .header-bar .scroll-progress {
