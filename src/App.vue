@@ -12,6 +12,7 @@ import SectionFaq from './components/sections/section-faq.vue'
 import SectionPricing from './components/sections/section-pricing.vue'
 import SectionSolutions from './components/sections/section-solutions.vue'
 import { capturePageview, installMarketingCtaTracking } from './lib/analytics.js'
+import { initializeMotionEffects } from './lib/motion.js'
 import { pageLoaders } from './lib/page-loaders.js'
 
 const BlogIndexPage = defineAsyncComponent(pageLoaders.blogIndex)
@@ -40,10 +41,12 @@ const shouldLoadIphoneSection = ref(false)
 let iphoneSectionObserver = null
 
 let stopMarketingCtaTracking = null
+let stopMotionEffects = null
 
 onMounted(() => {
   capturePageview()
   stopMarketingCtaTracking = installMarketingCtaTracking()
+  stopMotionEffects = initializeMotionEffects()
 
   if (!('IntersectionObserver' in window) || !iphoneSectionTrigger.value) {
     shouldLoadIphoneSection.value = true
@@ -62,6 +65,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   stopMarketingCtaTracking?.()
+  stopMotionEffects?.()
   iphoneSectionObserver?.disconnect()
 })
 </script>

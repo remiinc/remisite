@@ -29,7 +29,7 @@ const featureMessages = [
 
 <template>
   <!-- Features - Get Started -->
-  <section id="features" :class="cn('w-full scroll-mt-24 px-6 py-16')" data-section-features>
+  <section id="features" :class="cn('w-full scroll-mt-24 px-6 py-16')" data-section-features data-motion-fade data-motion-moveup data-motion-delay="0.25" data-motion-duration="1.2">
     <div class="section-container mx-auto w-full max-w-(--content-width)">
       <div class="section-layout w-full grid lg:grid-cols-2 gap-x-16 lg:gap-x-24 gap-y-12">
         <div class="section-visual w-full min-h-120 h-full bg-muted rounded-3xl order-1 lg:order-2 overflow-hidden">
@@ -85,7 +85,7 @@ const featureMessages = [
   </section>
 
   <!-- Features - How it Works -->
-  <section id="features" :class="cn('w-full scroll-mt-24 px-6 py-16')" data-section-features>
+  <section id="features" :class="cn('w-full scroll-mt-24 px-6 py-16')" data-section-features data-motion-fade data-motion-moveup data-motion-delay="0.5" data-motion-duration="1.2">
     <div class="section-container mx-auto w-full max-w-(--content-width)">
       <div class="section-layout w-full grid lg:grid-cols-2 gap-x-16 lg:gap-x-24 gap-y-12">
         <div

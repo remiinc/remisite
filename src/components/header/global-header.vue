@@ -354,7 +354,7 @@ onBeforeUnmount(() => {
 .header-bar::before {
   content: '';
   position: absolute;
-  z-index: -1;
+  z-index: 0;
   border-radius: 9999px;
   opacity: 0;
   inset: 1em;
