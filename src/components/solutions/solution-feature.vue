@@ -29,7 +29,7 @@ defineProps({
             {{ feature.title }}
           </h2>
           <Button :href="feature.ctaUrl" variant="white" size="sm"
-            data-marketing-cta="solution_feature_text_remi" data-marketing-destination="linq">
+            data-marketing-cta="solution_feature_text_remi" data-marketing-destination="guided">
             {{ feature.ctaLabel }}
           </Button>
         </div>

@@ -61,7 +61,7 @@ export function sanitizePostHogEvent(payload, configuredKey) {
   copyDefined(properties, normalizeAnalyticsProperties(source), acquisitionProperties)
   if (payload.event === 'marketing_cta_clicked') {
     if (!safeSlugPattern.test(source.cta || '')) return null
-    if (source.destination !== 'google' && source.destination !== 'linq') return null
+    if (source.destination !== 'guided') return null
     properties.cta = source.cta
     properties.destination = source.destination
   }

@@ -53,14 +53,14 @@ const scalarPattern = /^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$/u
 const acquisitionIdPattern = /^[A-Za-z0-9_-]{16,128}$/u
 const collapsedPhonePattern = /\d{7,}/u
 const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content']
+const signupAttributionKeys = [
+  'acquisition_id',
+  'landing_path',
+  'referrer',
+  ...utmKeys,
+]
 let memoryFirstTouch = null
 let fallbackSequence = 0
-
-function runtimeEnv(env) {
-  if (env) return env
-  if (import.meta.env) return import.meta.env
-  return typeof process !== 'undefined' ? process.env : {}
-}
 
 function safeScalar(value) {
   if (typeof value !== 'string' || !scalarPattern.test(value)) return null
@@ -192,37 +192,22 @@ export function getFirstTouch({ nowMs = Date.now(), windowLike = globalThis.wind
   return created
 }
 
-function entryOrigin(env) {
-  const raw = runtimeEnv(env).VITE_REMI_ENTRY_ORIGIN?.trim()
-  if (!raw) return null
-  try {
-    const url = new URL(raw)
-    if (!['https:', 'http:'].includes(url.protocol) || url.username || url.password) return null
-    if ((url.pathname !== '/' && url.pathname !== '') || url.search || url.hash) return null
-    return url.origin
-  } catch {
-    return null
-  }
-}
-
 export function buildProductEntryLink(destination, options = {}) {
-  if (destination !== 'google' && destination !== 'linq') return null
-  const origin = entryOrigin(options.env)
-  if (!origin) return null
+  if (destination !== 'guided') return null
   const touch = normalizeStoredTouch(
     options.firstTouch ?? getFirstTouch(options),
     options.nowMs ?? Date.now(),
   )
   if (!touch) return null
 
-  const url = new URL(`/start/${destination}`, origin)
+  const url = new URL('/start', 'https://hireremi.ai')
   url.searchParams.set('acquisition_id', touch.acquisition_id)
   if (touch.landing_path) url.searchParams.set('landing_path', touch.landing_path)
   if (touch.referrer_origin) url.searchParams.set('referrer', touch.referrer_origin)
   for (const key of utmKeys) {
     if (touch[key]) url.searchParams.set(key, touch[key])
   }
-  return url.toString()
+  return `${url.pathname}${url.search}`
 }
 
 export function getOnboardingEntry(destination, options = {}) {
@@ -233,6 +218,34 @@ export function getOnboardingEntry(destination, options = {}) {
     destination,
     attributionState: href ? 'carried' : 'direct_unknown',
   }
+}
+
+export function buildGuidedOnboardingRedirect(search = '') {
+  const source = new URLSearchParams(search)
+  const destination = new URL('https://remi.new/start/linq')
+
+  for (const key of signupAttributionKeys) {
+    const value = source.get(key)
+    if (value === null) continue
+    if (key === 'acquisition_id') {
+      if (acquisitionIdPattern.test(value)) destination.searchParams.set(key, value)
+      continue
+    }
+    if (key === 'landing_path') {
+      const landingPath = safeLandingPath(value)
+      if (landingPath) destination.searchParams.set(key, landingPath)
+      continue
+    }
+    if (key === 'referrer') {
+      const referrer = safeReferrerOrigin(value)
+      if (referrer) destination.searchParams.set(key, referrer)
+      continue
+    }
+    const scalar = safeScalar(value)
+    if (scalar) destination.searchParams.set(key, scalar)
+  }
+
+  return destination.toString()
 }
 
 export function normalizeAnalyticsProperties(value) {

@@ -36,7 +36,7 @@ watch(() => props.type, () => {
       <div class="flex flex-col items-start gap-6">
         <h2 class="text-4xl font-normal tracking-tight text-foreground text-balance">{{ faqGroup.title }}</h2>
         <Button v-if="faqGroup.cta" :href="faqGroup.cta.href" size="sm"
-          data-marketing-cta="faq_text_remi" data-marketing-destination="linq">
+          data-marketing-cta="faq_text_remi" data-marketing-destination="guided">
           <span class="flex items-center gap-2">
             <img src="/images/app-logos/ios-messages-icon.svg" alt="" class="size-4 shrink-0" aria-hidden="true">
             <span>{{ faqGroup.cta.label }}</span>

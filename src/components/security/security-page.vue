@@ -251,7 +251,7 @@ const securityLinks = [
               variant="white"
               class="w-fit"
               data-marketing-cta="security_text_remi"
-              data-marketing-destination="linq"
+              data-marketing-destination="guided"
             >
               <span class="inline-flex items-center gap-2">
                 <span>Ask Remi about Security</span>

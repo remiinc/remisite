@@ -8,7 +8,7 @@ export const pageLoaders = Object.freeze({
   security: () => import('../components/security/security-page.vue'),
   solution: () => import('../components/solutions/solution-page.vue'),
   solutionsIndex: () => import('../components/solutions/solutions-index-page.vue'),
-  start: () => import('../components/start/start-page.vue'),
+  signupRedirect: () => import('../components/global/signup-redirect.vue'),
 })
 
 export function getPageLoader(pathname) {
@@ -21,7 +21,7 @@ export function getPageLoader(pathname) {
   if (path.startsWith('/resources/')) return pageLoaders.blogPost
   if (path === '/pricing') return pageLoaders.pricing
   if (path === '/security') return pageLoaders.security
-  if (path === '/start') return pageLoaders.start
+  if (path === '/start') return pageLoaders.signupRedirect
 
   return null
 }

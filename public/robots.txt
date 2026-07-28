@@ -1,4 +1,4 @@
-# remi.new crawler policy (2026-07-09)
+# hireremi.ai crawler policy (2026-07-28)
 # Default: allow everything, including AI search, user-fetch, and training
 # bots. Policy per docs/remi-seo-approach.md Workstream 0.
 
@@ -37,4 +37,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://remi.new/sitemap.xml
+Sitemap: https://hireremi.ai/sitemap.xml
