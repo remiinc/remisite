@@ -62,27 +62,36 @@ test('the proxy identifies the public origin after Vercel replaces forwarded hos
 })
 
 test('the proxy preserves the browser-led onboarding path for Portal rendering', () => {
-  const route = (vercelConfig.routes ?? []).find(
-    ({ src }) =>
-      src ===
-      '/onboarding/(name|priorities|phone|phone-code|google|email-success|subscribe|complete)',
-  )
-  assert.equal(route?.continue, true)
-  assert.deepEqual(route?.transforms, [
-    {
-      type: 'request.headers',
-      op: 'delete',
-      target: {
-        key: 'x-remi-onboarding-pathname',
+  for (const pathname of [
+    '/onboarding/name',
+    '/onboarding/priorities',
+    '/onboarding/phone',
+    '/onboarding/phone-code',
+    '/onboarding/google',
+    '/onboarding/email-success',
+    '/onboarding/subscribe',
+    '/onboarding/complete',
+  ]) {
+    const route = (vercelConfig.routes ?? []).find(
+      ({ src }) => src === pathname,
+    )
+    assert.equal(route?.continue, true)
+    assert.deepEqual(route?.transforms, [
+      {
+        type: 'request.headers',
+        op: 'delete',
+        target: {
+          key: 'x-remi-onboarding-pathname',
+        },
       },
-    },
-    {
-      type: 'request.headers',
-      op: 'set',
-      target: {
-        key: 'x-remi-onboarding-pathname',
+      {
+        type: 'request.headers',
+        op: 'set',
+        target: {
+          key: 'x-remi-onboarding-pathname',
+        },
+        args: pathname,
       },
-      args: '/onboarding/$1',
-    },
-  ])
+    ])
+  }
 })
