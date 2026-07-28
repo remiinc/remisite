@@ -1,6 +1,27 @@
 {
   "routes": [
     {
+      "src": "/onboarding/(name|priorities|phone|phone-code|google|email-success|subscribe|complete)",
+      "transforms": [
+        {
+          "type": "request.headers",
+          "op": "delete",
+          "target": {
+            "key": "x-remi-onboarding-pathname"
+          }
+        },
+        {
+          "type": "request.headers",
+          "op": "set",
+          "target": {
+            "key": "x-remi-onboarding-pathname"
+          },
+          "args": "/onboarding/$1"
+        }
+      ],
+      "continue": true
+    },
+    {
       "src": "/api/onboarding/guided(?:/(.*))?",
       "transforms": [
         {
