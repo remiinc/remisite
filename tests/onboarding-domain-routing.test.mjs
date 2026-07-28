@@ -34,3 +34,29 @@ test('hireremi.ai owns the complete guided onboarding journey', () => {
     },
   )
 })
+
+test('the proxy identifies the public origin after Vercel replaces forwarded hosts', () => {
+  const proxyOrigins = new Map()
+  for (const route of vercelConfig.routes ?? []) {
+    const transform = route.transforms?.find(
+      ({ type, op, target }) =>
+        type === 'request.headers' &&
+        op === 'set' &&
+        target?.key === 'x-remi-guided-signup-origin',
+    )
+    if (transform && route.continue === true) {
+      proxyOrigins.set(route.src, transform.args)
+    }
+  }
+
+  for (const source of [
+    '/api/onboarding/guided(?:/(.*))?',
+    '/api/auth/google/callback',
+  ]) {
+    assert.equal(proxyOrigins.get(source), 'https://hireremi.ai')
+  }
+  const guidedSource = '/api/onboarding/guided(?:/(.*))?'
+  const guidedMatcher = new RegExp(`^${guidedSource}$`)
+  assert.equal(guidedMatcher.test('/api/onboarding/guided'), true)
+  assert.equal(guidedMatcher.test('/api/onboarding/guided/start'), true)
+})
