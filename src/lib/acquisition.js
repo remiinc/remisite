@@ -222,7 +222,10 @@ export function getOnboardingEntry(destination, options = {}) {
 
 export function buildGuidedOnboardingRedirect(search = '') {
   const source = new URLSearchParams(search)
-  const destination = new URL('https://remi.new/start/linq')
+  const destination = new URL(
+    '/api/onboarding/entry',
+    'https://hireremi.ai',
+  )
 
   for (const key of signupAttributionKeys) {
     const value = source.get(key)

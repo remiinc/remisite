@@ -244,8 +244,8 @@ test('guided redirect strips arbitrary and private query values before product e
     '?acquisition_id=acq_entry_touch_1234567890&landing_path=%2Fpricing&referrer=https%3A%2F%2Fmeta.com%2Fprivate&'
     + 'utm_source=meta&utm_campaign=launch&email=owner%40example.com&arbitrary=private',
   ))
-  assert.equal(url.origin, 'https://remi.new')
-  assert.equal(url.pathname, '/start/linq')
+  assert.equal(url.origin, 'https://hireremi.ai')
+  assert.equal(url.pathname, '/api/onboarding/entry')
   assert.deepEqual([...url.searchParams.keys()].sort(), [
     'acquisition_id', 'landing_path', 'referrer', 'utm_campaign', 'utm_source',
   ])
@@ -437,5 +437,7 @@ test('every current primary CTA family has manual tracking and product entries a
   assert.match(signupRedirect, /buildProductEntryLink\('guided'\)/u)
   assert.match(signupRedirect, /window\.location\.replace\(destination\)/u)
   assert.match(prerender, /writePage\(\s*'\/start'/u)
+  assert.match(prerender, /href="\/api\/onboarding\/entry"/u)
+  assert.doesNotMatch(prerender, /remi\.new\/start/u)
   assert.doesNotMatch(prerender, /REMI_TEXT_NUMBER|text-remi-qr|Open Messages/u)
 })
