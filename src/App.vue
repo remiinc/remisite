@@ -22,7 +22,7 @@ const PricingPage = defineAsyncComponent(pageLoaders.pricing)
 const SecurityPage = defineAsyncComponent(pageLoaders.security)
 const SolutionPage = defineAsyncComponent(pageLoaders.solution)
 const SolutionsIndexPage = defineAsyncComponent(pageLoaders.solutionsIndex)
-const StartPage = defineAsyncComponent(pageLoaders.start)
+const SignupRedirect = defineAsyncComponent(pageLoaders.signupRedirect)
 const SectionIphone = defineAsyncComponent(() => import('./components/sections/section-iphone.vue'))
 
 const pathname = typeof window !== 'undefined' ? window.location.pathname : '/'
@@ -76,7 +76,7 @@ onBeforeUnmount(() => {
   <SolutionPage v-else-if="isSolutionPage" />
   <PricingPage v-else-if="isPricingPage" />
   <SecurityPage v-else-if="isSecurityPage" />
-  <StartPage v-else-if="isStartPage" />
+  <SignupRedirect v-else-if="isStartPage" />
   <BlogIndexPage v-else-if="isBlogIndexPage" />
   <BlogPostPage v-else-if="isBlogPostPage" />
   <div v-else>

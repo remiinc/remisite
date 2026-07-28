@@ -5,8 +5,8 @@ import { getOnboardingEntry } from '../../lib/acquisition.js'
 import Button from '../global/button.vue'
 import SiteLogo from '../global/site-logo.vue'
 
-const googleEntry = getOnboardingEntry('google')
-const googleEntryHref = googleEntry.href || 'https://remi.new/login'
+const guidedEntry = getOnboardingEntry('guided')
+const guidedEntryHref = guidedEntry.href || '/start'
 </script>
 
 <template>
@@ -133,9 +133,9 @@ const googleEntryHref = googleEntry.href || 'https://remi.new/login'
             </ul>
           </div>
 
-          <Button :href="googleEntryHref" class="mt-12 w-full" size="lg"
-            data-marketing-cta="pricing_pro_google" data-marketing-destination="google"
-            :data-attribution-state="googleEntry.attributionState">
+          <Button :href="guidedEntryHref" class="mt-12 w-full" size="lg"
+            data-marketing-cta="pricing_pro_guided" data-marketing-destination="guided"
+            :data-attribution-state="guidedEntry.attributionState">
             <span class="inline-flex items-center gap-2">
               <span>Try Remi free for 7 days</span>
               <PhArrowRight class="size-4" weight="bold" aria-hidden="true" />
@@ -194,9 +194,9 @@ const googleEntryHref = googleEntry.href || 'https://remi.new/login'
             </ul>
           </div>
 
-          <Button :href="googleEntryHref" class="mt-12 w-full" size="lg"
-            data-marketing-cta="pricing_scale_google" data-marketing-destination="google"
-            :data-attribution-state="googleEntry.attributionState">
+          <Button :href="guidedEntryHref" class="mt-12 w-full" size="lg"
+            data-marketing-cta="pricing_scale_guided" data-marketing-destination="guided"
+            :data-attribution-state="guidedEntry.attributionState">
             <span class="inline-flex items-center gap-2">
               <span>Get Remi Scale</span>
               <PhArrowRight class="size-4" weight="bold" aria-hidden="true" />

@@ -15,14 +15,14 @@ and includes more work capacity. Both plans begin with a 7-day trial.
 
 ## Pages
 
-- [Home](https://remi.new/): what Remi does and how to get started
-- [Resources](https://remi.new/resources): practical guides for running an
+- [Home](https://hireremi.ai/): what Remi does and how to get started
+- [Resources](https://hireremi.ai/resources): practical guides for running an
   owner-run service business
-- [Solutions](https://remi.new/solutions): industry guides for contractors,
+- [Solutions](https://hireremi.ai/solutions): industry guides for contractors,
   home services, auto repair shops, cleaning businesses, and agencies
-- [Get Started](https://remi.new/start): text Remi and start the 7-day trial
+- [Get Started](https://hireremi.ai/start): start Remi's guided 7-day trial
 
 ## Feeds
 
-- [RSS](https://remi.new/rss.xml)
-- [Sitemap](https://remi.new/sitemap.xml)
+- [RSS](https://hireremi.ai/rss.xml)
+- [Sitemap](https://hireremi.ai/sitemap.xml)

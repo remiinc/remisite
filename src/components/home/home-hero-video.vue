@@ -45,7 +45,7 @@ defineProps({
       </div>
       <div class="relative z-1 flex w-full max-w-sm flex-col items-center justify-center gap-3 sm:max-w-none sm:flex-row">
         <Button href="/start" variant="white" size="lg" class="w-full sm:w-auto"
-          data-marketing-cta="hero_text_remi" data-marketing-destination="linq">
+          data-marketing-cta="hero_text_remi" data-marketing-destination="guided">
           <span class="flex items-center gap-2.5">
             <img src="/images/app-logos/ios-messages-icon.svg" alt="" class="size-5 shrink-0" aria-hidden="true">
             <span>Text Remi</span>

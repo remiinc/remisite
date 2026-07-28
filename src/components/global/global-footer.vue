@@ -37,7 +37,7 @@ const serviceSolutions = [
         <h3 class="text-3xl md:text-2xl font-[450] leading-[1.125em] tracking-tight text-foreground">Your business shouldn't run you. It should run itself.
         </h3>
         <Button href="/start" data-marketing-cta="footer_text_remi"
-          data-marketing-destination="linq">Text Remi</Button>
+          data-marketing-destination="guided">Text Remi</Button>
       </div>
 
       <div class="grid grid-cols-2 md:grid-cols-3 w-full md:max-w-3xl md:justify-self-end gap-x-12 gap-y-12">

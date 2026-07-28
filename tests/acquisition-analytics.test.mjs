@@ -131,7 +131,7 @@ async function runActualSdkTransport() {
       utm_source: 'meta',
     }
     capturePageview(touch)
-    captureMarketingCta({ ...touch, cta: 'start_open_messages', destination: 'linq' })
+    captureMarketingCta({ ...touch, cta: 'hero_text_remi', destination: 'guided' })
     await new Promise((resolve) => setTimeout(resolve, 100))
     return {
       fetchRequests,
@@ -212,7 +212,7 @@ test('first touch persists, excludes PII, and later campaigns cannot overwrite i
   })
 })
 
-test('Google and Linq entries carry only the opaque acquisition allowlist', async () => {
+test('guided signup entry carries only the opaque acquisition allowlist', async () => {
   const { buildProductEntryLink } = await importFresh('acquisition')
   const firstTouch = {
     acquisition_id: 'acq_entry_touch_1234567890',
@@ -223,26 +223,37 @@ test('Google and Linq entries carry only the opaque acquisition allowlist', asyn
     utm_campaign: 'launch',
     email: 'owner@example.com',
   }
-  for (const destination of ['google', 'linq']) {
-    const url = new URL(buildProductEntryLink(destination, {
-      env: { VITE_REMI_ENTRY_ORIGIN: 'https://remi.new' },
-      firstTouch,
-      nowMs: 1_700_000_100_000,
-    }))
-    assert.equal(url.pathname, `/start/${destination}`)
-    assert.deepEqual([...url.searchParams.keys()].sort(), [
-      'acquisition_id', 'landing_path', 'referrer', 'utm_campaign', 'utm_source',
-    ])
-    assert.equal(url.searchParams.get('referrer'), 'https://meta.com')
-    assert.equal(url.href.includes('owner%40example.com'), false)
-  }
-  assert.equal(buildProductEntryLink('google', {
-    env: { VITE_REMI_ENTRY_ORIGIN: 'https://remi.new/private' },
+  const href = buildProductEntryLink('guided', {
     firstTouch,
-  }), null)
+    nowMs: 1_700_000_100_000,
+  })
+  const url = new URL(href, 'https://hireremi.ai')
+  assert.equal(url.pathname, '/start')
+  assert.deepEqual([...url.searchParams.keys()].sort(), [
+    'acquisition_id', 'landing_path', 'referrer', 'utm_campaign', 'utm_source',
+  ])
+  assert.equal(url.searchParams.get('referrer'), 'https://meta.com')
+  assert.equal(url.href.includes('owner%40example.com'), false)
+  assert.equal(buildProductEntryLink('google', { firstTouch }), null)
+  assert.equal(buildProductEntryLink('linq', { firstTouch }), null)
 })
 
-test('storage failures retain current-runtime attribution and direct Messages fallback stays honest', async () => {
+test('guided redirect strips arbitrary and private query values before product entry', async () => {
+  const { buildGuidedOnboardingRedirect } = await importFresh('acquisition')
+  const url = new URL(buildGuidedOnboardingRedirect(
+    '?acquisition_id=acq_entry_touch_1234567890&landing_path=%2Fpricing&referrer=https%3A%2F%2Fmeta.com%2Fprivate&'
+    + 'utm_source=meta&utm_campaign=launch&email=owner%40example.com&arbitrary=private',
+  ))
+  assert.equal(url.origin, 'https://remi.new')
+  assert.equal(url.pathname, '/start/linq')
+  assert.deepEqual([...url.searchParams.keys()].sort(), [
+    'acquisition_id', 'landing_path', 'referrer', 'utm_campaign', 'utm_source',
+  ])
+  assert.equal(url.searchParams.get('referrer'), 'https://meta.com')
+  assert.equal(url.href.includes('owner%40example.com'), false)
+})
+
+test('storage failures retain current-runtime attribution', async () => {
   for (const localStorage of [
     undefined,
     {
@@ -264,13 +275,6 @@ test('storage failures retain current-runtime attribution and direct Messages fa
     assert.equal(first.utm_source, 'google')
   }
 
-  const { getTextRemiEntry, REMI_TEXT_HREF } = await importFresh('start-contact')
-  const fallback = getTextRemiEntry({
-    env: {},
-    firstTouch: { acquisition_id: 'acq_direct_fallback_12345', created_at: Date.now() },
-  })
-  assert.equal(fallback.href, REMI_TEXT_HREF)
-  assert.equal(fallback.attributionState, 'direct_unknown')
 })
 
 test('key absent is a safe no-op with no initialization or capture', async () => {
@@ -282,7 +286,7 @@ test('key absent is a safe no-op with no initialization or capture', async () =>
   }
   assert.equal(initializeAnalytics({ client, env: {}, windowLike: {} }), false)
   capturePageview({ landing_path: '/' })
-  captureMarketingCta({ cta: 'hero_text_remi', destination: 'linq' })
+  captureMarketingCta({ cta: 'hero_text_remi', destination: 'guided' })
   assert.deepEqual(calls, [])
 })
 
@@ -312,7 +316,7 @@ test('manual CTA tracking uses synchronous beacon transport and never blocks nav
     preventDefault: () => { prevented = true },
     target: {
       closest: () => ({
-        dataset: { marketingCta: 'footer_text_remi', marketingDestination: 'linq' },
+        dataset: { marketingCta: 'footer_text_remi', marketingDestination: 'guided' },
       }),
     },
   })
@@ -327,7 +331,7 @@ test('manual CTA tracking uses synchronous beacon transport and never blocks nav
     env: { VITE_POSTHOG_KEY: 'phc_test', VITE_POSTHOG_HOST: 'https://us.i.posthog.com' },
     windowLike: {},
   })
-  assert.doesNotThrow(() => throwing.trackMarketingCta('hero_text_remi', 'linq'))
+  assert.doesNotThrow(() => throwing.trackMarketingCta('hero_text_remi', 'guided'))
 })
 
 test('actual PostHog transport beacons the CTA before full-page navigation', () => {
@@ -351,8 +355,8 @@ test('actual PostHog transport beacons the CTA before full-page navigation', () 
   assert.equal(beacons.length, 1)
   assert.equal(new URL(beacons[0].url).pathname, '/e/')
   assert.equal(beacons[0].body.event, 'marketing_cta_clicked')
-  assert.equal(beacons[0].body.properties.cta, 'start_open_messages')
-  assert.equal(beacons[0].body.properties.destination, 'linq')
+  assert.equal(beacons[0].body.properties.cta, 'hero_text_remi')
+  assert.equal(beacons[0].body.properties.destination, 'guided')
   assert.equal(logs.some((line) => line.includes('phc_test')), false)
 })
 
@@ -369,8 +373,8 @@ test('before_send is a closed event and property privacy boundary', async () => 
       landing_path: '/start?email=owner@example.com',
       referrer_origin: 'https://google.com/search?q=private',
       utm_source: 'meta',
-      cta: 'start_open_messages',
-      destination: 'linq',
+      cta: 'hero_text_remi',
+      destination: 'guided',
       $current_url: 'https://hireremi.ai/start?email=owner@example.com',
       $referrer: 'https://google.com/search?q=private',
       email: 'owner@example.com',
@@ -386,8 +390,8 @@ test('before_send is a closed event and property privacy boundary', async () => 
       acquisition_id: 'acq_marketing_1234567890',
       referrer_origin: 'https://google.com',
       utm_source: 'meta',
-      cta: 'start_open_messages',
-      destination: 'linq',
+      cta: 'hero_text_remi',
+      destination: 'guided',
     },
   })
   assert.equal(sanitizePostHogEvent({ event: '$autocapture', properties: { token: key } }, key), null)
@@ -397,15 +401,15 @@ test('before_send is a closed event and property privacy boundary', async () => 
 test('every current primary CTA family has manual tracking and product entries are neutral', async () => {
   const families = new Map([
     ['src/components/global/announcement-bar.vue', ['announcement_text_remi']],
-    ['src/components/header/global-header.vue', ['header_mobile_google', 'header_google']],
+    ['src/components/header/global-header.vue', ['header_mobile_guided', 'header_guided']],
     ['src/components/home/home-hero-video.vue', ['hero_text_remi']],
     ['src/components/sections/section-features.vue', ['features_text_remi']],
     ['src/components/sections/section-cta.vue', ['closing_text_remi']],
     ['src/components/global/global-footer.vue', ['footer_text_remi']],
     ['src/components/home/home-hero.vue', ['home_text_remi']],
     ['src/components/pricing/pricing-page.vue', ['pricing_text_remi']],
-    ['src/components/pricing/pricing-plans.vue', ['pricing_pro_google', 'pricing_scale_google']],
-    ['src/components/sections/section-why-remi.vue', ['comparison_google']],
+    ['src/components/pricing/pricing-plans.vue', ['pricing_pro_guided', 'pricing_scale_guided']],
+    ['src/components/sections/section-why-remi.vue', ['comparison_guided']],
     ['src/components/sections/components/bento-dialog-artifacts-documents.vue', ['artifacts_text_remi']],
     ['src/components/sections/components/bento-dialog-shared-memory.vue', ['shared_memory_text_remi']],
     ['src/components/sections/components/bento-dialog-slack-agent.vue', ['slack_agent_text_remi']],
@@ -413,7 +417,6 @@ test('every current primary CTA family has manual tracking and product entries a
     ['src/components/security/security-page.vue', ['security_text_remi']],
     ['src/components/solutions/solution-feature.vue', ['solution_feature_text_remi']],
     ['src/components/solutions/solution-page.vue', ['solution_hero_text_remi']],
-    ['src/components/start/start-page.vue', ['start_phone_link', 'start_open_messages', 'start_auto_open']],
   ])
   for (const [file, ctas] of families) {
     const source = await readFile(join(root, file), 'utf8')
@@ -422,10 +425,17 @@ test('every current primary CTA family has manual tracking and product entries a
 
   const header = await readFile(join(root, 'src/components/header/global-header.vue'), 'utf8')
   const pricing = await readFile(join(root, 'src/components/pricing/pricing-plans.vue'), 'utf8')
-  const start = await readFile(join(root, 'src/components/start/start-page.vue'), 'utf8')
-  assert.match(header, /getOnboardingEntry\('google'\)/u)
-  assert.match(pricing, /getOnboardingEntry\('google'\)/u)
+  const signupRedirect = await readFile(
+    join(root, 'src/components/global/signup-redirect.vue'),
+    'utf8',
+  )
+  const prerender = await readFile(join(root, 'scripts/prerender.mjs'), 'utf8')
+  assert.match(header, /getOnboardingEntry\('guided'\)/u)
+  assert.match(pricing, /getOnboardingEntry\('guided'\)/u)
   assert.doesNotMatch(pricing, /<Button href="https:\/\/remi\.new\/login"/u)
-  assert.match(start, /getTextRemiEntry\(\)/u)
-  assert.doesNotMatch(start, /:href="REMI_TEXT_HREF"/u)
+  assert.match(signupRedirect, /buildGuidedOnboardingRedirect/u)
+  assert.match(signupRedirect, /buildProductEntryLink\('guided'\)/u)
+  assert.match(signupRedirect, /window\.location\.replace\(destination\)/u)
+  assert.match(prerender, /writePage\(\s*'\/start'/u)
+  assert.doesNotMatch(prerender, /REMI_TEXT_NUMBER|text-remi-qr|Open Messages/u)
 })

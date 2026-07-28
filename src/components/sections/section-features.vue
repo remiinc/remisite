@@ -73,7 +73,7 @@ const featureMessages = [
             </ul>
             <div class="flex flex-wrap gap-3 mt-auto">
               <Button href="/start" variant="primary" size="sm"
-                data-marketing-cta="features_text_remi" data-marketing-destination="linq">
+                data-marketing-cta="features_text_remi" data-marketing-destination="guided">
                 <div class="flex items-center gap-2"><img src="/images/app-logos/ios-messages-icon.svg" alt="Google"
                     class="size-3" /><span>Text Remi</span></div>
               </Button>

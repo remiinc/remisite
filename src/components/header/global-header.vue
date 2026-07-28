@@ -9,8 +9,8 @@ import cn from '../../lib/cn'
 import { getOnboardingEntry } from '../../lib/acquisition.js'
 
 const portalLoginHref = 'https://remi.new/login'
-const googleEntry = getOnboardingEntry('google')
-const googleEntryHref = googleEntry.href || portalLoginHref
+const guidedEntry = getOnboardingEntry('guided')
+const guidedEntryHref = guidedEntry.href || '/start'
 
 const industryLinks = [
   { label: 'General Contractors', href: '/solutions/general-contractors' },
@@ -296,9 +296,9 @@ onBeforeUnmount(() => {
                 @click="closeMobileMenu">
                 Login
               </Button>
-              <Button :href="googleEntryHref" variant="secondary" class="h-12 w-full" @click="closeMobileMenu"
-                data-marketing-cta="header_mobile_google" data-marketing-destination="google"
-                :data-attribution-state="googleEntry.attributionState">
+              <Button :href="guidedEntryHref" variant="secondary" class="h-12 w-full" @click="closeMobileMenu"
+                data-marketing-cta="header_mobile_guided" data-marketing-destination="guided"
+                :data-attribution-state="guidedEntry.attributionState">
                 Try for free
               </Button>
             </div>
@@ -307,9 +307,9 @@ onBeforeUnmount(() => {
 
         <div class="hidden flex-1 items-center justify-end gap-1 md:flex">
           <HeaderLink :href="portalLoginHref" target="_blank">Login</HeaderLink>
-          <Button :href="googleEntryHref" :variant="headerButtonVariant" size="sm"
-            data-marketing-cta="header_google" data-marketing-destination="google"
-            :data-attribution-state="googleEntry.attributionState">Try for free</Button>
+          <Button :href="guidedEntryHref" :variant="headerButtonVariant" size="sm"
+            data-marketing-cta="header_guided" data-marketing-destination="guided"
+            :data-attribution-state="guidedEntry.attributionState">Try for free</Button>
         </div>
 
         <div class="flex flex-1 items-center justify-end md:hidden">

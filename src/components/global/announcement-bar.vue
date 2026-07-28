@@ -9,7 +9,7 @@ import { PhArrowRight } from '@phosphor-icons/vue'
     class="announcement-bar relative flex h-(--topbar-height) w-full flex-col items-center justify-center px-2"
     data-announcement-bar
     data-marketing-cta="announcement_text_remi"
-    data-marketing-destination="linq"
+    data-marketing-destination="guided"
   >
     <div class="flex w-full min-w-0 items-center justify-center gap-2 px-3 text-center text-sm sm:gap-4">
       <span class="min-w-0 truncate">Now available in Early Access</span>
