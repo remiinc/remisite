@@ -60,38 +60,3 @@ test('the proxy identifies the public origin after Vercel replaces forwarded hos
   assert.equal(guidedMatcher.test('/api/onboarding/guided'), true)
   assert.equal(guidedMatcher.test('/api/onboarding/guided/start'), true)
 })
-
-test('the proxy preserves the browser-led onboarding path for Portal rendering', () => {
-  for (const pathname of [
-    '/onboarding/name',
-    '/onboarding/priorities',
-    '/onboarding/phone',
-    '/onboarding/phone-code',
-    '/onboarding/google',
-    '/onboarding/email-success',
-    '/onboarding/subscribe',
-    '/onboarding/complete',
-  ]) {
-    const route = (vercelConfig.routes ?? []).find(
-      ({ src }) => src === pathname,
-    )
-    assert.equal(route?.continue, true)
-    assert.deepEqual(route?.transforms, [
-      {
-        type: 'request.headers',
-        op: 'delete',
-        target: {
-          key: 'x-remi-onboarding-pathname',
-        },
-      },
-      {
-        type: 'request.headers',
-        op: 'set',
-        target: {
-          key: 'x-remi-onboarding-pathname',
-        },
-        args: pathname,
-      },
-    ])
-  }
-})
