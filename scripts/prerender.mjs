@@ -551,7 +551,7 @@ const startBody = () => `
   <section class="mx-auto w-full" style="max-width: 44rem">
     <h1>Start with Remi.</h1>
     <p>Opening your guided setup now.</p>
-    <p><a href="https://remi.new/start/linq">Continue to onboarding</a></p>
+    <p><a href="/api/onboarding/entry">Continue to onboarding</a></p>
   </section>
 </main>`
 

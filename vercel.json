@@ -1,4 +1,42 @@
 {
+  "rewrites": [
+    {
+      "source": "/api/onboarding/entry",
+      "destination": "https://app.hireremi.ai/start"
+    },
+    {
+      "source": "/onboarding/:path*",
+      "destination": "https://app.hireremi.ai/onboarding/:path*"
+    },
+    {
+      "source": "/api/onboarding/guided/:path*",
+      "destination": "https://app.hireremi.ai/api/onboarding/guided/:path*"
+    },
+    {
+      "source": "/api/auth/google/callback",
+      "destination": "https://app.hireremi.ai/api/auth/google/callback"
+    },
+    {
+      "source": "/api/billing/checkout-session",
+      "destination": "https://app.hireremi.ai/api/billing/checkout-session"
+    },
+    {
+      "source": "/_next/:path*",
+      "destination": "https://app.hireremi.ai/_next/:path*"
+    },
+    {
+      "source": "/images/onboarding/:path*",
+      "destination": "https://app.hireremi.ai/images/onboarding/:path*"
+    },
+    {
+      "source": "/terms",
+      "destination": "https://app.hireremi.ai/terms"
+    },
+    {
+      "source": "/privacy",
+      "destination": "https://app.hireremi.ai/privacy"
+    }
+  ],
   "headers": [
     {
       "source": "/assets/(.*)",
