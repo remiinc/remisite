@@ -401,6 +401,23 @@ onBeforeUnmount(() => {
   filter: blur(0em);
 }
 
+@media (max-width: 767px) {
+  .header-backdrop {
+    background-color: rgba(0, 0, 0, 0.72);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .header-container[data-theme='light'] .header-backdrop {
+    background-color: rgba(255, 255, 255, 0.94);
+  }
+
+  .header-bar .scroll-progress {
+    filter: none;
+    transition: opacity 600ms cubic-bezier(0.22, 1, 0.36, 1), inset 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .header-container {
     animation: none;
@@ -441,6 +458,13 @@ onBeforeUnmount(() => {
 
 @keyframes scroll-progress-fill {
   to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .scroll-progress rect {
+    animation: none;
     stroke-dashoffset: 0;
   }
 }
