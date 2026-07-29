@@ -46,7 +46,16 @@ let stopMotionEffects = null
 onMounted(() => {
   capturePageview()
   stopMarketingCtaTracking = installMarketingCtaTracking()
-  stopMotionEffects = initializeMotionEffects()
+  const isMobileViewport = window.matchMedia('(max-width: 767px)').matches
+
+  if (!isMobileViewport) {
+    stopMotionEffects = initializeMotionEffects()
+  }
+
+  if (isMobileViewport) {
+    shouldLoadIphoneSection.value = true
+    return
+  }
 
   if (!('IntersectionObserver' in window) || !iphoneSectionTrigger.value) {
     shouldLoadIphoneSection.value = true

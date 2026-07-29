@@ -639,6 +639,68 @@ const notificationTilesOuter = [
   }
 }
 
+@supports (animation-timeline: view()) {
+  @media (max-width: 767px) {
+    .image-grid-outer,
+    .image-tile-outer {
+      animation: none;
+      will-change: auto;
+    }
+
+    .image-grid-outer {
+      display: none;
+    }
+
+    .image-grid {
+      animation: mobile-image-grid-motion linear both;
+      animation-timeline: --pinned-headline-scroll;
+      animation-range: cover 0% cover 100%;
+      will-change: transform, opacity;
+    }
+
+    .image-tile {
+      animation: mobile-image-tile-counter-rotate linear both;
+      animation-timeline: --pinned-headline-scroll;
+      animation-range: cover 0% cover 100%;
+      backface-visibility: hidden;
+      will-change: transform;
+    }
+  }
+}
+
+@keyframes mobile-image-grid-motion {
+  0% {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+
+  68% {
+    opacity: 1;
+    transform: rotate(-244.8deg) scale(1);
+  }
+
+  78%,
+  100% {
+    opacity: 0;
+    transform: rotate(-280.8deg) scale(0.94);
+  }
+}
+
+@keyframes mobile-image-tile-counter-rotate {
+  0% {
+    transform: translateZ(0) rotate(0deg);
+  }
+
+  68% {
+    transform: translateZ(0) rotate(244.8deg);
+  }
+
+  78%,
+  100% {
+    transform: translateZ(0) rotate(280.8deg);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .pinned-headline-sticky {
     animation: none;
