@@ -81,13 +81,10 @@ const serviceSolutions = [
 
     <div
       class="w-full mx-auto max-w-(--content-width) grid gap-4 text-sm text-muted-foreground sm:grid-cols-3 sm:items-center">
-      <div class="flex items-center gap-2">
-        <span class="relative flex size-2" aria-hidden="true">
-          <span class="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-          <span class="relative inline-flex size-2 rounded-full bg-emerald-500" />
-        </span>
-        <span>All Systems Healthy</span>
-      </div>
+      <nav class="flex items-center gap-4" aria-label="Legal">
+        <a href="/terms" class="transition-colors hover:text-foreground">Terms</a>
+        <a href="/privacy" class="transition-colors hover:text-foreground">Privacy</a>
+      </nav>
 
       <p class="sm:text-center">Made with love in the USA 🇺🇸</p>
 

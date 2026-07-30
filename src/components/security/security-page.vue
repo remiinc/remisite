@@ -112,8 +112,8 @@ const reviewItems = [
 ]
 
 const securityLinks = [
-  { label: 'Privacy policy', href: 'https://remi.new/privacy' },
-  { label: 'Terms of service', href: 'https://remi.new/terms' },
+  { label: 'Privacy policy', href: '/privacy' },
+  { label: 'Terms of service', href: '/terms' },
   { label: 'Report a security issue', href: 'mailto:ops@remi.new?subject=Security%20issue' },
 ]
 </script>

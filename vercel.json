@@ -57,14 +57,6 @@
     {
       "source": "/images/onboarding/:path*",
       "destination": "https://app.hireremi.ai/images/onboarding/:path*"
-    },
-    {
-      "source": "/terms",
-      "destination": "https://app.hireremi.ai/terms"
-    },
-    {
-      "source": "/privacy",
-      "destination": "https://app.hireremi.ai/privacy"
     }
   ],
   "headers": [

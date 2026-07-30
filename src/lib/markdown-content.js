@@ -268,6 +268,34 @@ export const renderMarkdown = (markdown) => {
   }
 }
 
+export const numberSectionParagraphs = (html) => {
+  let sectionNumber = ''
+  let paragraphNumber = 0
+
+  return html
+    .split('\n')
+    .map((block) => {
+      const headingMatch = block.match(/^<h2\b[^>]*>\s*(\d+)\.\s/)
+
+      if (headingMatch) {
+        sectionNumber = headingMatch[1]
+        paragraphNumber = 0
+        return block
+      }
+
+      if (!sectionNumber || !block.startsWith('<p>')) {
+        return block
+      }
+
+      paragraphNumber += 1
+      return block.replace(
+        '<p>',
+        `<p><span class="legal-clause-number">${sectionNumber}.${paragraphNumber}</span> `,
+      )
+    })
+    .join('\n')
+}
+
 const titleFromSlug = (slug) =>
   slug
     .split('-')

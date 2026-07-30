@@ -3,6 +3,7 @@ import { getLegacySolutionRedirect } from './solution-redirects.js'
 export const pageLoaders = Object.freeze({
   blogIndex: () => import('../components/blog/blog-index-page.vue'),
   blogPost: () => import('../components/blog/blog-post-page.vue'),
+  legal: () => import('../components/legal/legal-page.vue'),
   legacyRedirect: () => import('../components/global/legacy-redirect.vue'),
   pricing: () => import('../components/pricing/pricing-page.vue'),
   security: () => import('../components/security/security-page.vue'),
@@ -21,6 +22,7 @@ export function getPageLoader(pathname) {
   if (path.startsWith('/resources/')) return pageLoaders.blogPost
   if (path === '/pricing') return pageLoaders.pricing
   if (path === '/security') return pageLoaders.security
+  if (path === '/terms' || path === '/privacy') return pageLoaders.legal
   if (path === '/start') return pageLoaders.signupRedirect
 
   return null

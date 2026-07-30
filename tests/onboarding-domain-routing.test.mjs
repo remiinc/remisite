@@ -29,8 +29,6 @@ test('hireremi.ai owns the complete guided onboarding journey', () => {
         'https://app.hireremi.ai/images/onboarding/:path*',
       '/onboarding/:path*':
         'https://app.hireremi.ai/onboarding/:path*',
-      '/privacy': 'https://app.hireremi.ai/privacy',
-      '/terms': 'https://app.hireremi.ai/terms',
     },
   )
 })

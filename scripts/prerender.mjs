@@ -7,7 +7,12 @@
 import { mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { formatDate, parseFrontmatter, renderMarkdown } from '../src/lib/markdown-content.js'
+import {
+  formatDate,
+  numberSectionParagraphs,
+  parseFrontmatter,
+  renderMarkdown,
+} from '../src/lib/markdown-content.js'
 import { getFaqGroup } from '../src/lib/faqs.js'
 import { legacySolutionRedirects } from '../src/lib/solution-redirects.js'
 import { resolveSolutionTool } from '../src/lib/solution-tools.js'
@@ -92,6 +97,20 @@ const solutions = loadCollection('src/content/solutions', '/solutions', {
   requiresDate: false,
   sortBy: 'order',
 })
+const legalPages = loadCollection('src/content/legal', '', {
+  requiresDate: false,
+  sortBy: 'order',
+}).map((page) => ({
+  ...page,
+  html: numberSectionParagraphs(page.html),
+}))
+
+const expectedLegalSlugs = ['privacy', 'terms']
+const legalSlugs = legalPages.map((page) => page.slug).sort()
+
+if (JSON.stringify(legalSlugs) !== JSON.stringify(expectedLegalSlugs)) {
+  throw new Error(`Expected legal pages ${expectedLegalSlugs.join(', ')}, found ${legalSlugs.join(', ')}`)
+}
 
 const expectedIndustrySolutionCount = 10
 const expectedCapabilitySolutionCount = 7
@@ -546,6 +565,15 @@ const securityBody = () => `
   ${faqBody('security')}
 </main>`
 
+const legalBody = (entry) => `
+<main class="px-6 pb-24 pt-[calc(var(--header-height)+6rem)] md:pb-32 md:pt-[calc(var(--header-height)+8rem)]">
+  <article class="mx-auto w-full" style="max-width: 48rem">
+    <h1 class="mb-20 text-center text-5xl font-normal leading-none tracking-tight md:mb-28 md:text-7xl">${escapeHtml(entry.title)}</h1>
+    ${entry.html}
+    <p>Updated ${escapeHtml(formatDate(entry.metadata.dateUpdated))} · Effective ${escapeHtml(formatDate(entry.metadata.effectiveDate))}</p>
+  </article>
+</main>`
+
 const startBody = () => `
 <main class="px-6 pt-32 pb-20">
   <section class="mx-auto w-full" style="max-width: 44rem">
@@ -628,6 +656,29 @@ const renderSolutionPage = (entry) =>
   )
 
 solutions.forEach((solution) => writePage(solution.path, renderSolutionPage(solution)))
+
+legalPages.forEach((entry) => {
+  writePage(
+    entry.path,
+    injectBody(
+      setHead(template, {
+        title: `${entry.metadata.ogTitle || entry.title} | Remi`,
+        description: entry.metadata.ogDescription || entry.description,
+        url: entry.url,
+        ogType: 'website',
+        jsonLd: [{
+          '@context': 'https://schema.org',
+          '@type': 'WebPage',
+          name: entry.title,
+          description: entry.description,
+          url: entry.url,
+          dateModified: entry.metadata.dateUpdated,
+        }],
+      }),
+      legalBody(entry),
+    ),
+  )
+})
 
 // Index pages
 writeFileSync(join(distDir, 'index.html'), injectBody(template, homeBody()))
@@ -756,9 +807,15 @@ const contentUrls = [...posts, ...solutions].map((entry) => ({
   priority: '0.7',
 }))
 
+const legalUrls = legalPages.map((entry) => ({
+  loc: entry.url,
+  lastmod: entry.metadata.dateUpdated || '',
+  priority: '0.3',
+}))
+
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${[...staticUrls, ...contentUrls]
+${[...staticUrls, ...contentUrls, ...legalUrls]
   .map(
     (url) =>
       `  <url><loc>${url.loc}</loc>${url.lastmod ? `<lastmod>${url.lastmod}</lastmod>` : ''}<priority>${url.priority}</priority></url>`,
@@ -798,5 +855,5 @@ ${rssItems}
 writeFileSync(join(distDir, 'rss.xml'), rss)
 
 console.log(
-  `Prerendered the homepage, ${posts.length} blog posts, ${solutions.length} solution guides, 6 index pages, sitemap.xml, rss.xml`,
+  `Prerendered the homepage, ${posts.length} blog posts, ${solutions.length} solution guides, ${legalPages.length} legal pages, 5 other static pages, sitemap.xml, rss.xml`,
 )

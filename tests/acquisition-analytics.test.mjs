@@ -177,7 +177,16 @@ test('landing-path allowlist matches every current solution and resource route',
     ...solutionFiles.map((file) => `/solutions/${basename(file, '.md')}`),
     ...resourceFiles.map((file) => `/resources/${basename(file, '.md')}`),
   ]
-  const staticPaths = ['/', '/pricing', '/security', '/start', '/solutions', '/resources']
+  const staticPaths = [
+    '/',
+    '/pricing',
+    '/privacy',
+    '/resources',
+    '/security',
+    '/solutions',
+    '/start',
+    '/terms',
+  ]
   assert.deepEqual(
     [...ACQUISITION_LANDING_PATHS].sort(),
     [...staticPaths, ...contentPaths].sort(),

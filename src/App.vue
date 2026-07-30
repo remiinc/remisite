@@ -17,6 +17,7 @@ import { pageLoaders } from './lib/page-loaders.js'
 
 const BlogIndexPage = defineAsyncComponent(pageLoaders.blogIndex)
 const BlogPostPage = defineAsyncComponent(pageLoaders.blogPost)
+const LegalPage = defineAsyncComponent(pageLoaders.legal)
 const LegacyRedirect = defineAsyncComponent(pageLoaders.legacyRedirect)
 const PricingPage = defineAsyncComponent(pageLoaders.pricing)
 const SecurityPage = defineAsyncComponent(pageLoaders.security)
@@ -35,6 +36,7 @@ const isBlogIndexPage = computed(() => normalizedPath.value === '/resources')
 const isBlogPostPage = computed(() => normalizedPath.value.startsWith('/resources/'))
 const isPricingPage = computed(() => normalizedPath.value === '/pricing')
 const isSecurityPage = computed(() => normalizedPath.value === '/security')
+const isLegalPage = computed(() => ['/terms', '/privacy'].includes(normalizedPath.value))
 const isStartPage = computed(() => normalizedPath.value === '/start')
 const iphoneSectionTrigger = ref(null)
 const shouldLoadIphoneSection = ref(false)
@@ -85,6 +87,7 @@ onBeforeUnmount(() => {
   <SolutionPage v-else-if="isSolutionPage" />
   <PricingPage v-else-if="isPricingPage" />
   <SecurityPage v-else-if="isSecurityPage" />
+  <LegalPage v-else-if="isLegalPage" />
   <SignupRedirect v-else-if="isStartPage" />
   <BlogIndexPage v-else-if="isBlogIndexPage" />
   <BlogPostPage v-else-if="isBlogPostPage" />
