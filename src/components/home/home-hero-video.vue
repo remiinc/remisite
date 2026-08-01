@@ -18,34 +18,34 @@ defineProps({
 </script>
 
 <template>
-  <section class="hero-video-section w-full min-h-[640px] h-(--hero-height) p-(--hero-padding) grid grid-rows-1 grid-cols-1">
-    <div
-      class="hero-video relative col-start-1 col-end-1 row-start-1 row-end-1 overflow-hidden w-full h-full"
+  <section
+    class="hero-video-section w-full min-h-160 h-(--hero-height) p-(--hero-padding) grid grid-rows-1 grid-cols-1">
+    <div class="hero-video relative col-start-1 col-end-1 row-start-1 row-end-1 overflow-hidden w-full h-full"
       aria-hidden="true">
-      <video v-if="videoSrc" class="absolute inset-0 h-full w-full object-cover" :poster="videoPoster || undefined"
-        width="1280" height="720" autoplay muted loop playsinline preload="metadata">
+      <video v-if="videoSrc" class="absolute inset-0 h-full w-full object-cover object-bottom"
+        :poster="videoPoster || undefined" width="1280" height="720" autoplay muted loop playsinline preload="metadata">
         <source v-if="mobileVideoSrc" :src="mobileVideoSrc" media="(max-width: 767px)" type="video/mp4">
         <source :src="videoSrc" type="video/mp4">
       </video>
-      <div class="absolute inset-0 h-full w-full bg-black/30 mask-t-from-0% mask-t-to-70% pointer-events-none" />
+      <div
+        class="absolute inset-0 h-full w-full bg-linear-to-b from-black/20 via-60% via-black/0 to-black/60 pointer-events-none" />
     </div>
 
     <div
-      class="relative col-start-1 col-end-1 row-start-1 row-end-1 w-full max-w-[1400px] h-full px-6 py-24 mx-auto flex flex-col items-center justify-center text-center gap-10">
+      class="relative col-start-1 col-end-1 row-start-1 row-end-1 w-full max-w-(--content-width) h-full py-24 px-6 mx-auto flex flex-col items-center justify-center text-center gap-12">
       <div class="z-1 flex flex-1" aria-hidden="true" />
+
       <div class="hero-copy relative z-1 flex flex-col items-center gap-10">
         <h1
-          class="max-w-[20ch] text-4xl font-normal leading-[1em] tracking-[-0.03em] text-balance text-background select-none md:text-[clamp(3.5rem,8vw,5rem)]">
+          class="max-w-[20ch] text-4xl sm:text-5xl text-center font-normal leading-[1em] tracking-[-0.03em] text-balance text-background select-none">
           Grow your business. <span class="block">Let Remi handle the admin.</span>
         </h1>
-        <p class="mb-2 max-w-[38ch] text-center text-[0.875em] font-normal leading-snug">
-          <span class="block text-background">From the first quote to the final payment.</span>
-          <span class="block text-background/60">Run it all from your phone.</span>
-        </p>
       </div>
-      <div class="relative z-1 flex w-full max-w-sm flex-col items-center justify-center gap-3 sm:max-w-none sm:flex-row">
-        <Button href="/start" variant="white" size="lg" class="w-full sm:w-auto"
-          data-marketing-cta="hero_text_remi" data-marketing-destination="guided">
+
+      <div
+        class="relative z-1 flex w-full max-w-sm flex-col items-center justify-center gap-y-3 gap-x-8 sm:max-w-none sm:flex-row">
+        <Button href="/start" variant="white" size="lg" class="w-full sm:w-auto" data-marketing-cta="hero_text_remi"
+          data-marketing-destination="guided">
           <span class="flex items-center gap-2.5">
             <img src="/images/app-logos/ios-messages-icon.svg" alt="" class="size-5 shrink-0" aria-hidden="true">
             <span>Text Remi</span>
