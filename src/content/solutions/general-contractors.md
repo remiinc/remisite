@@ -1,6 +1,8 @@
 ---
 title: "Keep every job moving, every change written down, and every draw ready to collect."
 description: "Remi helps general contractors keep progress draws, change orders, customer decisions, and follow-ups from getting buried between the jobsite and the office."
+ogImage: "/images/opengraph/og-contractors.jpg"
+ogImageAlt: "Remi for General Contractors social preview showing a contractor carrying lumber beside a miter saw."
 industryLabel: "General Contractors"
 order: "1"
 heroMessage: "Remi, draft the progress draw follow-up with the approved change order attached."

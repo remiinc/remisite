@@ -1,6 +1,8 @@
 ---
 title: "Keep estimates, customer approvals, repair updates, and unpaid orders moving."
 description: "Remi helps auto repair shops follow up on estimates, preserve customer approvals, and prepare pickup and payment updates with the repair context attached."
+ogImage: "/images/opengraph/og-auto-repair.jpg"
+ogImageAlt: "Remi for Auto Repair social preview showing a mechanic working beneath a red car in a garage."
 industryLabel: "Auto Repair"
 order: "9"
 heroMessage: "Remi, draft pickup updates for today's completed repairs with the balance due."

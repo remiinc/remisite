@@ -1,6 +1,8 @@
 ---
 title: "Turn inquiries into booked work, keep recurring schedules clear, and catch overdue invoices early."
 description: "Remi helps cleaning businesses follow up on new inquiries, track recurring schedule changes, and flag unpaid work before balances pile up."
+ogImage: "/images/opengraph/og-cleaning.jpg"
+ogImageAlt: "Remi for Cleaning Services social preview showing two cleaners working on floor-to-ceiling windows."
 industryLabel: "Cleaning Services"
 order: "8"
 heroMessage: "Remi, show me the recurring clients with overdue invoices and draft reminders."

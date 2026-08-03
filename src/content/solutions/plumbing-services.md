@@ -1,6 +1,8 @@
 ---
 title: "Keep service calls, quotes, and invoices moving while you are already on the next job."
 description: "Remi helps plumbing businesses respond to waiting customers, turn field notes into quote drafts, and connect completed work to the payment still due."
+ogImage: "/images/opengraph/og-plumbing.jpg"
+ogImageAlt: "Remi for Plumbing Services social preview showing a plumber working beneath kitchen cabinets."
 industryLabel: "Plumbing Services"
 order: "4"
 heroMessage: "Remi, turn today's field notes into quote follow-ups for me to review."

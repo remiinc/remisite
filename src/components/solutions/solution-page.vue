@@ -1,6 +1,14 @@
 <script setup>
 import { computed, onBeforeUnmount, watchEffect } from 'vue'
 import { getSolutionBySlug, solutions } from '../../lib/solutions'
+import {
+  DEFAULT_OG_IMAGE,
+  DEFAULT_OG_IMAGE_ALT,
+  getOgImageType,
+  OG_IMAGE_HEIGHT,
+  OG_IMAGE_WIDTH,
+  toAbsoluteSiteUrl,
+} from '../../lib/site-metadata'
 import Button from '../global/button.vue'
 import GlobalFooter from '../global/global-footer.vue'
 import GlobalHeader from '../header/global-header.vue'
@@ -52,15 +60,31 @@ watchEffect(() => {
   if (typeof document === 'undefined' || !solution.value) return
 
   const pageTitle = solution.value.metadata.ogTitle || `Remi for ${solution.value.industryLabel}`
+  const fullPageTitle = `${pageTitle} | Remi`
   const pageDescription = solution.value.description
+  const ogImage = toAbsoluteSiteUrl(solution.value.metadata.ogImage || DEFAULT_OG_IMAGE)
+  const ogImageAlt = solution.value.metadata.ogImageAlt || DEFAULT_OG_IMAGE_ALT
+  const ogDescription = solution.value.metadata.ogDescription || pageDescription
+  const canonicalUrl = toAbsoluteSiteUrl(solution.value.path)
 
-  document.title = `${pageTitle} | Remi`
+  document.title = fullPageTitle
   setMetaTag('name', 'description', pageDescription)
-  setMetaTag('property', 'og:title', pageTitle)
-  setMetaTag('property', 'og:description', solution.value.metadata.ogDescription || pageDescription)
+  setMetaTag('property', 'og:title', fullPageTitle)
+  setMetaTag('property', 'og:description', ogDescription)
   setMetaTag('property', 'og:type', 'website')
-  setMetaTag('property', 'og:url', window.location.href)
-  setMetaTag('property', 'og:image', solution.value.metadata.ogImage)
+  setMetaTag('property', 'og:url', canonicalUrl)
+  setMetaTag('property', 'og:image', ogImage)
+  setMetaTag('property', 'og:image:secure_url', ogImage)
+  setMetaTag('property', 'og:image:type', getOgImageType(ogImage))
+  setMetaTag('property', 'og:image:width', String(OG_IMAGE_WIDTH))
+  setMetaTag('property', 'og:image:height', String(OG_IMAGE_HEIGHT))
+  setMetaTag('property', 'og:image:alt', ogImageAlt)
+  setMetaTag('name', 'twitter:card', 'summary_large_image')
+  setMetaTag('name', 'twitter:url', canonicalUrl)
+  setMetaTag('name', 'twitter:title', fullPageTitle)
+  setMetaTag('name', 'twitter:description', ogDescription)
+  setMetaTag('name', 'twitter:image', ogImage)
+  setMetaTag('name', 'twitter:image:alt', ogImageAlt)
 })
 
 onBeforeUnmount(() => {

@@ -1,6 +1,8 @@
 ---
 title: "Keep approvals, scope changes, deliverables, and invoices from slipping between inboxes."
 description: "Remi helps owner-run marketing agencies turn feedback into next steps, flag scope changes, and prepare client updates and invoice follow-ups."
+ogImage: "/images/opengraph/og-marketing.jpg"
+ogImageAlt: "Remi for Marketing Agencies social preview showing an agency team meeting around a conference table."
 industryLabel: "Marketing Agencies"
 order: "10"
 heroMessage: "Remi, turn today's client feedback into next steps and flag anything out of scope."

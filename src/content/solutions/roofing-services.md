@@ -1,6 +1,8 @@
 ---
 title: "Keep storm leads, supplements, completion proof, and final payments in one clear thread."
 description: "Remi helps roofing businesses work the lead queue, track approvals and supplements, and prepare final-payment packets with the proof already attached."
+ogImage: "/images/opengraph/og-roofing.jpg"
+ogImageAlt: "Remi for Roofing Services social preview showing roofers installing shingles with safety harnesses."
 industryLabel: "Roofing Services"
 order: "7"
 heroMessage: "Remi, gather the completion photos and draft the final payment follow-up."

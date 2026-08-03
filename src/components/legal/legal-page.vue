@@ -4,6 +4,14 @@ import GlobalFooter from '../global/global-footer.vue'
 import GlobalHeader from '../header/global-header.vue'
 import { legalPages } from '../../lib/legal-pages'
 import { formatDate } from '../../lib/markdown-content'
+import {
+  DEFAULT_OG_IMAGE,
+  DEFAULT_OG_IMAGE_ALT,
+  getOgImageType,
+  OG_IMAGE_HEIGHT,
+  OG_IMAGE_WIDTH,
+  toAbsoluteSiteUrl,
+} from '../../lib/site-metadata'
 
 const normalizedPath = computed(() => {
   if (typeof window === 'undefined') return '/terms'
@@ -40,14 +48,29 @@ watchEffect(() => {
   if (typeof document === 'undefined' || !page.value) return
 
   const pageTitle = page.value.metadata.ogTitle || page.value.title
+  const fullPageTitle = `${pageTitle} | Remi`
   const pageDescription = page.value.metadata.ogDescription || page.value.description
+  const canonicalUrl = toAbsoluteSiteUrl(page.value.path)
+  const ogImage = toAbsoluteSiteUrl(DEFAULT_OG_IMAGE)
 
-  document.title = `${pageTitle} | Remi`
+  document.title = fullPageTitle
   setMetaTag('name', 'description', pageDescription)
-  setMetaTag('property', 'og:title', pageTitle)
+  setMetaTag('property', 'og:title', fullPageTitle)
   setMetaTag('property', 'og:description', pageDescription)
   setMetaTag('property', 'og:type', 'website')
-  setMetaTag('property', 'og:url', window.location.href)
+  setMetaTag('property', 'og:url', canonicalUrl)
+  setMetaTag('property', 'og:image', ogImage)
+  setMetaTag('property', 'og:image:secure_url', ogImage)
+  setMetaTag('property', 'og:image:type', getOgImageType(ogImage))
+  setMetaTag('property', 'og:image:width', String(OG_IMAGE_WIDTH))
+  setMetaTag('property', 'og:image:height', String(OG_IMAGE_HEIGHT))
+  setMetaTag('property', 'og:image:alt', DEFAULT_OG_IMAGE_ALT)
+  setMetaTag('name', 'twitter:card', 'summary_large_image')
+  setMetaTag('name', 'twitter:url', canonicalUrl)
+  setMetaTag('name', 'twitter:title', fullPageTitle)
+  setMetaTag('name', 'twitter:description', pageDescription)
+  setMetaTag('name', 'twitter:image', ogImage)
+  setMetaTag('name', 'twitter:image:alt', DEFAULT_OG_IMAGE_ALT)
 })
 
 onBeforeUnmount(() => {

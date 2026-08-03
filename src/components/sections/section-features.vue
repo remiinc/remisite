@@ -16,14 +16,8 @@ const scrollToSolutions = (event) => {
 }
 
 const featureMessages = [
-  { text: 'Three invoices are overdue. 💸', sender: 'remi', x: '58%', y: '15%', rotation: '-1.5deg' },
-  { text: 'What needs me today?', sender: 'user', x: '25%', y: '25%', rotation: '2deg' },
-  { text: 'The signed estimate is attached. 📎', sender: 'remi', x: '50%', y: '35%', rotation: '-2deg' },
-  { text: 'Draft the follow-up.', sender: 'user', x: '72%', y: '45%', rotation: '1deg' },
-  { text: 'Tomorrow has a 2:30 opening. 📅', sender: 'remi', x: '42%', y: '55%', rotation: '1.5deg' },
-  { text: 'Put that in writing.', sender: 'user', x: '72%', y: '65%', rotation: '-2deg' },
-  { text: 'The change order is still waiting. 👀', sender: 'remi', x: '48%', y: '75%', rotation: '2deg' },
-  { text: 'Remind me Friday.', sender: 'user', x: '33%', y: '85%', rotation: '-1deg' },
+  { text: 'Henderson’s final invoice is 9 days overdue. I drafted a reminder—send it?', sender: 'remi' },
+  { text: 'Send it.', sender: 'user' },
 ]
 </script>
 
@@ -94,16 +88,11 @@ const featureMessages = [
             width="1440" height="960" class="absolute inset-0 w-full h-full object-cover" loading="lazy"
             decoding="async" />
 
-          <div class="absolute inset-0 z-10 flex items-center justify-center">
+          <div class="absolute top-6 right-6 z-10 flex w-3/4 max-w-md flex-col gap-2 md:top-8 md:right-8">
             <div
               v-for="message in featureMessages"
               :key="message.text"
-              class="absolute"
-              :style="{
-                left: message.x,
-                top: message.y,
-                transform: `translate(-50%, -50%) rotate(${message.rotation})`,
-              }"
+              :class="message.sender === 'user' ? 'self-end' : 'self-start'"
             >
               <div
                 :class="cn(

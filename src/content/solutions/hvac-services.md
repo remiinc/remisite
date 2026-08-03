@@ -1,6 +1,8 @@
 ---
 title: "Answer service requests, keep replacement estimates warm, and catch every unpaid job."
 description: "Remi helps HVAC businesses respond to waiting customers, follow up on replacement estimates, and prepare completed-job invoice reminders."
+ogImage: "/images/opengraph/og-hvac.jpg"
+ogImageAlt: "Remi for HVAC Services social preview showing two technicians servicing outdoor equipment."
 industryLabel: "HVAC Services"
 order: "3"
 heroMessage: "Remi, find the replacement estimates waiting on a reply and draft the follow-ups."

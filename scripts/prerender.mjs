@@ -14,13 +14,24 @@ import {
   renderMarkdown,
 } from '../src/lib/markdown-content.js'
 import { getFaqGroup } from '../src/lib/faqs.js'
+import {
+  DEFAULT_OG_IMAGE,
+  DEFAULT_OG_IMAGE_ALT,
+  getOgImageType,
+  INDEX_ROBOTS,
+  OG_IMAGE_HEIGHT,
+  OG_IMAGE_WIDTH,
+  REDIRECT_ROBOTS,
+  SITE_URL,
+  toAbsoluteSiteUrl,
+} from '../src/lib/site-metadata.js'
 import { legacySolutionRedirects } from '../src/lib/solution-redirects.js'
 import { resolveSolutionTool } from '../src/lib/solution-tools.js'
 import { injectPrerenderBody } from './prerender-shell.mjs'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const distDir = join(root, 'dist')
-const SITE = 'https://hireremi.ai'
+const SITE = SITE_URL
 
 const template = readFileSync(join(distDir, 'index.html'), 'utf8')
 
@@ -223,15 +234,32 @@ solutions.forEach((solution) => {
   }
 })
 
-const setHead = (html, { title, description, url, ogType, ogImage, jsonLd = [] }) => {
+const setHead = (
+  html,
+  {
+    title,
+    description,
+    url,
+    ogType,
+    ogImage = DEFAULT_OG_IMAGE,
+    ogImageAlt = DEFAULT_OG_IMAGE_ALT,
+    robots = INDEX_ROBOTS,
+    jsonLd = [],
+  },
+) => {
   let output = html
 
-  const fullImage = ogImage && ogImage.startsWith('http') ? ogImage : ogImage ? `${SITE}${ogImage}` : ''
+  const fullImage = toAbsoluteSiteUrl(ogImage)
+  const imageType = getOgImageType(fullImage)
 
   output = output.replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(title)}</title>`)
   output = output.replace(
     /(<meta\s[^>]*name="description"[^>]*content=")[^"]*(")/,
     `$1${escapeHtml(description)}$2`,
+  )
+  output = output.replace(
+    /(<meta\s[^>]*name="robots"[^>]*content=")[^"]*(")/,
+    `$1${robots}$2`,
   )
   output = output.replace(/(<link\s[^>]*rel="canonical"[^>]*href=")[^"]*(")/, `$1${url}$2`)
 
@@ -266,12 +294,15 @@ const setHead = (html, { title, description, url, ogType, ogImage, jsonLd = [] }
     )
   })
 
-  if (fullImage) {
-    output = output
-      .replace(/(<meta\s[^>]*property="og:image"[^>]*content=")[^"]*(")/, `$1${fullImage}$2`)
-      .replace(/(<meta\s[^>]*property="og:image:secure_url"[^>]*content=")[^"]*(")/, `$1${fullImage}$2`)
-      .replace(/(<meta\s[^>]*name="twitter:image"[^>]*content=")[^"]*(")/, `$1${fullImage}$2`)
-  }
+  output = output
+    .replace(/(<meta\s[^>]*property="og:image"[^>]*content=")[^"]*(")/, `$1${fullImage}$2`)
+    .replace(/(<meta\s[^>]*property="og:image:secure_url"[^>]*content=")[^"]*(")/, `$1${fullImage}$2`)
+    .replace(/(<meta\s[^>]*property="og:image:type"[^>]*content=")[^"]*(")/, `$1${imageType}$2`)
+    .replace(/(<meta\s[^>]*property="og:image:width"[^>]*content=")[^"]*(")/, `$1${OG_IMAGE_WIDTH}$2`)
+    .replace(/(<meta\s[^>]*property="og:image:height"[^>]*content=")[^"]*(")/, `$1${OG_IMAGE_HEIGHT}$2`)
+    .replace(/(<meta\s[^>]*property="og:image:alt"[^>]*content=")[^"]*(")/, `$1${escapeHtml(ogImageAlt)}$2`)
+    .replace(/(<meta\s[^>]*name="twitter:image"[^>]*content=")[^"]*(")/, `$1${fullImage}$2`)
+    .replace(/(<meta\s[^>]*name="twitter:image:alt"[^>]*content=")[^"]*(")/, `$1${escapeHtml(ogImageAlt)}$2`)
 
   const jsonLdTags = jsonLd
     .map((schema) => `<script type="application/ld+json">${JSON.stringify(schema)}</script>`)
@@ -310,11 +341,7 @@ const articleSchema = (entry) => ({
     url: `${SITE}/`,
     logo: { '@type': 'ImageObject', url: `${SITE}/icon-512.png` },
   },
-  image: entry.metadata.ogImage
-    ? entry.metadata.ogImage.startsWith('http')
-      ? entry.metadata.ogImage
-      : `${SITE}${entry.metadata.ogImage}`
-    : `${SITE}/images/og-image.png`,
+  image: toAbsoluteSiteUrl(entry.metadata.ogImage || DEFAULT_OG_IMAGE),
   mainEntityOfPage: entry.url,
 })
 
@@ -629,13 +656,21 @@ const renderEntryPage = (entry, sectionLabel) => {
     url: entry.url,
     ogType: 'article',
     ogImage: entry.metadata.ogImage,
+    ogImageAlt: entry.metadata.ogImageAlt || DEFAULT_OG_IMAGE_ALT,
     jsonLd,
   })
 
-  page = page.replace(
-    '</head>',
-    `    <meta property="article:published_time" content="${entry.date}" />\n  </head>`,
-  )
+  const articleMetadata = [
+    `<meta property="article:published_time" content="${entry.date}" />`,
+    entry.metadata.dateModified
+      ? `<meta property="article:modified_time" content="${entry.metadata.dateModified}" />`
+      : '',
+    entry.metadata.category
+      ? `<meta property="article:section" content="${escapeHtml(entry.metadata.category)}" />`
+      : '',
+  ].filter(Boolean).join('\n    ')
+
+  page = page.replace('</head>', `    ${articleMetadata}\n  </head>`)
 
   return injectBody(page, articleBody(entry, sectionLabel))
 }
@@ -650,6 +685,7 @@ const renderSolutionPage = (entry) =>
       url: entry.url,
       ogType: 'website',
       ogImage: entry.metadata.ogImage,
+      ogImageAlt: entry.metadata.ogImageAlt || DEFAULT_OG_IMAGE_ALT,
       jsonLd: [solutionSchema(entry)],
     }),
     solutionBody(entry),
@@ -732,6 +768,7 @@ Object.entries(legacySolutionRedirects).forEach(([from, target]) => {
     description: 'Continue to Remi Solutions.',
     url: `${SITE}${target}`,
     ogType: 'website',
+    robots: REDIRECT_ROBOTS,
   })
 
   redirectPage = redirectPage.replace(

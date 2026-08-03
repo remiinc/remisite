@@ -2,6 +2,7 @@
 import { computed, onBeforeUnmount, ref, watchEffect } from 'vue'
 import { blogPosts } from '../../lib/blog-posts'
 import { cn } from '../../lib/cn'
+import { DEFAULT_OG_IMAGE } from '../../lib/site-metadata'
 import Button from '../global/button.vue'
 import GlobalFooter from '../global/global-footer.vue'
 import GlobalHeader from '../header/global-header.vue'
@@ -10,7 +11,7 @@ const featuredPost = computed(() => blogPosts[0] || null)
 const remainingPosts = computed(() => blogPosts.slice(1))
 const originalTitle = typeof document !== 'undefined' ? document.title : ''
 
-const getPostImage = (post) => post.metadata.heroImage || post.metadata.ogImage || '/images/og-image.png'
+const getPostImage = (post) => post.metadata.heroImage || post.metadata.ogImage || DEFAULT_OG_IMAGE
 const getPostImageAlt = (post) => post.metadata.heroImageAlt || post.title
 const getPostCategory = (post) => post.metadata.category || 'Blog'
 const getPostReadingTime = (post) => post.metadata.readingTime || '3 min read'

@@ -1,6 +1,8 @@
 ---
 title: "Keep estimates, approvals, inspections, and final invoices moving from the field."
 description: "Remi helps electrical businesses track inspection dependencies, document added work, and prepare final-payment follow-ups with the right context."
+ogImage: "/images/opengraph/og-electrical.jpg"
+ogImageAlt: "Remi for Electrical Services social preview showing a solar technician installing rooftop panels."
 industryLabel: "Electrical Services"
 order: "5"
 heroMessage: "Remi, show me which jobs are waiting on inspections or customer approvals."

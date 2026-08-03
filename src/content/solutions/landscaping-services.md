@@ -1,6 +1,8 @@
 ---
 title: "Keep seasonal leads moving, put extras in writing, and collect before the next crew rolls out."
 description: "Remi helps landscaping businesses respond to seasonal inquiries, document on-site upgrades, and keep deposits, materials, and balances visible."
+ogImage: "/images/opengraph/og-landscaping.jpg"
+ogImageAlt: "Remi for Landscaping Services social preview showing a landscaper pushing a wheelbarrow across a yard."
 industryLabel: "Landscaping Services"
 order: "6"
 heroMessage: "Remi, draft a change order for the extra plantings the customer approved."

@@ -1,6 +1,8 @@
 ---
 title: "Keep walkthroughs, homeowner changes, and progress draws from getting buried."
 description: "Remi helps remodeling businesses follow up after walkthroughs, document homeowner changes, and prepare each progress-draw chase with the right proof."
+ogImage: "/images/opengraph/og-home-remodeling.jpg"
+ogImageAlt: "Remi for Home Remodeling social preview showing a remodeler working inside a protected room."
 industryLabel: "Home Remodeling"
 order: "2"
 heroMessage: "Remi, pull together the walkthrough notes and draft the homeowner follow-up."
