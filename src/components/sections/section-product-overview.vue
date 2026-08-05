@@ -47,7 +47,7 @@ const features = [
 <template>
   <section id="product" class="mx-auto max-w-[1400px] scroll-mt-24 px-6 py-24" data-product-overview>
     <div class="space-y-0 text-3xl font-normal leading-none tracking-tight text-balance">
-      <h2 class="text-foreground">
+      <h2 class="headline-h3 text-foreground">
         Get to know Remi.
       </h2>
       <p class="text-foreground/40">
@@ -63,7 +63,7 @@ const features = [
       >
         <component :is="feature.icon" class="size-6 text-foreground" weight="fill" aria-hidden="true" />
         <div class="mt-10">
-          <h3 class="text-base font-normal leading-tight tracking-tight text-foreground">
+          <h3 class="headline-h6 text-foreground">
             {{ feature.title }}
           </h3>
           <p class="mt-2 text-sm font-normal leading-normal text-foreground/45">

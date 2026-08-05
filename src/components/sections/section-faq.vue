@@ -34,7 +34,7 @@ watch(() => props.type, () => {
   <section id="faq" class="mx-auto scroll-mt-24 px-6 py-24" data-faq-section :data-faq-type="type">
     <div class="w-full mx-auto max-w-(--content-width) grid md:grid-cols-[1fr_3fr] gap-x-24 gap-y-12">
       <div class="flex flex-col items-start gap-6">
-        <h2 class="text-4xl font-normal tracking-tight text-foreground text-balance">{{ faqGroup.title }}</h2>
+        <h2 class="headline-h3 text-balance text-foreground">{{ faqGroup.title }}</h2>
         <Button v-if="faqGroup.cta" :href="faqGroup.cta.href" size="sm"
           data-marketing-cta="faq_text_remi" data-marketing-destination="guided">
           <span class="flex items-center gap-2">
@@ -49,7 +49,7 @@ watch(() => props.type, () => {
           <div v-for="(faq, index) in faqGroup.items" :key="faq.question" class="border-b border-border last:border-b-0">
             <button type="button"
               :class="cn('group/faq flex w-full cursor-pointer items-start justify-between gap-6 py-4',
-              'text-left text-lg font-[450] tracking-tight',
+              'text-left headline-h6 tracking-tight',
               'text-foreground transition-[opacity,color] hover:text-foreground hover:opacity-100',
               'focus-visible:outline-none',
               isFaqOpen(index) && 'text-foreground')"

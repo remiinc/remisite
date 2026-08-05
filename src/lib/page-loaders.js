@@ -1,6 +1,7 @@
 import { getLegacySolutionRedirect } from './solution-redirects.js'
 
 export const pageLoaders = Object.freeze({
+  about: () => import('../components/about/about-page.vue'),
   blogIndex: () => import('../components/blog/blog-index-page.vue'),
   blogPost: () => import('../components/blog/blog-post-page.vue'),
   legal: () => import('../components/legal/legal-page.vue'),
@@ -16,6 +17,7 @@ export function getPageLoader(pathname) {
   const path = pathname.replace(/\/+$/, '') || '/'
 
   if (getLegacySolutionRedirect(path)) return pageLoaders.legacyRedirect
+  if (path === '/about') return pageLoaders.about
   if (path === '/solutions') return pageLoaders.solutionsIndex
   if (path.startsWith('/solutions/')) return pageLoaders.solution
   if (path === '/resources') return pageLoaders.blogIndex

@@ -46,7 +46,7 @@ watch(
       <div class="flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
         <div class="flex max-w-3xl flex-col items-start gap-6">
           <p class="text-xs font-medium leading-none uppercase text-foreground">Solutions</p>
-          <h2 class="text-5xl font-normal leading-none tracking-tight text-balance text-foreground">
+          <h2 class="headline-h2 text-balance text-foreground">
             Built for the businesses that keep America moving.
           </h2>
         </div>
@@ -85,7 +85,7 @@ watch(
                 class="absolute inset-0 bg-linear-to-b from-black/20 from-50% to-black/40 to-100% transition-colors group-hover:from-black/10 group-hover:to-black/30 group-focus-visible:from-black/10 group-focus-visible:to-black/30 duration-300"
                 aria-hidden="true" />
               <h3
-                class="relative z-10 text-sm font-normal leading-none tracking-tight text-balance text-center mx-auto">
+                class="headline-h6 relative z-10 text-balance text-center mx-auto">
                 {{ solution.industryLabel }}
               </h3>
               <div class="relative z-10 flex flex-col items-center justify-start">

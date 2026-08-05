@@ -262,7 +262,7 @@ const getSlideFrameClass = (gradientClass) =>
 <template>
   <section id="workflows" class="mx-auto max-w-[1400px] scroll-mt-24 px-6 py-24" data-section-slider>
     <div class="grid gap-8 md:grid-cols-2 md:items-start">
-      <h2 class="max-w-xl text-4xl font-normal tracking-tight text-balance text-foreground">
+      <h2 class="headline-h2 max-w-xl text-balance text-foreground">
         {{ headline }}
       </h2>
       <p class="max-w-[48ch] text-base leading-normal text-muted-foreground md:pt-3">

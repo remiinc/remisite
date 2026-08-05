@@ -45,7 +45,7 @@ const trustPrinciples = [
         <div class="flex h-full min-h-120 flex-col justify-between gap-12">
           <div class="flex flex-col gap-5">
             <PhFingerprint class="size-6 text-background" weight="fill" aria-hidden="true" />
-            <h2 id="security-proof-title" class="max-w-[12ch] text-4xl font-normal leading-none tracking-tight text-balance">
+            <h2 id="security-proof-title" class="headline-h3 max-w-[12ch] text-balance">
               Permission before power
             </h2>
           </div>
@@ -64,7 +64,7 @@ const trustPrinciples = [
         >
           <component :is="principle.icon" class="size-5 text-foreground/40" weight="fill" aria-hidden="true" />
           <div class="mt-12 flex flex-col gap-3">
-            <h3 class="text-xl leading-tight tracking-tight text-balance">
+            <h3 class="headline-h5 text-balance">
               {{ principle.title }}
             </h3>
             <p class="text-sm leading-normal text-pretty text-foreground/50">

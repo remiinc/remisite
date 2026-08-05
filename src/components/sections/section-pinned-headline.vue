@@ -15,7 +15,7 @@ const NotificationTile = defineComponent({
   },
   setup(props) {
     return () => h('div', {
-      class: 'image-tile-card bg-background rounded-[1.25em] p-[0.9em] inline-flex items-start gap-[0.75em] border text-[clamp(0.75rem,0.5395rem+0.4386vw,1rem)]',
+      class: 'image-tile-card bg-[color-mix(in_oklch,var(--color-foreground)_10%,var(--color-background))] backdrop-blur-sm rounded-[1em] p-[0.9em] inline-flex items-start gap-[0.75em] text-[clamp(0.75rem,0.5395rem+0.4386vw,1rem)]',
     }, [
       h('img', {
         src: props.tile.logo,
@@ -118,7 +118,7 @@ const notificationTilesOuter = [
           <div
             class="pinned-headline-content relative z-1 w-full max-w-6xl mx-auto flex flex-col items-center justify-center text-center gap-6 col-start-1 row-start-1 col-end-1 row-end-1">
             <h2
-              class="relative z-1 block max-w-[16ch] text-center text-[clamp(2.5rem,0.8158rem+3.5088vw,4rem)] leading-[1em] font-normal tracking-[-0.03em] text-balance text-foreground select-none mb-4">
+              class="headline-h1 relative z-1 block max-w-[16ch] text-center text-balance text-foreground select-none mb-4">
               You didn't start your business to sweat paperwork at 9pm.
             </h2>
             <ul class="relative z-1 tasks-list text-[1.2em] tracking-tight text-foreground/50 select-none">

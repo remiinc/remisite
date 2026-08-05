@@ -43,6 +43,7 @@ const menuLinks = [
     panel: 'solutions',
     columns: solutionColumns,
   },
+  { label: 'About', href: '/about' },
   { label: 'Pricing', href: '/pricing' },
   { label: 'Security', href: '/security' },
   { label: 'Resources', href: '/resources' },
@@ -343,18 +344,16 @@ onBeforeUnmount(() => {
 }
 
 .header-container {
-  animation: header-intro 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  animation: header-intro 1500ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @keyframes header-intro {
   from {
-    opacity: 1;
-    transform: translateY(-5rem);
+    opacity: 0;
   }
 
   to {
     opacity: 1;
-    transform: none;
   }
 }
 

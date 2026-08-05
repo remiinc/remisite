@@ -77,7 +77,7 @@ const automationColorClasses = [
 <template>
   <div id="automations" class="min-w-0" data-automations-view>
     <div class="space-y-0 text-3xl font-normal leading-none tracking-tight text-balance">
-      <h2 class="text-foreground">
+      <h2 class="headline-h3 text-foreground">
         {{ headline }}
       </h2>
       <p v-if="subheadline" class="text-foreground/40">

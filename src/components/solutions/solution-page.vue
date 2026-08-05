@@ -12,7 +12,6 @@ import {
 import Button from '../global/button.vue'
 import GlobalFooter from '../global/global-footer.vue'
 import GlobalHeader from '../header/global-header.vue'
-import SectionCta from '../sections/section-cta.vue'
 import SectionFaq from '../sections/section-faq.vue'
 import SectionSecurityPrinciples from '../sections/section-security-principles.vue'
 import SolutionFeature from './solution-feature.vue'
@@ -117,7 +116,7 @@ onBeforeUnmount(() => {
               <span class="uppercase text-foreground">{{ sectionLabel }}</span>
               <span class="text-sm tracking-tight font-normal">{{ solution.industryLabel }}</span>
             </p>
-            <h1 class="text-4xl font-normal leading-none tracking-tight text-balance md:text-5xl">
+            <h1 class="headline-h1 text-balance">
               <template v-if="solution.heroTitleLines.length">
                 <span v-for="line in solution.heroTitleLines" :key="line" class="block">{{ line }}</span>
               </template>
@@ -160,9 +159,9 @@ onBeforeUnmount(() => {
 
       <section class="w-full px-6 py-16" data-solution-stats>
         <div class="mx-auto w-full max-w-(--content-width) grid grid-cols-[25%_1fr] gap-x-12 gap-y-4">
-          <h2 class="text-xs uppercase font-medium leading-[1.25em] text-muted-foreground/50 max-w-[20ch]">
+          <p class="max-w-[20ch] text-xs font-medium uppercase leading-[1.25em] text-muted-foreground/50">
             Remi for {{ solution.industryLabel }}
-          </h2>
+          </p>
 
           <dl class="grid gap-3 md:max-w-4xl md:justify-self-end md:grid-cols-3 gap-x-4 divide-y divide-border md:divide-none">
             <div v-for="stat in solution.stats" :key="`${stat.metric}-${stat.label}`"
@@ -187,7 +186,7 @@ onBeforeUnmount(() => {
 
       <section class="w-full px-6 py-16 md:py-24" data-solution-use-cases>
         <div class="mx-auto flex w-full max-w-(--content-width) flex-col gap-24 md:gap-32">
-          <h2 class="max-w-4xl text-4xl font-normal leading-none tracking-tight text-balance md:text-5xl"
+          <h2 class="headline-h2 max-w-4xl text-balance"
             data-solution-use-cases-title>
             {{ solution.useCasesTitle }}
           </h2>
@@ -197,10 +196,10 @@ onBeforeUnmount(() => {
             :class="index % 2 ? 'md:grid-cols-[1fr_25%]' : 'md:grid-cols-[25%_1fr]'">
             <div class="flex max-w-xl flex-col items-start gap-0 md:sticky md:top-[calc(var(--header-height)+2em)]"
               :class="index % 2 ? 'md:order-2' : 'md:order-1'">
-              <h2 class="text-lg font-medium leading-tight tracking-tight text-balance">
+              <h2 class="headline-h5 text-balance">
                 {{ useCase.title }}
               </h2>
-              <p class="text-lg leading-tight text-pretty text-muted-foreground/75">
+              <p class="text-base mt-4 leading-tight text-pretty text-muted-foreground/75">
                 {{ useCase.description }}
               </p>
 
@@ -254,10 +253,10 @@ onBeforeUnmount(() => {
 
       <section class="w-full px-6 pt-20 pb-0" data-section-security-intro>
         <span class="mx-auto flex w-full max-w-(--content-width) items-center gap-6">
-          <h2 class="inline text-4xl font-normal leading-[1em] tracking-tight text-balance text-foreground">
+          <h2 class="headline-h3 inline text-balance text-foreground">
             <span>How we think about security</span>
             <span class="h-[1em] inline-flex items-center">
-              <Button href="/security" variant="secondary" size="sm" class="relative left-[0.75em] top-[-0.333em]">
+              <Button href="/security" variant="secondary" size="sm" class="font-sans relative left-[0.75em] top-[-0.333em]">
                 Learn more
               </Button>
             </span>
@@ -273,13 +272,12 @@ onBeforeUnmount(() => {
 
       <SectionFaq type="solutions" />
 
-      <SectionCta />
     </main>
 
     <main v-else class="min-h-svh px-6 pt-[calc(var(--header-height)+5rem)]">
       <section class="mx-auto flex max-w-2xl flex-col items-start gap-6 py-24">
         <p class="text-sm font-medium text-muted-foreground">Solutions</p>
-        <h1 class="text-5xl font-normal leading-none tracking-tight text-balance">
+        <h1 class="headline-h1 text-balance">
           Solution guide not found
         </h1>
         <p class="text-lg leading-relaxed text-pretty text-muted-foreground">

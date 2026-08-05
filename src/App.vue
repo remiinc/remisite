@@ -3,11 +3,11 @@ import { computed, defineAsyncComponent, onBeforeUnmount, onMounted, ref } from 
 import AnnouncementBar from './components/global/announcement-bar.vue'
 import GlobalFooter from './components/global/global-footer.vue'
 import GlobalHeader from './components/header/global-header.vue'
-import HomeHeroVideo from './components/home/home-hero-video.vue'
+import HeroB from './components/hero/hero-b.vue'
 import { getLegacySolutionRedirect } from './lib/solution-redirects'
-import SectionCta from './components/sections/section-cta.vue'
 import SectionPinnedHeadline from './components/sections/section-pinned-headline.vue'
 import SectionFeatures from './components/sections/section-features.vue'
+import SectionFeaturesGrid from './components/sections/section-features-grid.vue'
 import SectionFaq from './components/sections/section-faq.vue'
 import SectionPricing from './components/sections/section-pricing.vue'
 import SectionSolutions from './components/sections/section-solutions.vue'
@@ -17,6 +17,7 @@ import { pageLoaders } from './lib/page-loaders.js'
 
 const BlogIndexPage = defineAsyncComponent(pageLoaders.blogIndex)
 const BlogPostPage = defineAsyncComponent(pageLoaders.blogPost)
+const AboutPage = defineAsyncComponent(pageLoaders.about)
 const LegalPage = defineAsyncComponent(pageLoaders.legal)
 const LegacyRedirect = defineAsyncComponent(pageLoaders.legacyRedirect)
 const PricingPage = defineAsyncComponent(pageLoaders.pricing)
@@ -30,6 +31,7 @@ const pathname = typeof window !== 'undefined' ? window.location.pathname : '/'
 
 const normalizedPath = computed(() => pathname.replace(/\/+$/, '') || '/')
 const legacyRedirectTarget = computed(() => getLegacySolutionRedirect(normalizedPath.value))
+const isAboutPage = computed(() => normalizedPath.value === '/about')
 const isSolutionsIndexPage = computed(() => normalizedPath.value === '/solutions')
 const isSolutionPage = computed(() => normalizedPath.value.startsWith('/solutions/'))
 const isBlogIndexPage = computed(() => normalizedPath.value === '/resources')
@@ -83,6 +85,7 @@ onBeforeUnmount(() => {
 
 <template>
   <LegacyRedirect v-if="legacyRedirectTarget" :to="legacyRedirectTarget" />
+  <AboutPage v-else-if="isAboutPage" />
   <SolutionsIndexPage v-else-if="isSolutionsIndexPage" />
   <SolutionPage v-else-if="isSolutionPage" />
   <PricingPage v-else-if="isPricingPage" />
@@ -95,16 +98,16 @@ onBeforeUnmount(() => {
     <main class="min-h-svh bg-background text-foreground overscroll-none">
       <AnnouncementBar />
       <GlobalHeader />
-      <HomeHeroVideo />
+      <HeroB />
       <SectionPinnedHeadline />
       <div ref="iphoneSectionTrigger">
         <SectionIphone v-if="shouldLoadIphoneSection" />
       </div>
-      <SectionFeatures />
+      <SectionFeaturesGrid />
       <SectionSolutions />
+      <SectionFeatures />
       <SectionPricing />
       <SectionFaq type="home" />
-      <SectionCta />
     </main>
     <GlobalFooter />
   </div>

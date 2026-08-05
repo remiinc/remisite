@@ -4,7 +4,6 @@ import { industrySolutions as solutions } from '../../lib/solutions'
 import { cn } from '../../lib/cn'
 import GlobalFooter from '../global/global-footer.vue'
 import GlobalHeader from '../header/global-header.vue'
-import SectionCta from '../sections/section-cta.vue'
 import SectionFaq from '../sections/section-faq.vue'
 
 const originalTitle = typeof document !== 'undefined' ? document.title : ''
@@ -29,7 +28,7 @@ onBeforeUnmount(() => {
             <p class="text-xs font-medium leading-none text-muted-foreground flex items-center gap-4"><span
                 class="uppercase text-foreground">Solutions</span><span class="text-sm tracking-tight">Every firm, every
                 workflow.</span></p>
-            <h1 class="text-5xl font-normal leading-none tracking-tight text-balance md:text-6xl">
+            <h1 class="headline-h1 text-balance">
               Built for businesses with work already in motion.
             </h1>
             <p class="max-w-2xl text-base leading-relaxed text-pretty text-muted-foreground md:text-lg">
@@ -54,7 +53,7 @@ onBeforeUnmount(() => {
                   class="absolute inset-0 bg-linear-to-b from-black/20 from-50% to-black/40 to-100% transition-colors group-hover:from-black/10 group-hover:to-black/30 group-focus-visible:from-black/10 group-focus-visible:to-black/30 duration-300"
                   aria-hidden="true" />
                 <h3
-                  class="relative z-10 text-2xl font-normal leading-none tracking-tight text-balance text-left">
+                  class="headline-h4 relative z-10 text-balance text-left">
                   {{ solution.industryLabel }}
                 </h3>
                 <div class="relative z-10 flex flex-col items-start justify-start">
@@ -74,7 +73,6 @@ onBeforeUnmount(() => {
 
       <SectionFaq type="solutions" />
 
-      <SectionCta />
     </main>
 
     <GlobalFooter />

@@ -37,7 +37,7 @@ defineProps({
 
       <div class="hero-copy relative z-1 flex flex-col items-center gap-10">
         <h1
-          class="max-w-[20ch] text-4xl sm:text-5xl text-center font-normal leading-[1em] tracking-[-0.03em] text-balance text-background select-none">
+          class="headline-h1 max-w-[20ch] text-center text-balance text-background select-none">
           Grow your business. <span class="block">Let Remi handle the admin.</span>
         </h1>
       </div>

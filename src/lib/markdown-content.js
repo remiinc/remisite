@@ -80,6 +80,14 @@ const uniqueHeadingId = (source, counts) => {
   return nextCount === 1 ? slug : `${slug}-${nextCount}`
 }
 
+const getMarkdownHeadlineClass = (level) => {
+  if (level <= 1) return 'headline-h3'
+  if (level === 2) return 'headline-h4'
+  if (level === 3) return 'headline-h5'
+
+  return 'headline-h6'
+}
+
 export const renderMarkdown = (markdown) => {
   const lines = markdown.replace(/\r\n/g, '\n').split('\n')
   const html = []
@@ -214,7 +222,9 @@ export const renderMarkdown = (markdown) => {
       if (!isNestedFaqHeading) {
         toc.push({ id, level, title })
       }
-      html.push(`<h${level} id="${id}">${parseInlineMarkdown(headingMatch[2])}</h${level}>`)
+      html.push(
+        `<h${level} id="${id}" class="${getMarkdownHeadlineClass(level)}">${parseInlineMarkdown(headingMatch[2])}</h${level}>`,
+      )
       return
     }
 

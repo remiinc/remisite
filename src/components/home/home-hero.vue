@@ -577,7 +577,7 @@ const MessageBubble = {
         </ChromaticAberration>
       </Shader>
     </div>
-    <div class="w-full max-w-[1400px] px-6 py-24 mx-auto flex flex-col items-center justify-end text-center gap-8">
+    <div class="w-full max-w-350 px-6 py-24 mx-auto flex flex-col items-center justify-end text-center gap-8">
       <div class="z-1 flex flex-1">
         <div class="pointer-events-none absolute inset-0 z-1 overflow-hidden perspective-[1100px] transform-3d"
           aria-hidden="true">
@@ -603,7 +603,7 @@ const MessageBubble = {
       <div ref="heroCopyRef" class="hero-copy relative z-1 flex translate-y-6 flex-col items-center gap-8 opacity-0">
 
         <h1
-          class="max-w-[20ch] text-[clamp(3.5rem,8vw,5rem)] leading-[1em] font-normal tracking-[-0.03em] text-balance text-foreground select-none">
+          class="headline-h1 max-w-[20ch] text-balance text-foreground select-none">
           The last operations hire you'll ever need
         </h1>
         <AnnouncementBar />

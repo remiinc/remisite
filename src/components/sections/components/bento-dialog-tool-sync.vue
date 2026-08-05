@@ -7,7 +7,7 @@ import Button from '../../global/button.vue'
 <template>
   <div class="dialog-container flex flex-col gap-8 w-full">
     <div class="dialog-header flex flex-col gap-8">
-      <h2 class="pr-10 text-3xl font-normal leading-[1.125em] tracking-tight text-foreground text-balance max-w-[32ch]">
+      <h2 class="headline-h3 pr-10 text-foreground text-balance max-w-[32ch]">
         Sync knowledge from any tool
       </h2>
       <div class="grid md:grid-cols-2 gap-8">
@@ -47,7 +47,7 @@ import Button from '../../global/button.vue'
   </div>
   <div class="dialog-content mt-12">
     <div class="flex flex-col gap-8">
-      <h3 class="text-2xl font-normal leading-[1.125em] tracking-tight text-foreground text-balance max-w-[32ch]">Not a
+      <h3 class="headline-h4 text-foreground text-balance max-w-[32ch]">Not a
         copy. A living picture.</h3>
       <ul
         class="grid grid-cols-2 gap-8 text-base text-foreground/80 list-none [&>li]:flex [&>li]:flex-col [&>li]:gap-6 [&>li>p]:max-w-[40ch]">

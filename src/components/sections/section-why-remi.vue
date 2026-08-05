@@ -44,7 +44,7 @@ const rowBaseClasses = cn(
   <section id="why-remi" :class="cn('w-full scroll-mt-24 px-6 py-24')" data-section-why-remi>
     <div :class="cn('mx-auto flex w-full max-w-(--content-width) flex-col items-center gap-12')">
       <div :class="cn('flex w-full max-w-3xl flex-col items-start gap-4 self-start text-left')">
-        <h2 :class="cn('w-full text-4xl font-normal leading-none tracking-tight text-balance text-foreground')">
+        <h2 :class="cn('headline-h2 w-full text-balance text-foreground')">
          Run your business from your phone
         </h2>
         <p :class="cn('w-full max-w-2xl text-base leading-normal text-pretty text-foreground/50')">

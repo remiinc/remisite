@@ -2,7 +2,6 @@
 import Button from '../global/button.vue'
 import GlobalFooter from '../global/global-footer.vue'
 import GlobalHeader from '../header/global-header.vue'
-import SectionCta from '../sections/section-cta.vue'
 import SectionFaq from '../sections/section-faq.vue'
 import SectionWhyRemi from '../sections/section-why-remi.vue'
 import PricingPlans from './pricing-plans.vue'
@@ -20,7 +19,7 @@ if (typeof document !== 'undefined') {
       <section class="px-6 pb-16 pt-[calc(var(--header-height)+5rem)] md:pb-12 md:pt-[calc(var(--header-height)+7rem)]"
         data-pricing-hero>
         <div class="mx-auto flex w-full max-w-(--content-width) flex-col items-center justify-center gap-8 text-center">
-          <h1 class="max-w-[25ch] text-6xl lg:text-7xl font-normal leading-none tracking-tight text-balance">
+          <h1 class="headline-h1 max-w-[25ch] text-balance">
             One missed follow-up can cost more than a month of Remi.
           </h1>
           <div class="relative z-1 flex w-full max-w-sm flex-col items-center justify-center gap-3 sm:max-w-none sm:flex-row">
@@ -43,7 +42,6 @@ if (typeof document !== 'undefined') {
 
       <SectionFaq type="pricing" />
 
-      <SectionCta />
     </main>
 
     <GlobalFooter />

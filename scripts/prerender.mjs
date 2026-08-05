@@ -58,7 +58,7 @@ const faqBody = (type) => {
     : ''
 
   return `<section class="mx-auto w-full" style="max-width: 72rem">
-    <h2>${escapeHtml(group.title)}</h2>
+    <h2 class="headline-h4">${escapeHtml(group.title)}</h2>
     ${cta}
     <dl>
       ${group.items
@@ -115,6 +115,17 @@ const legalPages = loadCollection('src/content/legal', '', {
   ...page,
   html: numberSectionParagraphs(page.html),
 }))
+
+const missionSource = readFileSync(join(root, 'src/content/mission.md'), 'utf8')
+const { metadata: missionMetadata, markdown: missionMarkdown } = parseFrontmatter(missionSource)
+const missionPage = {
+  path: '/about',
+  url: `${SITE}/about`,
+  title: missionMetadata.title || 'Mission',
+  description: missionMetadata.description || missionMetadata.ogDescription || '',
+  metadata: missionMetadata,
+  html: renderMarkdown(missionMarkdown).html,
+}
 
 const expectedLegalSlugs = ['privacy', 'terms']
 const legalSlugs = legalPages.map((page) => page.slug).sort()
@@ -385,7 +396,7 @@ const articleBody = (entry, sectionLabel) => `
 <main class="px-6 pt-32 pb-20">
   <article class="mx-auto w-full" style="max-width: 44rem">
     <p>${escapeHtml(entry.metadata.category || sectionLabel)} · <time datetime="${entry.date}">${entry.formattedDate}</time>${entry.metadata.author ? ` · ${escapeHtml(entry.metadata.author)}` : ''}</p>
-    <h1>${escapeHtml(entry.title)}</h1>
+    <h1 class="headline-h2">${escapeHtml(entry.title)}</h1>
     <p>${escapeHtml(entry.description)}</p>
     ${entry.html}
     <p><a href="/start">Text Remi to get started.</a></p>
@@ -395,7 +406,7 @@ const articleBody = (entry, sectionLabel) => `
 const indexBody = (label, description, entries) => `
 <main class="px-6 pt-32 pb-20">
   <section class="mx-auto w-full" style="max-width: 44rem">
-    <h1>${escapeHtml(label)}</h1>
+    <h1 class="headline-h1">${escapeHtml(label)}</h1>
     <p>${escapeHtml(description)}</p>
     <ul>
       ${entries
@@ -424,23 +435,23 @@ const solutionBody = (entry) => {
 <main class="px-6 pt-32 pb-20">
   <section class="mx-auto w-full text-center" style="max-width: 64rem">
     <p>${entry.metadata.pageType === 'capability' ? 'Capabilities' : 'Industries'} / ${escapeHtml(entry.metadata.industryLabel)}</p>
-    <h1>${escapeHtml(entry.title)}</h1>
+    <h1 class="headline-h1">${escapeHtml(entry.title)}</h1>
     <p>${escapeHtml(entry.description)}</p>
     <p><a href="/start">Text Remi</a></p>
   </section>
   <section class="mx-auto w-full" style="max-width: 72rem">
     <p>Use cases</p>
-    <h2>${escapeHtml(useCaseCatalog.title)}</h2>
+    <h2 class="headline-h2">${escapeHtml(useCaseCatalog.title)}</h2>
     <p>${escapeHtml(useCaseCatalog.description)}</p>
     ${useCaseCatalog.categories
       .map(
         (category) => `<section>
-      <h3>${escapeHtml(category.title)}</h3>
+      <h3 class="headline-h5">${escapeHtml(category.title)}</h3>
       <ul>
         ${category.items
           .map(
             (item) => `<li>
-          <h4>${escapeHtml(item.title)}</h4>
+          <h4 class="headline-h6">${escapeHtml(item.title)}</h4>
           <p>${escapeHtml(item.description)}</p>
         </li>`,
           )
@@ -451,7 +462,7 @@ const solutionBody = (entry) => {
       .join('\n    ')}
   </section>
   <section class="mx-auto w-full" style="max-width: 72rem">
-    <h2>Remi for ${escapeHtml(entry.metadata.industryLabel)}:</h2>
+    <h2 class="headline-h6">Remi for ${escapeHtml(entry.metadata.industryLabel)}:</h2>
     <dl>
       ${stats
         .map(
@@ -465,11 +476,11 @@ const solutionBody = (entry) => {
     </dl>
   </section>
   <section class="mx-auto w-full" style="max-width: 72rem">
-    <h2>${escapeHtml(entry.metadata.useCasesTitle)}</h2>
+    <h2 class="headline-h2">${escapeHtml(entry.metadata.useCasesTitle)}</h2>
     ${useCases
       .map(
         (useCase) => `<article>
-      <h2>${escapeHtml(useCase.title)}</h2>
+      <h2 class="headline-h6">${escapeHtml(useCase.title)}</h2>
       <p>${escapeHtml(useCase.description)}</p>
     </article>`,
       )
@@ -477,14 +488,14 @@ const solutionBody = (entry) => {
   </section>
   <section class="mx-auto w-full" style="max-width: 72rem">
     <p>Your tools, handled</p>
-    <h2>${escapeHtml(integrations.title)}</h2>
+    <h2 class="headline-h3">${escapeHtml(integrations.title)}</h2>
     <p>${escapeHtml(integrations.description)}</p>
     <ul>
       ${integrations.tools
         .map((entry) => {
           const tool = resolveSolutionTool(entry.tool)
           return `<li>
-        <h3>${escapeHtml(tool.name)}: ${escapeHtml(entry.title)}</h3>
+        <h3 class="headline-h6">${escapeHtml(tool.name)}: ${escapeHtml(entry.title)}</h3>
         <p>${escapeHtml(entry.description)}</p>
       </li>`
         })
@@ -494,7 +505,7 @@ const solutionBody = (entry) => {
   </section>
   ${feature ? `<section class="mx-auto w-full" style="max-width: 72rem">
     <img src="${escapeHtml(feature.imageUrl)}" alt="${escapeHtml(feature.imageAlt)}">
-    <h2>${escapeHtml(feature.title)}</h2>
+    <h2 class="headline-h2">${escapeHtml(feature.title)}</h2>
     <p><a href="${escapeHtml(feature.ctaUrl)}">${escapeHtml(feature.ctaLabel)}</a></p>
   </section>` : ''}
   ${hasTestimonial ? `<figure>
@@ -509,7 +520,7 @@ const solutionsIndexBody = () => `
 <main class="px-6 pt-32 pb-20">
   <section class="mx-auto w-full" style="max-width: 72rem">
     <p>Solutions</p>
-    <h1>Built for businesses with work already in motion.</h1>
+    <h1 class="headline-h1">Built for businesses with work already in motion.</h1>
     <p>See how Remi keeps customer replies, estimates, agreements, invoices, and the next decision moving in your line of work.</p>
     <ul>
       ${industrySolutions
@@ -527,18 +538,18 @@ const solutionsIndexBody = () => `
 
 const redirectBody = (target) => `
 <main class="px-6 pt-32 pb-20">
-  <h1>Page moved</h1>
+  <h1 class="headline-h1">Page moved</h1>
   <p>This page has moved. <a href="${target}">Continue to Solutions</a>.</p>
 </main>`
 
 const pricingBody = () => `
 <main class="px-6 pt-32 pb-20">
   <section class="mx-auto w-full text-center" style="max-width: 44rem">
-    <h1>One missed follow-up can cost more than a month of Remi.</h1>
+    <h1 class="headline-h1">One missed follow-up can cost more than a month of Remi.</h1>
     <p>Start with a 7-day trial. Plans start at $99 a month, billed annually.</p>
   </section>
   <section class="mx-auto w-full" style="max-width: 44rem">
-    <h2>A full-time operations hire</h2>
+    <h2 class="headline-h6">A full-time operations hire</h2>
     <p>Worth it when you need the whole role. Expensive when you mainly need the work handled.</p>
     <p>$5,000 per month, or $60,000 per year.</p>
     <ul>
@@ -547,7 +558,7 @@ const pricingBody = () => `
       <li>Ongoing management and development</li>
       <li>Best when the role is truly full-time</li>
     </ul>
-    <h2>Pro</h2>
+    <h2 class="headline-h6">Pro</h2>
     <p>$119 per month, or $99 per month billed annually. For individuals or small owner-run teams ready to hand Remi the daily chase list.</p>
     <ul>
       <li>Learns how your business works across email, calendar, messages, and connected tools</li>
@@ -555,7 +566,7 @@ const pricingBody = () => `
       <li>Handles follow-ups, quotes, invoices, scheduling, and customer records</li>
       <li>Brings you approvals, decisions, and receipts instead of another dashboard</li>
     </ul>
-    <h2>Scale</h2>
+    <h2 class="headline-h6">Scale</h2>
     <p>$239 per month, or $199 per month billed annually. Same Remi, with more capacity for businesses with more jobs, customers, and work in motion.</p>
     <ul>
       <li>Everything included in Pro</li>
@@ -572,20 +583,20 @@ const securityBody = () => `
 <main class="px-6 pt-32 pb-20">
   <section class="mx-auto w-full" style="max-width: 44rem">
     <p>Security</p>
-    <h1>Secure by design, careful by default.</h1>
+    <h1 class="headline-h1">Secure by design, careful by default.</h1>
     <p>Remi can see sensitive business details. We keep that access narrow, logged, and approval-first.</p>
   </section>
   <section class="mx-auto w-full" style="max-width: 44rem">
-    <h2>Permission before power.</h2>
+    <h2 class="headline-h4">Permission before power.</h2>
     <p>Remi works inside the access you grant. Connections can be changed, limited, or revoked as your business changes.</p>
-    <h2>Every action leaves a trail.</h2>
+    <h2 class="headline-h4">Every action leaves a trail.</h2>
     <p>When Remi drafts, remembers, or prepares a next step, the source stays close so you can see where the answer came from.</p>
-    <h2>Your data is not training data.</h2>
+    <h2 class="headline-h4">Your data is not training data.</h2>
     <p>Your business data is not sold, shared for advertising, or used to train AI models.</p>
-    <h2>Prepared for review.</h2>
+    <h2 class="headline-h4">Prepared for review.</h2>
     <p>If your team needs details for vendor review, we can walk through architecture, data handling, encryption, access, retention, and approval controls.</p>
     <p><a href="mailto:security@remi.new">Contact security</a></p>
-    <h2>Serious about security?</h2>
+    <h2 class="headline-h4">Serious about security?</h2>
     <p>Ask about security and we'll help you understand what Remi can access, where data moves, how approvals work, and how your team keeps control.</p>
     <p><a href="/start">Text Remi</a></p>
   </section>
@@ -595,7 +606,7 @@ const securityBody = () => `
 const legalBody = (entry) => `
 <main class="px-6 pb-24 pt-[calc(var(--header-height)+6rem)] md:pb-32 md:pt-[calc(var(--header-height)+8rem)]">
   <article class="mx-auto w-full" style="max-width: 48rem">
-    <h1 class="mb-20 text-center text-5xl font-normal leading-none tracking-tight md:mb-28 md:text-7xl">${escapeHtml(entry.title)}</h1>
+    <h1 class="headline-h1 mb-20 text-center md:mb-28">${escapeHtml(entry.title)}</h1>
     ${entry.html}
     <p>Updated ${escapeHtml(formatDate(entry.metadata.dateUpdated))} · Effective ${escapeHtml(formatDate(entry.metadata.effectiveDate))}</p>
   </article>
@@ -604,7 +615,7 @@ const legalBody = (entry) => `
 const startBody = () => `
 <main class="px-6 pt-32 pb-20">
   <section class="mx-auto w-full" style="max-width: 44rem">
-    <h1>Start with Remi.</h1>
+    <h1 class="headline-h1">Start with Remi.</h1>
     <p>Opening your guided setup now.</p>
     <p><a href="/api/onboarding/entry">Continue to onboarding</a></p>
   </section>
@@ -613,32 +624,43 @@ const startBody = () => `
 const homeBody = () => `
 <main class="px-6 pt-32 pb-20">
   <section class="mx-auto w-full" style="max-width: 72rem">
-    <h1>Your business should run. It shouldn't run you.</h1>
+    <h1 class="headline-h1">Your business should run. It shouldn't run you.</h1>
     <p>Do the work that moves your business forward. Let Remi handle the rest.</p>
     <p><a href="/start">Text Remi</a></p>
   </section>
   <section class="mx-auto w-full" style="max-width: 72rem">
-    <h2>You didn't start your business to do paperwork at 9pm.</h2>
+    <h2 class="headline-h1">You didn't start your business to do paperwork at 9pm.</h2>
     <p>Remi learns how your business works, finds the work that needs attention, and moves it forward with your approval.</p>
   </section>
   <section class="mx-auto w-full" style="max-width: 72rem">
-    <h2>Hire Remi with a text. Watch the work get done.</h2>
+    <h2 class="headline-h3">Hire Remi with a text. Watch the work get done.</h2>
     <p>Start with a text and let Remi connect to the tools you already use. Remi onboards automatically in the background.</p>
-    <h2>Follow-ups sent. Invoices chased. Loose ends handled.</h2>
+    <h2 class="headline-h2">Follow-ups sent. Invoices chased. Loose ends handled.</h2>
     <p>Remi watches your email, calendar, messages, and tools, then moves the work forward with your approval.</p>
   </section>
   <section class="mx-auto w-full" style="max-width: 72rem">
-    <h2>Built for the businesses that keep America moving.</h2>
+    <h2 class="headline-h2">Built for the businesses that keep America moving.</h2>
     <ul>
       ${industrySolutions.map((solution) => `<li><a href="${solution.path}">${escapeHtml(solution.metadata.industryLabel)}</a>: ${escapeHtml(solution.title)}</li>`).join('\n      ')}
     </ul>
   </section>
   <section class="mx-auto w-full" style="max-width: 72rem">
-    <h2>Run like a bigger company. Without the bigger payroll.</h2>
+    <h2 class="headline-h3">Run like a bigger company. Without the bigger payroll.</h2>
     <p>Start with a 7-day trial. Plans start at $99 a month, billed annually.</p>
     <p><a href="/pricing">See pricing</a></p>
   </section>
   ${faqBody('home')}
+</main>`
+
+const aboutBody = () => `
+<main class="px-6 pt-32 pb-20">
+  <article class="mx-auto w-full" style="max-width: 64rem">
+    <p>Our mission</p>
+    <h1 class="headline-h1">${escapeHtml(missionPage.metadata.heroTitle || missionPage.title)}</h1>
+    <p>${escapeHtml([missionPage.metadata.heroLead, missionPage.metadata.heroDescription].filter(Boolean).join(' ') || missionPage.description)}</p>
+    ${missionPage.html}
+    <p><a href="${escapeHtml(missionPage.metadata.ctaHref || '/start')}">${escapeHtml(missionPage.metadata.ctaLabel || 'Text Remi')}</a></p>
+  </article>
 </main>`
 
 // Blog posts
@@ -718,6 +740,33 @@ legalPages.forEach((entry) => {
 
 // Index pages
 writeFileSync(join(distDir, 'index.html'), injectBody(template, homeBody()))
+
+writePage(
+  missionPage.path,
+  injectBody(
+    setHead(template, {
+      title: missionPage.metadata.ogTitle || 'Our Mission | Remi',
+      description: missionPage.metadata.ogDescription || missionPage.description,
+      url: missionPage.url,
+      ogType: 'website',
+      ogImage: missionPage.metadata.ogImage,
+      ogImageAlt: missionPage.metadata.ogImageAlt || DEFAULT_OG_IMAGE_ALT,
+      jsonLd: [{
+        '@context': 'https://schema.org',
+        '@type': 'AboutPage',
+        name: missionPage.title,
+        description: missionPage.description,
+        url: missionPage.url,
+        about: {
+          '@type': 'Organization',
+          name: 'Remi',
+          url: `${SITE}/`,
+        },
+      }],
+    }),
+    aboutBody(),
+  ),
+)
 
 writePage(
   '/resources',
@@ -831,6 +880,7 @@ writePage(
 // sitemap.xml
 const staticUrls = [
   { loc: `${SITE}/`, priority: '1.0' },
+  { loc: `${SITE}/about`, priority: '0.8' },
   { loc: `${SITE}/start`, priority: '0.9' },
   { loc: `${SITE}/pricing`, priority: '0.9' },
   { loc: `${SITE}/security`, priority: '0.8' },
@@ -892,5 +942,5 @@ ${rssItems}
 writeFileSync(join(distDir, 'rss.xml'), rss)
 
 console.log(
-  `Prerendered the homepage, ${posts.length} blog posts, ${solutions.length} solution guides, ${legalPages.length} legal pages, 5 other static pages, sitemap.xml, rss.xml`,
+  `Prerendered the homepage, ${posts.length} blog posts, ${solutions.length} solution guides, ${legalPages.length} legal pages, 6 other static pages, sitemap.xml, rss.xml`,
 )

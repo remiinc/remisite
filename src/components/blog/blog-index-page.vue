@@ -77,7 +77,7 @@ onBeforeUnmount(() => {
               <time v-if="featuredPost.formattedDate" :datetime="featuredPost.date">{{ featuredPost.formattedDate }}</time>
             </p>
 
-            <h2 class="mt-6 text-balance text-4xl font-normal leading-none tracking-tight text-foreground md:text-5xl">
+            <h2 class="headline-h2 mt-6 text-balance text-foreground">
               {{ featuredPost.title }}
             </h2>
 
@@ -126,7 +126,7 @@ onBeforeUnmount(() => {
             class="block h-full min-w-0 focus-visible:outline-none bg-muted hover:bg-muted-hover focus-visible:bg-muted-hover p-6 lg:p-8 rounded-3xl min-h-96 md:min-h-120 lg:nth-[10n+5]:col-span-2 lg:nth-[10n+9]:col-span-2"
           >
             <div class="h-full flex flex-col items-start justify-between gap-8">
-              <h3 class="max-w-3xl text-2xl font-normal leading-tight tracking-tight text-balance text-foreground">
+              <h3 class="headline-h4 max-w-3xl text-balance text-foreground">
                 {{ post.title }}
               </h3>
               <p class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm leading-none text-muted-foreground">
@@ -142,7 +142,7 @@ onBeforeUnmount(() => {
 
       <section v-else class="mx-auto flex max-w-2xl flex-col items-start gap-6 py-24">
         <p class="text-sm font-medium text-muted-foreground">Blog</p>
-        <h1 class="text-5xl font-normal leading-none tracking-tight text-balance text-foreground">
+        <h1 class="headline-h1 text-balance text-foreground">
           No posts yet
         </h1>
         <p class="text-lg leading-normal text-pretty text-muted-foreground">

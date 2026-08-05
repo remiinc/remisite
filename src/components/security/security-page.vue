@@ -13,7 +13,6 @@ import {
 import Button from '../global/button.vue'
 import GlobalFooter from '../global/global-footer.vue'
 import GlobalHeader from '../header/global-header.vue'
-import SectionCta from '../sections/section-cta.vue'
 import SectionFaq from '../sections/section-faq.vue'
 
 if (typeof document !== 'undefined') {
@@ -133,7 +132,7 @@ const securityLinks = [
               <span class="uppercase text-foreground">Security</span>
               <span class="tracking-tight">Built around your control.</span>
             </p>
-            <h1 class="max-w-[19ch] text-5xl font-normal leading-none tracking-tight text-balance md:text-6xl lg:text-7xl">
+            <h1 class="headline-h1 max-w-[19ch] text-balance">
               You decide what Remi can see, prepare, and do.
             </h1>
             <p class="max-w-xl text-lg leading-normal text-balance text-muted-foreground">
@@ -154,7 +153,7 @@ const securityLinks = [
           <article v-for="control in controlPromises" :key="control.title" class="flex flex-col items-start gap-6">
             <component :is="control.icon" class="size-5 text-foreground" weight="regular" aria-hidden="true" />
             <div class="flex flex-col gap-3">
-              <h2 class="text-base font-medium leading-tight tracking-tight text-balance text-foreground">
+              <h2 class="headline-h6 text-balance text-foreground">
                 {{ control.title }}
               </h2>
               <p class="text-sm leading-normal text-pretty text-foreground/55">
@@ -171,7 +170,7 @@ const securityLinks = [
             <div class="flex h-full min-h-120 flex-col justify-between gap-12">
               <div class="flex flex-col gap-5">
                 <PhShieldCheck class="size-6 text-background" weight="fill" aria-hidden="true" />
-                <h2 id="security-authority-title" class="max-w-[13ch] text-4xl font-normal leading-none tracking-tight text-balance">
+                <h2 id="security-authority-title" class="headline-h2 max-w-[13ch] text-balance">
                   You stay in control of every important action.
                 </h2>
               </div>
@@ -190,7 +189,7 @@ const securityLinks = [
             >
               <span class="text-sm tabular-nums text-foreground/35">{{ step.number }}</span>
               <div class="grid gap-2 sm:grid-cols-[8rem_1fr] sm:gap-6">
-                <h3 class="text-base font-medium leading-tight tracking-tight">{{ step.title }}</h3>
+                <h3 class="headline-h6">{{ step.title }}</h3>
                 <p class="max-w-lg text-sm leading-normal text-pretty text-foreground/55">{{ step.description }}</p>
               </div>
             </li>
@@ -201,7 +200,7 @@ const securityLinks = [
       <section class="px-6 py-20 md:py-28" aria-labelledby="security-safeguards-title" data-security-safeguards>
         <div class="mx-auto flex w-full max-w-(--content-width) flex-col gap-12">
           <div class="flex max-w-4xl flex-col items-start gap-5">
-            <h2 id="security-safeguards-title" class="max-w-[18ch] text-5xl font-normal leading-none tracking-tight text-balance">
+            <h2 id="security-safeguards-title" class="headline-h2 max-w-[18ch] text-balance">
               Built to protect your business data.
             </h2>
             <p class="max-w-xl text-base leading-normal text-pretty text-foreground/50">
@@ -222,7 +221,7 @@ const securityLinks = [
                 :key="row.area"
                 class="grid gap-4 border-b border-border px-6 py-6 last:border-b-0 md:grid-cols-[0.7fr_1fr_1fr] md:gap-0 md:px-0 md:py-0"
               >
-                <h3 class="flex items-center gap-3 text-base font-medium leading-tight text-foreground md:px-6 md:py-6">
+                <h3 class="headline-h6 flex items-center gap-3 text-foreground md:px-6 md:py-6">
                   <component :is="row.icon" class="size-4 shrink-0 text-foreground/55" weight="regular" aria-hidden="true" />
                   <span>{{ row.area }}</span>
                 </h3>
@@ -241,7 +240,7 @@ const securityLinks = [
       <section class="px-6 py-8" aria-labelledby="security-review-title" data-security-review>
         <div class="mx-auto grid w-full max-w-(--content-width) overflow-hidden rounded-3xl bg-foreground text-background lg:grid-cols-[1.1fr_0.9fr]">
           <div class="flex flex-col justify-between gap-12 p-8 md:p-10 lg:p-12">
-            <h2 id="security-review-title" class="max-w-[13ch] text-5xl font-normal leading-none tracking-tight text-balance">
+            <h2 id="security-review-title" class="headline-h2 max-w-[13ch] text-balance">
               Need the security details?
             </h2>
 
@@ -291,7 +290,6 @@ const securityLinks = [
 
       <SectionFaq type="security" />
 
-      <SectionCta />
     </main>
 
     <GlobalFooter />

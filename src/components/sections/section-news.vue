@@ -60,7 +60,7 @@ watch(
     <div class="w-full mx-auto max-w-(--content-width) flex flex-col gap-12">
       <div class="flex flex-col gap-8">
         <div class="flex items-center justify-between gap-6">
-          <h2 class="text-4xl font-normal tracking-tight text-balance text-foreground">
+          <h2 class="headline-h2 text-balance text-foreground">
             News
           </h2>
           <Button href="/resources" variant="secondary" size="sm">See more</Button>
@@ -92,7 +92,7 @@ watch(
             <a :href="post.path"
               class="block h-full min-w-0 focus-visible:outline-none bg-muted hover:bg-muted-hover focus-visible:bg-muted-hover p-6 lg:p-8 rounded-3xl min-h-80 md:min-h-96 lg:min-h-120">
               <div class="h-full flex flex-col items-start justify-between gap-8">
-                <h3 class="max-w-3xl text-2xl font-normal leading-tight tracking-tight text-balance text-foreground">
+                <h3 class="headline-h4 max-w-3xl text-balance text-foreground">
                   {{ post.title }}
                 </h3>
                 <p class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm leading-none text-muted-foreground">

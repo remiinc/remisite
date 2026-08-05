@@ -40,7 +40,7 @@ const guidedEntryHref = guidedEntry.href || '/start'
               <div class="size-8 overflow-hidden rounded-full bg-foreground/10">
                 <img src="/images/avatars/person-avatar-003.png" alt="Full-time operations hire" class="size-full object-cover">
               </div>
-              <h3 class="text-base font-medium">A full-time operations hire</h3>
+              <h3 class="headline-h6">A full-time operations hire</h3>
             </div>
             <span class="text-sm text-foreground/40">
               Worth it when you need the whole role. Expensive when you mainly need the work handled.
@@ -94,7 +94,7 @@ const guidedEntryHref = guidedEntry.href || '/start'
                 <div class="flex h-8 items-center justify-center">
                   <SiteLogo class="h-4 w-auto" />
                 </div>
-                <h3 class="flex items-center justify-center rounded-full bg-foreground px-3 py-1.5 text-base leading-none text-background">
+                <h3 class="headline-h6 flex items-center justify-center rounded-full bg-foreground px-3 py-1.5 text-background">
                   Pro
                 </h3>
               </div>
@@ -155,7 +155,7 @@ const guidedEntryHref = guidedEntry.href || '/start'
                 <div class="flex h-8 items-center justify-center">
                   <SiteLogo class="h-4 w-auto" />
                 </div>
-                <h3 class="flex items-center justify-center rounded-full bg-foreground px-3 py-1.5 text-base leading-none text-background">
+                <h3 class="headline-h6 flex items-center justify-center rounded-full bg-foreground px-3 py-1.5 text-background">
                   Scale
                 </h3>
               </div>

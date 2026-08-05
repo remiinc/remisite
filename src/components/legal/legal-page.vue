@@ -99,7 +99,7 @@ onBeforeUnmount(() => {
     >
       <div class="mx-auto w-full max-w-3xl">
         <header>
-          <h1 class="text-center text-5xl font-normal leading-none tracking-tight text-balance md:text-7xl">
+          <h1 class="headline-h1 text-center text-balance">
             {{ page.title }}
           </h1>
         </header>
@@ -116,7 +116,7 @@ onBeforeUnmount(() => {
 
     <main v-else class="min-h-svh px-6 pt-32">
       <section class="mx-auto flex max-w-2xl flex-col items-start gap-6 py-24">
-        <h1 class="text-5xl font-normal leading-none tracking-tight text-balance">Page not found</h1>
+        <h1 class="headline-h1 text-balance">Page not found</h1>
       </section>
     </main>
 
@@ -138,10 +138,6 @@ onBeforeUnmount(() => {
 .legal-content :deep(h2) {
   margin: 3.25rem 0 1rem;
   color: var(--color-foreground);
-  font-size: 1.5rem;
-  font-weight: 500;
-  letter-spacing: var(--tracking-tight);
-  line-height: 1.2;
   scroll-margin-top: calc(var(--header-height) + 2rem);
   text-wrap: balance;
 }

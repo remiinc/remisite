@@ -179,6 +179,7 @@ test('landing-path allowlist matches every current solution and resource route',
   ]
   const staticPaths = [
     '/',
+    '/about',
     '/pricing',
     '/privacy',
     '/resources',
@@ -411,11 +412,11 @@ test('every current primary CTA family has manual tracking and product entries a
   const families = new Map([
     ['src/components/global/announcement-bar.vue', ['announcement_text_remi']],
     ['src/components/header/global-header.vue', ['header_mobile_guided', 'header_guided']],
-    ['src/components/home/home-hero-video.vue', ['hero_text_remi']],
-    ['src/components/sections/section-features.vue', ['features_text_remi']],
+    ['src/components/hero/hero-a.vue', ['hero_text_remi']],
+    ['src/components/hero/hero-b.vue', ['hero_text_remi']],
     ['src/components/sections/section-cta.vue', ['closing_text_remi']],
-    ['src/components/global/global-footer.vue', ['footer_text_remi']],
     ['src/components/home/home-hero.vue', ['home_text_remi']],
+    ['src/components/about/about-page.vue', ['about_text_remi']],
     ['src/components/pricing/pricing-page.vue', ['pricing_text_remi']],
     ['src/components/pricing/pricing-plans.vue', ['pricing_pro_guided', 'pricing_scale_guided']],
     ['src/components/sections/section-why-remi.vue', ['comparison_guided']],

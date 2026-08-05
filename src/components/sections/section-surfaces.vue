@@ -9,7 +9,7 @@ import SurfaceVisualWeb from './components/surface-visual-web.vue'
   <section id="surfaces" :class="cn('relative w-full scroll-mt-24 px-6 py-12 md:py-16')" data-section-surfaces>
     <div class="w-full mx-auto max-w-(--content-width)">
       <div class="mb-12 max-w-3xl">
-        <h2 class="text-4xl font-normal leading-none tracking-tight text-balance text-foreground">
+        <h2 class="headline-h2 text-balance text-foreground">
           Wherever the day starts to pile up,<br />
           <span class="text-foreground/50">Remi keeps it moving</span>
         </h2>
@@ -21,7 +21,7 @@ import SurfaceVisualWeb from './components/surface-visual-web.vue'
         <div class="relative">
           <SurfaceVisualImessageThread />
           <div class="flex flex-col gap-1 justify-start md:justify-between lg:justify-start">
-            <h3 class="text-base md:text-2xl lg:text-base font-normal leading-tight tracking-tight text-balance">
+            <h3 class="headline-h6 text-balance">
               Texts & iMessage
             </h3>
             <p class="text-base text-muted-foreground/80 leading-tight">
@@ -34,7 +34,7 @@ import SurfaceVisualWeb from './components/surface-visual-web.vue'
         <div class="relative">
           <SurfaceVisualSlack />
           <div class="flex flex-col gap-1 justify-start md:justify-between lg:justify-start">
-            <h3 class="text-base md:text-2xl lg:text-base font-normal leading-tight tracking-tight text-balance">
+            <h3 class="headline-h6 text-balance">
               Slack
             </h3>
             <p class="text-base text-muted-foreground/80 leading-tight">
@@ -46,7 +46,7 @@ import SurfaceVisualWeb from './components/surface-visual-web.vue'
         <div class="relative">
           <SurfaceVisualWeb />
           <div class="flex flex-col gap-1 justify-start md:justify-between lg:justify-start">
-            <h3 class="text-base md:text-2xl lg:text-base font-normal leading-tight tracking-tight text-balance">
+            <h3 class="headline-h6 text-balance">
               Web
             </h3>
             <p class="text-base text-muted-foreground/80 leading-tight">

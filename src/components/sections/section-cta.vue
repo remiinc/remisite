@@ -1,32 +1,48 @@
 <script setup>
 import { PhCaretLeft, PhMicrophone, PhPlus } from '@phosphor-icons/vue'
 import Button from '../global/button.vue'
+import ProductAssurances from '../global/product-assurances.vue'
 import SiteIcon from '../global/site-icon.vue'
+
+defineProps({
+  embedded: {
+    type: Boolean,
+    default: false,
+  },
+})
 </script>
 
 <template>
-  <section id="get-started" class="scroll-mt-24 px-6 py-24" data-section-cta>
-    <div
-      class="relative mx-auto grid w-full max-w-(--content-width) overflow-hidden rounded-[2em] bg-foreground text-background md:grid-cols-2 lg:grid-cols-[3fr_2fr] lg:items-center">
-      <img src="/images/backgrounds/cta-background.jpg" alt="" width="1600" height="1067" loading="lazy"
-        decoding="async" fetchpriority="low" class="absolute inset-0 size-full object-cover" aria-hidden="true">
-      <div class="relative z-1 flex pt-24 pb-8 md:py-12 px-8 lg:px-12 flex-col items-center justify-center gap-8 text-center">
-        <h2 class="inline-block text-5xl lg:text-6xl font-normal tracking-tight text-balance max-w-[20ch]">
-          Let Remi keep the day moving.
+  <section id="get-started" class="scroll-mt-24 px-6" :class="embedded ? 'pt-16 md:pt-24' : 'py-24'" data-section-cta>
+    <div class="mx-auto grid w-full max-w-(--content-width) gap-y-12 md:grid-cols-2 md:gap-x-4 lg:grid-cols-[3fr_2fr]">
+      <div
+        class="bg-background/5 rounded-[2em] flex px-8 py-12 lg:px-12 flex-col items-start justify-between gap-8 text-left">
+        <h2 class="inline-block headline-h3 text-balance max-w-[20ch]">
+          Grow your business.
+          <br />Let Remi handle the admin.
         </h2>
-        <div
-          class="relative z-1 flex flex-wrap justify-center md:justify-start gap-3">
-          <Button href="/start" variant="white" size="lg"
-            data-marketing-cta="closing_text_remi" data-marketing-destination="guided">
-            <span class="flex items-center gap-2.5">
-              <img src="/images/app-logos/ios-messages-icon.svg" alt="" class="size-5 shrink-0" aria-hidden="true">
-              <span>Text Remi</span>
-            </span>
-          </Button>
+        <div class="mt-auto flex flex-col items-start gap-6">
+          <div class="relative z-1 flex flex-wrap justify-start gap-3">
+            <Button href="/start" variant="white" size="lg" data-marketing-cta="closing_text_remi"
+              data-marketing-destination="guided">
+              <span class="flex items-center gap-2.5">
+                <img src="/images/app-logos/ios-messages-icon.svg" alt="" class="size-5 shrink-0" aria-hidden="true">
+                <span>Text Remi</span>
+              </span>
+            </Button>
+            <Button href="/pricing" variant="translucent" size="lg" data-marketing-cta="closing_pricing"
+              data-marketing-destination="guided">
+              <span>View Pricing</span>
+            </Button>
+          </div>
+          <ProductAssurances align="start" :limit="embedded ? 3 : undefined" />
         </div>
       </div>
 
-      <div class="w-full flex flex-col items-center justify-start overflow-hidden px-8 pt-12 max-h-[32em]">
+      <div
+        class="relative flex aspect-square w-full flex-col items-center justify-start overflow-hidden rounded-[2em] bg-foreground px-8 pt-12">
+        <img src="/images/backgrounds/cta-background.jpg" alt="" width="1600" height="1067" loading="lazy"
+          decoding="async" fetchpriority="low" class="absolute inset-0 size-full object-cover" aria-hidden="true">
         <div class="relative z-1 mx-auto w-full max-w-[24em]" data-static-iphone>
           <div
             class="w-full [--screen-radius:3.75em] [--bezel-inset:0.5em] [--bezel-radius:calc(var(--screen-radius)+var(--bezel-inset))] [--frame-inset:0.35em] [--frame-radius:calc(var(--screen-radius)+var(--bezel-inset)+var(--frame-inset))]">
@@ -105,7 +121,8 @@ import SiteIcon from '../global/site-icon.vue'
                           <div class="flex w-full justify-start">
                             <div
                               class="relative mr-[25%] inline-block max-w-[78%] rounded-[1.25em] bg-neutral-200 px-[0.875em] py-[0.75em] text-[0.9em] leading-tight tracking-tight text-neutral-900 before:absolute before:bottom-0 before:left-[-0.45em] before:z-0 before:h-[1.25em] before:w-[1.25em] before:rounded-br-[0.95em] before:bg-neutral-200 before:content-[''] after:absolute after:bottom-0 after:left-[-0.7em] after:z-1 after:h-[1.25em] after:w-[0.7em] after:rounded-br-[0.7em] after:bg-white after:content-['']">
-                              Hi, I'm Remi. Text me anything you need off your plate — I'll handle the busywork so you can keep moving. 👋
+                              Hi, I'm Remi. Text me anything you need off your plate — I'll handle the busywork so you
+                              can keep moving. 👋
                             </div>
                           </div>
                         </div>

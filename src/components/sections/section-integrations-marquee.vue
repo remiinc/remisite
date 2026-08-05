@@ -45,7 +45,7 @@ const getLogoUrl = (slug) => `https://logos.composio.dev/api/${slug}`
     <div class="grid gap-10 md:grid-cols-2">
       <div class="min-w-0">
         <div class="space-y-0 text-3xl font-normal leading-none tracking-tight text-balance">
-          <h2 class="text-foreground">
+          <h2 class="headline-h3 text-foreground">
             Connect anywhere
           </h2>
           <p class="text-foreground/40">

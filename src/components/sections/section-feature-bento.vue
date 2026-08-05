@@ -22,8 +22,8 @@ const gridClasses = cn(
   'grid grid-cols-1 gap-2 md:gap-4 lg:gap-6 grid-cols-1 xs:grid-cols-2 lg:grid-cols-3',
   '[&>div]:relative [&>div]:overflow-hidden [&>div]:rounded-3xl md:[&>div]:rounded-4xl [&>div]:bg-background [&>div]:overflow-hidden',
   '[&>div]:after:content-[\'\'] [&>div]:after:absolute [&>div]:after:inset-0 [&>div]:after:pointer-events-none [&>div]:after:rounded-[inherit] [&>div]:after:shadow-[0_0_0_1px_color-mix(in_oklch,var(--color-foreground)_5%,transparent)_inset] [&>div]:after:mix-blend-plus-darker [&>div]:after:z-10',
-  '[&_h3]:text-[clamp(1.25rem,2.25vw,1.75rem)] [&_h3]:select-none [&_h3]:font-normal [&_h3]:tracking-tight [&_h3]:leading-tight [&_h3]:text-balance [&_h3]:max-w-[32ch]',
-  '[&_h4]:text-2xl [&_h4]:select-none [&_h4]:font-normal [&_h4]:tracking-tight [&_h4]:leading-tight [&_h4]:text-balance [&_h4]:max-w-[32ch]',
+  '[&_h3]:select-none [&_h3]:text-balance [&_h3]:max-w-[32ch]',
+  '[&_h4]:select-none [&_h4]:text-balance [&_h4]:max-w-[32ch]',
   '[&>div]:transition-transform [&>div]:duration-300 [&>div]:ease-in-out [&>div]:will-change-transform',
   'text-foreground [&>.light]:text-background'
 )
@@ -125,7 +125,7 @@ const BentoExpandIcon = defineComponent({
 <template>
   <section id="features" :class="cn('relative mx-auto max-w-[1400px] scroll-mt-24 px-6 py-24 z-1')" data-feature-bento>
     <div :class="cn('mb-12 max-w-3xl')">
-      <h2 :class="cn('text-4xl font-normal leading-none tracking-tight text-balance text-foreground')">
+      <h2 :class="cn('headline-h2 text-balance text-foreground')">
         A full suite of operational tools<br />
         <span :class="cn('text-foreground/50')">
           Memory, documents, integrations, and delivery.
@@ -147,7 +147,7 @@ const BentoExpandIcon = defineComponent({
           </FilmGrain>
         </Shader>
         <div :class="cn(containerClasses, 'relative z-1')">
-          <h3>Powerful Slack agent</h3>
+          <h3 class="headline-h4">Powerful Slack agent</h3>
         </div>
         <div
           :class="cn('text-[clamp(0.875rem,1.55vw,2rem)] xl:text-[1.25rem] absolute inset-0 size-full z-1 flex flex-col justify-end items-end text-foreground font-normal leading-normal text-pretty pl-[1em] md:pl-[2em]')">
@@ -162,7 +162,7 @@ const BentoExpandIcon = defineComponent({
         @keydown.space.prevent="openBentoDialog('feature-bento-2')">
         <BentoExpandIcon v-if="isBentoDialogClickable('feature-bento-2')" />
         <div :class="cn(containerClasses, 'relative z-1')">
-          <h3>Sync knowledge from any tool</h3>
+          <h3 class="headline-h4">Sync knowledge from any tool</h3>
         </div>
         <div :class="cn('absolute w-full aspect-square left-0 bottom-0 translate-y-[50%]')">
           <div :class="cn('absolute w-[250%] aspect-square top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2')">
@@ -178,7 +178,7 @@ const BentoExpandIcon = defineComponent({
         @keydown.space.prevent="openBentoDialog('feature-bento-4')">
         <BentoExpandIcon v-if="isBentoDialogClickable('feature-bento-4')" />
         <div :class="cn(containerClasses, 'relative z-1')">
-          <h3>Shared memory system</h3>
+          <h3 class="headline-h4">Shared memory system</h3>
         </div>
         <div :class="cn('absolute inset-0 h-full w-full mask-t-from-60% mask-t-to-90%')">
           <div :class="cn('absolute w-[200%] h-full top-0 left-1/2 -translate-x-1/2 flex items-center justify-center')">
@@ -200,7 +200,7 @@ const BentoExpandIcon = defineComponent({
         </Shader>
         <BentoExpandIcon v-if="isBentoDialogClickable('feature-bento-5')" />
         <div :class="cn(containerClasses, 'relative z-1')">
-          <h3>Collaborative documents</h3>
+          <h3 class="headline-h4">Collaborative documents</h3>
         </div>
         <div class="absolute w-full aspect-square top-1/2 -translate-y-1/3 flex items-center justify-center z-1">
           <div

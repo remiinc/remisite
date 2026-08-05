@@ -25,7 +25,7 @@ defineProps({
 
       <div class="relative z-1 h-full flex flex-col items-stretch p-7 md:p-12">
         <div class="flex flex-1 max-w-2xl flex-col items-start justify-between gap-12 text-background">
-          <h2 class="max-w-[20ch] text-4xl lg:text-5xl font-normal leading-none tracking-tight text-balance">
+          <h2 class="headline-h2 max-w-[20ch] text-balance">
             {{ feature.title }}
           </h2>
           <Button :href="feature.ctaUrl" variant="white" size="sm"

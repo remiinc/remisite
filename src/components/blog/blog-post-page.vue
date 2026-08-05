@@ -14,7 +14,6 @@ import {
 import Button from '../global/button.vue'
 import GlobalFooter from '../global/global-footer.vue'
 import GlobalHeader from '../header/global-header.vue'
-import SectionCta from '../sections/section-cta.vue'
 
 const requestedSlug = computed(() => {
   if (typeof window === 'undefined') {
@@ -199,7 +198,7 @@ onBeforeUnmount(() => {
               <time v-if="post.formattedDate" :datetime="post.date">{{ post.formattedDate }}</time>
             </div>
 
-            <h1 class="text-balance text-4xl font-normal leading-none text-foreground md:text-5xl tracking-tight">
+            <h1 class="headline-h2 text-balance text-foreground">
               {{ post.title }}
             </h1>
 
@@ -238,9 +237,9 @@ onBeforeUnmount(() => {
             </nav>
 
             <nav v-if="tableOfContents.length" class="flex flex-col" aria-label="Table of contents">
-              <h2 class="w-full text-sm font-semibold leading-tight tracking-tight text-foreground">
+              <p class="w-full text-sm font-semibold leading-tight text-foreground">
                 In this article
-              </h2>
+              </p>
               <div class="mt-2 border-t border-border pt-6">
                 <ol class="flex flex-col gap-2">
                   <li v-for="heading in tableOfContents" :key="heading.id">
@@ -266,13 +265,12 @@ onBeforeUnmount(() => {
         </div>
       </section>
 
-      <SectionCta />
     </main>
 
     <main v-else class="min-h-svh px-6 pt-32">
       <section class="mx-auto flex max-w-2xl flex-col items-start gap-6 py-24">
         <p class="text-sm font-medium text-muted-foreground">Blog</p>
-        <h1 class="text-balance text-5xl font-normal leading-none tracking-tight">Post not found</h1>
+        <h1 class="headline-h1 text-balance">Post not found</h1>
         <p class="text-pretty text-lg leading-8 text-muted-foreground">
           This Markdown file is not available yet.
         </p>
@@ -299,56 +297,29 @@ onBeforeUnmount(() => {
 .blog-content :deep(h2),
 .blog-content :deep(h3),
 .blog-content :deep(h4),
-.blog-content :deep(h5),
-.blog-content :deep(h6) {
+  .blog-content :deep(h5),
+  .blog-content :deep(h6) {
   color: var(--color-foreground);
-  font-weight: 400;
-  letter-spacing: var(--tracking-tight);
-  line-height: 1.12;
   scroll-margin-top: calc(var(--header-height) + 2rem);
   text-wrap: balance;
 }
 
 .blog-content :deep(h1) {
   margin: 2.75rem 0 1rem;
-  font-size: 2rem;
 }
 
 .blog-content :deep(h2) {
   margin: 2.25rem 0 0.75rem;
-  font-size: 1.5rem;
 }
 
 .blog-content :deep(h3) {
   margin: 1.75rem 0 0.6rem;
-  font-size: 1.2rem;
 }
 
 .blog-content :deep(h4),
 .blog-content :deep(h5),
 .blog-content :deep(h6) {
   margin: 1.5rem 0 0.5rem;
-  font-size: 1.05rem;
-}
-
-@media (min-width: 768px) {
-  .blog-content :deep(h1) {
-    font-size: 2.5rem;
-  }
-
-  .blog-content :deep(h2) {
-    font-size: 1.85rem;
-  }
-
-  .blog-content :deep(h3) {
-    font-size: 1.35rem;
-  }
-
-  .blog-content :deep(h4),
-  .blog-content :deep(h5),
-  .blog-content :deep(h6) {
-    font-size: 1.15rem;
-  }
 }
 
 .blog-content :deep(p) {
