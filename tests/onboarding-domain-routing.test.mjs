@@ -22,6 +22,8 @@ test('hireremi.ai owns the complete guided onboarding journey', () => {
         'https://app.hireremi.ai/api/auth/google/callback',
       '/api/billing/checkout-session':
         'https://app.hireremi.ai/api/billing/checkout-session',
+      '/api/integrations/google/:path*':
+        'https://app.hireremi.ai/api/integrations/google/:path*',
       '/api/onboarding/entry': 'https://app.hireremi.ai/start',
       '/api/onboarding/guided/:path*':
         'https://app.hireremi.ai/api/onboarding/guided/:path*',
@@ -49,6 +51,7 @@ test('the proxy identifies the public origin after Vercel replaces forwarded hos
 
   for (const source of [
     '/api/onboarding/guided(?:/(.*))?',
+    '/api/integrations/google(?:/(.*))?',
     '/api/auth/google/callback',
   ]) {
     assert.equal(proxyOrigins.get(source), 'https://hireremi.ai')
