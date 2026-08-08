@@ -69,20 +69,26 @@ const reviewState = ref('idle')
 const tappedCardId = ref(null)
 const isComplete = computed(() => displayedMessageCount.value === props.messages.length)
 const displayedMessages = computed(() => props.messages.slice(0, displayedMessageCount.value))
-const timers = []
+const messageTimers = []
+const reviewTimers = []
 
-function clearMessageTimers() {
+function clearTimers(timers) {
   timers.splice(0).forEach(timer => window.clearTimeout(timer))
 }
 
-function schedule(callback, delay) {
+function clearAllTimers() {
+  clearTimers(messageTimers)
+  clearTimers(reviewTimers)
+}
+
+function schedule(callback, delay, timers = messageTimers) {
   timers.push(window.setTimeout(callback, delay))
 }
 
 function playMessages() {
   if (!props.autoplay) return
 
-  clearMessageTimers()
+  clearAllTimers()
   displayedMessageCount.value = 0
   isTyping.value = false
   activeReview.value = null
@@ -114,12 +120,12 @@ function playMessages() {
     if (message.component === 'invoice-review' && message.demo) {
       schedule(() => {
         tappedCardId.value = message.id
-      }, elapsed + 1050)
+      }, elapsed + 1050, reviewTimers)
       schedule(() => {
         tappedCardId.value = null
         openInvoiceReview(message)
-      }, elapsed + 1400)
-      schedule(approveInvoiceReview, elapsed + 3150)
+      }, elapsed + 1400, reviewTimers)
+      schedule(approveInvoiceReview, elapsed + 3150, reviewTimers)
     }
   })
 
@@ -128,9 +134,17 @@ function playMessages() {
   }
 }
 
-function openInvoiceReview(message) {
+function openInvoiceReview(message, manual = false) {
+  if (manual) clearTimers(reviewTimers)
   activeReview.value = { id: message.id, ...message.card }
   reviewState.value = 'idle'
+}
+
+function dismissInvoiceReview() {
+  clearTimers(reviewTimers)
+  activeReview.value = null
+  reviewState.value = 'idle'
+  tappedCardId.value = null
 }
 
 function approveInvoiceReview() {
@@ -142,11 +156,11 @@ function approveInvoiceReview() {
   schedule(() => {
     reviewState.value = 'approved'
     approvedCardId.value = cardId
-  }, 700)
+  }, 700, reviewTimers)
   schedule(() => {
     activeReview.value = null
     reviewState.value = 'idle'
-  }, 1700)
+  }, 1700, reviewTimers)
 }
 
 const screenFontSize = computed(() => {
@@ -167,7 +181,19 @@ onMounted(() => {
   playMessages()
 })
 
-onBeforeUnmount(clearMessageTimers)
+onBeforeUnmount(clearAllTimers)
+
+watch(() => props.messages, () => {
+  if (props.autoplay && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    playMessages()
+    return
+  }
+
+  clearAllTimers()
+  displayedMessageCount.value = props.messages.length
+  activeReview.value = null
+  reviewState.value = 'idle'
+}, { deep: true })
 
 watch([displayedMessageCount, isTyping], async () => {
   await nextTick()
@@ -265,7 +291,7 @@ watch([displayedMessageCount, isTyping], async () => {
                     <div class="flex w-full"
                       :class="message.direction === 'incoming' ? 'justify-start' : 'justify-end'">
                       <button v-if="message.component === 'invoice-review'" class="relative flex w-full text-left" type="button"
-                        aria-label="Open invoice review" @click="openInvoiceReview(message)">
+                        aria-label="Open invoice review" @click="openInvoiceReview(message, true)">
                         <InvoiceReviewCard v-bind="message.card" :approved="approvedCardId === message.id" />
                         <span v-if="tappedCardId === message.id"
                           class="static-iphone__tap absolute bottom-[0.55em] left-[72%] size-[1.6em] rounded-full border border-white/60 bg-white/25 shadow-[0_0_0_0.5em_rgba(255,255,255,0.12)]"
@@ -311,7 +337,7 @@ watch([displayedMessageCount, isTyping], async () => {
 
                 <Transition name="review-sheet">
                   <InvoiceReviewSheet v-if="activeReview" v-bind="activeReview" :status="reviewState"
-                    @approve="approveInvoiceReview" />
+                    @approve="approveInvoiceReview" @dismiss="dismissInvoiceReview" />
                 </Transition>
               </div>
             </div>

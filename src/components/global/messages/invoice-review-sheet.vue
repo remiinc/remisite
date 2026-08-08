@@ -16,7 +16,7 @@ const props = defineProps({
   },
 })
 
-defineEmits(['approve'])
+defineEmits(['approve', 'dismiss'])
 
 const customerRows = [
   ['Name', props.customerName],
@@ -66,7 +66,8 @@ const customerRows = [
     </div>
 
     <div class="absolute inset-x-0 bottom-0 flex items-center gap-[0.65em] border-t border-black/8 bg-white/94 px-[0.9em] pb-[1.15em] pt-[0.8em] shadow-[0_-1em_2em_rgba(0,0,0,0.06)] backdrop-blur-md">
-      <button class="flex h-[3.2em] items-center justify-center gap-[0.45em] rounded-full bg-black/4 px-[1em] text-[0.75em] font-bold" type="button">
+      <button class="flex h-[3.2em] items-center justify-center gap-[0.45em] rounded-full bg-black/4 px-[1em] text-[0.75em] font-bold" type="button"
+        @click="$emit('dismiss')">
         <PhPencilSimple class="size-[1em]" weight="bold" aria-hidden="true" />
         <span>Revise</span>
       </button>
