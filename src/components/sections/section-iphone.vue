@@ -1,5 +1,5 @@
 <script setup>
-import { PhBrain, PhCaretLeft, PhCaretRight, PhChatsCircle, PhInvoice, PhListChecks } from '@phosphor-icons/vue'
+import { PhCaretLeft, PhCaretRight } from '@phosphor-icons/vue'
 import { computed, ref } from 'vue'
 import cn from '../../lib/cn'
 import ComponentIphone from './component-iphone.vue'
@@ -23,7 +23,7 @@ const scenarios = [
   {
     id: 'money',
     title: 'Get invoices paid faster',
-    icon: PhInvoice,
+    iconSrc: '/images/icons/section-iphone-invoice.svg',
     description: 'Let Remi track & chase invoices to recover late payments.',
     messages: [
       incoming('Henderson is 9 days late on the final invoice. They approved the extra work by text on Friday. 💸'),
@@ -38,7 +38,7 @@ const scenarios = [
   {
     id: 'follow-up',
     title: 'Respond to customers in minutes',
-    icon: PhChatsCircle,
+    iconSrc: '/images/icons/section-iphone-flash.svg',
     description: 'Remi manages customer messages and drafts replies for your approval.',
     draftWidget: draft(
       'Hi Wilson, I can come by tomorrow at 2:30. Send a photo and I will confirm the scope before I head over.',
@@ -57,7 +57,7 @@ const scenarios = [
   {
     id: 'proof',
     title: 'Remember everything',
-    icon: PhBrain,
+    iconSrc: '/images/icons/section-iphone-folders.svg',
     description: 'Remi keeps track of everything across your business.',
     draftWidget: draft(
       'Hi Dana, I found your June 18 approval for the better fixtures and attached the Lowe’s receipt for the materials.',
@@ -76,7 +76,7 @@ const scenarios = [
   {
     id: 'control',
     title: 'Nothing happens without your approval',
-    icon: PhListChecks,
+    iconSrc: '/images/icons/section-iphone-approval.svg',
     description: 'Remi can never take actions in the outside world without your approval.',
     messages: [
       incoming('Three open loops are waiting: one overdue invoice, one unanswered quote, and one client approval. 🔎'),
@@ -118,10 +118,10 @@ const tabClass = (scenario) =>
     'group flex w-full flex-col items-start text-left justify-between p-5 md:p-6 lg:p-8 rounded-2xl lg:rounded-3xl text-pretty transition-all duration-300 cursor-pointer',
     'focus-visible:outline-none focus-visible:outline-offset-none',
     'focus-visible:ring-0 focus-visible:ring-offset-0',
-    'text-xl flex-1',
+    'headline-h5 flex-1',
     activeScenarioId.value === scenario.id
       ? 'bg-foreground text-background'
-      : 'bg-transparent shadow-[0_0_0_1px_var(--color-border)] text-muted-foreground',
+      : 'bg-muted text-foreground',
   )
 </script>
 
@@ -136,7 +136,7 @@ const tabClass = (scenario) =>
           <button v-for="scenario in leftScenarios" :key="scenario.id" type="button" class="iphone-tab iphone-tab-left"
             data-iphone-tab-left :class="tabClass(scenario)" @click="activeScenarioId = scenario.id">
             <span class="flex flex-col items-start gap-3">
-              <component :is="scenario.icon" class="size-7" weight="regular" aria-hidden="true" />
+              <img :src="scenario.iconSrc" alt="" class="hidden h-auto w-[1em] shrink-0 lg:block" aria-hidden="true">
               <span class="leading-tight tracking-tight text-(--primary-text)">
                 {{ scenario.title }}
               </span>
@@ -156,7 +156,7 @@ const tabClass = (scenario) =>
               class="flex sm:min-h-40 w-full flex-col items-center sm:items-start sm:justify-between rounded-2xl sm:bg-foreground sm:p-5 text-center sm:text-left text-foreground sm:text-background"
               aria-live="polite">
               <span class="flex flex-col items-center sm:items-start gap-3">
-                <component :is="activeScenario.icon" class="size-7" weight="regular" aria-hidden="true" />
+                <img :src="activeScenario.iconSrc" alt="" class="hidden h-auto w-[1em] shrink-0 lg:block" aria-hidden="true">
                 <span class="text-xl leading-tight tracking-tight">
                   {{ activeScenario.title }}
                 </span>
@@ -185,9 +185,9 @@ const tabClass = (scenario) =>
           <button v-for="scenario in rightScenarios" :key="scenario.id" type="button"
             class="iphone-tab iphone-tab-right" data-iphone-tab-right :class="tabClass(scenario)"
             @click="activeScenarioId = scenario.id">
-            <span class="flex flex-col items-start gap-3">
-              <component :is="scenario.icon" class="size-7" weight="regular" aria-hidden="true" />
-              <span class="leading-tight tracking-tight text-(--primary-text)">
+            <span class="flex flex-col items-start gap-4">
+              <img :src="scenario.iconSrc" alt="" class="hidden h-auto w-[1em] shrink-0 lg:block" aria-hidden="true">
+              <span>
                 {{ scenario.title }}
               </span>
             </span>
