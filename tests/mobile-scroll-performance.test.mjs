@@ -109,3 +109,52 @@ test('mobile preloads the interactive phone before the user reaches its scroll b
     'mounting the phone from a near-viewport observer causes a large mid-scroll hitch on mobile',
   )
 })
+
+test('mobile first fold gives Safari matching chrome and a larger phone stage', async () => {
+  const [documentSource, mainSource, heroSource] = await Promise.all([
+    readComponent('index.html'),
+    readComponent('src/main.js'),
+    readComponent('src/components/hero/hero-b.vue'),
+  ])
+
+  assert.match(
+    documentSource,
+    /name="viewport" content="[^"]*viewport-fit=cover[^"]*"/,
+    'iOS Safari should allow the page color to reach its safe-area edges',
+  )
+  assert.match(
+    documentSource,
+    /name="theme-color" content="#181613"/,
+    'Safari chrome should match the charcoal first fold instead of the cream page background',
+  )
+  assert.match(
+    mainSource,
+    /usesDarkFirstFold = \['\/', '\/about'\]\.includes\(normalizedPath\)/,
+    'dark first folds should keep dark Safari chrome without tinting light routes',
+  )
+  assert.match(
+    heroSource,
+    /aspect-2\/3[^\n]*sm:aspect-square/,
+    'the mobile media stage should be tall enough to enlarge the phone without distorting it',
+  )
+  assert.match(
+    heroSource,
+    /col-start-5 col-span-24[^\n]*sm:col-start-10 sm:col-span-15/,
+    'the hero phone should occupy more of the narrow viewport while preserving the desktop composition',
+  )
+  assert.match(
+    heroSource,
+    /mx-auto grid w-full min-w-0 place-items-center/,
+    'the phone stage must retain the full viewport width after its collage tiles are hidden',
+  )
+  assert.equal(
+    heroSource.match(/hero-b__media-tile hidden sm:grid/g)?.length,
+    6,
+    'the surrounding hero collage should stay off mobile while remaining visible from the small breakpoint',
+  )
+  assert.match(
+    heroSource,
+    /\.hero-b__media-tile\s*\{[^}]*display:\s*none;[^}]*\}[\s\S]*@media \(min-width: 640px\)\s*\{\s*\.hero-b__media-tile\s*\{\s*display:\s*grid;/,
+    'scoped component styles must not override the mobile collage hide',
+  )
+})
