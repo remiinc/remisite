@@ -165,11 +165,11 @@ const tabClass = (scenario) =>
               aria-live="polite">
               <span class="flex flex-col items-center sm:items-start gap-3">
                 <img :src="activeScenario.iconSrc" alt="" class="hidden h-auto w-[1em] shrink-0 lg:block" aria-hidden="true">
-                <span class="text-xl leading-tight tracking-tight">
+                <span class="headline-h5 mb-2">
                   {{ activeScenario.title }}
                 </span>
               </span>
-              <span class="text-lg sm:text-sm leading-tight opacity-60">
+              <span class="text-base sm:text-sm leading-tighter tracking-tight opacity-60">
                 {{ activeScenario.description }}
               </span>
             </div>
