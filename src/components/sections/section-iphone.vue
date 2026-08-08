@@ -191,7 +191,7 @@ const tabClass = (scenario) =>
                 {{ scenario.title }}
               </span>
             </span>
-            <span class="text-sm leading-tight opacity-60">
+            <span class="text-sm leading-tighter tracking-tight opacity-60">
               {{ scenario.description }}
             </span>
           </button>
