@@ -11,7 +11,7 @@ import SectionFeaturesGrid from './components/sections/section-features-grid.vue
 import SectionFaq from './components/sections/section-faq.vue'
 import SectionPricing from './components/sections/section-pricing.vue'
 import SectionSolutions from './components/sections/section-solutions.vue'
-import { installMarketingCtaTracking } from './lib/analytics.js'
+import { capturePageview, installMarketingCtaTracking } from './lib/analytics.js'
 import { pageLoaders } from './lib/page-loaders.js'
 
 const BlogIndexPage = defineAsyncComponent(pageLoaders.blogIndex)
@@ -48,6 +48,7 @@ let stopMotionEffects = null
 let motionLoadCancelled = false
 
 onMounted(() => {
+  capturePageview()
   stopMarketingCtaTracking = installMarketingCtaTracking()
   const isMobileViewport = window.matchMedia('(max-width: 767px)').matches
 

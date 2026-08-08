@@ -121,7 +121,6 @@ async function runActualSdkTransport() {
     const { captureMarketingCta, capturePageview, initializeAnalytics } = await importFresh('analytics')
     ;({ posthog: sdk } = await import('posthog-js'))
     assert.equal(initializeAnalytics({
-      client: sdk,
       env: { VITE_POSTHOG_KEY: 'phc_test', VITE_POSTHOG_HOST: 'http://127.0.0.1:4174' },
       windowLike,
     }), true)
