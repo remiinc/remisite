@@ -12,7 +12,6 @@ import SectionFaq from './components/sections/section-faq.vue'
 import SectionPricing from './components/sections/section-pricing.vue'
 import SectionSolutions from './components/sections/section-solutions.vue'
 import { capturePageview, installMarketingCtaTracking } from './lib/analytics.js'
-import { initializeMotionEffects } from './lib/motion.js'
 import { pageLoaders } from './lib/page-loaders.js'
 
 const BlogIndexPage = defineAsyncComponent(pageLoaders.blogIndex)
@@ -46,6 +45,7 @@ let iphoneSectionObserver = null
 
 let stopMarketingCtaTracking = null
 let stopMotionEffects = null
+let motionLoadCancelled = false
 
 onMounted(() => {
   capturePageview()
@@ -53,7 +53,9 @@ onMounted(() => {
   const isMobileViewport = window.matchMedia('(max-width: 767px)').matches
 
   if (!isMobileViewport) {
-    stopMotionEffects = initializeMotionEffects()
+    import('./lib/motion.js').then(({ initializeMotionEffects }) => {
+      if (!motionLoadCancelled) stopMotionEffects = initializeMotionEffects()
+    })
   }
 
   if (isMobileViewport) {
@@ -77,6 +79,7 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
+  motionLoadCancelled = true
   stopMarketingCtaTracking?.()
   stopMotionEffects?.()
   iphoneSectionObserver?.disconnect()

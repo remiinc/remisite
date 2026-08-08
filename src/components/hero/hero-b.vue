@@ -1,12 +1,8 @@
 <script setup>
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import Button from '../global/button.vue'
 import ProductAssurances from '../global/product-assurances.vue'
 import StaticIphone from '../global/static-iphone.vue'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const PARALLAX_LEVELS = {
   1: 0,
@@ -18,27 +14,131 @@ const PARALLAX_LEVELS = {
 
 const heroMessages = [
   {
-    id: 'remi-alert',
+    id: 'remi-morning-heads-up',
     direction: 'incoming',
-    text: "Morning — Acme's invoice is 7 days overdue, and they asked to reschedule tomorrow's visit.",
+    delay: 350,
+    text: "morning charlie 👋 mark puckett's $6,850 final is 20 days late. matched that lowe's receipt to whitaker too",
   },
   {
-    id: 'owner-reply',
+    id: 'charlie-file-and-nudge',
     direction: 'outgoing',
-    text: 'Follow up on the invoice and move them to Friday at 10.',
+    delay: 2200,
+    text: 'nice catch. file it + keep the text friendly',
   },
   {
-    id: 'remi-confirmation',
+    id: 'puckett-invoice-review',
     direction: 'incoming',
-    text: 'Done — payment reminder sent and the visit is confirmed for Friday at 10. 👍',
+    delay: 1800,
+    component: 'invoice-review',
+    demo: true,
+    card: {
+      customerName: 'Mark Puckett',
+      daysOverdue: 20,
+      dueDate: 'July 8',
+      invoiceNumber: 'SI-1058',
+      originalTotal: '$16,250',
+      outstandingBalance: '$6,850',
+      projectName: 'Puckett kitchen',
+    },
+  },
+  {
+    id: 'remi-sent',
+    direction: 'incoming',
+    delay: 5400,
+    text: "sent 👍 i'll watch for his reply",
+  },
+  {
+    id: 'remi-next-thing',
+    direction: 'incoming',
+    delay: 1900,
+    text: 'also bill caudill just sent the bathroom pics',
+  },
+  {
+    id: 'caudill-bathroom-photos',
+    direction: 'incoming',
+    delay: 900,
+    component: 'photo-stack',
+    photos: [
+      {
+        src: '/images/demo/bill-caudill-bathroom/01-wide.jpg',
+        alt: 'Bill Caudill bathroom before remodeling',
+      },
+      {
+        src: '/images/demo/bill-caudill-bathroom/02-tub.jpg',
+        alt: 'Dated tub surround and fixtures in Bill Caudill bathroom',
+      },
+      {
+        src: '/images/demo/bill-caudill-bathroom/03-vanity.jpg',
+        alt: 'Existing vanity and worn floor in Bill Caudill bathroom',
+      },
+      {
+        src: '/images/demo/bill-caudill-bathroom/04-floor.jpg',
+        alt: 'Worn bathroom floor and tub before remodeling',
+      },
+    ],
+  },
+  {
+    id: 'charlie-voice-note',
+    direction: 'outgoing',
+    delay: 1700,
+    component: 'voice-message',
+    duration: '0:12',
+  },
+  {
+    id: 'remi-check-materials',
+    direction: 'incoming',
+    delay: 2100,
+    text: "got it. i'll double-check the cost of those materials",
+  },
+  {
+    id: 'remi-quote-ready',
+    direction: 'incoming',
+    delay: 2500,
+    text: "ok quote's ready. came to $21,800",
+  },
+  {
+    id: 'caudill-quote-review',
+    direction: 'incoming',
+    delay: 900,
+    component: 'quote-review',
+    card: {
+      customerName: 'Bill Caudill',
+      projectName: 'Bathroom remodel',
+      quoteNumber: '2026-1043',
+      title: 'Caudill bathroom quote',
+      total: '$21,800',
+    },
+  },
+  {
+    id: 'charlie-send-quote',
+    direction: 'outgoing',
+    delay: 2100,
+    text: 'looks good send it',
+  },
+  {
+    id: 'remi-quote-sent',
+    direction: 'incoming',
+    delay: 1600,
+    text: "sent 👍 i'll let you know when bill replies",
   },
 ]
 
 const heroMediaRef = ref(null)
 let heroMediaRevealContext = null
+let motionLoadCancelled = false
 
-onMounted(() => {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !heroMediaRef.value) return
+onMounted(async () => {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const mobileViewport = window.matchMedia('(max-width: 767px)').matches
+  if (reducedMotion || mobileViewport || !heroMediaRef.value) return
+
+  const [{ gsap }, { ScrollTrigger }] = await Promise.all([
+    import('gsap'),
+    import('gsap/ScrollTrigger'),
+  ])
+  if (motionLoadCancelled || !heroMediaRef.value) return
+
+  gsap.registerPlugin(ScrollTrigger)
 
   const tiles = [...heroMediaRef.value.querySelectorAll('[data-hero-media-item]')]
   const parallaxItems = [...heroMediaRef.value.querySelectorAll('[data-hero-parallax]')]
@@ -97,6 +197,7 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
+  motionLoadCancelled = true
   heroMediaRevealContext?.revert()
 })
 </script>
@@ -144,37 +245,44 @@ onBeforeUnmount(() => {
             <div class="hero-b__media-tile col-start-5 col-span-9 row-start-1 row-span-6" data-hero-media-item
               data-hero-parallax="3">
               <img src="/images/solutions/marketing-agency-cover@2x.webp"
-                alt="Marketing professional reviewing documents with a colleague">
+                alt="Marketing professional reviewing documents with a colleague" width="1600" height="1000"
+                decoding="async" fetchpriority="low">
             </div>
             <div class="hero-b__media-tile col-start-1 col-span-11 row-start-7 row-span-12" data-hero-media-item
               data-hero-parallax="2">
               <img src="/images/solutions/plumbing-cover@2x.webp"
-                alt="Plumbing professional standing with a tool belt inside a home">
+                alt="Plumbing professional standing with a tool belt inside a home" width="1600" height="1000"
+                decoding="async" fetchpriority="low">
             </div>
             <div class="hero-b__media-tile col-start-3 col-span-9 row-start-17 row-span-12" data-hero-media-item
               data-hero-parallax="5">
               <img src="/images/solutions/home-remodeling-cover@2x.webp"
-                alt="Remodeling professional sanding a newly finished ceiling">
+                alt="Remodeling professional sanding a newly finished ceiling" width="1600" height="1000"
+                decoding="async" fetchpriority="low">
             </div>
             <!-- Center -->
             <div class="col-start-8 sm:col-start-10 col-span-19 sm:col-span-15 row-start-1 sm:row-start-2 row-span-32 sm:row-span-30 z-10" data-hero-parallax="1">
-              <StaticIphone fluid theme="dark" class="h-full" :font-size="1.125" :messages="heroMessages" />
+              <StaticIphone autoplay fluid theme="dark" class="h-full" :font-size="1.075" :loop-delay="6500"
+                :messages="heroMessages" />
             </div>
             <!-- Right -->
             <div class="hero-b__media-tile col-start-22 col-span-12 row-start-4 row-span-16 z-2" data-hero-media-item
               data-hero-parallax="2">
               <img src="/images/misc/contractor-001@2x.webp"
-                alt="Cleaning professional washing floor-to-ceiling windows">
+                alt="Cleaning professional washing floor-to-ceiling windows" width="800" height="1200"
+                decoding="async" fetchpriority="low">
             </div>
             <div class="hero-b__media-tile col-start-25 col-span-8 row-start-16 row-span-10 z-3" data-hero-media-item
               data-hero-parallax="4">
               <img src="/images/misc/contractor-002@2x.webp"
-                alt="Construction crew reviewing plans at a timber-framed jobsite">
+                alt="Construction crew reviewing plans at a timber-framed jobsite" width="800" height="1200"
+                decoding="async" fetchpriority="low">
             </div>
             <div class="hero-b__media-tile col-start-20 col-span-10 row-start-22 row-span-8 z-1" data-hero-media-item
             data-hero-parallax="3">
               <img src="/images/solutions/plumbing-cover@2x.webp"
-                alt="Plumbing professional standing with a tool belt inside a home">
+                alt="Plumbing professional standing with a tool belt inside a home" width="1600" height="1000"
+                decoding="async" fetchpriority="low">
             </div>
           </figure>
         </div>

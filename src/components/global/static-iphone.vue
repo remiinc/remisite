@@ -1,9 +1,18 @@
 <script setup>
 import { PhCaretLeft, PhMicrophone, PhPlus } from '@phosphor-icons/vue'
-import { computed } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import InvoiceReviewCard from './messages/invoice-review-card.vue'
+import InvoiceReviewSheet from './messages/invoice-review-sheet.vue'
+import PhotoStack from './messages/photo-stack.vue'
+import QuoteReviewCard from './messages/quote-review-card.vue'
+import VoiceMessage from './messages/voice-message.vue'
 import SiteIcon from './site-icon.vue'
 
 const props = defineProps({
+  autoplay: {
+    type: Boolean,
+    default: false,
+  },
   fluid: {
     type: Boolean,
     default: false,
@@ -17,12 +26,20 @@ const props = defineProps({
     type: Array,
     default: () => [{
       direction: 'incoming',
-      text: "Hi, I'm Remi. Text me anything you need off your plate — I'll handle the busywork so you can keep moving. 👋",
+      text: "hey 👋 text me anything you need off your plate. i'll handle the busywork so you can keep moving",
     }],
     validator: messages => Array.isArray(messages) && messages.every(message => (
       ['incoming', 'outgoing'].includes(message?.direction)
-      && typeof message?.text === 'string'
+      && (typeof message?.text === 'string'
+        || (['invoice-review', 'quote-review'].includes(message?.component) && typeof message?.card === 'object')
+        || (message?.component === 'photo-stack' && Array.isArray(message?.photos))
+        || (message?.component === 'voice-message' && typeof message?.duration === 'string'))
     )),
+  },
+  loopDelay: {
+    type: Number,
+    default: 4500,
+    validator: value => Number.isFinite(value) && value >= 0,
   },
   showAvatarRow: {
     type: Boolean,
@@ -43,10 +60,146 @@ const props = defineProps({
   },
 })
 
+const displayedMessageCount = ref(props.autoplay ? 0 : props.messages.length)
+const isTyping = ref(false)
+const messageThreadRef = ref(null)
+const activeReview = ref(null)
+const approvedCardId = ref(null)
+const reviewState = ref('idle')
+const tappedCardId = ref(null)
+const isComplete = computed(() => displayedMessageCount.value === props.messages.length)
+const displayedMessages = computed(() => props.messages.slice(0, displayedMessageCount.value))
+const messageTimers = []
+const reviewTimers = []
+
+function clearTimers(timers) {
+  timers.splice(0).forEach(timer => window.clearTimeout(timer))
+}
+
+function clearAllTimers() {
+  clearTimers(messageTimers)
+  clearTimers(reviewTimers)
+}
+
+function schedule(callback, delay, timers = messageTimers) {
+  timers.push(window.setTimeout(callback, delay))
+}
+
+function playMessages() {
+  if (!props.autoplay) return
+
+  clearAllTimers()
+  displayedMessageCount.value = 0
+  isTyping.value = false
+  activeReview.value = null
+  approvedCardId.value = null
+  reviewState.value = 'idle'
+  tappedCardId.value = null
+  if (messageThreadRef.value) messageThreadRef.value.scrollTop = 0
+
+  let elapsed = 300
+
+  props.messages.forEach((message, index) => {
+    const delay = message.delay ?? (index === 0 ? 400 : 1800)
+    const typingDuration = message.direction === 'incoming' ? Math.min(700, Math.max(300, delay - 100)) : 0
+
+    elapsed += Math.max(0, delay - typingDuration)
+
+    if (typingDuration) {
+      schedule(() => {
+        isTyping.value = true
+      }, elapsed)
+      elapsed += typingDuration
+    }
+
+    schedule(() => {
+      isTyping.value = false
+      displayedMessageCount.value = index + 1
+    }, elapsed)
+
+    if (message.component === 'invoice-review' && message.demo) {
+      schedule(() => {
+        tappedCardId.value = message.id
+      }, elapsed + 1050, reviewTimers)
+      schedule(() => {
+        tappedCardId.value = null
+        openInvoiceReview(message)
+      }, elapsed + 1400, reviewTimers)
+      schedule(approveInvoiceReview, elapsed + 3150, reviewTimers)
+    }
+  })
+
+  if (props.loopDelay > 0) {
+    schedule(playMessages, elapsed + props.loopDelay)
+  }
+}
+
+function openInvoiceReview(message, manual = false) {
+  if (manual) clearTimers(reviewTimers)
+  activeReview.value = { id: message.id, ...message.card }
+  reviewState.value = 'idle'
+}
+
+function dismissInvoiceReview() {
+  clearTimers(reviewTimers)
+  activeReview.value = null
+  reviewState.value = 'idle'
+  tappedCardId.value = null
+}
+
+function approveInvoiceReview() {
+  if (!activeReview.value || reviewState.value !== 'idle') return
+
+  reviewState.value = 'approving'
+  const cardId = activeReview.value.id
+
+  schedule(() => {
+    reviewState.value = 'approved'
+    approvedCardId.value = cardId
+  }, 700, reviewTimers)
+  schedule(() => {
+    activeReview.value = null
+    reviewState.value = 'idle'
+  }, 1700, reviewTimers)
+}
+
 const screenFontSize = computed(() => {
   const multiplier = props.fontSize
 
   return `clamp(${0.5 * multiplier}rem, ${4 * multiplier}cqw, ${multiplier}rem)`
+})
+
+onMounted(() => {
+  if (!props.autoplay) return
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    displayedMessageCount.value = props.messages.length
+    approvedCardId.value = props.messages.find(message => message.demo)?.id ?? null
+    return
+  }
+
+  playMessages()
+})
+
+onBeforeUnmount(clearAllTimers)
+
+watch(() => props.messages, () => {
+  if (props.autoplay && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    playMessages()
+    return
+  }
+
+  clearAllTimers()
+  displayedMessageCount.value = props.messages.length
+  activeReview.value = null
+  reviewState.value = 'idle'
+}, { deep: true })
+
+watch([displayedMessageCount, isTyping], async () => {
+  await nextTick()
+  if (messageThreadRef.value) {
+    messageThreadRef.value.scrollTop = messageThreadRef.value.scrollHeight
+  }
 })
 </script>
 
@@ -126,23 +279,40 @@ const screenFontSize = computed(() => {
                 </div>
 
                 <ol
-                  class="flex w-full flex-1 list-none flex-col overflow-hidden py-[1em] mask-y-from-[calc(100%-1em)] mask-y-to-100%"
+                  ref="messageThreadRef"
+                  class="static-iphone__thread flex w-full flex-1 list-none flex-col overflow-y-auto py-[1em] mask-y-from-[calc(100%-1em)] mask-y-to-100%"
                   aria-label="Example conversation with Remi" data-message-thread>
                   <li class="mb-[0.8em] flex w-full justify-center px-[1em]">
                     <p class="text-[0.75em] font-medium leading-none tracking-tight text-(--iphone-muted-foreground)">Today 09:42</p>
                   </li>
 
-                  <li v-for="(message, index) in messages" :key="message.id ?? `${message.direction}-${index}-${message.text}`"
-                    class="mt-[0.65em] flex w-full flex-col px-[1em]" :data-message-direction="message.direction">
+                  <li v-for="(message, index) in displayedMessages" :key="message.id ?? `${message.direction}-${index}-${message.text}`"
+                    class="static-iphone__message mt-[0.65em] flex w-full flex-col px-[1em]" :data-message-direction="message.direction">
                     <div class="flex w-full"
                       :class="message.direction === 'incoming' ? 'justify-start' : 'justify-end'">
-                      <div
+                      <button v-if="message.component === 'invoice-review'" class="relative flex w-full text-left" type="button"
+                        aria-label="Open invoice review" @click="openInvoiceReview(message, true)">
+                        <InvoiceReviewCard v-bind="message.card" :approved="approvedCardId === message.id" />
+                        <span v-if="tappedCardId === message.id"
+                          class="static-iphone__tap absolute bottom-[0.55em] left-[72%] size-[1.6em] rounded-full border border-white/60 bg-white/25 shadow-[0_0_0_0.5em_rgba(255,255,255,0.12)]"
+                          aria-hidden="true" />
+                      </button>
+                      <PhotoStack v-else-if="message.component === 'photo-stack'" :photos="message.photos" />
+                      <VoiceMessage v-else-if="message.component === 'voice-message'" :duration="message.duration" />
+                      <QuoteReviewCard v-else-if="message.component === 'quote-review'" v-bind="message.card" />
+                      <div v-else
                         class="relative inline-block max-w-[78%] whitespace-pre-line rounded-[1.25em] px-[0.875em] text-[0.9em] leading-tight tracking-tight before:absolute before:bottom-0 before:z-0 before:h-[1.25em] before:w-[1.25em] before:content-[''] after:absolute after:bottom-0 after:z-1 after:h-[1.25em] after:w-[0.7em] after:bg-(--iphone-background) after:content-['']"
                         :class="message.direction === 'incoming'
                           ? 'mr-[25%] bg-(--iphone-message-background) py-[0.75em] text-(--iphone-foreground) before:left-[-0.45em] before:rounded-br-[0.95em] before:bg-(--iphone-message-background) after:left-[-0.7em] after:rounded-br-[0.7em]'
                           : 'ml-[25%] bg-blue-400 py-[0.5em] text-white before:right-[-0.5em] before:rounded-bl-[0.95em] before:bg-blue-400 after:right-[-0.7em] after:rounded-bl-[0.7em]'">
                         {{ message.text }}
                       </div>
+                    </div>
+                  </li>
+
+                  <li v-if="isTyping" class="static-iphone__message mt-[0.65em] flex w-full px-[1em]" aria-label="Remi is typing">
+                    <div class="flex items-center gap-[0.25em] rounded-full bg-(--iphone-message-background) px-[0.9em] py-[0.75em]">
+                      <span v-for="dot in 3" :key="dot" class="static-iphone__typing-dot size-[0.3em] rounded-full bg-(--iphone-muted-foreground)" :style="{ animationDelay: `${(dot - 1) * 120}ms` }"></span>
                     </div>
                   </li>
                 </ol>
@@ -153,12 +323,22 @@ const screenFontSize = computed(() => {
                     class="flex size-[2.5em] items-center justify-center rounded-full bg-(--iphone-control-background) shadow-(--iphone-control-shadow) backdrop-blur-md">
                     <PhPlus class="size-[1em] text-(--iphone-foreground)" weight="bold" aria-hidden="true" />
                   </div>
-                  <div
-                    class="flex flex-1 items-center justify-center rounded-full bg-(--iphone-control-background) py-[0.5em] pl-[1.25em] pr-[1em] text-[0.875em] font-normal tracking-tight text-(--iphone-muted-foreground) shadow-(--iphone-control-shadow) backdrop-blur-md">
-                    <span class="flex-1">iMessage</span>
+                  <button
+                    class="flex flex-1 items-center justify-center rounded-full bg-(--iphone-control-background) py-[0.5em] pl-[1.25em] pr-[1em] text-[0.875em] font-normal tracking-tight text-(--iphone-muted-foreground) shadow-(--iphone-control-shadow) backdrop-blur-md"
+                    :class="autoplay ? 'cursor-pointer transition-colors hover:bg-white/12' : 'cursor-default'"
+                    :aria-label="autoplay ? 'Replay example conversation' : undefined"
+                    :disabled="!autoplay"
+                    type="button"
+                    @click="playMessages">
+                    <span class="flex-1 text-left">{{ autoplay && isComplete ? 'Replay conversation' : 'iMessage' }}</span>
                     <PhMicrophone class="size-[1.25em] text-(--iphone-muted-foreground)" weight="regular" aria-hidden="true" />
-                  </div>
+                  </button>
                 </div>
+
+                <Transition name="review-sheet">
+                  <InvoiceReviewSheet v-if="activeReview" v-bind="activeReview" :status="reviewState"
+                    @approve="approveInvoiceReview" @dismiss="dismissInvoiceReview" />
+                </Transition>
               </div>
             </div>
           </div>
@@ -214,6 +394,62 @@ const screenFontSize = computed(() => {
   font-size: var(--iphone-screen-font-size);
 }
 
+.static-iphone__message {
+  animation: static-iphone-message-in 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: bottom left;
+}
+
+.static-iphone__message[data-message-direction='outgoing'] {
+  transform-origin: bottom right;
+}
+
+.static-iphone__typing-dot {
+  animation: static-iphone-typing 0.8s ease-in-out infinite alternate;
+}
+
+.static-iphone__thread {
+  scrollbar-width: none;
+}
+
+.static-iphone__thread::-webkit-scrollbar {
+  display: none;
+}
+
+.static-iphone__tap {
+  animation: static-iphone-tap 0.7s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+.review-sheet-enter-active,
+.review-sheet-leave-active {
+  transition: transform 360ms cubic-bezier(0.32, 0.72, 0, 1), opacity 220ms ease;
+}
+
+.review-sheet-enter-from,
+.review-sheet-leave-to {
+  opacity: 0;
+  transform: translateY(12%);
+}
+
+@keyframes static-iphone-message-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.45em) scale(0.96);
+  }
+}
+
+@keyframes static-iphone-typing {
+  to {
+    opacity: 0.35;
+    transform: translateY(-0.18em);
+  }
+}
+
+@keyframes static-iphone-tap {
+  0% { opacity: 0; transform: scale(1.35); }
+  45% { opacity: 1; transform: scale(0.82); }
+  100% { opacity: 0; transform: scale(1.12); }
+}
+
 .static-iphone--fluid,
 .static-iphone--fluid > div,
 .static-iphone--fluid > div > div,
@@ -225,5 +461,18 @@ const screenFontSize = computed(() => {
 
 .static-iphone--fluid [data-iphone-screen-wrap] {
   aspect-ratio: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .static-iphone__message,
+  .static-iphone__typing-dot,
+  .static-iphone__tap {
+    animation: none;
+  }
+
+  .review-sheet-enter-active,
+  .review-sheet-leave-active {
+    transition: none;
+  }
 }
 </style>
