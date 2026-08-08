@@ -124,10 +124,19 @@ const heroMessages = [
 ]
 
 const heroMediaRef = ref(null)
+const heroCollageMedia = typeof window !== 'undefined'
+  ? window.matchMedia('(min-width: 640px)')
+  : null
+const showHeroCollage = ref(heroCollageMedia?.matches ?? false)
 let heroMediaRevealContext = null
 let motionLoadCancelled = false
 
+const syncHeroCollage = (event) => {
+  showHeroCollage.value = event.matches
+}
+
 onMounted(async () => {
+  heroCollageMedia?.addEventListener('change', syncHeroCollage)
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
   const mobileViewport = window.matchMedia('(max-width: 767px)').matches
   if (reducedMotion || mobileViewport || !heroMediaRef.value) return
@@ -197,6 +206,7 @@ onMounted(async () => {
 })
 
 onBeforeUnmount(() => {
+  heroCollageMedia?.removeEventListener('change', syncHeroCollage)
   motionLoadCancelled = true
   heroMediaRevealContext?.revert()
 })
@@ -242,19 +252,19 @@ onBeforeUnmount(() => {
           <figure ref="heroMediaRef"
             class="grid aspect-2/3 w-full grid-cols-32 grid-rows-32 gap-2 sm:aspect-square [&_img]:h-full [&_img]:w-full [&_img]:object-cover">
             <!-- Left -->
-            <div class="hero-b__media-tile hidden sm:grid col-start-5 col-span-9 row-start-1 row-span-6" data-hero-media-item
+            <div v-if="showHeroCollage" class="hero-b__media-tile hidden sm:grid col-start-5 col-span-9 row-start-1 row-span-6" data-hero-media-item
               data-hero-parallax="3">
               <img src="/images/solutions/marketing-agency-cover@2x.webp"
                 alt="Marketing professional reviewing documents with a colleague" width="1600" height="1000"
                 decoding="async" fetchpriority="low">
             </div>
-            <div class="hero-b__media-tile hidden sm:grid col-start-1 col-span-11 row-start-7 row-span-12" data-hero-media-item
+            <div v-if="showHeroCollage" class="hero-b__media-tile hidden sm:grid col-start-1 col-span-11 row-start-7 row-span-12" data-hero-media-item
               data-hero-parallax="2">
               <img src="/images/solutions/plumbing-cover@2x.webp"
                 alt="Plumbing professional standing with a tool belt inside a home" width="1600" height="1000"
                 decoding="async" fetchpriority="low">
             </div>
-            <div class="hero-b__media-tile hidden sm:grid col-start-3 col-span-9 row-start-17 row-span-12" data-hero-media-item
+            <div v-if="showHeroCollage" class="hero-b__media-tile hidden sm:grid col-start-3 col-span-9 row-start-17 row-span-12" data-hero-media-item
               data-hero-parallax="5">
               <img src="/images/solutions/home-remodeling-cover@2x.webp"
                 alt="Remodeling professional sanding a newly finished ceiling" width="1600" height="1000"
@@ -266,19 +276,19 @@ onBeforeUnmount(() => {
                 :messages="heroMessages" />
             </div>
             <!-- Right -->
-            <div class="hero-b__media-tile hidden sm:grid col-start-22 col-span-12 row-start-4 row-span-16 z-2" data-hero-media-item
+            <div v-if="showHeroCollage" class="hero-b__media-tile hidden sm:grid col-start-22 col-span-12 row-start-4 row-span-16 z-2" data-hero-media-item
               data-hero-parallax="2">
               <img src="/images/misc/contractor-001@2x.webp"
                 alt="Cleaning professional washing floor-to-ceiling windows" width="800" height="1200"
                 decoding="async" fetchpriority="low">
             </div>
-            <div class="hero-b__media-tile hidden sm:grid col-start-25 col-span-8 row-start-16 row-span-10 z-3" data-hero-media-item
+            <div v-if="showHeroCollage" class="hero-b__media-tile hidden sm:grid col-start-25 col-span-8 row-start-16 row-span-10 z-3" data-hero-media-item
               data-hero-parallax="4">
               <img src="/images/misc/contractor-002@2x.webp"
                 alt="Construction crew reviewing plans at a timber-framed jobsite" width="800" height="1200"
                 decoding="async" fetchpriority="low">
             </div>
-            <div class="hero-b__media-tile hidden sm:grid col-start-20 col-span-10 row-start-22 row-span-8 z-1" data-hero-media-item
+            <div v-if="showHeroCollage" class="hero-b__media-tile hidden sm:grid col-start-20 col-span-10 row-start-22 row-span-8 z-1" data-hero-media-item
             data-hero-parallax="3">
               <img src="/images/solutions/plumbing-cover@2x.webp"
                 alt="Plumbing professional standing with a tool belt inside a home" width="1600" height="1000"

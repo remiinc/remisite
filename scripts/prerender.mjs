@@ -255,6 +255,7 @@ const setHead = (
     ogImage = DEFAULT_OG_IMAGE,
     ogImageAlt = DEFAULT_OG_IMAGE_ALT,
     robots = INDEX_ROBOTS,
+    themeColor = '#fffef9',
     jsonLd = [],
   },
 ) => {
@@ -271,6 +272,10 @@ const setHead = (
   output = output.replace(
     /(<meta\s[^>]*name="robots"[^>]*content=")[^"]*(")/,
     `$1${robots}$2`,
+  )
+  output = output.replace(
+    /(<meta\s[^>]*name="theme-color"[^>]*content=")[^"]*(")/,
+    `$1${themeColor}$2`,
   )
   output = output.replace(/(<link\s[^>]*rel="canonical"[^>]*href=")[^"]*(")/, `$1${url}$2`)
 
@@ -751,6 +756,7 @@ writePage(
       ogType: 'website',
       ogImage: missionPage.metadata.ogImage,
       ogImageAlt: missionPage.metadata.ogImageAlt || DEFAULT_OG_IMAGE_ALT,
+      themeColor: '#181613',
       jsonLd: [{
         '@context': 'https://schema.org',
         '@type': 'AboutPage',

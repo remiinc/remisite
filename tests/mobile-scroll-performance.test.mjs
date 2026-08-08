@@ -111,10 +111,11 @@ test('mobile preloads the interactive phone before the user reaches its scroll b
 })
 
 test('mobile first fold gives Safari matching chrome and a larger phone stage', async () => {
-  const [documentSource, mainSource, heroSource] = await Promise.all([
+  const [documentSource, mainSource, heroSource, prerenderSource] = await Promise.all([
     readComponent('index.html'),
     readComponent('src/main.js'),
     readComponent('src/components/hero/hero-b.vue'),
+    readComponent('scripts/prerender.mjs'),
   ])
 
   assert.match(
@@ -131,6 +132,11 @@ test('mobile first fold gives Safari matching chrome and a larger phone stage', 
     mainSource,
     /usesDarkFirstFold = \['\/', '\/about'\]\.includes\(normalizedPath\)/,
     'dark first folds should keep dark Safari chrome without tinting light routes',
+  )
+  assert.match(
+    prerenderSource,
+    /themeColor = '#fffef9',[\s\S]*themeColor: '#181613'/,
+    'prerendered light routes should ship cream chrome while the dark about page stays charcoal',
   )
   assert.match(
     heroSource,
@@ -151,6 +157,21 @@ test('mobile first fold gives Safari matching chrome and a larger phone stage', 
     heroSource.match(/hero-b__media-tile hidden sm:grid/g)?.length,
     6,
     'the surrounding hero collage should stay off mobile while remaining visible from the small breakpoint',
+  )
+  assert.equal(
+    heroSource.match(/v-if="showHeroCollage"/g)?.length,
+    6,
+    'mobile markup must omit every hidden collage image so Safari does not download it',
+  )
+  assert.match(
+    heroSource,
+    /heroCollageMedia[\s\S]*matchMedia\('\(min-width: 640px\)'\)[\s\S]*showHeroCollage = ref\(heroCollageMedia\?\.matches/,
+    'collage rendering should be decided before the first client render',
+  )
+  assert.match(
+    heroSource,
+    /heroCollageMedia\?\.addEventListener\('change', syncHeroCollage\)[\s\S]*heroCollageMedia\?\.removeEventListener\('change', syncHeroCollage\)/,
+    'crossing the small breakpoint should restore or remove the collage without leaking a listener',
   )
   assert.match(
     heroSource,
