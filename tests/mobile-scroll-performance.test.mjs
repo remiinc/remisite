@@ -70,8 +70,33 @@ test('mobile skips the global GSAP ScrollTrigger initializer', async () => {
   )
   assert.match(
     source,
-    /if \(!isMobileViewport\) \{\s*stopMotionEffects = initializeMotionEffects\(\)\s*\}/s,
-    'GSAP ScrollTrigger keeps Mobile Safari WebContent hot across the entire page',
+    /if \(!isMobileViewport\) \{\s*import\('\.\/lib\/motion\.js'\)/s,
+    'desktop motion should load outside the mobile startup graph',
+  )
+  assert.doesNotMatch(
+    source.slice(0, source.indexOf('onMounted')),
+    /from '\.\/lib\/motion\.js'/,
+    'GSAP ScrollTrigger must not be a static App dependency on mobile',
+  )
+})
+
+test('mobile skips hero GSAP and its parallax ScrollTrigger', async () => {
+  const source = await readComponent('src/components/hero/hero-b.vue')
+
+  assert.match(
+    source,
+    /const mobileViewport = window\.matchMedia\('\(max-width: 767px\)'\)\.matches/,
+    'the hero must share the mobile motion budget',
+  )
+  assert.match(
+    source,
+    /if \(reducedMotion \|\| mobileViewport \|\| !heroMediaRef\.value\) return/,
+    'hero parallax should never initialize on mobile Safari',
+  )
+  assert.doesNotMatch(
+    source.slice(0, source.indexOf('onMounted')),
+    /from 'gsap/,
+    'GSAP must not be part of the hero static import graph',
   )
 })
 

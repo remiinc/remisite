@@ -1,5 +1,3 @@
-import { posthog } from 'posthog-js'
-
 import { getFirstTouch, normalizeAnalyticsProperties } from './acquisition.js'
 
 const protocolProperties = [
@@ -69,7 +67,7 @@ export function sanitizePostHogEvent(payload, configuredKey) {
 }
 
 export function initializeAnalytics({
-  client = posthog,
+  client = null,
   env,
   windowLike = globalThis.window,
 } = {}) {
