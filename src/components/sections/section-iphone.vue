@@ -24,6 +24,7 @@ const scenarios = [
     id: 'money',
     title: 'Get invoices paid faster',
     iconSrc: '/images/icons/section-iphone-invoice.svg',
+    color: '#694AFF',
     description: 'Let Remi track & chase invoices to recover late payments.',
     messages: [
       incoming('Henderson is 9 days late on the final invoice. They approved the extra work by text on Friday. 💸'),
@@ -39,6 +40,7 @@ const scenarios = [
     id: 'follow-up',
     title: 'Respond to customers in minutes',
     iconSrc: '/images/icons/section-iphone-flash.svg',
+    color: '#FF80EE',
     description: 'Remi manages customer messages and drafts replies for your approval.',
     draftWidget: draft(
       'Hi Wilson, I can come by tomorrow at 2:30. Send a photo and I will confirm the scope before I head over.',
@@ -58,6 +60,7 @@ const scenarios = [
     id: 'proof',
     title: 'Remember everything',
     iconSrc: '/images/icons/section-iphone-folders.svg',
+    color: '#FF5600',
     description: 'Remi keeps track of everything across your business.',
     draftWidget: draft(
       'Hi Dana, I found your June 18 approval for the better fixtures and attached the Lowe’s receipt for the materials.',
@@ -77,6 +80,7 @@ const scenarios = [
     id: 'control',
     title: 'Nothing happens without your approval',
     iconSrc: '/images/icons/section-iphone-approval.svg',
+    color: '#00DF72',
     description: 'Remi can never take actions in the outside world without your approval.',
     messages: [
       incoming('Three open loops are waiting: one overdue invoice, one unanswered quote, and one client approval. 🔎'),
@@ -134,10 +138,14 @@ const tabClass = (scenario) =>
         <div
           class="relative z-0 sm:h-full sm:pt-12 lg:pl-12 lg:py-12 order-3 hidden flex-col gap-2 lg:gap-12 lg:order-0 sm:flex sm:col-start-1 sm:row-start-1 lg:col-start-1 lg:row-start-2 lg:self-center lg:*:first:rotate-5 lg:*:last:-rotate-5">
           <button v-for="scenario in leftScenarios" :key="scenario.id" type="button" class="iphone-tab iphone-tab-left"
-            data-iphone-tab-left :class="tabClass(scenario)" @click="activeScenarioId = scenario.id">
+            data-iphone-tab-left :class="tabClass(scenario)"
+            :style="{ '--scenario-color': scenario.color, '--scenario-icon': `url(${scenario.iconSrc})` }"
+            @click="activeScenarioId = scenario.id">
             <span class="flex flex-col items-start gap-3">
-              <img :src="scenario.iconSrc" alt="" class="hidden h-auto w-[1em] shrink-0 lg:block" aria-hidden="true">
-              <span class="leading-tight tracking-tight text-(--primary-text)">
+              <span
+                class="hidden aspect-3/4 w-[1em] shrink-0 bg-current text-(--scenario-color) mask-(--scenario-icon) mask-center mask-contain mask-no-repeat lg:block"
+                aria-hidden="true"></span>
+              <span class="leading-tight tracking-tight">
                 {{ scenario.title }}
               </span>
             </span>
@@ -184,9 +192,12 @@ const tabClass = (scenario) =>
           class="relative z-0 sm:h-full sm:pb-12 lg:pr-12 lg:py-12 order-4 hidden flex-col gap-2 lg:gap-12 lg:order-0 sm:flex sm:col-start-1 sm:row-start-2 lg:col-start-3 lg:row-start-2 lg:self-center lg:*:first:-rotate-5 lg:*:last:rotate-5">
           <button v-for="scenario in rightScenarios" :key="scenario.id" type="button"
             class="iphone-tab iphone-tab-right" data-iphone-tab-right :class="tabClass(scenario)"
+            :style="{ '--scenario-color': scenario.color, '--scenario-icon': `url(${scenario.iconSrc})` }"
             @click="activeScenarioId = scenario.id">
             <span class="flex flex-col items-start gap-4">
-              <img :src="scenario.iconSrc" alt="" class="hidden h-auto w-[1em] shrink-0 lg:block" aria-hidden="true">
+              <span
+                class="hidden aspect-3/4 w-[1em] shrink-0 bg-current text-(--scenario-color) mask-(--scenario-icon) mask-center mask-contain mask-no-repeat lg:block"
+                aria-hidden="true"></span>
               <span>
                 {{ scenario.title }}
               </span>
