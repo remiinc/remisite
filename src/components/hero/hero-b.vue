@@ -1,8 +1,38 @@
 <script setup>
 import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import Button from '../global/button.vue'
 import ProductAssurances from '../global/product-assurances.vue'
+import StaticIphone from '../global/static-iphone.vue'
+
+gsap.registerPlugin(ScrollTrigger)
+
+const PARALLAX_LEVELS = {
+  1: 0,
+  2: -4,
+  3: -8,
+  4: -16,
+  5: -32,
+}
+
+const heroMessages = [
+  {
+    id: 'remi-alert',
+    direction: 'incoming',
+    text: "Morning — Acme's invoice is 7 days overdue, and they asked to reschedule tomorrow's visit.",
+  },
+  {
+    id: 'owner-reply',
+    direction: 'outgoing',
+    text: 'Follow up on the invoice and move them to Friday at 10.',
+  },
+  {
+    id: 'remi-confirmation',
+    direction: 'incoming',
+    text: 'Done — payment reminder sent and the visit is confirmed for Friday at 10. 👍',
+  },
+]
 
 const heroMediaRef = ref(null)
 let heroMediaRevealContext = null
@@ -10,21 +40,58 @@ let heroMediaRevealContext = null
 onMounted(() => {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !heroMediaRef.value) return
 
-  const tiles = [...heroMediaRef.value.children]
+  const tiles = [...heroMediaRef.value.querySelectorAll('[data-hero-media-item]')]
+  const parallaxItems = [...heroMediaRef.value.querySelectorAll('[data-hero-parallax]')]
 
   heroMediaRevealContext = gsap.context(() => {
+    let parallaxActive = false
+    const setParallaxLayer = (active) => {
+      parallaxActive = active
+      gsap.set(parallaxItems, active
+        ? { willChange: 'transform' }
+        : { clearProps: 'willChange' })
+    }
+
     gsap.fromTo(tiles, {
       autoAlpha: 0,
-      clipPath: 'inset(10% round 0.25rem)',
-      willChange: 'clip-path, opacity',
+      clipPath: 'inset(10% round 0.5cqw)',
+      willChange: 'clip-path, opacity, transform',
     }, {
       autoAlpha: 1,
-      clipPath: 'inset(0% round 1rem)',
+      clipPath: 'inset(0% round 1.5cqw)',
       delay: 0.2,
       duration: 1,
       ease: 'power3.out',
       stagger: 0.08,
-      onComplete: () => gsap.set(tiles, { clearProps: 'willChange' }),
+      onComplete: () => setParallaxLayer(parallaxActive),
+    })
+
+    const parallaxTimeline = gsap.timeline({
+      defaults: { ease: 'none' },
+      scrollTrigger: {
+        trigger: heroMediaRef.value,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true,
+        onEnter: () => setParallaxLayer(true),
+        onEnterBack: () => setParallaxLayer(true),
+        onLeave: () => setParallaxLayer(false),
+        onLeaveBack: () => setParallaxLayer(false),
+      },
+    })
+
+    parallaxItems.forEach((item) => {
+      const distance = PARALLAX_LEVELS[Number(item.dataset.heroParallax)]
+      if (!distance) return
+
+      parallaxTimeline.fromTo(item, {
+        y: -distance,
+        force3D: true,
+      }, {
+        y: distance,
+        force3D: true,
+        duration: 1,
+      }, 0)
     })
   }, heroMediaRef.value)
 })
@@ -37,28 +104,27 @@ onBeforeUnmount(() => {
 <template>
   <section class="hero-b lg:h-(--hero-height) w-full bg-foreground px-6 pt-24 text-background grid">
     <div class="hero-b__container mx-auto w-full h-full max-w-(--content-width) flex flex-col">
-      <div class="grid lg:grid-cols-[3fr_4fr] gap-x-16 w-full flex-1">
+      <div class="grid lg:grid-cols-[3fr_4fr] gap-x-16 w-full flex-1 overflow-hidden min-w-0">
 
-        <div class="min-h-full flex flex-col items-start justify-center text-left py-16">
+        <div class="min-h-full flex flex-col items-center lg:items-start justify-center text-center lg:text-left py-16 px-4 lg:px-0">
           <span
             class="text-xs font-medium uppercase px-[0.875em] pt-[0.625em] pb-[0.5em] rounded-sm leading-none bg-background/10 mb-6">
             Office manager by text
           </span>
 
-          <h1 class="headline-h2 max-w-[20ch] text-balance">
+          <h1 class="headline-h2 sm:headline-h1 lg:headline-h2 max-w-[20ch] text-balance">
             <span class="block">Grow your business.</span>
             <span class="block">Let Remi handle the admin.</span>
           </h1>
 
-          <p
-            class="mt-6 max-w-[40ch] text-base leading-relaxed tracking-[-0.015em] text-background/70 text-balance">
+          <p class="mt-6 max-w-[52ch] lg:max-w-[40ch] text-base leading-relaxed tracking-[-0.015em] text-background/70 text-balance">
             For owners who work the job and the desk, Remi watches your inbox, invoices, and customers, then speaks up
             before something slips.
           </p>
 
-          <div class="mt-12 flex w-full items-center gap-3">
-            <Button href="/start" variant="white" size="lg" class="w-46 sm:w-52"
-              data-marketing-cta="hero_text_remi" data-marketing-destination="guided">
+          <div class="mt-12 flex flex-wrap justify-center lg:justify-start items-center gap-3">
+            <Button href="/start" variant="white" size="lg" data-marketing-cta="hero_text_remi"
+              data-marketing-destination="guided">
               <span class="flex items-center gap-2.5">
                 <img src="/images/app-logos/ios-messages-icon.svg" alt="" class="size-5 shrink-0" aria-hidden="true">
                 <span>Text Remi</span>
@@ -71,32 +137,44 @@ onBeforeUnmount(() => {
           </div>
         </div>
 
-        <div class="grid place-items-center py-12 lg:py-4">
+        <div class="grid place-items-center min-w-0 mx-auto py-8 lg:py-0">
           <figure ref="heroMediaRef"
-            class="w-full aspect-4/3 lg:aspect-square grid grid-cols-10 grid-rows-10 gap-1 *:bg-background/10 *:[clip-path:inset(0%_0%_0%_0%_round_1rem)] *:overflow-hidden *:grid [&_img]:object-cover [&_img]:w-full [&_img]:h-full">
-            <div class="col-start-2 col-span-5 row-start-1 row-span-3">
-              <img src="/images/solutions/plumbing-cover@2x.webp"
-                alt="Plumbing professional standing with a tool belt inside a home">
-            </div>
-            <div class="col-start-7 col-span-4 row-start-2 row-span-3">
-              <img src="/images/solutions/roofing-cover@2x.webp"
-                alt="Roofing professional measuring shingles while secured with a safety harness">
-            </div>
-            <div class="col-start-1 col-span-3 row-start-4 row-span-3">
-              <img src="/images/solutions/cleaning-cover@2x.webp"
-                alt="Cleaning professional washing floor-to-ceiling windows">
-            </div>
-            <div class="col-start-4 col-span-4 row-start-5 row-span-6">
-              <img src="/images/solutions/construction-cover@2x.webp"
-                alt="Construction crew reviewing plans at a timber-framed jobsite">
-            </div>
-            <div class="col-start-2 col-span-2 row-start-7 row-span-3">
+            class="w-full aspect-4/5 sm:aspect-square grid grid-cols-32 grid-rows-32 gap-2 [&_img]:h-full [&_img]:w-full [&_img]:object-cover">
+            <!-- Left -->
+            <div class="hero-b__media-tile col-start-5 col-span-9 row-start-1 row-span-6" data-hero-media-item
+              data-hero-parallax="3">
               <img src="/images/solutions/marketing-agency-cover@2x.webp"
                 alt="Marketing professional reviewing documents with a colleague">
             </div>
-            <div class="col-start-8 col-span-3 row-start-6 row-span-4">
+            <div class="hero-b__media-tile col-start-1 col-span-11 row-start-7 row-span-12" data-hero-media-item
+              data-hero-parallax="2">
+              <img src="/images/solutions/plumbing-cover@2x.webp"
+                alt="Plumbing professional standing with a tool belt inside a home">
+            </div>
+            <div class="hero-b__media-tile col-start-3 col-span-9 row-start-17 row-span-12" data-hero-media-item
+              data-hero-parallax="5">
               <img src="/images/solutions/home-remodeling-cover@2x.webp"
                 alt="Remodeling professional sanding a newly finished ceiling">
+            </div>
+            <!-- Center -->
+            <div class="col-start-8 sm:col-start-10 col-span-19 sm:col-span-15 row-start-1 sm:row-start-2 row-span-32 sm:row-span-30 z-10" data-hero-parallax="1">
+              <StaticIphone fluid theme="dark" class="h-full" :font-size="1.125" :messages="heroMessages" />
+            </div>
+            <!-- Right -->
+            <div class="hero-b__media-tile col-start-22 col-span-12 row-start-4 row-span-16 z-2" data-hero-media-item
+              data-hero-parallax="2">
+              <img src="/images/misc/contractor-001@2x.webp"
+                alt="Cleaning professional washing floor-to-ceiling windows">
+            </div>
+            <div class="hero-b__media-tile col-start-25 col-span-8 row-start-16 row-span-10 z-3" data-hero-media-item
+              data-hero-parallax="4">
+              <img src="/images/misc/contractor-002@2x.webp"
+                alt="Construction crew reviewing plans at a timber-framed jobsite">
+            </div>
+            <div class="hero-b__media-tile col-start-20 col-span-10 row-start-22 row-span-8 z-1" data-hero-media-item
+            data-hero-parallax="3">
+              <img src="/images/solutions/plumbing-cover@2x.webp"
+                alt="Plumbing professional standing with a tool belt inside a home">
             </div>
           </figure>
         </div>
@@ -112,10 +190,18 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped>
+.hero-b__media-tile {
+  display: grid;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--color-background) 10%, transparent);
+  clip-path: inset(0 round 1.5cqw);
+}
+
 .hero-b__container {
   opacity: 0;
   translate: 0 1.25rem;
   animation: hero-b-enter 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+  container-type: inline-size;
 }
 
 @keyframes hero-b-enter {
