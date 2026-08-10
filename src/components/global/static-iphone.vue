@@ -1,12 +1,19 @@
 <script setup>
 import { PhCaretLeft, PhMicrophone, PhPlus } from '@phosphor-icons/vue'
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import EmailReviewCard from './messages/email-review-card.vue'
+import EmailReviewSheet from './messages/email-review-sheet.vue'
 import InvoiceReviewCard from './messages/invoice-review-card.vue'
 import InvoiceReviewSheet from './messages/invoice-review-sheet.vue'
+import JobUpdateCard from './messages/job-update-card.vue'
+import JobUpdateSheet from './messages/job-update-sheet.vue'
 import PhotoStack from './messages/photo-stack.vue'
 import QuoteReviewCard from './messages/quote-review-card.vue'
+import QuoteReviewSheet from './messages/quote-review-sheet.vue'
 import VoiceMessage from './messages/voice-message.vue'
 import SiteIcon from './site-icon.vue'
+
+const emit = defineEmits(['playback-complete'])
 
 const props = defineProps({
   autoplay: {
@@ -31,7 +38,7 @@ const props = defineProps({
     validator: messages => Array.isArray(messages) && messages.every(message => (
       ['incoming', 'outgoing'].includes(message?.direction)
       && (typeof message?.text === 'string'
-        || (['invoice-review', 'quote-review'].includes(message?.component) && typeof message?.card === 'object')
+        || (['email-review', 'invoice-review', 'job-update', 'quote-review'].includes(message?.component) && typeof message?.card === 'object')
         || (message?.component === 'photo-stack' && Array.isArray(message?.photos))
         || (message?.component === 'voice-message' && typeof message?.duration === 'string'))
     )),
@@ -39,6 +46,11 @@ const props = defineProps({
   loopDelay: {
     type: Number,
     default: 4500,
+    validator: value => Number.isFinite(value) && value >= 0,
+  },
+  completionDelay: {
+    type: Number,
+    default: 1800,
     validator: value => Number.isFinite(value) && value >= 0,
   },
   showAvatarRow: {
@@ -67,6 +79,24 @@ const activeReview = ref(null)
 const approvedCardId = ref(null)
 const reviewState = ref('idle')
 const tappedCardId = ref(null)
+const completionPending = ref(false)
+const playbackPausedForReview = ref(false)
+const activeReviewSheet = computed(() => ({
+  'email-review': EmailReviewSheet,
+  'invoice-review': InvoiceReviewSheet,
+  'job-update': JobUpdateSheet,
+  'quote-review': QuoteReviewSheet,
+}[activeReview.value?.component]))
+const activeReviewProps = computed(() => {
+  if (!activeReview.value) return {}
+
+  const reviewProps = { ...activeReview.value.card }
+  if (['email-review', 'invoice-review', 'quote-review'].includes(activeReview.value.component)) {
+    reviewProps.status = reviewState.value
+  }
+
+  return reviewProps
+})
 const isComplete = computed(() => displayedMessageCount.value === props.messages.length)
 const displayedMessages = computed(() => props.messages.slice(0, displayedMessageCount.value))
 const messageTimers = []
@@ -89,12 +119,14 @@ function playMessages() {
   if (!props.autoplay) return
 
   clearAllTimers()
-  displayedMessageCount.value = 0
   isTyping.value = false
+  displayedMessageCount.value = 0
   activeReview.value = null
   approvedCardId.value = null
   reviewState.value = 'idle'
   tappedCardId.value = null
+  playbackPausedForReview.value = false
+  completionPending.value = false
   if (messageThreadRef.value) messageThreadRef.value.scrollTop = 0
 
   let elapsed = 300
@@ -117,41 +149,79 @@ function playMessages() {
       displayedMessageCount.value = index + 1
     }, elapsed)
 
-    if (message.component === 'invoice-review' && message.demo) {
+    if (['email-review', 'invoice-review'].includes(message.component) && message.demo) {
       schedule(() => {
         tappedCardId.value = message.id
       }, elapsed + 1050, reviewTimers)
       schedule(() => {
         tappedCardId.value = null
-        openInvoiceReview(message)
+        openMessageReview(message)
       }, elapsed + 1400, reviewTimers)
-      schedule(approveInvoiceReview, elapsed + 3150, reviewTimers)
+      schedule(approveMessageReview, elapsed + 3150, reviewTimers)
     }
   })
 
   if (props.loopDelay > 0) {
-    schedule(playMessages, elapsed + props.loopDelay)
+    schedule(() => playMessages(), elapsed + props.loopDelay)
+    return
   }
+
+  schedule(completePlayback, elapsed + props.completionDelay)
 }
 
-function openInvoiceReview(message, manual = false) {
-  if (manual) clearTimers(reviewTimers)
-  activeReview.value = { id: message.id, ...message.card }
+function completePlayback() {
+  if (activeReview.value) {
+    completionPending.value = true
+    return
+  }
+
+  emit('playback-complete')
+}
+
+function releasePendingCompletion() {
+  if (!completionPending.value) return
+
+  completionPending.value = false
+  emit('playback-complete')
+}
+
+function finishInterruptedStory() {
+  completionPending.value = false
+
+  if (props.loopDelay > 0) {
+    schedule(() => playMessages(), props.loopDelay)
+    return
+  }
+
+  schedule(completePlayback, props.completionDelay)
+}
+
+function openMessageReview(message, manual = false) {
+  if (manual) {
+    clearAllTimers()
+    completionPending.value = false
+    playbackPausedForReview.value = true
+  }
+  activeReview.value = { id: message.id, component: message.component, card: message.card }
   reviewState.value = 'idle'
 }
 
-function dismissInvoiceReview() {
-  clearTimers(reviewTimers)
+function dismissMessageReview() {
+  clearAllTimers()
   activeReview.value = null
   reviewState.value = 'idle'
   tappedCardId.value = null
+  completionPending.value = false
+  playbackPausedForReview.value = false
+  finishInterruptedStory()
 }
 
-function approveInvoiceReview() {
+function approveMessageReview() {
   if (!activeReview.value || reviewState.value !== 'idle') return
 
   reviewState.value = 'approving'
   const cardId = activeReview.value.id
+  const wasManuallyOpened = playbackPausedForReview.value
 
   schedule(() => {
     reviewState.value = 'approved'
@@ -160,6 +230,14 @@ function approveInvoiceReview() {
   schedule(() => {
     activeReview.value = null
     reviewState.value = 'idle'
+    playbackPausedForReview.value = false
+
+    if (wasManuallyOpened) {
+      finishInterruptedStory()
+      return
+    }
+
+    releasePendingCompletion()
   }, 1700, reviewTimers)
 }
 
@@ -193,6 +271,8 @@ watch(() => props.messages, () => {
   displayedMessageCount.value = props.messages.length
   activeReview.value = null
   reviewState.value = 'idle'
+  completionPending.value = false
+  playbackPausedForReview.value = false
 }, { deep: true })
 
 watch([displayedMessageCount, isTyping], async () => {
@@ -290,16 +370,18 @@ watch([displayedMessageCount, isTyping], async () => {
                     class="static-iphone__message mt-[0.65em] flex w-full flex-col px-[1em]" :data-message-direction="message.direction">
                     <div class="flex w-full"
                       :class="message.direction === 'incoming' ? 'justify-start' : 'justify-end'">
-                      <button v-if="message.component === 'invoice-review'" class="relative flex w-full text-left" type="button"
-                        aria-label="Open invoice review" @click="openInvoiceReview(message, true)">
-                        <InvoiceReviewCard v-bind="message.card" :approved="approvedCardId === message.id" />
+                      <button v-if="['email-review', 'invoice-review', 'job-update', 'quote-review'].includes(message.component)" class="relative flex w-full text-left" type="button"
+                        :aria-label="`Open ${message.component.replace('-', ' ')}`" @click="openMessageReview(message, true)">
+                        <EmailReviewCard v-if="message.component === 'email-review'" v-bind="message.card" :approved="approvedCardId === message.id" />
+                        <InvoiceReviewCard v-else-if="message.component === 'invoice-review'" v-bind="message.card" :approved="approvedCardId === message.id" />
+                        <JobUpdateCard v-else-if="message.component === 'job-update'" v-bind="message.card" />
+                        <QuoteReviewCard v-else v-bind="message.card" :approved="approvedCardId === message.id" />
                         <span v-if="tappedCardId === message.id"
                           class="static-iphone__tap absolute bottom-[0.55em] left-[72%] size-[1.6em] rounded-full border border-white/60 bg-white/25 shadow-[0_0_0_0.5em_rgba(255,255,255,0.12)]"
                           aria-hidden="true" />
                       </button>
                       <PhotoStack v-else-if="message.component === 'photo-stack'" :photos="message.photos" />
                       <VoiceMessage v-else-if="message.component === 'voice-message'" :duration="message.duration" />
-                      <QuoteReviewCard v-else-if="message.component === 'quote-review'" v-bind="message.card" />
                       <div v-else
                         class="relative inline-block max-w-[78%] whitespace-pre-line rounded-[1.25em] px-[0.875em] text-[0.9em] leading-tight tracking-tight before:absolute before:bottom-0 before:z-0 before:h-[1.25em] before:w-[1.25em] before:content-[''] after:absolute after:bottom-0 after:z-1 after:h-[1.25em] after:w-[0.7em] after:bg-(--iphone-background) after:content-['']"
                         :class="message.direction === 'incoming'
@@ -336,8 +418,8 @@ watch([displayedMessageCount, isTyping], async () => {
                 </div>
 
                 <Transition name="review-sheet">
-                  <InvoiceReviewSheet v-if="activeReview" v-bind="activeReview" :status="reviewState"
-                    @approve="approveInvoiceReview" @dismiss="dismissInvoiceReview" />
+                  <component :is="activeReviewSheet" v-if="activeReview" v-bind="activeReviewProps"
+                    @approve="approveMessageReview" @dismiss="dismissMessageReview" />
                 </Transition>
               </div>
             </div>
