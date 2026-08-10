@@ -17,7 +17,7 @@ const heroMessages = [
     id: 'remi-morning-heads-up',
     direction: 'incoming',
     delay: 350,
-    text: "morning charlie 👋 mark puckett's $6,850 final is 20 days late. matched that lowe's receipt to whitaker too",
+    text: "Morning Charlie 👋 Mark Puckett's $6,850 final is 20 days late. Matched that Lowe's receipt to Whitaker too",
   },
   {
     id: 'charlie-file-and-nudge',
@@ -45,13 +45,13 @@ const heroMessages = [
     id: 'remi-sent',
     direction: 'incoming',
     delay: 5400,
-    text: "sent 👍 i'll watch for his reply",
+    text: "Sent 👍 I'll watch for his reply",
   },
   {
     id: 'remi-next-thing',
     direction: 'incoming',
     delay: 1900,
-    text: 'also bill caudill just sent the bathroom pics',
+    text: 'Also, Bill Caudill just sent the bathroom pics',
   },
   {
     id: 'caudill-bathroom-photos',
@@ -88,13 +88,13 @@ const heroMessages = [
     id: 'remi-check-materials',
     direction: 'incoming',
     delay: 2100,
-    text: "got it. i'll double-check the cost of those materials",
+    text: "Got it. I'll double-check the cost of those materials",
   },
   {
     id: 'remi-quote-ready',
     direction: 'incoming',
     delay: 2500,
-    text: "ok quote's ready. came to $21,800",
+    text: "OK, quote's ready. Came to $21,800",
   },
   {
     id: 'caudill-quote-review',
@@ -119,7 +119,7 @@ const heroMessages = [
     id: 'remi-quote-sent',
     direction: 'incoming',
     delay: 1600,
-    text: "sent 👍 i'll let you know when bill replies",
+    text: "Sent 👍 I'll let you know when Bill replies",
   },
 ]
 

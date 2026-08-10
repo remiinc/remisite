@@ -20,6 +20,7 @@ const AboutPage = defineAsyncComponent(pageLoaders.about)
 const LegalPage = defineAsyncComponent(pageLoaders.legal)
 const LegacyRedirect = defineAsyncComponent(pageLoaders.legacyRedirect)
 const PricingPage = defineAsyncComponent(pageLoaders.pricing)
+const ReviewCardsPreviewPage = defineAsyncComponent(() => import('./components/preview/review-cards-preview-page.vue'))
 const SecurityPage = defineAsyncComponent(pageLoaders.security)
 const SolutionPage = defineAsyncComponent(pageLoaders.solution)
 const SolutionsIndexPage = defineAsyncComponent(pageLoaders.solutionsIndex)
@@ -36,6 +37,7 @@ const isSolutionPage = computed(() => normalizedPath.value.startsWith('/solution
 const isBlogIndexPage = computed(() => normalizedPath.value === '/resources')
 const isBlogPostPage = computed(() => normalizedPath.value.startsWith('/resources/'))
 const isPricingPage = computed(() => normalizedPath.value === '/pricing')
+const isReviewCardsPreviewPage = computed(() => normalizedPath.value === '/preview/review-cards')
 const isSecurityPage = computed(() => normalizedPath.value === '/security')
 const isLegalPage = computed(() => ['/terms', '/privacy'].includes(normalizedPath.value))
 const isStartPage = computed(() => normalizedPath.value === '/start')
@@ -88,6 +90,7 @@ onBeforeUnmount(() => {
 
 <template>
   <LegacyRedirect v-if="legacyRedirectTarget" :to="legacyRedirectTarget" />
+  <ReviewCardsPreviewPage v-else-if="isReviewCardsPreviewPage" />
   <AboutPage v-else-if="isAboutPage" />
   <SolutionsIndexPage v-else-if="isSolutionsIndexPage" />
   <SolutionPage v-else-if="isSolutionPage" />
