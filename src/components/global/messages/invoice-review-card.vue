@@ -1,6 +1,4 @@
 <script setup>
-import { PhCaretRight } from '@phosphor-icons/vue'
-
 defineProps({
   customerName: {
     type: String,

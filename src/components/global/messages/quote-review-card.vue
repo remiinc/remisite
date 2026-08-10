@@ -1,12 +1,11 @@
 <script setup>
-import { PhCheck, PhCaretRight, PhX } from '@phosphor-icons/vue'
-
 defineProps({
   customerName: { type: String, required: true },
   projectName: { type: String, required: true },
   quoteNumber: { type: String, required: true },
   title: { type: String, required: true },
   total: { type: String, required: true },
+  approved: { type: Boolean, default: false },
 })
 </script>
 
@@ -34,13 +33,13 @@ defineProps({
 
       <div class="flex items-center gap-[0.4em] px-[1em] pt-[1em] pb-[1.2em]">
         <span class="opacity-60">Status</span>
-        <span class="ml-auto font-medium">Needs approval</span>
+        <span class="ml-auto font-medium">{{ approved ? 'Approved & sent' : 'Needs approval' }}</span>
       </div>
 
       <footer class="pb-[0.5em] px-[0.5em]">
         <div
           class="w-full flex items-center justify-center py-[0.9em] gap-[0.4em] rounded-lg bg-foreground/10 text-foreground font-medium">
-          <span>Review</span>
+          <span>{{ approved ? 'View receipt' : 'Review' }}</span>
         </div>
       </footer>
     </div>
