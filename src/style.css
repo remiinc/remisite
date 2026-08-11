@@ -6,7 +6,7 @@
     url("/fonts/PPNeueMontreal-Variable.woff2") format("woff2"),
     url("/fonts/PPNeueMontreal-Variable.woff") format("woff2");
   font-style: normal;
-  font-weight: 100 900;
+  font-weight: 200 800;
   font-display: swap;
 }
 
@@ -125,26 +125,38 @@
 
   .headline-h1 {
     @apply font-heading text-[clamp(3rem,2.5459rem_+_1.8164vi,3.999rem)] leading-none font-[450] tracking-tight;
+    font-synthesis: none;
+    font-variation-settings: "wght" 450, "ital" 100;
   }
 
   .headline-h2 {
     @apply font-heading text-[clamp(2.25rem,1.9094rem_+_1.3623vi,2.9993rem)] leading-none font-[450] tracking-tight;
+    font-synthesis: none;
+    font-variation-settings: "wght" 450, "ital" 100;
   }
 
   .headline-h3 {
     @apply font-heading text-[clamp(1.875rem,1.5912rem_+_1.1352vi,2.4994rem)] leading-[1.1] font-[450] tracking-tight;
+    font-synthesis: none;
+    font-variation-settings: "wght" 450, "ital" 100;
   }
 
   .headline-h4 {
     @apply font-heading text-[clamp(1.5rem,1.273rem_+_0.9082vi,1.9995rem)] leading-[1.125] font-[450] tracking-tight;
+    font-synthesis: none;
+    font-variation-settings: "wght" 450, "ital" 100;
   }
 
   .headline-h5 {
     @apply font-heading text-[clamp(1.25rem,1.0608rem_+_0.7568vi,1.6663rem)] leading-[1.2] font-[480] tracking-tight;
+    font-synthesis: none;
+    font-variation-settings: "wght" 480, "ital" 100;
   }
 
   .headline-h6 {
     @apply font-heading text-[clamp(1.125rem,0.9547rem_+_0.6811vi,1.4996rem)] leading-tight font-[500] tracking-tight;
+    font-synthesis: none;
+    font-variation-settings: "wght" 500, "ital" 100;
   }
 
   .debug {

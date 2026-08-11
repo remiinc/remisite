@@ -54,13 +54,13 @@ if (typeof document !== 'undefined') {
             <p class="text-xs font-medium leading-none uppercase text-current">
               {{ metadata.heroTitle }}
             </p>
-            <h1 id="mission-title" class="headline-h1 mx-auto text-pretty">
+            <h1 id="mission-title" class="headline-h2 mx-auto text-pretty mb-4">
               <span class="text-current font-medium">{{ metadata.heroLead }}&nbsp;</span>
             </h1>
-            <Button href="/start" variant="white" size="lg" data-marketing-cta="about_text_remi"
+            <Button href="/start" variant="translucent" size="lg" data-marketing-cta="about_text_remi"
               data-marketing-destination="guided">
               <span class="flex items-center gap-2.5">
-                <img src="/images/app-logos/ios-messages-icon.svg" alt="" class="size-5 shrink-0" aria-hidden="true">
+                <img src="/images/app-logos/ios-messages-icon.svg" alt="" class="size-4 shrink-0" aria-hidden="true">
                 <span>Text Remi</span>
               </span>
             </Button>
@@ -83,12 +83,45 @@ if (typeof document !== 'undefined') {
             <article v-for="(section, index) in sections" :id="section.id" :key="section.id"
               class="about-section w-full grid gap-6 py-12 md:grid-cols-[0.75fr_1.25fr]">
               <div class="flex items-start gap-6">
-                <h2 class="headline-h4 max-w-[18ch] text-balance">
+                <h2 class="headline-h5 max-w-[18ch] text-balance">
                   {{ section.title }}
                 </h2>
               </div>
-              <div class="about-copy max-w-2xl text-base tracking-tight" v-html="section.html" />
+              <div class="text-base text-current/60 max-w-2xl tracking-tight" v-html="section.html" />
             </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="px-6 pb-24" aria-labelledby="founders-title">
+        <div class="mx-auto w-full max-w-5xl">
+          <figure class="overflow-hidden rounded-2xl bg-current/10">
+            <img src="/images/about-founders@2x.webp" alt="Remi co-founders Hunter Hammonds and Petr Knoll" width="2454"
+              height="1636" loading="lazy" decoding="async" class="block h-auto w-full">
+          </figure>
+          <div class="about-section w-full grid gap-6 py-12 md:grid-cols-[0.75fr_1.25fr] text-background">
+            <h2 id="founders-title" class="headline-h3 w-full mb-10 text-balance leading-none">
+              Our story
+            </h2>
+            <div class="text-base tracking-tight">
+              <p class="text-current/60 mb-4">
+                We’ve spent the past nine years building companies together across the US and Czechia. We know the
+                rhythm of a service business: today’s work becomes tonight’s admin, and the things that matter most
+                are often the easiest to let slip.
+              </p>
+              <p class="text-current/60 mb-4">
+                We built Remi because we needed a better answer ourselves. Not another system to configure and
+                maintain, but a reliable teammate who notices what needs attention, takes the work, and keeps the
+                owner in control.
+              </p>
+              <p class="text-current/60 mb-4">
+                That experience still shapes every decision we make. Remi should give owners more time for the work,
+                people, and businesses they care about—not more software to manage.
+              </p>
+              <p class="text-sm text-balance tracking-tight text-current mt-8">
+                Hunter &amp; Petr
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -98,19 +131,3 @@ if (typeof document !== 'undefined') {
     <GlobalFooter />
   </div>
 </template>
-
-<style scoped>
-.about-section {
-  scroll-margin-top: calc(var(--header-height) + 2rem);
-}
-
-.about-copy {
-  color: color-mix(in oklch, currentColor 60%, transparent);
-  line-height: 1.4;
-  text-wrap: pretty;
-}
-
-.about-copy :deep(p + p) {
-  margin-top: 1.25rem;
-}
-</style>
