@@ -18,27 +18,30 @@ const included = [
 ]
 
 const carouselDelay = 5500
-const placeholderMessages = ['This is a placeholder image']
 const carouselSlides = [
   {
     src: '/images/features/start-feature-01@2x.webp',
     alt: 'A business owner checking Remi from his phone',
     objectPosition: 'center 72%',
+    messages: ['morning. henderson paid the final invoice last night. $8,450 is in 🎉'],
   },
   {
     src: '/images/solutions/plumbing-feature@2x.webp',
     alt: 'A plumbing contractor meeting with a customer in her home',
     objectPosition: '72% center',
+    messages: ['new lead from the parkers. bathroom remodel in franklin. want me to draft a reply?'],
   },
   {
     src: '/images/features/home-feature-02@2x.jpg',
     alt: 'A business owner using a laptop at a workshop',
     objectPosition: 'center',
+    messages: ['caudill quote is ready for review. came to $21,800'],
   },
   {
     src: '/images/misc/contractor-001@2x.webp',
     alt: 'A contractor standing at an active job site',
     objectPosition: 'center',
+    messages: ['tomorrow is set. crew confirmed and the material pickup moved to 7:30 👍'],
   },
 ]
 
@@ -248,7 +251,7 @@ onBeforeUnmount(() => {
               >
               <div class="absolute inset-0 z-10 grid place-items-center p-6">
                 <MessageNotification
-                  :messages="placeholderMessages"
+                  :messages="slide.messages"
                   :autoplay="false"
                   :loop="false"
                   :max-visible="1" />
