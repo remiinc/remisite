@@ -29,7 +29,7 @@ test('section playback starts in view and advances after each complete story', a
   ])
 
   assert.match(section, /new IntersectionObserver/)
-  assert.match(section, /playbackObserver\.observe\(phoneMockup\.value\)/)
+  assert.match(section, /playbackObserver\.observe\(sectionRoot\.value\)/)
   assert.match(section, /:autoplay="hasStartedPlayback"/)
   assert.match(section, /@playback-complete="handlePlaybackComplete"/)
   assert.match(section, /setScenarioByOffset\(1\)/)
@@ -41,6 +41,53 @@ test('section playback starts in view and advances after each complete story', a
   assert.match(phone, /if \(props\.loopDelay > 0\) \{[\s\S]*schedule\(\(\) => playMessages\(\), props\.loopDelay\)/)
   assert.match(phone, /if \(wasManuallyOpened\) \{[\s\S]*finishInterruptedStory\(\)/)
   assert.match(phone, /emit\('playback-complete'\)/)
+})
+
+test('mobile presents every scenario as an Embla phone slide while playing only the selected story', async () => {
+  const [section, carousel] = await Promise.all([
+    readSource('src/components/sections/section-iphone.vue'),
+    readSource('src/components/sections/components/mobile-iphone-carousel.vue'),
+  ])
+
+  assert.match(section, /import MobileIphoneCarousel from '\.\/components\/mobile-iphone-carousel\.vue'/)
+  assert.match(section, /v-if="isMobileViewport"/)
+  assert.match(section, /:initial-scenario-id="activeScenarioId"/)
+  assert.match(section, /@scenario-change="selectScenario"/)
+  assert.match(section, /mobileViewportMedia\.addEventListener\('change', syncMobileViewport\)/)
+  assert.match(section, /mobileViewportMedia\?\.removeEventListener\('change', syncMobileViewport\)/)
+  assert.doesNotMatch(section, /useEmblaCarousel/)
+
+  assert.match(carousel, /import AutoHeight from 'embla-carousel-auto-height'/)
+  assert.match(carousel, /import useEmblaCarousel from 'embla-carousel-vue'/)
+  assert.match(carousel, /const carouselPlugins = \[AutoHeight\(\)\]/)
+  assert.match(carousel, /const \[emblaRef, emblaApi\] = useEmblaCarousel\(carouselOptions, carouselPlugins\)/)
+  assert.match(carousel, /align: 'center'/)
+  assert.match(carousel, /containScroll: 'trimSnaps'/)
+  assert.match(carousel, /loop: true/)
+  assert.match(carousel, /slidesToScroll: 1/)
+  assert.match(carousel, /startIndex: initialIndex/)
+  assert.match(carousel, /watchResize: watchCarouselResize/)
+  assert.match(carousel, /\[reducedMotionQuery\]: \{\s*duration: 0,/)
+  assert.match(carousel, /v-for="\(scenario, index\) in scenarios"/)
+  assert.match(carousel, /:autoplay="hasStartedPlayback && selectedIndex === index"/)
+  assert.match(carousel, /:completion-delay="2000"/)
+  assert.match(carousel, /@playback-complete="handlePlaybackComplete\(index\)"/)
+  assert.match(carousel, /emblaApi\.value\?\.scrollNext\(\)/)
+  assert.match(carousel, /aria-roledescription="carousel"/)
+  assert.match(carousel, /:inert="selectedIndex !== index"/)
+  assert.match(carousel, /data-mobile-scenario-copy/)
+  assert.match(carousel, /mobile-iphone-embla__slide-content[\s\S]*<StaticIphone[\s\S]*data-mobile-scenario-copy/)
+  assert.match(carousel, /transition-\[grid-template-rows,opacity\]/)
+  assert.match(carousel, /grid-rows-\[1fr\]/)
+  assert.match(carousel, /grid-rows-\[0fr\]/)
+  assert.match(carousel, /selectedIndex === index \? 'opacity-100' : 'opacity-0'/)
+  assert.match(carousel, /mobile-iphone-copy-reveal--measuring/)
+  assert.match(carousel, /class="min-h-0 overflow-hidden"/)
+  assert.doesNotMatch(carousel, /min-h-40/)
+  assert.match(carousel, /align-items: flex-start/)
+  assert.match(carousel, /transition: height 300ms ease-out/)
+  assert.match(carousel, /touch-action: pan-y pinch-zoom/)
+  assert.doesNotMatch(carousel, /mobile-dot-/)
 })
 
 test('invoice example catches the first meaningful payment slip', async () => {
@@ -97,8 +144,8 @@ test('customer-response story uses the production-shaped email review contract',
   assert.match(phone, /import EmailReviewSheet from '\.\/messages\/email-review-sheet\.vue'/)
   assert.match(phone, /<EmailReviewCard v-if="message\.component === 'email-review'"/)
   assert.match(card, /Email reply/)
-  assert.match(card, /max-w-\[18\.53em\]/, 'Swift transcript cards cap at 315 points')
-  assert.match(card, /text-\[1\.118em\]/, 'compact email subject mirrors the 19 point Swift style')
+  assert.match(card, /w-\[88%\]/, 'email review cards use the shared compact transcript width')
+  assert.match(card, /text-\[1em\] font-semibold/, 'email subjects use the shared quote-card title scale')
   assert.match(card, /bg-\[#0a84ff\]\/12/, 'approval status uses the shared Swift editorial status treatment')
   assert.match(sheet, /Email draft/)
   assert.match(sheet, /rounded-t-\[1\.765em\]/, 'Swift review sheets use a 30 point top radius')
@@ -187,4 +234,22 @@ test('remember-everything story links proof into the native job and email surfac
   assert.match(jobSheet, /Contract/)
   assert.match(jobSheet, /Collected/)
   assert.doesNotMatch(jobSheet, /Back to Messages/, 'the web translation must not invent native sheet chrome')
+})
+
+test('review cards share the compact typography rhythm and two-layer shadow', async () => {
+  const cards = await Promise.all([
+    readSource('src/components/global/messages/email-review-card.vue'),
+    readSource('src/components/global/messages/invoice-review-card.vue'),
+    readSource('src/components/global/messages/job-update-card.vue'),
+    readSource('src/components/global/messages/quote-review-card.vue'),
+  ])
+  const sharedShadow = 'shadow-[0_0.5em_1.5em_-0.25em_rgba(0,0,0,0.08),0_0_0_1px_rgba(0,0,0,0.06)]'
+
+  for (const card of cards) {
+    assert.match(card, /w-\[88%\]/)
+    assert.match(card, /rounded-\[0\.88em\]/)
+    assert.ok(card.includes(sharedShadow), 'every review card uses the same subtle drop and 1px edge shadows')
+    assert.match(card, /text-\[0\.675em\]/)
+    assert.match(card, /px-\[0\.85em\]/)
+  }
 })

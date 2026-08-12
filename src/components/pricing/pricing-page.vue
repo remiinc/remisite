@@ -3,8 +3,8 @@ import Button from '../global/button.vue'
 import GlobalFooter from '../global/global-footer.vue'
 import GlobalHeader from '../header/global-header.vue'
 import SectionFaq from '../sections/section-faq.vue'
+import SectionPricing from '../sections/section-pricing.vue'
 import SectionWhyRemi from '../sections/section-why-remi.vue'
-import PricingPlans from './pricing-plans.vue'
 
 if (typeof document !== 'undefined') {
   document.title = 'Pricing | Remi'
@@ -34,9 +34,7 @@ if (typeof document !== 'undefined') {
         </div>
       </section>
 
-      <section class="px-6 py-20" aria-label="Pricing plans">
-        <PricingPlans />
-      </section>
+      <SectionPricing />
 
       <SectionWhyRemi />
 
