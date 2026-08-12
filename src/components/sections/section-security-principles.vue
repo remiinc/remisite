@@ -40,31 +40,31 @@ const trustPrinciples = [
 
 <template>
   <section :id="id" class="scroll-mt-24 px-6 py-12" aria-labelledby="security-proof-title" data-security-proof>
-    <div class="mx-auto grid w-full max-w-(--content-width) gap-4 lg:grid-cols-[0.82fr_1.18fr]">
-      <div class="rounded-3xl bg-foreground p-8 text-background md:p-10">
-        <div class="flex h-full min-h-120 flex-col justify-between gap-12">
+    <div class="mx-auto grid w-full max-w-(--content-width) gap-2 sm:gap-4 lg:grid-cols-[0.82fr_1.18fr]">
+      <div class="rounded-3xl bg-foreground p-6 sm:p-8 text-background md:p-10">
+        <div class="flex h-full sm:min-h-120 flex-col justify-between gap-12">
           <div class="flex flex-col gap-5">
             <PhFingerprint class="size-6 text-background" weight="fill" aria-hidden="true" />
-            <h2 id="security-proof-title" class="headline-h3 max-w-[12ch] text-balance">
+            <h2 id="security-proof-title" class="headline-h4 sm:headline-h3 max-w-[12ch] text-balance">
               Permission before power
             </h2>
           </div>
-          <p class="max-w-md text-base leading-normal text-pretty text-background">
+          <p class="max-w-md text-sm sm:text-base leading-normal text-pretty text-background">
             Remi works best with enough context to help and clear boundaries on what happens next. Every connection is
             scoped, every draft can be checked, and important actions stay under your control.
           </p>
         </div>
       </div>
 
-      <div class="grid gap-4 sm:grid-cols-2">
+      <div class="grid gap-2 sm:gap-4 grid-cols-2">
         <article
           v-for="principle in trustPrinciples"
           :key="principle.title"
-          class="flex min-h-72 flex-col justify-between rounded-3xl bg-muted p-6"
+          class="flex sm:min-h-72 flex-col justify-between rounded-3xl bg-muted p-6"
         >
-          <component :is="principle.icon" class="size-5 text-foreground/40" weight="fill" aria-hidden="true" />
-          <div class="mt-12 flex flex-col gap-3">
-            <h3 class="headline-h5 text-balance">
+          <component :is="principle.icon" class="size-4 sm:size-5 text-foreground/40" weight="fill" aria-hidden="true" />
+          <div class="mt-4 sm:mt-12 flex flex-col gap-3">
+            <h3 class="text-base sm:text-lg font-medium text-balance">
               {{ principle.title }}
             </h3>
             <p class="text-sm leading-normal text-pretty text-foreground/50">

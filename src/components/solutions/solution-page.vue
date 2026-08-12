@@ -122,13 +122,12 @@ onBeforeUnmount(() => {
               </template>
               <template v-else>{{ solution.title }}</template>
             </h1>
-            <p v-if="solution.heroDescription"
-              class="max-w-2xl text-lg leading-snug text-pretty text-muted-foreground">
+            <p v-if="solution.heroDescription" class="max-w-2xl text-lg leading-snug text-pretty text-muted-foreground">
               {{ solution.heroDescription }}
             </p>
             <div class="flex flex-wrap gap-3 mt-4">
-              <Button href="/start" variant="primary" size="sm"
-                data-marketing-cta="solution_hero_text_remi" data-marketing-destination="guided">
+              <Button href="/start" variant="primary" size="sm" data-marketing-cta="solution_hero_text_remi"
+                data-marketing-destination="guided">
                 <div class="flex items-center gap-2"><img src="/images/app-logos/ios-messages-icon.svg" alt="Google"
                     class="size-3" /><span>Try for Free</span></div>
               </Button>
@@ -142,8 +141,7 @@ onBeforeUnmount(() => {
               :alt="solution.heroImageAlt || solution.title" width="1600" height="1000"
               class="absolute inset-0 size-full object-cover" loading="eager" decoding="async" fetchpriority="high">
 
-            <div v-if="solution.heroMessage"
-              class="absolute inset-x-5 bottom-5 z-10 flex md:inset-x-10 md:bottom-10"
+            <div v-if="solution.heroMessage" class="absolute inset-x-5 bottom-5 z-10 flex md:inset-x-10 md:bottom-10"
               :class="solution.heroMessageVariant === 'incoming' ? 'justify-start' : 'justify-end'">
               <div
                 class="relative inline-block max-w-[78%] px-[0.875em] py-[0.5em] text-[0.9em] leading-tight tracking-tight"
@@ -163,7 +161,8 @@ onBeforeUnmount(() => {
             Remi for {{ solution.industryLabel }}
           </p>
 
-          <dl class="grid gap-3 md:max-w-4xl md:justify-self-end md:grid-cols-3 gap-x-4 divide-y divide-border md:divide-none">
+          <dl
+            class="grid gap-3 md:max-w-4xl md:justify-self-end md:grid-cols-3 gap-x-4 divide-y divide-border md:divide-none">
             <div v-for="stat in solution.stats" :key="`${stat.metric}-${stat.label}`"
               class="flex flex-col justify-between gap-6 py-8 md:py-0 first:pt-0 last:pb-0">
               <dd
@@ -186,8 +185,7 @@ onBeforeUnmount(() => {
 
       <section class="w-full px-6 py-16 md:py-24" data-solution-use-cases>
         <div class="mx-auto flex w-full max-w-(--content-width) flex-col gap-24 md:gap-32">
-          <h2 class="headline-h2 max-w-4xl text-balance"
-            data-solution-use-cases-title>
+          <h2 class="headline-h2 max-w-4xl text-balance" data-solution-use-cases-title>
             {{ solution.useCasesTitle }}
           </h2>
 
@@ -253,22 +251,18 @@ onBeforeUnmount(() => {
 
       <section class="w-full px-6 pt-20 pb-0" data-section-security-intro>
         <span class="mx-auto flex w-full max-w-(--content-width) items-center gap-6">
-          <h2 class="headline-h3 inline text-balance text-foreground">
+          <h2 class="inline headline-h2 sm:headline-h3 text-balance text-foreground">
             <span>How we think about security</span>
-            <span class="h-[1em] inline-flex items-center">
-              <Button href="/security" variant="secondary" size="sm" class="font-sans relative left-[0.75em] top-[-0.333em]">
-                Learn more
-              </Button>
-            </span>
+            <span class="sm:h-[1em] block sm:inline-flex items-center"><Button href="/security" variant="secondary"
+                size="sm" class="font-sans relative sm:left-[0.75em] mt-4 sm:mt-0 sm:top-[-0.333em]">Learn
+                more</Button></span>
           </h2>
         </span>
       </section>
       <SectionSecurityPrinciples id="solution-security" />
 
-      <SolutionTestimonial
-        v-if="solution.testimonial && !solution.testimonial.placeholder"
-        :testimonial="solution.testimonial"
-      />
+      <SolutionTestimonial v-if="solution.testimonial && !solution.testimonial.placeholder"
+        :testimonial="solution.testimonial" />
 
       <SectionFaq type="solutions" />
 

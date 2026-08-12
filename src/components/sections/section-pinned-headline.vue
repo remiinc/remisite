@@ -118,7 +118,7 @@ const notificationTilesOuter = [
           <div
             class="pinned-headline-content relative z-1 w-full max-w-6xl mx-auto flex flex-col items-center justify-center text-center gap-6 col-start-1 row-start-1 col-end-1 row-end-1">
             <h2
-              class="headline-h1 relative z-1 block max-w-[16ch] text-center text-balance text-foreground select-none mb-4">
+              class="headline-h2 relative z-1 block max-w-[24ch] text-center text-balance text-foreground select-none mb-4">
               You didn't start your business to sweat paperwork at 9pm.
             </h2>
             <ul class="relative z-1 tasks-list text-[1.2em] tracking-tight text-foreground/50 select-none">
@@ -652,52 +652,65 @@ const notificationTilesOuter = [
     }
 
     .image-grid {
-      animation: mobile-image-grid-motion linear both;
+      animation: mobile-image-grid-rotate linear both;
       animation-timeline: --pinned-headline-scroll;
       animation-range: cover 0% cover 100%;
-      will-change: transform, opacity;
+      will-change: transform;
     }
 
     .image-tile {
-      animation: mobile-image-tile-counter-rotate linear both;
+      animation: mobile-image-tile-handoff linear both;
       animation-timeline: --pinned-headline-scroll;
       animation-range: cover 0% cover 100%;
       backface-visibility: hidden;
-      will-change: transform;
+      will-change: transform, translate, rotate;
+    }
+
+    .image-tile-card {
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
     }
   }
 }
 
-@keyframes mobile-image-grid-motion {
+@keyframes mobile-image-grid-rotate {
   0% {
-    opacity: 1;
-    transform: rotate(0deg) scale(1);
+    transform: rotate(0deg);
   }
 
   68% {
-    opacity: 1;
-    transform: rotate(-244.8deg) scale(1);
+    transform: rotate(-244.8deg);
   }
 
   78%,
   100% {
-    opacity: 0;
-    transform: rotate(-280.8deg) scale(0.94);
+    transform: rotate(-280.8deg);
   }
 }
 
-@keyframes mobile-image-tile-counter-rotate {
+@keyframes mobile-image-tile-handoff {
   0% {
-    transform: translateZ(0) rotate(0deg);
+    rotate: 0deg;
+    translate: calc(-50% + var(--tile-origin-x)) calc(-50% + var(--tile-origin-y));
+    transform: translateZ(0) translateY(0) scale(1);
   }
 
   68% {
-    transform: translateZ(0) rotate(244.8deg);
+    rotate: 244.8deg;
+    translate: calc(-50% + var(--tile-origin-x)) calc(-50% + var(--tile-origin-y));
+    transform: translateZ(0) translateY(0) scale(1);
   }
 
-  78%,
+  78% {
+    rotate: 280.8deg;
+    translate: calc(-50% + var(--tile-collapse-x)) calc(-50% + var(--tile-collapse-y));
+    transform: translateZ(0) translateY(0) scale(1);
+  }
+
   100% {
-    transform: translateZ(0) rotate(280.8deg);
+    rotate: 280.8deg;
+    translate: calc(-50% + var(--tile-collapse-x)) calc(-50% + var(--tile-collapse-y));
+    transform: translateZ(0) translateY(calc(calc(var(--tile-index) + 1 * 1.5) * 20cqw)) scale(calc(calc(var(--tile-index) + 1 * 1.5) * 0.1));
   }
 }
 

@@ -147,9 +147,9 @@ const featureCards = [
           </h2>
       </div>
       <article v-for="card in featureCards" :key="card.id" class="md:col-span-2" :data-feature-card="card.id">
-        <div class="grid gap-4 md:min-h-120"
+        <div class="grid gap-8 md:gap-4 md:min-h-120"
           :class="card.copyOnRight ? 'md:grid-cols-[4fr_3fr]' : 'md:grid-cols-[3fr_4fr]'">
-          <div class="flex min-h-120 flex-col overflow-hidden rounded-[1em] bg-background/4 p-8 sm:p-10"
+          <div class="flex md:min-h-120 flex-col justify-between md:overflow-hidden rounded-[1em] md:bg-background/4 gap-12 py-12 md:py-8 md:px-8"
             :class="card.copyOnRight ? 'md:order-2' : 'md:order-1'">
             <header class="max-w-sm">
               <h2 class="headline-h4 mb-4 text-balance">
@@ -159,8 +159,6 @@ const featureCards = [
                 {{ card.description }}
               </p>
             </header>
-
-            <div class="relative min-h-20 flex-1" :data-feature-ui="card.id" aria-hidden="true"></div>
 
             <footer class="flex max-w-2xl flex-col items-start">
               <a :href="card.linkHref" :aria-label="`Explore ${card.label}`"

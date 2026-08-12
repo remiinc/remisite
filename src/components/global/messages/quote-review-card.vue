@@ -10,7 +10,7 @@ defineProps({
 </script>
 
 <template>
-  <article class="quote-review-card w-[88%] overflow-hidden rounded-[0.88em] text-neutral-950"
+  <article class="quote-review-card w-[88%] overflow-hidden rounded-[0.88em] text-neutral-950 shadow-[0_0.5em_1.5em_-0.25em_rgba(0,0,0,0.08),0_0_0_1px_rgba(0,0,0,0.06)]"
     :aria-label="`Quote review for ${customerName}. ${projectName}, ${title}, ${total}. Needs your approval.`">
     <div class="bg-[#14108a] text-white">
       <header class="flex items-center gap-[0.45em] border-b border-white/5 px-[0.85em] py-[0.7em]">

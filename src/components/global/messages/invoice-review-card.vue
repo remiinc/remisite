@@ -33,7 +33,7 @@ defineProps({
 
 <template>
   <article
-    class="invoice-review-card w-[88%] overflow-hidden rounded-[0.88em] text-neutral-950"
+    class="invoice-review-card w-[88%] overflow-hidden rounded-[0.88em] text-neutral-950 shadow-[0_0.5em_1.5em_-0.25em_rgba(0,0,0,0.08),0_0_0_1px_rgba(0,0,0,0.06)]"
     :aria-label="`Invoice reminder for ${customerName}. ${outstandingBalance}, ${daysOverdue} days overdue.`">
     <div class="bg-[#386641] text-white">
       <header class="flex items-center gap-[0.45em] border-b border-white/5 px-[0.85em] py-[0.7em]">

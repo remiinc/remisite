@@ -30,13 +30,23 @@ test('mobile pinned headline keeps the scroll choreography within a small compos
   )
   assert.match(
     mobileCss,
-    /\.image-tile\s*\{[^}]*animation:\s*mobile-image-tile-counter-rotate/s,
-    'the eight visible mobile cards should only counter-rotate',
+    /\.image-tile\s*\{[^}]*animation:\s*mobile-image-tile-handoff/s,
+    'the eight visible mobile cards should share one combined handoff animation each',
   )
   assert.doesNotMatch(
     mobileCss,
     /animation-composition/,
     'mobile cards must not use additive per-frame transform composition',
+  )
+  assert.doesNotMatch(
+    mobileCss,
+    /opacity:\s*0/,
+    'the mobile card grid should remain visible while it collapses into the phone',
+  )
+  assert.match(
+    mobileCss,
+    /\.image-tile-card\s*\{[^}]*-webkit-backdrop-filter:\s*none;[^}]*backdrop-filter:\s*none;/s,
+    'moving mobile cards must not require live backdrop-filter rendering passes',
   )
 })
 

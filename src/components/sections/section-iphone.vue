@@ -1,8 +1,8 @@
 <script setup>
-import { PhCaretLeft, PhCaretRight } from '@phosphor-icons/vue'
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import cn from '../../lib/cn'
 import StaticIphone from '../global/static-iphone.vue'
+import MobileIphoneCarousel from './components/mobile-iphone-carousel.vue'
 
 const incoming = (id, text, delay = 1600) => ({ id, direction: 'incoming', text, delay })
 const outgoing = (id, text, delay = 1600) => ({ id, direction: 'outgoing', text, delay })
@@ -207,11 +207,17 @@ const scenarios = [
   },
 ]
 
+const mobileViewportQuery = '(max-width: 639px)'
 const activeScenarioId = ref(scenarios[0].id)
-const phoneMockup = ref(null)
+const sectionRoot = ref(null)
 const hasStartedPlayback = ref(false)
+const isMobileViewport = ref(
+  typeof window !== 'undefined' && window.matchMedia(mobileViewportQuery).matches,
+)
 let playbackObserver = null
 let autoAdvanceTimer = null
+let mobileViewportMedia = null
+let syncMobileViewport = null
 const activeScenario = computed(
   () => scenarios.find((scenario) => scenario.id === activeScenarioId.value) || scenarios[0],
 )
@@ -224,6 +230,13 @@ const scenarioMidpoint = Math.ceil(scenarios.length / 2)
 const leftScenarios = computed(() => scenarios.slice(0, scenarioMidpoint))
 const rightScenarios = computed(() => scenarios.slice(scenarioMidpoint))
 
+const clearAutoAdvanceTimer = () => {
+  if (!autoAdvanceTimer) return
+
+  window.clearTimeout(autoAdvanceTimer)
+  autoAdvanceTimer = null
+}
+
 const setScenarioByOffset = (offset) => {
   const nextIndex = (activeScenarioIndex.value + offset + scenarios.length) % scenarios.length
 
@@ -231,11 +244,7 @@ const setScenarioByOffset = (offset) => {
 }
 
 const selectScenario = (scenarioId) => {
-  if (autoAdvanceTimer) {
-    window.clearTimeout(autoAdvanceTimer)
-    autoAdvanceTimer = null
-  }
-
+  clearAutoAdvanceTimer()
   activeScenarioId.value = scenarioId
 }
 
@@ -249,9 +258,18 @@ const handlePlaybackComplete = () => {
 }
 
 onMounted(() => {
+  mobileViewportMedia = window.matchMedia(mobileViewportQuery)
+  syncMobileViewport = () => {
+    if (mobileViewportMedia.matches) clearAutoAdvanceTimer()
+    isMobileViewport.value = mobileViewportMedia.matches
+  }
+
+  syncMobileViewport()
+  mobileViewportMedia.addEventListener('change', syncMobileViewport)
+
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-  if (!('IntersectionObserver' in window) || !phoneMockup.value) {
+  if (!('IntersectionObserver' in window) || !sectionRoot.value) {
     hasStartedPlayback.value = true
     return
   }
@@ -264,12 +282,13 @@ onMounted(() => {
     playbackObserver = null
   }, { threshold: 0.3 })
 
-  playbackObserver.observe(phoneMockup.value)
+  playbackObserver.observe(sectionRoot.value)
 })
 
 onBeforeUnmount(() => {
   playbackObserver?.disconnect()
-  if (autoAdvanceTimer) window.clearTimeout(autoAdvanceTimer)
+  if (syncMobileViewport) mobileViewportMedia?.removeEventListener('change', syncMobileViewport)
+  clearAutoAdvanceTimer()
 })
 
 const tabClass = (scenario) =>
@@ -285,8 +304,15 @@ const tabClass = (scenario) =>
 </script>
 
 <template>
-  <section class="iphone-scroll-section w-full px-6 py-20 lg:py-0 mt-[-10vh]" data-section-iphone>
-    <div class="iphone-scroll-sticky lg:sticky lg:grid lg:place-items-center">
+  <section ref="sectionRoot" class="iphone-scroll-section w-full sm:px-6 py-20 lg:py-0 mt-[-10vh]" data-section-iphone>
+    <MobileIphoneCarousel
+      v-if="isMobileViewport"
+      :has-started-playback="hasStartedPlayback"
+      :initial-scenario-id="activeScenarioId"
+      :scenarios="scenarios"
+      @scenario-change="selectScenario" />
+
+    <div v-else class="iphone-scroll-sticky lg:sticky lg:grid lg:place-items-center">
       <div
         class="mx-auto grid w-full max-w-(--content-width) grid-cols-1 items-center justify-center sm:gap-x-8 md:gap-x-10 lg:gap-x-12 gap-y-2 sm:grid-cols-[minmax(0,1fr)_minmax(50vw,1fr)] lg:grid-cols-[minmax(0,1fr)_minmax(0,24rem)_minmax(0,1fr)]">
 
@@ -310,38 +336,11 @@ const tabClass = (scenario) =>
           </button>
         </div>
 
-        <div ref="phoneMockup"
+        <div
           class="iphone-mockup relative shrink-0 z-10 order-2 mx-auto w-full lg:order-0 sm:col-start-2 sm:row-start-1 sm:row-end-3 lg:col-start-2 lg:row-start-2">
           <StaticIphone :key="`${activeScenarioId}-${hasStartedPlayback ? 'playing' : 'waiting'}`"
-            :autoplay="hasStartedPlayback" class="mx-auto w-full" :completion-delay="2200" :font-size="1.075"
+            :autoplay="hasStartedPlayback" class="mx-auto w-full max-w-[20rem] sm:max-w-sm" :completion-delay="2200" :font-size="1.075"
             :loop-delay="0" :messages="activeScenario.messages" @playback-complete="handlePlaybackComplete" />
-          <div class="mx-auto mt-16 flex w-full max-w-sm flex-col items-center gap-8 sm:hidden">
-            <div data-mobile-scenario-card
-              class="flex sm:min-h-40 w-full flex-col items-center sm:items-start sm:justify-between rounded-2xl sm:bg-foreground sm:p-5 text-center sm:text-left text-foreground sm:text-background"
-              aria-live="polite">
-              <span class="flex flex-col items-center sm:items-start gap-3">
-                <img :src="activeScenario.iconSrc" alt="" class="hidden h-auto w-[1em] shrink-0 lg:block" aria-hidden="true">
-                <span class="headline-h5 mb-2">
-                  {{ activeScenario.title }}
-                </span>
-              </span>
-              <span class="text-base sm:text-sm leading-tighter tracking-tight opacity-60">
-                {{ activeScenario.description }}
-              </span>
-            </div>
-            <div data-mobile-scenario-controls class="flex items-center justify-center gap-3">
-              <button type="button"
-                class="flex px-3 py-2 items-center justify-center rounded-full bg-foreground/30 hover:bg-foreground/50 text-background backdrop-blur-sm transition active:scale-95"
-                aria-label="Previous message scenario" @click="setScenarioByOffset(-1)">
-                <PhCaretLeft class="size-5" weight="bold" aria-hidden="true" />
-              </button>
-              <button type="button"
-                class="flex px-3 py-2 items-center justify-center rounded-full bg-foreground/30 hover:bg-foreground/50 text-background backdrop-blur-sm transition active:scale-95"
-                aria-label="Next message scenario" @click="setScenarioByOffset(1)">
-                <PhCaretRight class="size-5" weight="bold" aria-hidden="true" />
-              </button>
-            </div>
-          </div>
         </div>
 
         <div
