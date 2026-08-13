@@ -15,6 +15,7 @@ const included = [
   'Finds follow-ups and moves useful work forward without waiting to be asked',
   'Handles quotes, invoices, scheduling, and customer records',
   'Brings you approvals and receipts instead of another dashboard',
+  'Unlimited fair usage with default AI model',
 ]
 
 const carouselDelay = 5500
@@ -329,7 +330,7 @@ onBeforeUnmount(() => {
               </span>
             </Button>
 
-            <ul class="flex flex-wrap gap-x-5 gap-y-2 text-xs text-muted-foreground sm:text-sm" aria-label="Trial terms">
+            <ul class="flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs text-muted-foreground sm:text-sm" aria-label="Trial terms">
               <li class="flex items-center gap-1.5">
                 <PhCheck class="size-4" weight="bold" aria-hidden="true" />
                 <span>7 days free</span>
