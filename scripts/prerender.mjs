@@ -551,35 +551,25 @@ const pricingBody = () => `
 <main class="px-6 pt-32 pb-20">
   <section class="mx-auto w-full text-center" style="max-width: 44rem">
     <h1 class="headline-h1">One missed follow-up can cost more than a month of Remi.</h1>
-    <p>Start with a 7-day trial. Plans start at $99 a month, billed annually.</p>
+    <p><a href="/start">Text Remi</a></p>
   </section>
   <section class="mx-auto w-full" style="max-width: 44rem">
-    <h2 class="headline-h6">A full-time operations hire</h2>
-    <p>Worth it when you need the whole role. Expensive when you mainly need the work handled.</p>
-    <p>$5,000 per month, or $60,000 per year.</p>
+    <h2 class="headline-h1">The first week is on us.</h2>
+    <p>Meet the teammate who keeps the business side moving while you focus on the work only you can do.</p>
     <ul>
-      <li>Salary plus taxes and benefits</li>
-      <li>Time to recruit and onboard well</li>
-      <li>Ongoing management and development</li>
-      <li>Best when the role is truly full-time</li>
+      <li>Learns your business across email, calendar, messages, and connected tools</li>
+      <li>Finds follow-ups and moves useful work forward without waiting to be asked</li>
+      <li>Handles quotes, invoices, scheduling, and customer records</li>
+      <li>Brings you approvals and receipts instead of another dashboard</li>
+      <li>Unlimited fair usage with default AI model</li>
     </ul>
-    <h2 class="headline-h6">Pro</h2>
-    <p>$119 per month, or $99 per month billed annually. For individuals or small owner-run teams ready to hand Remi the daily chase list.</p>
+    <p>$49 per month.</p>
+    <p><a href="/start">Start your free trial</a></p>
     <ul>
-      <li>Learns how your business works across email, calendar, messages, and connected tools</li>
-      <li>Finds work without waiting to be asked and moves it forward</li>
-      <li>Handles follow-ups, quotes, invoices, scheduling, and customer records</li>
-      <li>Brings you approvals, decisions, and receipts instead of another dashboard</li>
+      <li>7 days free</li>
+      <li>Cancel anytime</li>
+      <li>Your data stays yours</li>
     </ul>
-    <h2 class="headline-h6">Scale</h2>
-    <p>$239 per month, or $199 per month billed annually. Same Remi, with more capacity for businesses with more jobs, customers, and work in motion.</p>
-    <ul>
-      <li>Everything included in Pro</li>
-      <li>More monthly capacity for heavier follow-through</li>
-      <li>Built for more active jobs, customers, and open loops</li>
-      <li>Add more capacity anytime; add-ons remain until used</li>
-    </ul>
-    <p><a href="/start">Try Remi free for 7 days</a></p>
   </section>
   ${faqBody('pricing')}
 </main>`
@@ -629,8 +619,8 @@ const startBody = () => `
 const homeBody = () => `
 <main class="px-6 pt-32 pb-20">
   <section class="mx-auto w-full" style="max-width: 72rem">
-    <h1 class="headline-h1">Your business should run. It shouldn't run you.</h1>
-    <p>Do the work that moves your business forward. Let Remi handle the rest.</p>
+    <h1 class="headline-h1">A teammate that helps you win more work and keep jobs on track.</h1>
+    <p>Remi brings your customers, jobs, and payments together, so your business runs as well as the work you do.</p>
     <p><a href="/start">Text Remi</a></p>
   </section>
   <section class="mx-auto w-full" style="max-width: 72rem">
@@ -650,8 +640,9 @@ const homeBody = () => `
     </ul>
   </section>
   <section class="mx-auto w-full" style="max-width: 72rem">
-    <h2 class="headline-h3">Run like a bigger company. Without the bigger payroll.</h2>
-    <p>Start with a 7-day trial. Plans start at $99 a month, billed annually.</p>
+    <h2 class="headline-h3">The first week is on us.</h2>
+    <p>Meet the teammate who keeps the business side moving while you focus on the work only you can do.</p>
+    <p>$49 per month.</p>
     <p><a href="/pricing">See pricing</a></p>
   </section>
   ${faqBody('home')}

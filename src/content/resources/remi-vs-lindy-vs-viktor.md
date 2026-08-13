@@ -14,7 +14,7 @@ ctaHref: "/start"
 ctaLabel: "Run the free check"
 faq:
   - q: "Is Remi cheaper than Lindy or Viktor?"
-    a: "Remi is flat: Pro is $99 a month and Scale is $199 a month, and the price does not move with how much work Remi does. Lindy and Viktor both meter usage, so a busy month can cost more than the sticker price. Lindy's paid plans start at $49.99 a month and Viktor's start at $50 a month."
+    a: "Remi is $49 a month during Early Access, including unlimited fair usage with the default AI model. Lindy and Viktor both meter usage, so a busy month can cost more than the sticker price. Lindy's paid plans start at $49.99 a month and Viktor's start at $50 a month."
   - q: "Can Lindy or Viktor chase unpaid invoices?"
     a: "Both can be set up to draft follow-ups and update records once you build or instruct the workflow, and both let you approve messages before they go out. Neither is built specifically for an owner who is both doing the work and chasing the money, which is the exact job Remi is built around."
   - q: "Do any of them send messages without my approval?"
@@ -59,7 +59,7 @@ Here is the verified side-by-side. Prices are from each company's own pricing pa
 | | Remi | Lindy | Viktor |
 |---|---|---|---|
 | Who it's for | Owner-run service businesses, 1 to 15 people | Busy professionals, inbox and meeting heavy | Teams wanting a technical coworker |
-| Starting price | $99/mo (Pro), $199/mo (Scale) | $49.99/mo (Plus), $99.99 (Pro), $199.99 (Max) | $50/mo (20,000 credits), scaling up |
+| Starting price | $49/mo during Early Access | $49.99/mo (Plus), $99.99 (Pro), $199.99 (Max) | $50/mo (20,000 credits), scaling up |
 | Pricing model | Flat monthly, does not move with usage | Usage-metered by plan tier | Credit-based, credits reset monthly |
 | Setup model | You hire Remi, connect tools, Remi works | Build or configure agents and workflows | Instruct it in Slack or Teams; it builds |
 | Where it lives | Text, email, Slack, web portal | Email, calendar, iMessage, connected apps | Slack and Microsoft Teams |
@@ -105,13 +105,13 @@ You can run all of this yourself. Set a weekly calendar block to age your receiv
 
 If you would rather not be that person, this is the exact job Remi was built for. Remi watches your inbox and your books, flags what is going stale, and drafts the follow-up for your approval. Nothing goes out, and nothing gets marked paid, without your say-so, and every action comes with a receipt. Remi is an AI teammate. We say so because Remi will never pretend otherwise, and neither will we.
 
-Remi is Pro at $99 a month and Scale at $199 a month, with a 7-day trial that does real starter work. The front door is a free check: connect your inbox and see what is slipping through it in about 60 seconds. We delete everything unless you hire Remi.
+Remi is $49 a month during Early Access, including unlimited fair usage with the default AI model and a 7-day trial that does real starter work. The front door is a free check: connect your inbox and see what is slipping through it in about 60 seconds. We delete everything unless you hire Remi.
 
 ## FAQ
 
 ### Is Remi cheaper than Lindy or Viktor?
 
-Remi is flat: Pro is $99 a month and Scale is $199 a month, and the price does not move with how much work Remi does. Lindy and Viktor both meter usage, so a busy month can cost more than the sticker price. Lindy's paid plans start at $49.99 a month and Viktor's start at $50 a month.
+Remi is $49 a month during Early Access, including unlimited fair usage with the default AI model. Lindy and Viktor both meter usage, so a busy month can cost more than the sticker price. Lindy's paid plans start at $49.99 a month and Viktor's start at $50 a month.
 
 ### Can Lindy or Viktor chase unpaid invoices?
 

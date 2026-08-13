@@ -56,21 +56,15 @@ export const faqGroups = {
     title: 'Questions we hear a lot.',
     items: [
       {
-        question: 'What do the Pro and Scale plans cost?',
+        question: 'What does Remi cost?',
         answers: [
-          'Pro is $119 month to month, or $99 per month when billed annually. Scale is $239 month to month, or $199 per month when billed annually.',
+          'Remi is $49 per month during Early Access.',
         ],
       },
       {
-        question: 'Which plan is right for my business?',
+        question: 'What is included?',
         answers: [
-          'Pro is built for individuals and small owner-run teams with a daily list of follow-ups, estimates, invoices, and customer requests. Scale adds more capacity for teams with more active jobs, accounts, and work in motion.',
-        ],
-      },
-      {
-        question: 'Can I pay monthly or annually?',
-        answers: [
-          'Yes. Annual billing saves 20%. Checkout shows the billing schedule, total, and renewal price before you confirm.',
+          'Your subscription includes unlimited fair usage with the default AI model.',
         ],
       },
       {
@@ -83,12 +77,6 @@ export const faqGroups = {
         question: 'Can I cancel?',
         answers: [
           'Yes. Cancel before the next renewal to stop future charges. Your billing screen shows the active billing period and renewal timing.',
-        ],
-      },
-      {
-        question: 'What happens if a busy month needs more capacity?',
-        answers: [
-          'Scale includes more monthly capacity for heavier follow-through. Capacity add-ons persist until used, so a temporary spike does not force you into a permanent plan change.',
         ],
       },
       {
@@ -176,7 +164,7 @@ export const faqGroups = {
       {
         question: 'What does Remi cost?',
         answers: [
-          'Pro is $119 month to month, or $99 per month when billed annually. Scale is $239 month to month, or $199 per month when billed annually.',
+          'Remi is $49 per month during Early Access, including unlimited fair usage with the default AI model.',
         ],
       },
       {

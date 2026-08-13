@@ -10,8 +10,8 @@ Remi is built for owner-run service businesses where the owner is doing the
 work and running the back office: contractors, remodelers, home services,
 auto shops, cleaning businesses, agencies, and similar companies.
 
-Pro is $99 per month billed annually. Scale is $199 per month billed annually
-and includes more work capacity. Both plans begin with a 7-day trial.
+Remi is $49 per month during Early Access, including unlimited fair usage with
+the default AI model. The subscription begins with a 7-day trial.
 
 ## Pages
 
