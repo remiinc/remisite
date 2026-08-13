@@ -189,3 +189,26 @@ test('mobile first fold gives Safari matching chrome and a larger phone stage', 
     'scoped component styles must not override the mobile collage hide',
   )
 })
+
+test('mobile Safari renders scenario titles at the intended variable-font weight', async () => {
+  const [globalStyles, carouselSource] = await Promise.all([
+    readComponent('src/style.css'),
+    readComponent('src/components/sections/components/mobile-iphone-carousel.vue'),
+  ])
+
+  assert.match(
+    globalStyles,
+    /PPNeueMontreal-Variable\.woff"\) format\("woff"\)/,
+    'the Safari font fallback must declare its actual WOFF format',
+  )
+  assert.match(
+    globalStyles,
+    /body\s*\{[^}]*\bantialiased\b[^}]*\}[\s\S]*@supports \(-webkit-touch-callout: none\)[\s\S]*@media \(max-width: 767px\)[\s\S]*body\s*\{[^}]*-webkit-font-smoothing:\s*auto;/,
+    'font smoothing should remain global while narrow iOS WebKit viewports use native rendering',
+  )
+  assert.match(
+    carouselSource,
+    /\.mobile-iphone-scenario-title\s*\{[^}]*font-synthesis:\s*none;[^}]*font-variation-settings:\s*"wght" 600, "ital" 100;/s,
+    'Safari must receive the intended weight axis instead of the font file default of 200',
+  )
+})

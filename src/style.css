@@ -4,7 +4,7 @@
   font-family: "PP Neue Montreal";
   src:
     url("/fonts/PPNeueMontreal-Variable.woff2") format("woff2"),
-    url("/fonts/PPNeueMontreal-Variable.woff") format("woff2");
+    url("/fonts/PPNeueMontreal-Variable.woff") format("woff");
   font-style: normal;
   font-weight: 200 800;
   font-display: swap;
@@ -112,6 +112,14 @@
 
   body {
     @apply m-0 min-h-svh bg-background font-sans text-foreground antialiased;
+  }
+
+  @supports (-webkit-touch-callout: none) {
+    @media (max-width: 767px) {
+      body {
+        -webkit-font-smoothing: auto;
+      }
+    }
   }
 
   h1,
