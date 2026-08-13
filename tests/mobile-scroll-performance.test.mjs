@@ -212,3 +212,18 @@ test('mobile Safari renders scenario titles at the intended variable-font weight
     'Safari must receive the intended weight axis instead of the font file default of 200',
   )
 })
+
+test('desktop hero keeps the phone and photo collage as the dominant column', async () => {
+  const heroSource = await readComponent('src/components/hero/hero-b.vue')
+
+  assert.match(
+    heroSource,
+    /lg:grid-cols-\[3fr_4fr\]/,
+    'the desktop hero must reserve the larger column for its phone and photo collage',
+  )
+  assert.doesNotMatch(
+    heroSource,
+    /lg:grid-cols-\[4fr_3fr\]/,
+    'headline balancing must not shrink the desktop phone and photo collage',
+  )
+})
