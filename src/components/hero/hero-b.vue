@@ -215,7 +215,7 @@ onBeforeUnmount(() => {
 <template>
   <section class="hero-b grid w-full bg-foreground px-4 pt-16 text-background sm:px-6 sm:pt-24 lg:h-(--hero-height)">
     <div class="hero-b__container mx-auto w-full h-full max-w-(--content-width) flex flex-col">
-      <div class="grid w-full min-w-0 flex-1 gap-x-16 overflow-hidden lg:grid-cols-[4fr_3fr] lg:gap-x-8 xl:gap-x-12">
+      <div class="grid w-full min-w-0 flex-1 gap-x-16 overflow-hidden lg:grid-cols-[3fr_4fr] lg:gap-x-8 xl:gap-x-12">
 
         <div class="flex min-h-full flex-col items-center justify-center px-0 py-10 text-center sm:px-4 sm:py-16 lg:items-start lg:px-0 lg:text-left">
           <h1 class="headline-h2 max-w-[20ch] text-balance sm:max-lg:max-w-[34ch] lg:max-w-none lg:text-[2.5rem] xl:text-[3rem]">
