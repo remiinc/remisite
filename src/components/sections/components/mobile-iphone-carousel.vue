@@ -232,7 +232,7 @@ onBeforeUnmount(() => {
               data-mobile-scenario-copy>
               <div class="min-h-0 overflow-hidden">
                 <div class="mx-auto mt-12 flex w-full flex-col items-center px-10 text-center">
-                  <h2 class="text-lg font-medium leading-tight tracking-tight text-balance text-foreground">
+                  <h2 class="mobile-iphone-scenario-title text-lg font-semibold leading-tight tracking-tight text-balance text-foreground">
                     {{ scenario.title }}
                   </h2>
                   <p class="mt-4 text-sm leading-normal tracking-tight text-pretty text-muted-foreground">
@@ -301,6 +301,11 @@ onBeforeUnmount(() => {
 
 .mobile-iphone-copy-reveal--measuring {
   transition: none;
+}
+
+.mobile-iphone-scenario-title {
+  font-synthesis: none;
+  font-variation-settings: "wght" 600, "ital" 100;
 }
 
 @media (prefers-reduced-motion: reduce) {
