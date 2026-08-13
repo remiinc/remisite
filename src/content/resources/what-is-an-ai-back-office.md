@@ -22,7 +22,7 @@ faq:
   - q: "What happens to my data if I stop using it?"
     a: "With a well-built tool, everything it did stays on the record and is exportable, so if you cancel you keep the history, the receipts, and the record of what was said. Ask about export before you sign up."
   - q: "How much should an AI back office cost?"
-    a: "Look for a flat monthly price you can read in one line, with no per-message or per-action metering. Remi is $99 a month for Pro and $199 for Scale, with a 7-day trial that does real starter work."
+    a: "Look for a flat monthly price you can read in one line, with no per-message or per-action metering. Remi is $49 a month during Early Access, including unlimited fair usage with the default AI model and a 7-day trial that does real starter work."
 ---
 
 
@@ -130,7 +130,7 @@ With a well-built tool, everything it did stays on the record and is exportable,
 
 ### How much should an AI back office cost?
 
-Look for a flat monthly price you can read in one line, with no per-message or per-action metering. Remi is $99 a month for Pro and $199 for Scale, with a 7-day trial that does real starter work.
+Look for a flat monthly price you can read in one line, with no per-message or per-action metering. Remi is $49 a month during Early Access, including unlimited fair usage with the default AI model and a 7-day trial that does real starter work.
 
 ## Where Remi fits
 

@@ -67,8 +67,34 @@ test('pricing page renders the shared pricing section', async () => {
 
 test('pricing includes unlimited fair usage without adding plan complexity', async () => {
   const source = await readFile(join(root, 'src/components/sections/section-pricing.vue'), 'utf8')
+  const prerender = await readFile(join(root, 'scripts/prerender.mjs'), 'utf8')
+  const faqs = await readFile(join(root, 'src/lib/faqs.js'), 'utf8')
+  const llms = await readFile(join(root, 'public/llms.txt'), 'utf8')
+  const pricingResources = await Promise.all([
+    'ai-employee-vs-virtual-assistant.md',
+    'remi-vs-lindy-vs-viktor.md',
+    'remi-vs-part-time-office-manager.md',
+    'what-is-an-ai-back-office.md',
+  ].map((file) => readFile(join(root, 'src/content/resources', file), 'utf8')))
 
   assert.match(source, /'Unlimited fair usage with default AI model'/)
   assert.doesNotMatch(source, /One simple plan/)
   assert.doesNotMatch(source, /per-message fees|usage packs/)
+  assert.match(prerender, /A teammate that helps you win more work and keep jobs on track\./)
+  assert.match(prerender, /Remi brings your customers, jobs, and payments together/)
+  assert.match(prerender, /<h1 class="headline-h1">One missed follow-up can cost more than a month of Remi\.<\/h1>/)
+  assert.match(prerender, /Unlimited fair usage with default AI model/)
+  assert.match(prerender, /\$49 per month\./)
+  assert.doesNotMatch(prerender, /Plans start at \$99|<h2 class="headline-h6">Pro<\/h2>|<h2 class="headline-h6">Scale<\/h2>/)
+  assert.match(faqs, /Remi is \$49 per month during Early Access/)
+  assert.match(faqs, /unlimited fair usage with the default AI model/)
+  assert.doesNotMatch(faqs, /Pro is \$119|Scale is \$239|Annual billing saves|Capacity add-ons/)
+  assert.match(llms, /Remi is \$49 per month during Early Access/)
+  assert.match(llms, /unlimited fair usage with\s+the default AI model/)
+  assert.doesNotMatch(llms, /Pro is \$99|Scale is \$199|more work capacity/)
+  pricingResources.forEach((resource) => {
+    assert.match(resource, /Remi is \$49 a month during Early Access/)
+    assert.match(resource, /unlimited fair usage with the default AI model/)
+    assert.doesNotMatch(resource, /Remi is \$99|Pro is \$99|Scale is \$199|\$199 for Scale/)
+  })
 })

@@ -15,7 +15,7 @@ ctaHref: "/start"
 ctaLabel: "Run the free check"
 faq:
   - q: "Is an AI teammate cheaper than a virtual assistant?"
-    a: "Usually, yes, on paper. A US virtual assistant averages about $25.75 an hour, and even a full-time offshore VA runs roughly $800 to $2,400 a month. An AI teammate like Remi is a flat $99 to $199 a month. But they do different jobs, so the cheaper number is not automatically the right hire."
+    a: "Usually, yes, on paper. A US virtual assistant averages about $25.75 an hour, and even a full-time offshore VA runs roughly $800 to $2,400 a month. Remi is $49 a month during Early Access, including unlimited fair usage with the default AI model. But they do different jobs, so the cheaper number is not automatically the right hire."
   - q: "Can an AI teammate make phone calls for me?"
     a: "Remi does not place phone calls. Remi works over text, email, Slack, and a web portal. If your bottleneck is calling customers, answering the phone, or chasing people by voice, that is still a job for a person."
   - q: "Do I have to train an AI teammate like I train a virtual assistant?"
@@ -49,7 +49,7 @@ Here is the honest money picture. A US VA is the most expensive option per hour,
 |---|---|---|
 | US-based virtual assistant | ~$25.75/hour average, $30 to $75/hour for experienced ([Indeed](https://www.indeed.com/career/virtual-assistant/salaries)) | Hours you direct; you pay for time whether it produces or not |
 | Offshore virtual assistant | ~$3 to $10/hour, roughly $800 to $2,400/month full-time ([Wishup](https://www.wishup.co/blog/how-much-does-a-virtual-assistant-cost/), [Hire Overseas](https://www.hireoverseas.com/blogs/virtual-assistant-cost)) | Hours you direct, at a lower rate, usually with a time-zone gap |
-| AI teammate (Remi) | $99/month Pro, $199/month Scale | Always-on watching and drafting; you approve the actions |
+| AI teammate (Remi) | $49/month during Early Access | Always-on watching and drafting; you approve the actions |
 
 The trap is comparing the numbers alone. Ten hours a week of a US VA is about $1,000 a month and buys you exactly ten hours. A flat monthly AI fee buys you eyes on your books every hour of every day, but zero phone calls. You are not choosing the cheaper line. You are choosing what job you need done.
 
@@ -59,7 +59,7 @@ Neither one is better across the board. Each wins on different rows.
 
 | What matters | Virtual assistant | AI teammate (Remi) |
 |---|---|---|
-| Cost | $3 to $75+/hour, scales with hours used | Flat $99 to $199/month, does not scale with volume |
+| Cost | $3 to $75+/hour, scales with hours used | $49/month during Early Access, with unlimited fair usage on the default AI model |
 | Hours and availability | Set schedule, time off, one time zone | Always on, no breaks, watches continuously |
 | Training burden | Real onboarding, documented processes, weeks of correction | Connect your sources; it reads and starts flagging |
 | Consistency | Varies by person, mood, and turnover | Same process every time, does not forget or drift |
@@ -124,7 +124,7 @@ Here is a copy-paste worksheet to run the decision cleanly:
 
 ### Is an AI teammate cheaper than a virtual assistant?
 
-Usually, yes, on paper. A US virtual assistant averages about $25.75 an hour, per [Indeed](https://www.indeed.com/career/virtual-assistant/salaries), and even a full-time offshore VA runs roughly $800 to $2,400 a month. An AI teammate like Remi is a flat $99 to $199 a month. But they do different jobs, so the cheaper number is not automatically the right hire.
+Usually, yes, on paper. A US virtual assistant averages about $25.75 an hour, per [Indeed](https://www.indeed.com/career/virtual-assistant/salaries), and even a full-time offshore VA runs roughly $800 to $2,400 a month. Remi is $49 a month during Early Access, including unlimited fair usage with the default AI model. But they do different jobs, so the cheaper number is not automatically the right hire.
 
 ### Can an AI teammate make phone calls for me?
 
