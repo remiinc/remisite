@@ -218,19 +218,13 @@ onBeforeUnmount(() => {
       <div class="grid lg:grid-cols-[3fr_4fr] gap-x-16 w-full flex-1 overflow-hidden min-w-0">
 
         <div class="flex min-h-full flex-col items-center justify-center px-0 py-10 text-center sm:px-4 sm:py-16 lg:items-start lg:px-0 lg:text-left">
-          <span
-            class="text-xs font-medium uppercase px-[0.875em] pt-[0.625em] pb-[0.5em] rounded-sm leading-none bg-background/10 mb-6">
-            Office manager by text
-          </span>
-
-          <h1 class="headline-h2 sm:headline-h1 lg:headline-h2 max-w-[20ch] text-balance">
-            <span class="block">Grow your business.</span>
-            <span class="block">Let Remi handle the admin.</span>
+          <h1 class="headline-h2 sm:headline-h1 lg:headline-h2 max-w-[20ch] sm:max-lg:max-w-[34ch] text-balance">
+            <span class="block">A teammate that helps you win</span>
+            <span class="block">more work and keep jobs on track.</span>
           </h1>
 
           <p class="mt-6 max-w-[52ch] lg:max-w-[40ch] text-base leading-relaxed tracking-[-0.015em] text-background/70 text-balance">
-            For owners who work the job and the desk, Remi watches your inbox, invoices, and customers, then speaks up
-            before something slips.
+            Remi brings your customers, jobs, and payments together, so your business runs as well as the work you do.
           </p>
 
           <div class="mt-8 flex flex-wrap items-center justify-center gap-3 sm:mt-12 lg:justify-start">
@@ -299,7 +293,7 @@ onBeforeUnmount(() => {
 
       </div>
 
-      <div class="w-full py-8 flex items-center border-t border-background/5">
+      <div class="flex w-full items-center justify-center border-t border-background/5 py-8 lg:justify-start">
         <ProductAssurances />
       </div>
 

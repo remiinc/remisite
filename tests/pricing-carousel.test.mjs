@@ -64,3 +64,11 @@ test('pricing page renders the shared pricing section', async () => {
   assert.match(source, /<SectionPricing \/>/)
   assert.doesNotMatch(source, /PricingPlans/)
 })
+
+test('pricing includes unlimited fair usage without adding plan complexity', async () => {
+  const source = await readFile(join(root, 'src/components/sections/section-pricing.vue'), 'utf8')
+
+  assert.match(source, /'Unlimited fair usage with default AI model'/)
+  assert.doesNotMatch(source, /One simple plan/)
+  assert.doesNotMatch(source, /per-message fees|usage packs/)
+})
