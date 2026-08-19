@@ -263,7 +263,12 @@ const setHead = (
 
   const fullImage = toAbsoluteSiteUrl(ogImage)
   const imageType = getOgImageType(fullImage)
+  const pageTheme = themeColor === '#181613' ? 'dark' : 'light'
 
+  output = output.replace(
+    /(<html\s[^>]*data-page-theme=")[^"]*(")/,
+    `$1${pageTheme}$2`,
+  )
   output = output.replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(title)}</title>`)
   output = output.replace(
     /(<meta\s[^>]*name="description"[^>]*content=")[^"]*(")/,

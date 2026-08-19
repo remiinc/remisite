@@ -180,6 +180,12 @@
     @apply min-h-svh bg-background;
   }
 
+  html[data-page-theme='dark'],
+  html[data-page-theme='dark'] body,
+  html[data-page-theme='dark'] #app {
+    background-color: var(--color-foreground);
+  }
+
   button,
   input,
   textarea,

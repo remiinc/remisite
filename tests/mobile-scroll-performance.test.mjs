@@ -121,9 +121,10 @@ test('mobile preloads the interactive phone before the user reaches its scroll b
 })
 
 test('mobile first fold gives Safari matching chrome and a larger phone stage', async () => {
-  const [documentSource, mainSource, heroSource, prerenderSource] = await Promise.all([
+  const [documentSource, mainSource, styleSource, heroSource, prerenderSource] = await Promise.all([
     readComponent('index.html'),
     readComponent('src/main.js'),
+    readComponent('src/style.css'),
     readComponent('src/components/hero/hero-b.vue'),
     readComponent('scripts/prerender.mjs'),
   ])
@@ -139,14 +140,34 @@ test('mobile first fold gives Safari matching chrome and a larger phone stage', 
     'Safari chrome should match the charcoal first fold instead of the cream page background',
   )
   assert.match(
+    documentSource,
+    /<html[^>]*data-page-theme="dark"/,
+    'the homepage shell must expose a dark root canvas before JavaScript runs',
+  )
+  assert.match(
     mainSource,
     /usesDarkFirstFold = \['\/', '\/about'\]\.includes\(normalizedPath\)/,
     'dark first folds should keep dark Safari chrome without tinting light routes',
   )
   assert.match(
+    mainSource,
+    /document\.documentElement\.dataset\.pageTheme = usesDarkFirstFold \? 'dark' : 'light'/,
+    'client routes must keep the root canvas synchronized with their first-fold theme',
+  )
+  assert.match(
+    styleSource,
+    /html\[data-page-theme='dark'\],[\s\S]*html\[data-page-theme='dark'\] body,[\s\S]*html\[data-page-theme='dark'\] #app\s*\{[\s\S]*background-color: var\(--color-foreground\);/,
+    'Safari safe-area and under-page fills must use the dark first-fold canvas instead of the cream root background',
+  )
+  assert.match(
     prerenderSource,
     /themeColor = '#fffef9',[\s\S]*themeColor: '#181613'/,
     'prerendered light routes should ship cream chrome while the dark about page stays charcoal',
+  )
+  assert.match(
+    prerenderSource,
+    /const pageTheme = themeColor === '#181613' \? 'dark' : 'light'[\s\S]*data-page-theme=/,
+    'prerendered route shells must derive their root canvas from the same color as Safari chrome',
   )
   assert.match(
     heroSource,
