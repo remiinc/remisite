@@ -25,6 +25,7 @@ const SecurityPage = defineAsyncComponent(pageLoaders.security)
 const SolutionPage = defineAsyncComponent(pageLoaders.solution)
 const SolutionsIndexPage = defineAsyncComponent(pageLoaders.solutionsIndex)
 const SignupRedirect = defineAsyncComponent(pageLoaders.signupRedirect)
+const WhatsNewPage = defineAsyncComponent(pageLoaders.whatsNew)
 const SectionIphone = defineAsyncComponent(() => import('./components/sections/section-iphone.vue'))
 
 const pathname = typeof window !== 'undefined' ? window.location.pathname : '/'
@@ -41,6 +42,7 @@ const isReviewCardsPreviewPage = computed(() => normalizedPath.value === '/previ
 const isSecurityPage = computed(() => normalizedPath.value === '/security')
 const isLegalPage = computed(() => ['/terms', '/privacy'].includes(normalizedPath.value))
 const isStartPage = computed(() => normalizedPath.value === '/start')
+const isWhatsNewPage = computed(() => normalizedPath.value === '/whats-new')
 const iphoneSectionTrigger = ref(null)
 const shouldLoadIphoneSection = ref(false)
 let iphoneSectionObserver = null
@@ -98,6 +100,7 @@ onBeforeUnmount(() => {
   <SecurityPage v-else-if="isSecurityPage" />
   <LegalPage v-else-if="isLegalPage" />
   <SignupRedirect v-else-if="isStartPage" />
+  <WhatsNewPage v-else-if="isWhatsNewPage" />
   <BlogIndexPage v-else-if="isBlogIndexPage" />
   <BlogPostPage v-else-if="isBlogPostPage" />
   <div v-else>

@@ -621,6 +621,20 @@ const startBody = () => `
   </section>
 </main>`
 
+const whatsNewBody = () => `
+<main class="px-6 pt-32 pb-20">
+  <section class="mx-auto w-full" style="max-width: 72rem">
+    <p>Changelog</p>
+    <h1 class="headline-h1">Remi keeps getting better.</h1>
+    <p>New ways Remi helps you win work, keep jobs moving, and get home with less admin hanging over you.</p>
+    <h2 class="headline-h2">What we're building now.</h2>
+    <p>A faster first win, sharper job memory, and more ways to hand off work.</p>
+    <h2 class="headline-h3">Fresh off the truck.</h2>
+    <h3>Morning briefs are easier to read</h3>
+    <p>Morning briefs now arrive as one clean, scannable iMessage.</p>
+  </section>
+</main>`
+
 const homeBody = () => `
 <main class="px-6 pt-32 pb-20">
   <section class="mx-auto w-full" style="max-width: 72rem">
@@ -879,6 +893,26 @@ writePage(
   ),
 )
 
+writePage(
+  '/whats-new',
+  injectBody(
+    setHead(template, {
+      title: "What's new | Remi",
+      description: 'The latest improvements to Remi, the teammate that keeps your business moving.',
+      url: `${SITE}/whats-new`,
+      ogType: 'website',
+      jsonLd: [{
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        name: "What's new at Remi",
+        description: 'The latest improvements to Remi, the teammate that keeps your business moving.',
+        url: `${SITE}/whats-new`,
+      }],
+    }),
+    whatsNewBody(),
+  ),
+)
+
 // sitemap.xml
 const staticUrls = [
   { loc: `${SITE}/`, priority: '1.0' },
@@ -886,6 +920,7 @@ const staticUrls = [
   { loc: `${SITE}/start`, priority: '0.9' },
   { loc: `${SITE}/pricing`, priority: '0.9' },
   { loc: `${SITE}/security`, priority: '0.8' },
+  { loc: `${SITE}/whats-new`, priority: '0.7' },
   { loc: `${SITE}/resources`, priority: '0.8' },
   { loc: `${SITE}/solutions`, priority: '0.9' },
 ]
@@ -944,5 +979,5 @@ ${rssItems}
 writeFileSync(join(distDir, 'rss.xml'), rss)
 
 console.log(
-  `Prerendered the homepage, ${posts.length} blog posts, ${solutions.length} solution guides, ${legalPages.length} legal pages, 6 other static pages, sitemap.xml, rss.xml`,
+  `Prerendered the homepage, ${posts.length} blog posts, ${solutions.length} solution guides, ${legalPages.length} legal pages, 7 other static pages, sitemap.xml, rss.xml`,
 )

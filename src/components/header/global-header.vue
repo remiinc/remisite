@@ -47,6 +47,7 @@ const menuLinks = [
   { label: 'Pricing', href: '/pricing' },
   { label: 'Security', href: '/security' },
   { label: 'Resources', href: '/resources' },
+  { label: "What's New", href: '/whats-new' },
 ]
 
 const visibleMenuLinks = computed(() => menuLinks.filter((link) => !link.hidden))

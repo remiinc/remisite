@@ -11,6 +11,7 @@ export const pageLoaders = Object.freeze({
   solution: () => import('../components/solutions/solution-page.vue'),
   solutionsIndex: () => import('../components/solutions/solutions-index-page.vue'),
   signupRedirect: () => import('../components/global/signup-redirect.vue'),
+  whatsNew: () => import('../components/whats-new/whats-new-page.vue'),
 })
 
 export function getPageLoader(pathname) {
@@ -26,6 +27,7 @@ export function getPageLoader(pathname) {
   if (path === '/security') return pageLoaders.security
   if (path === '/terms' || path === '/privacy') return pageLoaders.legal
   if (path === '/start') return pageLoaders.signupRedirect
+  if (path === '/whats-new') return pageLoaders.whatsNew
 
   return null
 }
