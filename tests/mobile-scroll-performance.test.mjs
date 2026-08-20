@@ -141,6 +141,16 @@ test('mobile first fold gives Safari matching chrome and a larger phone stage', 
   )
   assert.match(
     documentSource,
+    /name="theme-color" content="#181613" media="\(prefers-color-scheme: light\)"/,
+    'Safari in Light Appearance still needs the homepage charcoal chrome color',
+  )
+  assert.match(
+    documentSource,
+    /name="theme-color" content="#181613" media="\(prefers-color-scheme: dark\)"/,
+    'Safari in Dark Appearance needs the same homepage charcoal chrome color',
+  )
+  assert.match(
+    documentSource,
     /<html[^>]*data-page-theme="dark"/,
     'the homepage shell must expose a dark root canvas before JavaScript runs',
   )
@@ -153,6 +163,11 @@ test('mobile first fold gives Safari matching chrome and a larger phone stage', 
     mainSource,
     /document\.documentElement\.dataset\.pageTheme = usesDarkFirstFold \? 'dark' : 'light'/,
     'client routes must keep the root canvas synchronized with their first-fold theme',
+  )
+  assert.match(
+    mainSource,
+    /document\.querySelectorAll\('meta\[name="theme-color"\]'\)\.forEach/,
+    'client routes must update every Safari color-scheme variant together',
   )
   assert.match(
     styleSource,
@@ -168,6 +183,10 @@ test('mobile first fold gives Safari matching chrome and a larger phone stage', 
     prerenderSource,
     /const pageTheme = themeColor === '#181613' \? 'dark' : 'light'[\s\S]*data-page-theme=/,
     'prerendered route shells must derive their root canvas from the same color as Safari chrome',
+  )
+  assert.ok(
+    prerenderSource.includes('/(<meta\\s[^>]*name="theme-color"[^>]*content=")[^"]*(")/g'),
+    'prerendered pages must keep every Safari color-scheme variant on the route color',
   )
   assert.match(
     heroSource,

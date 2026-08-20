@@ -279,7 +279,7 @@ const setHead = (
     `$1${robots}$2`,
   )
   output = output.replace(
-    /(<meta\s[^>]*name="theme-color"[^>]*content=")[^"]*(")/,
+    /(<meta\s[^>]*name="theme-color"[^>]*content=")[^"]*(")/g,
     `$1${themeColor}$2`,
   )
   output = output.replace(/(<link\s[^>]*rel="canonical"[^>]*href=")[^"]*(")/, `$1${url}$2`)
