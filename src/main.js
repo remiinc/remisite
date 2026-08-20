@@ -7,10 +7,9 @@ import { getPageLoader } from './lib/page-loaders.js'
 const normalizedPath = window.location.pathname.replace(/\/+$/, '') || '/'
 const usesDarkFirstFold = ['/', '/about'].includes(normalizedPath)
 document.documentElement.dataset.pageTheme = usesDarkFirstFold ? 'dark' : 'light'
-document.querySelector('meta[name="theme-color"]')?.setAttribute(
-  'content',
-  usesDarkFirstFold ? '#181613' : '#fffef9',
-)
+document.querySelectorAll('meta[name="theme-color"]').forEach((themeColor) => {
+  themeColor.setAttribute('content', usesDarkFirstFold ? '#181613' : '#fffef9')
+})
 
 const routeLoader = getPageLoader(normalizedPath)
 if (routeLoader) await routeLoader()
