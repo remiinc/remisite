@@ -3,6 +3,10 @@ import { onBeforeUnmount, onMounted, ref } from 'vue'
 import Button from '../global/button.vue'
 import ProductAssurances from '../global/product-assurances.vue'
 import StaticIphone from '../global/static-iphone.vue'
+import { getOnboardingEntry } from '../../lib/acquisition.js'
+
+const guidedEntry = getOnboardingEntry('guided')
+const guidedEntryHref = guidedEntry.href || '/api/onboarding/entry'
 
 const PARALLAX_LEVELS = {
   1: 0,
@@ -231,7 +235,7 @@ onBeforeUnmount(() => {
           </p>
 
           <div class="mt-8 flex flex-wrap items-center justify-center gap-3 sm:mt-12 lg:justify-start">
-            <Button href="/start" variant="white" size="lg" data-marketing-cta="hero_text_remi"
+            <Button :href="guidedEntryHref" variant="white" size="lg" data-marketing-cta="hero_text_remi"
               data-marketing-destination="guided">
               <span class="flex items-center gap-2.5">
                 <img src="/images/app-logos/ios-messages-icon.svg" alt="" class="size-5 shrink-0" aria-hidden="true">

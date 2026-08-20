@@ -184,6 +184,7 @@
   html[data-page-theme='dark'] body,
   html[data-page-theme='dark'] #app {
     background-color: var(--color-foreground);
+    color-scheme: dark;
   }
 
   button,
