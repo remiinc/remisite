@@ -203,7 +203,9 @@ export function buildProductEntryLink(destination, options = {}) {
   )
   if (!touch) return null
 
-  const url = new URL('/start', 'https://hireremi.ai')
+  // Enter the Portal server through its public proxy. The marketing SPA's
+  // /start route adds a client boot before onboarding can begin.
+  const url = new URL('/api/onboarding/entry', 'https://hireremi.ai')
   url.searchParams.set('acquisition_id', touch.acquisition_id)
   if (touch.landing_path) url.searchParams.set('landing_path', touch.landing_path)
   if (touch.referrer_origin) url.searchParams.set('referrer', touch.referrer_origin)

@@ -238,7 +238,7 @@ test('guided signup entry carries only the opaque acquisition allowlist', async 
     nowMs: 1_700_000_100_000,
   })
   const url = new URL(href, 'https://hireremi.ai')
-  assert.equal(url.pathname, '/start')
+  assert.equal(url.pathname, '/api/onboarding/entry')
   assert.deepEqual([...url.searchParams.keys()].sort(), [
     'acquisition_id', 'landing_path', 'referrer', 'utm_campaign', 'utm_source',
   ])
@@ -441,6 +441,9 @@ test('every current primary CTA family has manual tracking and product entries a
   )
   const prerender = await readFile(join(root, 'scripts/prerender.mjs'), 'utf8')
   assert.match(header, /getOnboardingEntry\('guided'\)/u)
+  const hero = await readFile(join(root, 'src/components/hero/hero-b.vue'), 'utf8')
+  assert.match(hero, /getOnboardingEntry\('guided'\)/u)
+  assert.match(hero, /:href="guidedEntryHref"/u)
   assert.match(pricing, /getOnboardingEntry\('guided'\)/u)
   assert.doesNotMatch(pricing, /<Button href="https:\/\/remi\.new\/login"/u)
   assert.match(signupRedirect, /buildGuidedOnboardingRedirect/u)
@@ -450,4 +453,14 @@ test('every current primary CTA family has manual tracking and product entries a
   assert.match(prerender, /href="\/api\/onboarding\/entry"/u)
   assert.doesNotMatch(prerender, /remi\.new\/start/u)
   assert.doesNotMatch(prerender, /REMI_TEXT_NUMBER|text-remi-qr|Open Messages/u)
+})
+
+test('the dark homepage canvas matches its Safari theme before Vue mounts', async () => {
+  const [main, stylesheet] = await Promise.all([
+    readFile(join(root, 'src/main.js'), 'utf8'),
+    readFile(join(root, 'src/style.css'), 'utf8'),
+  ])
+
+  assert.match(main, /dataset\.pageTheme = usesDarkFirstFold \? 'dark' : 'light'/u)
+  assert.match(stylesheet, /html\[data-page-theme='dark'\],[\s\S]*color-scheme:\s*dark;/u)
 })
