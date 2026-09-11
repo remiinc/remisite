@@ -1,7 +1,7 @@
 ---
 title: "Privacy"
 description: "This policy explains what Remi collects, why we use it, who can access it, and how you can control it."
-dateUpdated: "2026-07-08"
+dateUpdated: "2026-09-11"
 effectiveDate: "2026-07-08"
 ogTitle: "Privacy Policy"
 ogDescription: "How Remi collects, uses, shares, and protects personal data."
@@ -54,6 +54,8 @@ Remi uses AI model providers, retrieval systems, and infrastructure providers to
 
 We do not use customer content to train generalized AI models unless your organization separately instructs or agrees to that in writing, and we require AI model providers to honor available no-training commitments for customer content routed through Remi. Providers may process data for service operation, abuse prevention, security, and legal compliance as permitted by their business or API terms.
 
+The written-consent exception does not apply to Google Workspace API data or data derived from it. We do not use that data to create, train, or improve generalized or non-personalized AI or machine-learning models. Processing by model providers remains subject to the Google-data restrictions in Section 8; provider terms do not override those restrictions.
+
 ## 7. SMS And Text Conversations
 
 If you text a Remi number first, you consent to receive replies about your question from Remi's automated assistant. Remi may send up to 3 follow-ups about your question. You can reply STOP anytime to stop texts, or HELP for help. Message and data rates may apply.
@@ -66,7 +68,18 @@ For people who text Remi before becoming customers, we keep prospect text transc
 
 If you connect Google Workspace, Remi may process Gmail, Calendar, Drive, Docs, Sheets, Slides, user profile, or related Google data depending on the scopes you authorize. We use Google data only to provide and improve user-facing Remi features such as search, drafting, scheduling, document creation, context retrieval, and task execution.
 
-Remi's use and transfer of information received from Google APIs will adhere to the [Google API Services User Data Policy](https://developers.google.com/terms/api-services-user-data-policy), including the Limited Use requirements. We do not use Google Workspace API data for advertising, and we do not allow humans to read Google data except as necessary for security, abuse investigation, support with your consent, legal compliance, or internal operations.
+Remi's use and transfer of information received from Google APIs will adhere to the [Google API Services User Data Policy](https://developers.google.com/terms/api-services-user-data-policy), including the Limited Use requirements, and the [Google Workspace user data and developer policy](https://developers.google.com/workspace/workspace-api-user-data-developer-policy). These restrictions also apply to data derived from Google Workspace API data and take precedence over broader uses, sharing permissions, and agreements described elsewhere in this Policy or our Terms.
+
+We do not sell Google Workspace API data or use it for advertising, creditworthiness or lending decisions, or generalized or non-personalized AI-model training or improvement.
+
+We allow humans to read Google Workspace data only:
+
+- with your documented, explicit consent to view specific messages, files, or other data, such as for support;
+- when necessary for security purposes, such as investigating abuse;
+- when necessary to comply with applicable laws or regulations; or
+- for internal operations when the data, including any derived data, is aggregated and anonymized in accordance with applicable law.
+
+We transfer Google Workspace data only to provide or improve the authorized, user-facing features described above and with your consent; for security purposes; to comply with applicable laws or regulations; or as part of a merger, acquisition, or sale of assets after obtaining your explicit prior consent. These limits apply to transfers to model providers, tool providers, and other service providers. Our employees, agents, contractors, and successors must also comply with these restrictions.
 
 ## 9. Cookies, Logs, And Similar Technologies
 
@@ -100,6 +113,10 @@ We retain information for as long as needed to provide Remi, maintain security a
 
 Some records may remain in backups, logs, receipts, billing records, security systems, or audit trails for a limited period after deletion from active systems. We may retain de-identified or aggregated data where it no longer identifies you.
 
+You can revoke Remi's Google access through your Google Account's third-party connections controls. Revoking access stops future access through that connection; it does not by itself delete information already held by Remi. Disconnecting Remi does not delete your original Gmail messages, Drive files, or other data in Google.
+
+To request deletion of information held by Remi, email [ops@remi.new](mailto:ops@remi.new) and identify the account and information your request concerns. Do not send passwords or verification codes. We may verify your identity or coordinate with your organization as described in Section 15. Deletion from active systems and expiry of retained backup, security, billing, or audit records are distinct; revocation alone is not a claim that either has completed. Retention and processing of Google Workspace data remain subject to Section 8.
+
 ## 13. Security
 
 We use administrative, technical, and organizational safeguards designed to protect information, including access controls, authentication, encrypted transport, tenant separation, monitoring, and audit records.
@@ -128,6 +145,6 @@ Remi is not directed to children under 13, and we do not knowingly collect perso
 
 ## 18. Changes And Contact
 
-We may update this Privacy Policy from time to time. The current version will be available at remi.new/privacy, and the date above shows when it was last updated. Where required, we will provide additional notice.
+We may update this Privacy Policy from time to time. The current version will be available at [hireremi.ai/privacy](https://hireremi.ai/privacy), and the date above shows when it was last updated. Where required, we will provide additional notice.
 
 Privacy questions can be sent to [ops@remi.new](mailto:ops@remi.new).

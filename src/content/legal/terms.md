@@ -1,7 +1,7 @@
 ---
 title: "Terms"
 description: "These terms describe how Remi can be used, what you are responsible for, and how connected AI operations work."
-dateUpdated: "2026-05-08"
+dateUpdated: "2026-09-11"
 effectiveDate: "2026-05-08"
 ogTitle: "Terms of Service"
 ogDescription: "The terms that govern access to and use of Remi."
@@ -40,6 +40,8 @@ You retain ownership of prompts, messages, files, documents, comments, approvals
 You grant us the rights needed to host, process, transmit, display, secure, troubleshoot, and operate Customer Data so we can provide, maintain, support, and improve user-facing Remi features. You are responsible for having the rights, notices, consents, permissions, and lawful basis needed for data you submit, connect, share, or ask Remi to process.
 
 We may use aggregated or de-identified usage, performance, and diagnostic information to improve Remi. We do not use your Customer Data to train generalized AI models unless you separately instruct or agree to that in writing.
+
+That written-consent exception does not apply to Google Workspace API data or data derived from it. We do not use that data to create, train, or improve generalized or non-personalized AI or machine-learning models. Google-data use, human access, and transfers remain subject to Section 8 of our [Privacy Policy](/privacy), including Google's Limited Use restrictions. These restrictions take precedence over broader permissions or conflicting agreements described in these Terms; customer consent does not waive them.
 
 Do not submit regulated, highly sensitive, or special-category data unless your plan and written agreement expressly allow that type of data and you have configured Remi accordingly.
 
@@ -115,6 +117,6 @@ You will defend and indemnify us from claims arising from your Customer Data, yo
 
 ## 15. Changes And Contact
 
-We may update these Terms from time to time. The current version will be available at remi.new/terms, and the date above shows when the Terms were last updated. Continued use after an update means you accept the revised Terms.
+We may update these Terms from time to time. The current version will be available at [hireremi.ai/terms](https://hireremi.ai/terms), and the date above shows when the Terms were last updated. Continued use after an update means you accept the revised Terms.
 
 Questions about these Terms can be sent to [ops@remi.new](mailto:ops@remi.new).
